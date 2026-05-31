@@ -53,18 +53,17 @@ jobs:
           repository: G1234-cod/Individual-Resume
           path: temp-resume
       
-      - name: 3.2 Assemble Resume and Projects
+- name: 3.2 Assemble Resume and Projects
         run: |
-          # 将简历仓库根目录的纯静态文件（如 index.html）抽离到 VitePress 的 public 保护区
+          # 1. 使用 rsync 完美同步简历的所有页面和样式资源（排除无关的 .git 和 docs-md）
           mkdir -p docs/public/resume
-          # 使用 find 命令只移动外层文件，不包含 docs-md 和 .git 文件夹
-          find temp-resume -maxdepth 1 -type f -exec cp {} docs/public/resume/ \;
+          rsync -av --exclude='.git' --exclude='docs-md' temp-resume/ docs/public/resume/
           
-          # 将简历仓库中的 docs-md 文件夹内容，映射为博客的 resume-project 专栏
+          # 2. 将简历仓库中的 docs-md 映射为博客的 resume-project 专栏
           mkdir -p docs/resume-project
           cp -r temp-resume/docs-md/* docs/resume-project/ || true
           
-          # 销毁临时拉取的简历源仓库，保持工程环境纯净
+          # 3. 销毁临时拉取的简历源仓库
           rm -rf temp-resume
 
       # ==========================================
