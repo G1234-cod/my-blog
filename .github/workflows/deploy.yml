@@ -1,0 +1,97 @@
+name: Cloud Assembly & Deploy to Aliyun
+
+# 触发器：当你向 my-blog 的 main 分支推送代码时执行
+on:
+  push:
+    branches:
+      - main
+      - master # 兼容部分默认分支叫 master 的情况
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # ==========================================
+      # 阶段一：获取主引擎 (VitePress 配置层)
+      # ==========================================
+      - name: 1. Checkout Main Engine Repo
+        uses: actions/checkout@v4
+
+      # ==========================================
+      # 阶段二：微服务模块拉取 (替换本地的软链接)
+      # ==========================================
+      - name: 2.1 Checkout Tech Notes
+        uses: actions/checkout@v4
+        with:
+          repository: G1234-cod/tech-note
+          path: docs/tech-note
+
+      - name: 2.2 Checkout AI Journey
+        uses: actions/checkout@v4
+        with:
+          repository: G1234-cod/AI-Application-Learning-Journey
+          path: docs/ai-journey
+
+      - name: 2.3 Checkout LeetCode Solutions
+        uses: actions/checkout@v4
+        with:
+          repository: G1234-cod/leetcode-solutions
+          path: docs/leetcode
+
+      - name: 2.4 Checkout Env Setup
+        uses: actions/checkout@v4
+        with:
+          repository: G1234-cod/env-setup
+          path: docs/env-setup
+
+      # ==========================================
+      # 阶段三：特殊复杂仓库拼装 (简历原生 HTML 与 项目文档)
+      # ==========================================
+      - name: 3.1 Checkout Resume Repo to Temp Folder
+        uses: actions/checkout@v4
+        with:
+          repository: G1234-cod/Individual-Resume
+          path: temp-resume
+      
+      - name: 3.2 Assemble Resume and Projects
+        run: |
+          # 将简历仓库根目录的纯静态文件（如 index.html）抽离到 VitePress 的 public 保护区
+          mkdir -p docs/public/resume
+          # 使用 find 命令只移动外层文件，不包含 docs-md 和 .git 文件夹
+          find temp-resume -maxdepth 1 -type f -exec cp {} docs/public/resume/ \;
+          
+          # 将简历仓库中的 docs-md 文件夹内容，映射为博客的 resume-project 专栏
+          mkdir -p docs/resume-project
+          cp -r temp-resume/docs-md/* docs/resume-project/ || true
+          
+          # 销毁临时拉取的简历源仓库，保持工程环境纯净
+          rm -rf temp-resume
+
+      # ==========================================
+      # 阶段四：Node.js 环境搭建与全量编译
+      # ==========================================
+      - name: 4. Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 5. Install Dependencies
+        run: npm install
+
+      - name: 6. Execute VitePress Build
+        run: npm run docs:build
+
+      # ==========================================
+      # 阶段五：产物加密传输至阿里云 (CD 持续部署)
+      # ==========================================
+      - name: 7. Deploy to Aliyun Server via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_KEY }}
+          passphrase: ${{ secrets.SERVER_PASSPHRASE }}
+          source: "docs/.vitepress/dist/*"
+          target: "/var/www/html/"
+          strip_components: 3
