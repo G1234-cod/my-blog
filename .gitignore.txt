@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+docs/ai-journey/
+docs/env-setup/
+docs/leetcode/
+docs/reading/
+docs/resume-project/
+docs/tech-note/
+docs/public/resume/
