@@ -6,7 +6,7 @@ on:
     branches:
       - main
       - master # 兼容部分默认分支叫 master 的情况
-
+  workflow_dispatch: # 开启网页端一键手动触发功能
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -43,7 +43,12 @@ jobs:
         with:
           repository: G1234-cod/env-setup
           path: docs/env-setup
-
+          
+      - name: 2.5 Checkout Reading Notes
+        uses: actions/checkout@v4
+        with:
+          repository: G1234-cod/Reading-and-Comprehension
+          path: docs/reading # 必须映射为 config.mjs 里写的 /reading/ 路径
       # ==========================================
       # 阶段三：特殊复杂仓库拼装 (简历原生 HTML 与 项目文档)
       # ==========================================
@@ -53,7 +58,7 @@ jobs:
           repository: G1234-cod/Individual-Resume
           path: temp-resume
       
-- name: 3.2 Assemble Resume and Projects
+      - name: 3.2 Assemble Resume and Projects
         run: |
           # 1. 使用 rsync 完美同步简历的所有页面和样式资源（排除无关的 .git 和 docs-md）
           mkdir -p docs/public/resume

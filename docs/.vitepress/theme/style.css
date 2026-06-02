@@ -1,0 +1,22 @@
+:root {
+  /* 你的专属极客蓝主色调 */
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #1d4ed8;
+  --vp-c-brand-3: #1e3a8a;
+  
+  /* 核心：系统级安全字体栈，绝不发起外部字体请求，保证秒开 */
+  --vp-font-family-base: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  
+  /* 核心：代码块使用等宽系统字体 */
+  --vp-font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+/* 优化夜间模式的纯净度 */
+.dark {
+  --vp-c-bg: #121212;
+}
+
+/* 优化首页组件的边距 */
+.vp-doc .bento-container {
+  margin-top: 2rem;
+}
