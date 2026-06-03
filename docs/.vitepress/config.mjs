@@ -62,8 +62,8 @@ export default defineConfig({
         {
           text: '自动化图床与博客搭建',
           items: [
-            { text: '1. 自动化图床系统构建全记录', link: '/env-setup/Typora + PicGo + GitHub实现博客搭建/1.Typora + PicGo + GitHub 自动化图床系统构建全记录' },
-            { text: '2. 构建工业级图片管理体系', link: '/env-setup/Typora + PicGo + GitHub实现博客搭建/2.构建工业级图片管理体系——Typora与PicGo的进阶配置' },
+            { text: '1. 自动化图床系统构建全记录', link: '/env-setup/Typora + PicGo + GitHub实现博客搭建/1.1.Typora + PicGo + GitHub 自动化图床系统构建全记录' },
+            { text: '2. 构建工业级图片管理体系', link: '/env-setup/Typora + PicGo + GitHub实现博客搭建/2.构建工业级图片管理体系——Typora 路径变量与 GitHub 层级化存储' },
             { text: '3. 自动化图床背后的工程逻辑', link: '/env-setup/Typora + PicGo + GitHub实现博客搭建/3.自动化图床背后的工程逻辑与工具哲学' }
           ]
         }

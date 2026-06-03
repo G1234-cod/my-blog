@@ -86,10 +86,22 @@ jobs:
       - name: 6. Execute VitePress Build
         run: npm run docs:build
 
+      # 阶段五：清理旧产物并加密传输至阿里云 (CD 持续部署)
       # ==========================================
-      # 阶段五：产物加密传输至阿里云 (CD 持续部署)
-      # ==========================================
-      - name: 7. Deploy to Aliyun Server via SCP
+      - name: 7.1 Clear Old Files on Server (Clean Garbage)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_KEY }}
+          passphrase: ${{ secrets.SERVER_PASSPHRASE }}
+          script: |
+            # 确保目标目录存在，然后清空其内部所有旧的哈希文件，保留目录本身
+            mkdir -p /var/www/html
+            rm -rf /var/www/html/*
+            echo "✅ Server garbage cleared successfully."
+
+      - name: 7.2 Deploy to Aliyun Server via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_IP }}
