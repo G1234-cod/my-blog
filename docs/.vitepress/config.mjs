@@ -4,6 +4,7 @@ export default defineConfig({
   title: "DevPortal",
   description: "专注 AI 应用与全栈架构的软件工程师",
   lang: 'zh-CN',
+  ignoreDeadLinks: true,
   
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }]
@@ -13,6 +14,11 @@ export default defineConfig({
     server: {
       fs: {
         allow: ['E:/Web_git']
+      }
+    },
+    build: {
+      rollupOptions: {
+        external: ['vue/server-renderer', 'vue']
       }
     }
   },
