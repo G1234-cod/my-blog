@@ -3,7 +3,7 @@ name: Cloud Assembly & Deploy to Aliyun
 # 触发器：当你向 my-blog 的 main 分支推送代码时执行
 on:
   push:
-分支:
+branches:
       - main
       - master # 兼容部分默认分支叫 master 的情况
   workflow_dispatch: # 开启网页端一键手动触发功能
