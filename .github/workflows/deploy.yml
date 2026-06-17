@@ -3,7 +3,7 @@ name: Cloud Assembly & Deploy to Aliyun
 # 触发器：当你向 my-blog 的 main 分支推送代码时执行
 on:
   push:
-    branches:
+分支:
       - main
       - master # 兼容部分默认分支叫 master 的情况
   workflow_dispatch: # 开启网页端一键手动触发功能
@@ -60,15 +60,19 @@ jobs:
       
       - name: 3.2 Assemble Resume and Projects
         run: |
-          # 1. 使用 rsync 完美同步简历的所有页面和样式资源（排除无关的 .git 和 docs-md）
+          # 1. 同步简历 HTML 及资源
           mkdir -p docs/public/resume
-          rsync -av --exclude='.git' --exclude='docs-md' temp-resume/ docs/public/resume/
+          rsync -av --exclude='.git' --exclude='docs-md' --exclude='build-journal' temp-resume/ docs/public/resume/
           
-          # 2. 将简历仓库中的 docs-md 映射为博客的 resume-project 专栏
+          # 2. 映射 resume-project 专栏
           mkdir -p docs/resume-project
           cp -r temp-resume/docs-md/* docs/resume-project/ || true
+
+          # 【核心修复】3. 映射建站日志 (build-journal) 专栏
+          mkdir -p docs/build-journal
+          cp -r temp-resume/build-journal/* docs/build-journal/ || true
           
-          # 3. 销毁临时拉取的简历源仓库
+          # 4. 销毁临时仓库
           rm -rf temp-resume
 
       # ==========================================
