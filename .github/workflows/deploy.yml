@@ -3,7 +3,7 @@ name: Cloud Assembly & Deploy to Aliyun
 # 触发器：当你向 my-blog 的 main 分支推送代码时执行
 on:
   push:
-    branches:
+分支:
       - main
       - master # 兼容部分默认分支叫 master 的情况
   workflow_dispatch: # 开启网页端一键手动触发功能
@@ -61,17 +61,19 @@ jobs:
       
       - name: 3.2 Assemble Resume and Projects
         run: |
-          # 1. 同步简历 HTML 及资源
+          # 1. 同步简历 HTML 及资源 (正确排除 my-resume 和 build-journal)
           mkdir -p docs/public/resume
-          rsync -av --exclude='.git' --exclude='docs-md' --exclude='build-journal' temp-resume/ docs/public/resume/
+          rsync -av --exclude='.git' --exclude='my-resume' --exclude='build-journal' temp-resume/ docs/public/resume/
           
-          # 2. 映射 resume-project 专栏
+          # 2. 映射 resume-project 专栏 (源目录纠正为 my-resume，强力清除旧软链)
+          rm -rf docs/resume-project
           mkdir -p docs/resume-project
-          cp -r temp-resume/docs-md/* docs/resume-project/ || true
+          if [ -d "temp-resume/my-resume" ] && [ "$(ls -A temp-resume/my-resume)" ]; then cp -r temp-resume/my-resume/* docs/resume-project/ || true; fi
 
-          # 【核心修复】3. 映射建站日志 (build-journal) 专栏
+          # 3. 映射建站日志 (强力清除旧软链)
+          rm -rf docs/build-journal
           mkdir -p docs/build-journal
-          cp -r temp-resume/build-journal/* docs/build-journal/ || true
+          if [ -d "temp-resume/build-journal" ] && [ "$(ls -A temp-resume/build-journal)" ]; then cp -r temp-resume/build-journal/* docs/build-journal/ || true; fi
           
           # 4. 销毁临时仓库
           rm -rf temp-resume
