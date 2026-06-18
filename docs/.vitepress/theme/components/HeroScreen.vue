@@ -3,8 +3,8 @@
     
     <div class="hero-card">
       <div class="image-section">
-        <img src="/Guanyunxiang_photo.jpg" alt="关运祥" class="profile-img" />
-        <div class="image-overlay"></div>
+       <img src="/profile-img2.png" alt="关运祥" class="profile-img" />
+       <div class="image-overlay"></div>
       </div>
 
       <div class="text-section">
