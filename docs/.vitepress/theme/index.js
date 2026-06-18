@@ -3,15 +3,22 @@ import './style.css'
 
 import DynamicNavbar from '../components/DynamicNavbar.vue'
 import HeroScreen from '../components/HeroScreen.vue'
-// 1. 新增导入
-import StatsBento from '../components/StatsBento.vue' 
+import StatsBento from '../components/StatsBento.vue'
+// 新增的四个组件
+import StickyTimeline from '../components/StickyTimeline.vue'
+import ProjectShowcase from '../components/ProjectShowcase.vue'
+import HubGateway from '../components/HubGateway.vue'
+import ContactFooter from '../components/ContactFooter.vue'
 
 export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
     app.component('DynamicNavbar', DynamicNavbar)
     app.component('HeroScreen', HeroScreen)
-    // 2. 新增全局注册
-    app.component('StatsBento', StatsBento) 
+    app.component('StatsBento', StatsBento)
+    app.component('StickyTimeline', StickyTimeline)
+    app.component('ProjectShowcase', ProjectShowcase)
+    app.component('HubGateway', HubGateway)
+    app.component('ContactFooter', ContactFooter)
   }
 }

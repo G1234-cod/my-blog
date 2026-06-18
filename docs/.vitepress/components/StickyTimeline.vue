@@ -1,315 +1,162 @@
-<script setup>
-import { ref } from 'vue'
-
-const achievements = ref([
-  {
-    year: '2024',
-    title: 'AI Application Engineer',
-    description: 'Developed enterprise-level RAG systems and LLM applications',
-    icon: '🤖',
-    highlight: true
-  },
-  {
-    year: '2023',
-    title: 'Full-Stack Architect',
-    description: 'Designed and implemented scalable microservices architecture',
-    icon: '🏗️',
-    highlight: false
-  },
-  {
-    year: '2022',
-    title: 'Cloud Native Expert',
-    description: 'Deployed production-grade Kubernetes clusters on AWS',
-    icon: '☁️',
-    highlight: true
-  },
-  {
-    year: '2021',
-    title: 'DevOps Engineer',
-    description: 'Built CI/CD pipelines and automated infrastructure',
-    icon: '🔧',
-    highlight: false
-  },
-  {
-    year: '2020',
-    title: 'Open Source Contributor',
-    description: 'Contributed to multiple popular GitHub projects',
-    icon: '💻',
-    highlight: true
-  },
-  {
-    year: '2019',
-    title: 'Software Developer',
-    description: 'Started professional career in web development',
-    icon: '🚀',
-    highlight: false
-  }
-])
-
-const awards = ref([
-  { name: 'Codeforces', rank: 'Expert', rating: '1890' },
-  { name: 'LeetCode', rank: 'Master', rating: '2200+' },
-  { name: 'GitHub', rank: 'Star', stars: '1.2K+' }
-])
-</script>
-
 <template>
-  <div class="timeline-container">
-    <h2 class="section-title">
-      <span class="title-icon">⏱️</span>
-      CAREER TIMELINE
-    </h2>
-
-    <div class="timeline-wrapper">
-      <!-- 左侧固定面板 -->
-      <div class="timeline-sidebar">
-        <div class="sidebar-card glass-effect">
-          <h3 class="sidebar-title">ACHIEVEMENTS</h3>
-          <div class="award-list">
-            <div class="award-item" v-for="award in awards" :key="award.name">
-              <div class="award-header">
-                <span class="award-name">{{ award.name }}</span>
-                <span class="award-rank">{{ award.rank }}</span>
-              </div>
-              <div class="award-value">{{ award.rating || award.stars }}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sidebar-card glass-effect">
-          <h3 class="sidebar-title">CERTIFICATIONS</h3>
-          <div class="cert-list">
-            <div class="cert-item">AWS Solutions Architect</div>
-            <div class="cert-item">Google Cloud Professional</div>
-            <div class="cert-item">CKA Certified Kubernetes</div>
-            <div class="cert-item">Azure Developer Associate</div>
-          </div>
-        </div>
+  <div class="split-screen" id="timeline">
+    <div class="left-board">
+      <div class="board-content">
+        <h2 class="board-title">荣誉轨迹<br>& 内功基石</h2>
+        <p class="board-desc">
+          从底层数据结构到全栈工程实践。<br>
+          斩获 3 项国家/省级竞赛奖项，攻克 5 门 90+ 核心专业壁垒。
+        </p>
+        <div class="cyber-ring"></div>
       </div>
+    </div>
 
-      <!-- 右侧滚动时间轴 -->
-      <div class="timeline-scroll">
-        <div class="timeline-line"></div>
-        <div 
-          class="timeline-item" 
-          v-for="(item, index) in achievements" 
-          :key="item.year"
-          :class="{ 'timeline-highlight': item.highlight }"
-        >
-          <div class="timeline-dot"></div>
-          <div class="timeline-content glass-effect">
-            <div class="timeline-header">
-              <span class="timeline-year">{{ item.year }}</span>
-              <span class="timeline-icon">{{ item.icon }}</span>
-            </div>
-            <h3 class="timeline-title">{{ item.title }}</h3>
-            <p class="timeline-desc">{{ item.description }}</p>
+    <div class="right-scroll">
+      <div class="timeline-container">
+        
+        <div class="timeline-node honor">
+          <div class="node-dot"></div>
+          <div class="node-content">
+            <span class="year">国家级荣誉</span>
+            <h3>iCAN 创新创业大赛</h3>
+            <p>荣获全国二等奖，展现全栈创新落地能力。</p>
           </div>
         </div>
+
+        <div class="timeline-node academic">
+          <div class="node-dot"></div>
+          <div class="node-content">
+            <span class="year">底层算法壁垒</span>
+            <h3>《算法设计与分析》 94分</h3>
+            <p>深入探讨算法复杂度与动态规划内核，高分结课。</p>
+          </div>
+        </div>
+
+        <div class="timeline-node honor">
+          <div class="node-dot"></div>
+          <div class="node-content">
+            <span class="year">专业竞赛</span>
+            <h3>第十五届蓝桥杯</h3>
+            <p>荣获省赛一等奖、国赛二等奖，验证扎实代码功底。</p>
+          </div>
+        </div>
+
+        <div class="timeline-node academic">
+          <div class="node-dot"></div>
+          <div class="node-content">
+            <span class="year">网络与系统架构</span>
+            <h3>《计算机网络》93分 | 《操作系统》90分</h3>
+            <p>深入理解 TCP/IP 协议栈与系统调度机制，夯实全栈基础。</p>
+          </div>
+        </div>
+
+        <div class="timeline-node cert">
+          <div class="node-dot"></div>
+          <div class="node-content">
+            <span class="year">行业资质</span>
+            <h3>软件设计师（中级）</h3>
+            <p>一次性通过国家软考，具备标准软件工程设计与系统架构能力。</p>
+          </div>
+        </div>
+        
+        <div style="height: 100px;"></div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.timeline-container {
+.split-screen {
   width: 100%;
-  padding: 2rem 0;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-  text-align: center;
-  margin-bottom: 2rem;
-  letter-spacing: 0.1em;
-}
-
-.title-icon {
-  margin-right: 0.5rem;
-}
-
-.timeline-wrapper {
+  height: 100%;
   display: flex;
-  gap: 2rem;
 }
-
-.timeline-sidebar {
-  position: sticky;
-  top: 80px;
+.left-board {
   width: 40%;
-  max-width: 320px;
-  height: fit-content;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.sidebar-card {
-  border-radius: 1rem;
-  padding: 1.5rem;
-}
-
-.sidebar-title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--vp-c-brand-1);
-  margin: 0 0 1rem;
-  letter-spacing: 0.05em;
-}
-
-.award-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.award-item {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--vp-c-divider);
-}
-
-.award-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.award-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.25rem;
-}
-
-.award-name {
-  font-size: 0.9rem;
-  color: var(--vp-c-text-1);
-}
-
-.award-rank {
-  font-size: 0.75rem;
-  color: var(--vp-c-brand-1);
-  background: rgba(37, 99, 235, 0.1);
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
-}
-
-.award-value {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-}
-
-.cert-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.cert-item {
-  font-size: 0.875rem;
-  color: var(--vp-c-text-2);
-  padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 0.5rem;
-}
-
-/* 右侧时间轴 */
-.timeline-scroll {
-  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
-  padding-left: 2rem;
 }
-
-.timeline-line {
-  position: absolute;
-  left: 0.5rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--vp-c-brand-1), transparent);
-}
-
-.timeline-item {
+.board-content {
+  width: 70%;
   position: relative;
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
+  z-index: 2;
 }
-
-.timeline-item:hover {
-  transform: translateX(10px);
+.board-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 20px;
 }
-
-.timeline-dot {
+.board-desc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+}
+.cyber-ring {
   position: absolute;
-  left: -1.75rem;
-  top: 1rem;
+  top: -50px;
+  left: -50px;
+  width: 200px;
+  height: 200px;
+  border: 1px dashed rgba(120, 80, 255, 0.3);
+  border-radius: 50%;
+  z-index: -1;
+  animation: spin 20s linear infinite;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* 右侧滚动区设置 */
+.right-scroll {
+  width: 60%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 100px 8%;
+  scrollbar-width: none; /* Firefox 隐藏滚动条 */
+}
+.right-scroll::-webkit-scrollbar { display: none; }
+
+.timeline-container {
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+.timeline-node { position: relative; }
+.node-dot {
+  position: absolute;
+  left: -47px;
+  top: 5px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background: var(--vp-c-brand-1);
-  border: 3px solid var(--vp-c-bg);
-  transition: all 0.3s ease;
-}
-
-.timeline-item:hover .timeline-dot {
-  transform: scale(1.5);
   box-shadow: 0 0 10px var(--vp-c-brand-1);
 }
+.honor .node-dot { background: #ff0844; box-shadow: 0 0 10px #ff0844; }
+.academic .node-dot { background: #00f2fe; box-shadow: 0 0 10px #00f2fe; }
 
-.timeline-content {
-  border-radius: 1rem;
-  padding: 1.5rem;
+.node-content .year {
+  font-size: 0.8rem;
+  font-family: monospace;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+  display: inline-block;
 }
-
-.timeline-highlight .timeline-content {
-  border-color: rgba(37, 99, 235, 0.3);
+.node-content h3 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin: 0 0 10px 0;
 }
-
-.timeline-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-}
-
-.timeline-year {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--vp-c-brand-1);
-}
-
-.timeline-icon {
-  font-size: 1.5rem;
-}
-
-.timeline-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-  margin: 0 0 0.5rem;
-}
-
-.timeline-desc {
-  font-size: 0.9rem;
-  color: var(--vp-c-text-2);
+.node-content p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
   margin: 0;
   line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-  .timeline-wrapper {
-    flex-direction: column;
-  }
-  
-  .timeline-sidebar {
-    position: static;
-    width: 100%;
-    max-width: 100%;
-  }
-  
-  .timeline-scroll {
-    padding-left: 1.5rem;
-  }
 }
 </style>
