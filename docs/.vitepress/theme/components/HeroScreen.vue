@@ -52,7 +52,8 @@
 .glow-2 { bottom: -10%; right: 10%; width: 500px; height: 500px; background: #00f2fe; }
 
 .hero-card {
-  width: 90%; max-width: 1400px; min-height: 520px;
+  /*修改图片高度*/
+  width: 90%; max-width: 1400px; min-height: 680px;
   position: relative; z-index: 1; border-radius: 24px; overflow: hidden;
   background-image: url('/background.jpg'); 
   background-size: cover; background-position: right center; background-repeat: no-repeat;
@@ -89,7 +90,8 @@
 .stat-desc { font-size: 0.9rem; font-weight: 600; color: var(--vp-c-text-2); letter-spacing: 0.5px; }
 
 @media (max-width: 900px) {
-  .hero-card { min-height: 600px; background-position: 70% center; }
+  /*修改图片高度*/
+  .hero-card { min-height: 750px; background-position: 70% center; }
   .gradient-overlay { background: linear-gradient(to top, var(--vp-c-bg) 0%, var(--vp-c-bg) 50%, transparent 90%); padding: 120px 30px 40px 30px; justify-content: flex-end; }
   .text-content { width: 100%; }
   .main-title { font-size: 2.2rem; }
