@@ -58,7 +58,7 @@
             </div>
             <div class="card-right">
               <div class="mini-badge score-badge"><span class="b-icon">💯</span><span class="b-text">离散数学 97分 / 算法 94分</span></div>
-              <div class="mini-badge"><span class="b-icon">🥈</span><span class="b-text">蓝桥杯全国大赛 (国二/省一)</span></div>
+              <div class="mini-badge"><span class="b-icon">🥈</span><span class="b-text">蓝桥杯全国大赛 (省三)</span></div>
               <div class="mini-badge"><span class="b-icon">🥉</span><span class="b-text">全国大学生数学建模 (省三)</span></div>
             </div>
           </div>
@@ -120,7 +120,7 @@
 
 <style scoped>
 /* === 整体双栏布局 === */
-.split-screen { width: 100%; height: 100vh; display: flex; background-color: var(--vp-c-bg); overflow: hidden; }
+.split-screen { width: 100%; height: 100vh; display: flex; background-color: var(--vp-c-bg); overflow: hidden; padding: 0 4%; box-sizing: border-box; }
 
 /* === 左侧：仪表盘看板 === */
 .left-board { 
@@ -151,7 +151,7 @@
 
 /* === 右侧：图标轨道时间轴 === */
 .right-scroll { 
-  width: 60%; height: 100%; overflow-y: auto; padding: 100px 6% 0 6%; 
+  width: 60%; height: 100%; overflow-y: auto; padding: 100px 4% 0 8%; 
   scrollbar-width: none; scroll-behavior: smooth;
 }
 .right-scroll::-webkit-scrollbar { display: none; }
