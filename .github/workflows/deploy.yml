@@ -50,6 +50,12 @@ jobs:
         with:
           repository: G1234-cod/Reading-and-Comprehension
           path: docs/reading # 必须映射为 config.mjs 里写的 /reading/ 路径
+
+      - name: 2.6 Checkout Projects Repository
+        uses: actions/checkout@v4
+        with:
+          repository: G1234-cod/garbage-classification-model
+          path: docs/projects/garbage-classification
       # ==========================================
       # 阶段三：特殊复杂仓库拼装 (简历原生 HTML 与 项目文档)
       # ==========================================

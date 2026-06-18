@@ -24,6 +24,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: 'AI 探索', link: '/ai-journey/' },
+      { text: '项目实战', link: '/projects/' },
       { text: '环境部署', link: '/env-setup/' },
       { text: '算法解析', link: '/leetcode/' },
       { text: '技术笔记', link: '/tech-note/' },
@@ -69,6 +70,13 @@ export default defineConfig({
         scanStartPath: 'tech-note',
         resolvePath: '/tech-note/',
         useTitleFromFileHeading: true
+      },
+      {
+        documentRootPath: 'docs',
+        scanStartPath: 'projects',
+        resolvePath: '/projects/',
+        useTitleFromFileHeading: true,
+        useFolderTitleFromIndexFile: true
       }
     ]),
 
