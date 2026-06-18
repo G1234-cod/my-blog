@@ -1,13 +1,18 @@
 <template>
   <div class="hero-wrapper" id="hero">
     
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
     <div class="hero-card">
-      <div class="text-section">
+      
+      <div class="glass-panel">
         <div class="tag">🌐 关于我</div>
         <h1 class="main-title">嘿，我是关运祥 👋</h1>
         <p class="description">
           来自洛阳理工学院的软件工程拔尖学生，致力于开发全栈应用、AI 本地化落地解决方案，并推动技术边界的真实工程产出。
         </p>
+
         <div class="mission-card">
           <div class="mission-title">🚀 我的使命</div>
           <p class="mission-text">
@@ -18,93 +23,105 @@
           </div>
         </div>
       </div>
-
-      <div class="image-section">
-        <img src="/profile-img2.png" alt="关运祥" class="profile-img" />
-        <div class="image-overlay"></div>
-      </div>
+      
     </div>
 
     <div class="bottom-stats">
-      <div class="stat-item"><span class="icon">⭐</span> 3+ 核心架构系统</div>
-      <div class="stat-item"><span class="icon">🚀</span> 1000+ 调试工时</div>
-      <div class="stat-item"><span class="icon">📦</span> 10+ 容器部署节点</div>
-      <div class="stat-item"><span class="icon">💡</span> 3项 国家/省级竞赛奖项</div>
+      <div class="stat-item">
+        <span class="icon">⭐</span>
+        <span class="stat-num">3+</span>
+        <span class="stat-desc">核心架构系统</span>
+      </div>
+      <div class="stat-item">
+        <span class="icon">🚀</span>
+        <span class="stat-num">1000+</span>
+        <span class="stat-desc">调试工时</span>
+      </div>
+      <div class="stat-item">
+        <span class="icon">📦</span>
+        <span class="stat-num">10+</span>
+        <span class="stat-desc">容器部署节点</span>
+      </div>
+      <div class="stat-item">
+        <span class="icon">🏆</span>
+        <span class="stat-num">3项</span>
+        <span class="stat-desc">国家/省级竞赛奖项</span>
+      </div>
     </div>
 
   </div>
 </template>
 
 <style scoped>
+/* 1. 外层容器：相对定位，为了放置底层光晕 */
 .hero-wrapper {
-  width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;
-  background-image: linear-gradient(var(--vp-c-divider) 1px, transparent 1px), linear-gradient(90deg, var(--vp-c-divider) 1px, transparent 1px);
-  background-size: 40px 40px; padding: 0 5%;
+  width: 100%; height: 100vh; display: flex; flex-direction: column; 
+  justify-content: center; align-items: center; position: relative; 
+  padding: 0 5%; overflow: hidden;
+  background-color: var(--vp-c-bg); /* 严格调用 VitePress 变量 */
 }
 
-/* 【性能优化点】：添加硬件加速，降低 blur 半径解决卡顿 */
+/* 2. 网页底层氛围光晕 (模拟参考图的背景发光) */
+.bg-glow { position: absolute; border-radius: 50%; z-index: 0; filter: blur(120px); opacity: 0.15; pointer-events: none; }
+.glow-1 { top: -10%; left: 5%; width: 600px; height: 600px; background: var(--vp-c-brand-1); }
+.glow-2 { bottom: -10%; right: 10%; width: 500px; height: 500px; background: #00f2fe; }
+
+/* 3. 核心卡片：挂载你的【完整原图】 */
 .hero-card {
-  width: 100%; max-width: 1100px; min-height: 500px; display: flex;
-  background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border);
-  border-radius: 24px; overflow: hidden; position: relative;
+  width: 100%; max-width: 1100px; min-height: 520px;
+  position: relative; z-index: 1; border-radius: 24px; overflow: hidden;
+  /* 请确保 public 目录下有这张未经过抠图的原照 */
+  background-image: url('/background.jpg'); 
+  background-size: cover; background-position: right center; background-repeat: no-repeat;
   box-shadow: var(--vp-shadow-3);
-  
-  /* 开启独立图层渲染，拯救卡顿 */
-  transform: translateZ(0); 
-  will-change: transform;
-  
-  /* 适当降低毛玻璃强度 */
-  backdrop-filter: blur(12px); 
-  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--vp-c-border);
   transition: border-color 0.3s ease;
 }
 .hero-card:hover { border-color: var(--vp-c-brand-1); }
 
-/* === 左侧文本 === */
-.text-section { width: 55%; padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; z-index: 2; }
-.tag { font-family: monospace; font-size: 0.9rem; color: var(--vp-c-text-2); margin-bottom: 20px; }
-.main-title { font-size: 3rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 20px 0; line-height: 1.2; }
-.description { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0 0 40px 0; }
+/* 4. 左侧毛玻璃面板：完美还原参考图的半遮挡质感 */
+.glass-panel {
+  position: absolute; top: 0; left: 0; width: 60%; height: 100%;
+  padding: 60px 50px; display: flex; flex-direction: column; justify-content: center;
+  /* 严格使用变量：从纯背景色向透明渐变 */
+  background: linear-gradient(to right, var(--vp-c-bg) 45%, transparent 100%);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  /* 修复在某些设备上的渲染边界 */
+  transform: translateZ(0); will-change: transform;
+}
 
-.mission-card { background: var(--vp-c-default-soft); border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 24px; position: relative; }
+/* 文本排版样式 */
+.tag { font-family: monospace; font-size: 0.9rem; color: var(--vp-c-text-2); margin-bottom: 20px; }
+.main-title { font-size: 3.2rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 20px 0; line-height: 1.2; letter-spacing: -0.5px; }
+.description { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0 0 30px 0; max-width: 90%; }
+
+/* 内嵌使命卡片 */
+.mission-card {
+  background: var(--vp-c-default-soft); border: 1px solid var(--vp-c-border); 
+  border-radius: 16px; padding: 24px; max-width: 95%;
+}
 .mission-title { font-size: 0.9rem; font-weight: 700; color: var(--vp-c-text-1); margin-bottom: 12px; }
 .mission-text { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.6; margin: 0 0 16px 0; }
 .mission-footer { font-size: 0.85rem; color: var(--vp-c-text-3); font-style: italic; }
 
-/* === 右侧人像 === */
-.image-section { 
-  width: 45%; position: relative; 
-  /* 底部光晕稍微偏向右侧 */
-  background: radial-gradient(circle at 60% 50%, var(--vp-c-brand-soft) 0%, transparent 60%); 
+/* 5. 底部状态栏重构：现代、粗壮、高对比度 */
+.bottom-stats {
+  margin-top: 40px; display: flex; gap: 40px; justify-content: center; align-items: center; z-index: 1; flex-wrap: wrap;
 }
-.profile-img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center top; 
-  /* 【视觉魔法】：让照片的【左侧】和【底部】像雾一样消隐，完美融合 */
-  -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%), linear-gradient(to top, transparent 0%, black 20%);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to left, black 60%, transparent 100%), linear-gradient(to top, transparent 0%, black 20%);
-  mask-composite: intersect;
+.stat-item {
+  display: flex; align-items: center; gap: 10px; font-family: var(--vp-font-family-base);
 }
-.image-overlay {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  /* 渐变遮挡从左往右，防止右侧照片过亮 */
-  background: linear-gradient(to right, var(--vp-c-bg-soft) 0%, transparent 50%);
-  pointer-events: none;
-}
+.stat-item .icon { font-size: 1.1rem; }
+.stat-num { font-size: 1.1rem; font-weight: 800; color: var(--vp-c-text-1); font-family: monospace; }
+.stat-desc { font-size: 0.9rem; font-weight: 600; color: var(--vp-c-text-2); letter-spacing: 0.5px; }
 
-/* === 底部状态栏 === */
-.bottom-stats { margin-top: 40px; display: flex; gap: 40px; justify-content: center; align-items: center; }
-.stat-item { font-size: 0.85rem; color: var(--vp-c-text-2); font-family: monospace; display: flex; align-items: center; gap: 8px; }
-.icon { font-size: 1rem; }
-
-/* 响应式适配 */
+/* 移动端响应式适配 */
 @media (max-width: 900px) {
-  .hero-card { flex-direction: column; }
-  .text-section { width: 100%; padding: 40px 30px; }
-  .image-section { width: 100%; height: 350px; }
-  /* 手机端改成下方消隐 */
-  .profile-img { object-position: center 10%; -webkit-mask-image: linear-gradient(to top, transparent 0%, black 40%); }
-  .image-overlay { background: linear-gradient(to top, var(--vp-c-bg-soft) 0%, transparent 50%); }
-  .bottom-stats { flex-wrap: wrap; gap: 20px; margin-top: 30px; }
+  .hero-card { min-height: 600px; background-position: 70% center; }
+  /* 移动端让玻璃面板占据底部 */
+  .glass-panel { width: 100%; height: auto; top: auto; bottom: 0; background: linear-gradient(to top, var(--vp-c-bg) 70%, transparent 100%); padding: 120px 30px 40px 30px; }
+  .main-title { font-size: 2.2rem; }
+  .description { max-width: 100%; }
+  .bottom-stats { gap: 20px; margin-top: 30px; }
 }
 </style>
