@@ -9,6 +9,9 @@
   
   /* 核心：代码块使用等宽系统字体 */
   --vp-font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* 自定义滚动捕捉变量 */
+  --scroll-snap-align: start;
 }
 
 /* 优化夜间模式的纯净度 */
@@ -16,7 +19,127 @@
   --vp-c-bg: #121212;
 }
 
-/* 优化首页组件的边距 */
+/* ============ 全局滚动条隐藏 ============ */
+::-webkit-scrollbar {
+  display: none;
+}
+::-moz-scrollbar {
+  display: none;
+}
+::-ms-scrollbar {
+  display: none;
+}
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* ============ 全屏滚动捕捉机制 ============ */
+.universe-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+.universe-screen {
+  height: 100vh;
+  scroll-snap-align: var(--scroll-snap-align);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* ============ 赛博暗黑网格背景 ============ */
+.universe-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* 网格发光效果 */
+.universe-grid::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.08) 0%, transparent 50%);
+  animation: gridPulse 8s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* ============ 亚克力毛玻璃基础样式 ============ */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ============ 霓虹发光效果 ============ */
+.neon-glow {
+  box-shadow: 
+    0 0 5px var(--vp-c-brand-1),
+    0 0 10px var(--vp-c-brand-1),
+    0 0 20px rgba(37, 99, 235, 0.3);
+}
+
+.neon-text {
+  text-shadow: 
+    0 0 5px var(--vp-c-brand-1),
+    0 0 10px var(--vp-c-brand-1),
+    0 0 20px rgba(37, 99, 235, 0.5);
+}
+
+/* ============ 通用动画 ============ */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes slideLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============ 优化首页组件的边距 ============ */
 .vp-doc .bento-container {
   margin-top: 2rem;
+}
+
+/* ============ 全局内容层叠顺序 ============ */
+.universe-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 2rem;
+  box-sizing: border-box;
 }
