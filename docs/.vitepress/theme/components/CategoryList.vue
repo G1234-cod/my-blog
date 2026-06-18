@@ -28,13 +28,10 @@ import { computed } from 'vue'
 const { theme } = useData()
 const route = useRoute()
 
-// 核心逻辑：根据当前的 URL 路径，自动去提取对应的 sidebar 配置
 const currentSidebar = computed(() => {
-  // 例如当前路径是 /build-journal/index.html，提取出 /build-journal/
   const pathParts = route.path.split('/')
   const currentCategoryKey = `/${pathParts[1]}/`
   
-  // 返回 config.mjs 中对应这个 key 的数据
   return theme.value.sidebar[currentCategoryKey] || []
 })
 </script>
@@ -64,7 +61,7 @@ const currentSidebar = computed(() => {
   background-color: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
-  text-decoration: none !important; /* 去除超链接下划线 */
+  text-decoration: none !important;
   transition: all 0.3s ease;
 }
 .hover-effect:hover {

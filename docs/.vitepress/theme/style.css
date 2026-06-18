@@ -1,42 +1,42 @@
-/* 1. 彻底覆盖 VitePress 默认最大宽度限制 */
+/* 彻底清除 VitePress 默认干扰 */
 :root {
   --vp-layout-max-width: 100vw !important;
 }
 
-/* 2. 强行重置基础画布，锁死外部滚动条 */
 html, body, #app {
   margin: 0 !important;
   padding: 0 !important;
   width: 100vw;
   height: 100vh;
   overflow: hidden !important; 
-  background-color: #09090b; /* 极客纯黑底色 */
+  /* 严格遵循底线：调用 VitePress 动态背景变量 */
+  background-color: var(--vp-c-bg); 
   font-family: var(--vp-font-family-base);
+  color: var(--vp-c-text-1);
 }
 
-/* 3. 全局中控台：接管内部滚动权限 */
+/* 全局中控台：全屏滚动捕捉 */
 .universe-container {
   width: 100vw;
   height: 100vh;
   overflow-y: scroll;
-  scroll-snap-type: y mandatory; /* Y轴强制吸附对齐 */
+  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-}
-
-/* 隐藏碍眼的滚动条 */
-.universe-container::-webkit-scrollbar {
-  display: none;
-}
-.universe-container {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.universe-container::-webkit-scrollbar {
+  display: none;
+}
 
-/* 4. 每一屏的绝对物理屏障 */
+/* 每一屏的基础单元 */
 .universe-screen {
   width: 100vw;
   height: 100vh;
-  scroll-snap-align: start; /* 滚动停止时严格对齐屏幕顶部 */
+  scroll-snap-align: start;
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
