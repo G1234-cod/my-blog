@@ -1,219 +1,104 @@
-<script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-
-const isScrolled = ref(false)
-const isDarkMode = ref(false)
-
-const navItems = [
-  { id: 'screen-hero', label: 'HOME', icon: '🏠' },
-  { id: 'screen-stats', label: 'STATS', icon: '📊' },
-  { id: 'screen-timeline', label: 'TIMELINE', icon: '⏱️' },
-  { id: 'screen-projects', label: 'PROJECTS', icon: '💻' },
-  { id: 'screen-hub', label: 'HUB', icon: '🔗' },
-  { id: 'screen-contact', label: 'CONTACT', icon: '✉️' }
-]
-
-const scrollToSection = (id) => {
-  const element = document.getElementById(id)
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
-  }
-}
-
-let scrollContainer = null
-
-const handleScroll = () => {
-  isScrolled.value = (scrollContainer?.scrollTop ?? window.scrollY) > 50
-}
-
-const toggleDarkMode = () => {
-  isDarkMode.value = !isDarkMode.value
-  document.documentElement.classList.toggle('dark')
-}
-
-onMounted(() => {
-  // 优先监听 universe-container，回退到 window
-  scrollContainer = document.querySelector('.universe-container')
-  if (scrollContainer) {
-    scrollContainer.addEventListener('scroll', handleScroll, { passive: true })
-  } else {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-  }
-})
-
-onUnmounted(() => {
-  if (scrollContainer) {
-    scrollContainer.removeEventListener('scroll', handleScroll)
-  } else {
-    window.removeEventListener('scroll', handleScroll)
-  }
-})
-</script>
-
 <template>
-  <nav 
-    class="navbar"
-    :class="{ 'navbar-scrolled': isScrolled }"
-  >
-    <div class="navbar-content">
-      <!-- Logo -->
-      <div class="navbar-logo" @click="scrollToSection('screen-hero')">
-        <span class="logo-icon">⟨/⟩</span>
-        <span class="logo-text">DEV<span class="logo-accent">PORTAL</span></span>
-      </div>
-
-      <!-- Navigation Items -->
-      <div class="navbar-nav">
-        <button
-          v-for="item in navItems"
-          :key="item.id"
-          class="nav-item"
-          @click="scrollToSection(item.id)"
-        >
-          <span class="nav-icon">{{ item.icon }}</span>
-          <span class="nav-label">{{ item.label }}</span>
-        </button>
-      </div>
-
-      <!-- Actions -->
-      <div class="navbar-actions">
-        <button class="action-btn" @click="toggleDarkMode">
-          <span>{{ isDarkMode ? '☀️' : '🌙' }}</span>
-        </button>
-        <button class="action-btn">
-          <span>🎵</span>
-        </button>
-      </div>
+  <nav :class="['dynamic-navbar', { 'is-scrolled': isScrolled }]">
+    <div class="nav-brand">GYX<span>.PORTAL</span></div>
+    <ul class="nav-links">
+      <li><a href="#hero">系统主页</a></li>
+      <li><a href="#stats">极客履历</a></li>
+      <li><a href="#projects">项目矩阵</a></li>
+    </ul>
+    <div class="nav-controls">
+      <span class="control-btn">[ SOUND: OFF ]</span>
     </div>
   </nav>
 </template>
 
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const isScrolled = ref(false)
+
+const checkScroll = () => {
+  // 核心：必须监听 universe-container 的滚动，而不是 window
+  const container = document.querySelector('.universe-container')
+  if (container) {
+    isScrolled.value = container.scrollTop > 50
+  }
+}
+
+onMounted(() => {
+  const container = document.querySelector('.universe-container')
+  if (container) {
+    container.addEventListener('scroll', checkScroll)
+  }
+})
+
+onUnmounted(() => {
+  const container = document.querySelector('.universe-container')
+  if (container) {
+    container.removeEventListener('scroll', checkScroll)
+  }
+})
+</script>
+
 <style scoped>
-.navbar {
+.dynamic-navbar {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  z-index: 100;
-  padding: 0.75rem 2rem;
-  transition: all 0.3s ease;
-}
-
-.navbar-content {
-  max-width: 1400px;
-  margin: 0 auto;
+  width: 100vw;
+  height: 60px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 9999; /* 必须极高，压住下面所有屏风 */
+  background: transparent;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
-.navbar-scrolled {
-  background: rgba(255, 255, 255, 0.08);
+/* 下滑后激活的毛玻璃状态 */
+.dynamic-navbar.is-scrolled {
+  background: rgba(9, 9, 11, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.dark .navbar-scrolled {
-  background: rgba(0, 0, 0, 0.4);
-  border-color: rgba(255, 255, 255, 0.05);
+.nav-brand {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1px;
 }
-
-.navbar-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-}
-
-.logo-icon {
-  font-size: 1.5rem;
-  color: var(--vp-c-brand-1);
-  font-weight: bold;
-}
-
-.logo-text {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-}
-
-.logo-accent {
+.nav-brand span {
   color: var(--vp-c-brand-1);
 }
 
-.navbar-nav {
+.nav-links {
   display: flex;
-  gap: 0.5rem;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.5rem 1rem;
-  background: transparent;
-  border: none;
-  border-radius: 0.5rem;
-  color: var(--vp-c-text-2);
-  font-size: 0.875rem;
+.nav-links a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.9rem;
   font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
+
+.nav-controls {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  font-family: monospace;
   cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.nav-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--vp-c-text-1);
-}
-
-.navbar-scrolled .nav-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.nav-icon {
-  font-size: 0.75rem;
-}
-
-.nav-label {
-  letter-spacing: 0.05em;
-}
-
-.navbar-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.action-btn {
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.action-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--vp-c-brand-1);
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0.5rem 1rem;
-  }
-  
-  .nav-label {
-    display: none;
-  }
-  
-  .nav-item {
-    padding: 0.5rem;
-  }
 }
 </style>
