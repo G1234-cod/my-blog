@@ -20,7 +20,7 @@
       </div>
 
       <div class="image-section">
-        <img src="/profile-avatar.png" alt="关运祥" class="profile-img" />
+        <img src="/profile-img2.png" alt="关运祥" class="profile-img" />
         <div class="image-overlay"></div>
       </div>
     </div>
