@@ -1,5 +1,5 @@
 ---
-layout: custom
+layout: false
 title: 关运祥 - 全栈架构与 AI 探索
 ---
 

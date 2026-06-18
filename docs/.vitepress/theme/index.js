@@ -1,25 +1,15 @@
 import DefaultTheme from 'vitepress/theme'
-import './style.css'
+import './style.css' // 引入你刚才加了各种炫酷特效的全局样式
 
-// 导入所有自定义组件
+// 1. 手动导入我们手写的极客组件
 import DynamicNavbar from '../components/DynamicNavbar.vue'
 import HeroScreen from '../components/HeroScreen.vue'
-import StatsBento from '../components/StatsBento.vue'
-import StickyTimeline from '../components/StickyTimeline.vue'
-import ProjectShowcase from '../components/ProjectShowcase.vue'
-import HubGateway from '../components/HubGateway.vue'
-import ContactFooter from '../components/ContactFooter.vue'
 
 export default {
-  extends: DefaultTheme,
+  ...DefaultTheme,
   enhanceApp({ app }) {
-    // 注册所有组件
+    // 2. 全局注册！这一步是让组件能在 Markdown 中生效的关键
     app.component('DynamicNavbar', DynamicNavbar)
     app.component('HeroScreen', HeroScreen)
-    app.component('StatsBento', StatsBento)
-    app.component('StickyTimeline', StickyTimeline)
-    app.component('ProjectShowcase', ProjectShowcase)
-    app.component('HubGateway', HubGateway)
-    app.component('ContactFooter', ContactFooter)
   }
 }
