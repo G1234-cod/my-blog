@@ -53,12 +53,12 @@ const scrollToNext = () => {
       </div>
 
       <div class="hero-actions">
-        <button class="btn btn-primary">
+        <a class="btn btn-primary" href="/ai-journey/">
           <span>🚀 EXPLORE</span>
-        </button>
-        <button class="btn btn-secondary">
+        </a>
+        <a class="btn btn-secondary" href="/Guanyunxiang_Resume_AI.pdf" download>
           <span>📋 RESUME</span>
-        </button>
+        </a>
       </div>
     </div>
 
@@ -261,6 +261,9 @@ const scrollToNext = () => {
 }
 
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.75rem 1.75rem;
   border-radius: 0.75rem;
   font-weight: 600;
@@ -268,6 +271,7 @@ const scrollToNext = () => {
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
+  text-decoration: none;
 }
 
 .btn-primary {

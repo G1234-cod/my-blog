@@ -9,7 +9,9 @@ const projects = ref([
     description: 'An intelligent content generation platform leveraging GPT-4 and open-source LLMs for automated content creation.',
     tags: ['Python', 'LangChain', 'FastAPI', 'React'],
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    stats: { commits: '284', stars: '156', forks: '42' }
+    stats: { commits: '284', stars: '156', forks: '42' },
+    github: 'https://github.com/G1234-cod',
+    demo: '#'
   },
   {
     id: 2,
@@ -18,7 +20,9 @@ const projects = ref([
     description: 'A comprehensive data visualization dashboard with real-time updates and customizable widgets.',
     tags: ['Vue.js', 'TypeScript', 'ECharts', 'WebSocket'],
     gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    stats: { commits: '192', stars: '89', forks: '23' }
+    stats: { commits: '192', stars: '89', forks: '23' },
+    github: 'https://github.com/G1234-cod',
+    demo: '#'
   },
   {
     id: 3,
@@ -27,7 +31,9 @@ const projects = ref([
     description: 'A microservices-based storage gateway supporting multiple cloud providers with automatic failover.',
     tags: ['Go', 'Docker', 'Kubernetes', 'AWS S3'],
     gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    stats: { commits: '312', stars: '234', forks: '67' }
+    stats: { commits: '312', stars: '234', forks: '67' },
+    github: 'https://github.com/G1234-cod',
+    demo: '#'
   },
   {
     id: 4,
@@ -36,7 +42,9 @@ const projects = ref([
     description: 'Deep learning based garbage classification model with 98% accuracy across 4 categories.',
     tags: ['PyTorch', 'ResNet', 'TensorFlow', 'OpenCV'],
     gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-    stats: { commits: '145', stars: '67', forks: '18' }
+    stats: { commits: '145', stars: '67', forks: '18' },
+    github: 'https://github.com/G1234-cod/garbage-classification-model',
+    demo: '#'
   }
 ])
 
@@ -142,12 +150,12 @@ const activeProject = ref(null)
 
             <!-- 操作按钮 -->
             <div class="project-actions">
-              <button class="action-btn btn-github">
+              <a class="action-btn btn-github" :href="project.github || '#'">
                 <span>📦 GitHub</span>
-              </button>
-              <button class="action-btn btn-demo">
+              </a>
+              <a class="action-btn btn-demo" :href="project.demo || '#'">
                 <span>🚀 Demo</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -362,6 +370,9 @@ const activeProject = ref(null)
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
 }
 
 .btn-github {

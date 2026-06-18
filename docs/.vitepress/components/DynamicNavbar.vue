@@ -20,8 +20,10 @@ const scrollToSection = (id) => {
   }
 }
 
+let scrollContainer = null
+
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 50
+  isScrolled.value = (scrollContainer?.scrollTop ?? window.scrollY) > 50
 }
 
 const toggleDarkMode = () => {
@@ -30,11 +32,21 @@ const toggleDarkMode = () => {
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+  // 优先监听 universe-container，回退到 window
+  scrollContainer = document.querySelector('.universe-container')
+  if (scrollContainer) {
+    scrollContainer.addEventListener('scroll', handleScroll, { passive: true })
+  } else {
+    window.addEventListener('scroll', handleScroll, { passive: true })
+  }
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
+  if (scrollContainer) {
+    scrollContainer.removeEventListener('scroll', handleScroll)
+  } else {
+    window.removeEventListener('scroll', handleScroll)
+  }
 })
 </script>
 

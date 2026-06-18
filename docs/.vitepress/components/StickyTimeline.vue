@@ -138,8 +138,8 @@ const awards = ref([
 .timeline-sidebar {
   position: sticky;
   top: 80px;
-  width: 35%;
-  max-width: 300px;
+  width: 40%;
+  max-width: 320px;
   height: fit-content;
   display: flex;
   flex-direction: column;
