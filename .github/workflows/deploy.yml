@@ -56,6 +56,7 @@ jobs:
         with:
           repository: G1234-cod/garbage-classification-model
           path: docs/projects/garbage-classification
+          token: ${{ secrets.GH_PAT }}
       # ==========================================
       # 阶段三：特殊复杂仓库拼装 (简历原生 HTML 与 项目文档)
       # ==========================================
