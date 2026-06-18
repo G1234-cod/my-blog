@@ -1,67 +1,217 @@
 <template>
   <div class="bento-wrapper" id="stats">
+    
     <div class="bento-grid">
+      
       <div class="bento-card profile-card">
-        <div class="avatar-ring"><div class="avatar-placeholder">👨‍💻</div></div>
-        <h2>关运祥</h2>
-        <p class="role-badge">全栈开发 / AI 探索者</p>
-        <p class="desc">专注于底层架构设计与大模型本地化工程部署。致力于将复杂的算法逻辑转化为优雅的自动化流水线。</p>
-      </div>
-      <div class="right-column">
-        <div class="stats-grid">
-          <div class="bento-card stat-item"><h3>1000+</h3><p>本地调试工时</p></div>
-          <div class="bento-card stat-item"><h3>3+</h3><p>全栈架构系统</p></div>
-          <div class="bento-card stat-item"><h3>10+</h3><p>容器部署节点</p></div>
-          <div class="bento-card stat-item"><h3>100W+</h3><p>沉淀(字)</p></div>
+        <div class="avatar-ring">
+          <img src="/photo.jpg" alt="关运祥" class="avatar-img" />
         </div>
+        
+        <h2>关运祥</h2>
+        
+        <div class="role-badge-container">
+          <span class="role-badge">💻 全栈开发</span>
+          <span class="role-badge">🤖 AI 探索者</span>
+        </div>
+        
+        <p class="desc">
+          专注于底层架构设计与大模型本地化工程部署。<br><br>
+          崇尚“知其然更知其所以然”的极客哲学，致力于将复杂的算法逻辑转化为优雅的自动化流水线。
+        </p>
+
+        <a href="/Guanyunxiang_Resume_AI.pdf" target="_blank" class="resume-btn">
+          📄 查看在线简历 ↗
+        </a>
+      </div>
+
+      <div class="right-column">
+        
+        <div class="stats-grid">
+          <div class="bento-card stat-item">
+            <h3>Top 5%</h3>
+            <p>专业综合排名</p>
+          </div>
+          <div class="bento-card stat-item">
+            <h3>31 篇</h3>
+            <p>专业博客沉淀</p>
+          </div>
+          <div class="bento-card stat-item">
+            <h3>3 项</h3>
+            <p>国家级奖项</p>
+          </div>
+          <div class="bento-card stat-item">
+            <h3>100W+</h3>
+            <p>知识库体系(字)</p>
+          </div>
+        </div>
+
         <div class="bento-card skills-card">
-          <h3 class="card-title">核心内功基石</h3>
+          <h3 class="card-title">核心技术掌握度</h3>
+          
           <div class="skill-list">
-            <div class="skill-item"><div class="skill-info"><span>算法设计与分析</span><span class="score">94%</span></div><div class="progress-track"><div class="progress-bar" style="width: 94%"></div></div></div>
-            <div class="skill-item"><div class="skill-info"><span>计算机网络</span><span class="score">93%</span></div><div class="progress-track"><div class="progress-bar" style="width: 93%"></div></div></div>
-            <div class="skill-item"><div class="skill-info"><span>Web 程序设计</span><span class="score">92%</span></div><div class="progress-track"><div class="progress-bar" style="width: 92%"></div></div></div>
-            <div class="skill-item"><div class="skill-info"><span>数据结构</span><span class="score">90%</span></div><div class="progress-track"><div class="progress-bar" style="width: 90%"></div></div></div>
+            <div class="skill-item">
+              <div class="skill-info"><span>前端开发与工程化 (Vue3 / VitePress)</span><span class="score">90%</span></div>
+              <div class="progress-track"><div class="progress-bar cyan-purple" style="width: 90%"></div></div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-info"><span>后端架构与生态 (Java / Spring Boot)</span><span class="score">85%</span></div>
+              <div class="progress-track"><div class="progress-bar blue-cyan" style="width: 85%"></div></div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-info"><span>容器化与自动化部署 (Docker / CI/CD)</span><span class="score">88%</span></div>
+              <div class="progress-track"><div class="progress-bar purple-pink" style="width: 88%"></div></div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-info"><span>AI 本地化部署与 RAG (Ollama / WSL2)</span><span class="score">85%</span></div>
+              <div class="progress-track"><div class="progress-bar green-cyan" style="width: 85%"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="marquee-container">
+      
+      <div class="marquee-track track-left">
+        <div class="marquee-content">
+          <div class="tech-pill" v-for="i in 2" :key="'L'+i">
+            <span>⚙️ Java</span><span>⚡ Vue.js</span><span>🐍 Python</span><span>📘 TypeScript</span>
+            <span>📦 MySQL</span><span>🍃 Spring Boot</span><span>🛠️ Git</span><span>🌐 Nginx</span>
           </div>
         </div>
       </div>
-    </div>
-    <div class="marquee-container">
-      <div class="marquee-content">
-        <span class="tech-tag" v-for="i in 20" :key="i">WSL2 / Docker / Vue3 / Ollama / CI/CD / Java </span>
+
+      <div class="marquee-track track-right">
+        <div class="marquee-content right-animation">
+          <div class="tech-pill" v-for="i in 2" :key="'R'+i">
+            <span>🐳 Docker</span><span>🐧 WSL2</span><span>🤖 Ollama</span><span>🧠 AnythingLLM</span>
+            <span>🚀 CI/CD</span><span>🔨 GitHub Actions</span><span>📝 Markdown</span><span>✨ VitePress</span>
+          </div>
+        </div>
       </div>
+
     </div>
+
   </div>
 </template>
 
 <style scoped>
-.bento-wrapper { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 5%; box-sizing: border-box; }
-.bento-grid { display: grid; grid-template-columns: 300px 1fr; gap: 24px; width: 100%; max-width: 1100px; }
-.bento-card {
-  background: var(--vp-c-bg-soft); backdrop-filter: blur(12px);
-  border: 1px solid var(--vp-c-border); border-radius: 20px; padding: 30px;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+/* 1. 整体容器：突破宽度限制，增大屏幕占比 */
+.bento-wrapper {
+  width: 100%; height: 100%; display: flex; flex-direction: column; 
+  justify-content: center; align-items: center; padding: 60px 5%; box-sizing: border-box;
 }
-.bento-card:hover { border-color: var(--vp-c-brand-1); transform: translateY(-2px); }
-.profile-card { display: flex; flex-direction: column; }
-.avatar-ring { width: 80px; height: 80px; border-radius: 50%; background: var(--vp-c-brand-1); padding: 2px; margin-bottom: 20px; }
-.avatar-placeholder { width: 100%; height: 100%; background: var(--vp-c-bg-alt); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; }
-.profile-card h2 { margin: 0 0 8px 0; font-size: 1.8rem; color: var(--vp-c-text-1); }
-.role-badge { font-size: 0.85rem; color: var(--vp-c-brand-1); background: var(--vp-c-default-soft); padding: 4px 12px; border-radius: 12px; margin: 0 0 20px 0; font-family: monospace; }
-.desc { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.6; margin: 0; }
-.right-column { display: flex; flex-direction: column; gap: 24px; }
+
+/* 布局网格扩大至 1400px */
+.bento-grid {
+  display: grid; grid-template-columns: 340px 1fr; gap: 32px; 
+  width: 100%; max-width: 1400px; margin-bottom: 30px;
+}
+
+/* 统一毛玻璃卡片 */
+.bento-card {
+  background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border); 
+  border-radius: 20px; padding: 36px; transition: all 0.3s ease;
+  box-shadow: var(--vp-shadow-2);
+}
+.bento-card:hover { border-color: var(--vp-c-brand-1); box-shadow: var(--vp-shadow-3); transform: translateY(-2px); }
+
+/* === 左侧：个人简介区 === */
+.profile-card { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* 修复头像大小与裁切 */
+.avatar-ring {
+  width: 100px; height: 100px; border-radius: 50%; padding: 3px;
+  background: linear-gradient(135deg, var(--vp-c-brand-1), #00f2fe);
+  margin-bottom: 24px;
+}
+.avatar-img {
+  width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+  background: var(--vp-c-bg); /* 防止透明底出问题 */
+}
+
+.profile-card h2 { margin: 0 0 12px 0; font-size: 2rem; font-weight: 800; color: var(--vp-c-text-1); }
+
+/* 美化后的身份标签：胶囊风格 */
+.role-badge-container { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+.role-badge {
+  font-size: 0.85rem; font-weight: 600; color: var(--vp-c-brand-1);
+  background: var(--vp-c-default-soft); border: 1px solid var(--vp-c-border);
+  padding: 6px 14px; border-radius: 20px; font-family: var(--vp-font-family-base);
+}
+
+.desc { font-size: 1rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0 0 30px 0; }
+
+/* 简历跳转按钮 */
+.resume-btn {
+  display: inline-block; width: 100%; text-align: center; padding: 12px 0;
+  background: var(--vp-c-brand-1); color: var(--vp-c-bg);
+  font-weight: 700; border-radius: 12px; text-decoration: none;
+  transition: all 0.2s ease; margin-top: auto;
+}
+.resume-btn:hover { opacity: 0.9; transform: scale(1.02); }
+
+/* === 右侧：数据与内功 === */
+.right-column { display: flex; flex-direction: column; gap: 32px; }
+
+/* 字体美化后的四宫格 */
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-.stat-item { text-align: center; padding: 24px 10px; }
-.stat-item h3 { margin: 0 0 8px 0; font-size: 2rem; font-weight: 800; color: var(--vp-c-brand-1); }
-.stat-item p { margin: 0; font-size: 0.8rem; color: var(--vp-c-text-2); font-family: monospace; }
-.skills-card { flex-grow: 1; }
-.card-title { margin: 0 0 20px 0; font-size: 1.2rem; color: var(--vp-c-text-1); }
-.skill-list { display: flex; flex-direction: column; gap: 18px; }
-.skill-info { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.9rem; color: var(--vp-c-text-1); }
-.score { font-family: monospace; color: var(--vp-c-text-3); }
-.progress-track { width: 100%; height: 6px; background: var(--vp-c-default-soft); border-radius: 4px; overflow: hidden; }
-.progress-bar { height: 100%; border-radius: 4px; background: var(--vp-c-brand-1); }
-.marquee-container { width: 100%; max-width: 1100px; overflow: hidden; margin-top: 40px; padding: 10px 0; }
-.marquee-content { display: inline-flex; gap: 40px; white-space: nowrap; animation: scrollMarquee 20s linear infinite; }
-.tech-tag { font-size: 1rem; font-weight: 600; color: var(--vp-c-text-3); font-family: monospace; }
-@keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 20px)); } }
+.stat-item { text-align: center; padding: 28px 10px; display: flex; flex-direction: column; justify-content: center; }
+.stat-item h3 { 
+  margin: 0 0 10px 0; font-size: 2.2rem; font-weight: 800; 
+  color: var(--vp-c-text-1); font-family: var(--vp-font-family-base);
+}
+.stat-item p { margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--vp-c-text-2); }
+
+/* 内功技能条 */
+.skills-card { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+.card-title { margin: 0 0 24px 0; font-size: 1.4rem; font-weight: 700; color: var(--vp-c-text-1); }
+.skill-list { display: flex; flex-direction: column; gap: 22px; }
+.skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; font-weight: 600; color: var(--vp-c-text-1); }
+.score { font-family: monospace; color: var(--vp-c-text-3); font-weight: normal; }
+.progress-track { width: 100%; height: 8px; background: var(--vp-c-default-soft); border-radius: 4px; overflow: hidden; }
+.progress-bar { height: 100%; border-radius: 4px; }
+/* 渐变色系 */
+.cyan-purple { background: linear-gradient(90deg, #00f2fe, var(--vp-c-brand-1)); }
+.blue-cyan { background: linear-gradient(90deg, #4facfe, #00f2fe); }
+.purple-pink { background: linear-gradient(90deg, var(--vp-c-brand-1), #ff0844); }
+.green-cyan { background: linear-gradient(90deg, #0ba360, #3cba92); }
+
+/* === 底部双轨走马灯 (完美还原图二的胶囊设计) === */
+.marquee-container {
+  width: 100%; max-width: 1400px; overflow: hidden; display: flex; flex-direction: column; gap: 16px;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+.marquee-track { width: 100%; overflow: hidden; }
+.marquee-content { display: flex; width: max-content; }
+
+/* 图二风格的胶囊标签 */
+.tech-pill { display: flex; gap: 16px; margin-right: 16px; }
+.tech-pill span {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px;
+  background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border);
+  border-radius: 12px; font-weight: 600; font-size: 0.95rem; color: var(--vp-c-text-1);
+  box-shadow: var(--vp-shadow-1); white-space: nowrap; transition: border-color 0.3s;
+}
+.tech-pill span:hover { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
+
+/* 动画速度调慢至 40s，加入双向逻辑 */
+.track-left .marquee-content { animation: scrollLeft 40s linear infinite; }
+.track-right .marquee-content { animation: scrollRight 40s linear infinite; }
+
+@keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+/* 响应式适配 */
+@media (max-width: 1024px) {
+  .bento-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .bento-wrapper { padding: 80px 5% 40px 5%; height: auto; min-height: 100vh; justify-content: flex-start; }
+}
 </style>

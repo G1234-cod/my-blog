@@ -22,81 +22,52 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useData } from 'vitepress'
 
-const { isDark } = useData()
 const isScrolled = ref(false)
+const isDark = ref(true) 
 const activeSection = ref('hero') 
-let observer = null 
-let scrollContainer = null
 
-// 修复：直接操作 VitePress 的主题状态
-const toggleTheme = () => {
-  const html = document.documentElement
-  const currentTheme = html.getAttribute('data-theme')
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+// 极其精准的数学滚动雷达
+const checkScroll = () => {
+  const container = document.querySelector('.universe-container')
+  if (!container) return
   
-  html.setAttribute('data-theme', newTheme)
-  localStorage.setItem('vitepress-theme-appearance', newTheme)
+  // 处理毛玻璃
+  isScrolled.value = container.scrollTop > 50
+
+  // 计算当前屏幕中央属于哪个屏风
+  const screenHeight = window.innerHeight
+  // 加上屏幕一半的高度，确保判定点在视线正中央
+  const scrollPosition = container.scrollTop + (screenHeight / 2) 
+  const index = Math.floor(scrollPosition / screenHeight)
+  
+  const sections = ['hero', 'stats', 'timeline', 'projects', 'hub', 'contact']
+  if (sections[index] && activeSection.value !== sections[index]) {
+    activeSection.value = sections[index]
+  }
 }
 
-// 修复：更可靠的滚动检测
-const handleScroll = () => {
-  if (scrollContainer) {
-    isScrolled.value = scrollContainer.scrollTop > 50
-  } else {
-    isScrolled.value = window.scrollY > 50
+// 强制接管 VitePress 底层的亮暗模式
+const checkTheme = () => {
+  isDark.value = document.documentElement.classList.contains('dark')
+}
+const toggleTheme = () => {
+  if (typeof window !== 'undefined') {
+    const isDarkMode = document.documentElement.classList.toggle('dark')
+    isDark.value = isDarkMode
+    localStorage.setItem('vitepress-theme-appearance', isDarkMode ? 'dark' : 'light')
   }
 }
 
 onMounted(() => {
-  // 获取滚动容器
-  scrollContainer = document.querySelector('.universe-container')
-  
-  // 绑定滚动事件
-  if (scrollContainer) {
-    scrollContainer.addEventListener('scroll', handleScroll, { passive: true })
-  } else {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-  }
-
-  // 创建交叉观察器 - 检测当前可视区域的屏风
-  const options = {
-    root: scrollContainer || null,
-    rootMargin: '-40% 0px -40% 0px',
-    threshold: 0
-  }
-
-  observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        activeSection.value = entry.target.id
-      }
-    })
-  }, options)
-
-  // 延迟绑定，确保 DOM 已完全渲染
-  setTimeout(() => {
-    const sectionIds = ['hero', 'stats', 'timeline', 'projects', 'hub', 'contact']
-    sectionIds.forEach(id => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
-  }, 200)
+  const container = document.querySelector('.universe-container')
+  if (container) container.addEventListener('scroll', checkScroll)
+  if (typeof window !== 'undefined') checkTheme()
 })
 
 onUnmounted(() => {
-  // 清理滚动事件
-  if (scrollContainer) {
-    scrollContainer.removeEventListener('scroll', handleScroll)
-  } else {
-    window.removeEventListener('scroll', handleScroll)
-  }
-  
-  // 销毁观察器
-  if (observer) {
-    observer.disconnect()
-  }
+  const container = document.querySelector('.universe-container')
+  if (container) container.removeEventListener('scroll', checkScroll)
 })
 </script>
 
