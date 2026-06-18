@@ -12,3 +12,4 @@ docs/my-resume/
 # VitePress 生成的缓存与静态文件（必须忽略）
 docs/.vitepress/cache/
 docs/.vitepress/dist/
+docs/projects/*
