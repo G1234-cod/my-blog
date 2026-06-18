@@ -41,7 +41,8 @@
 
 <style scoped>
 .hero-wrapper {
-  width: 100%; height: 100vh; display: flex; flex-direction: column; 
+  /* 设置最外层容器 */
+  width: 100%; height: 150vh; display: flex; flex-direction: column; 
   justify-content: center; align-items: center; position: relative; 
   overflow: hidden; background-color: var(--vp-c-bg);
 }
