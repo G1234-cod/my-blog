@@ -143,3 +143,40 @@ body {
   padding: 0 2rem;
   box-sizing: border-box;
 }
+
+/* 彻底覆盖 VitePress 默认最大宽度 */
+:root {
+  --vp-layout-max-width: 100vw !important;
+}
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden !important; /* 隐藏浏览器原生滚动条 */
+}
+
+/* 中控容器 */
+.universe-container {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory; /* 核心：Y轴强制对齐 */
+  scroll-behavior: smooth;
+}
+
+.universe-container::-webkit-scrollbar {
+  display: none; /* 隐藏内部滚动条 */
+}
+
+/* 每一屏的物理属性 */
+.universe-screen {
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start; /* 滚动时顶部对齐 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
