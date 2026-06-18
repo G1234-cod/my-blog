@@ -1,377 +1,291 @@
-<script setup>
-import { ref, onMounted } from 'vue'
-
-const stats = ref([
-  { label: 'GitHub Stars', value: '1,280', icon: '⭐' },
-  { label: 'Projects', value: '32', icon: '📦' },
-  { label: 'Commits', value: '2,847', icon: '📝' },
-  { label: 'PRs Merged', value: '156', icon: '✅' }
-])
-
-const skills = ref([
-  { name: 'Python', level: 95, color: '#3776AB' },
-  { name: 'JavaScript', level: 90, color: '#F7DF1E' },
-  { name: 'TypeScript', level: 85, color: '#3178C6' },
-  { name: 'Vue.js', level: 88, color: '#4FC08D' },
-  { name: 'Docker', level: 75, color: '#2496ED' },
-  { name: 'AWS', level: 70, color: '#FF9900' }
-])
-
-const tags = ref([
-  'Python', 'Vue.js', 'React', 'TypeScript', 'Node.js',
-  'Django', 'FastAPI', 'Docker', 'Kubernetes', 'AWS',
-  'Git', 'CI/CD', 'LLM', 'RAG', 'LangChain',
-  'PyTorch', 'TensorFlow', 'SQL', 'MongoDB', 'Redis'
-])
-
-const counters = ref(stats.value.map(() => 0))
-
-onMounted(() => {
-  animateCounters()
-})
-
-const animateCounters = () => {
-  stats.value.forEach((stat, index) => {
-    const target = parseInt(stat.value.replace(/,/g, ''))
-    const duration = 2000
-    const steps = 60
-    const increment = target / steps
-    let current = 0
-
-    const timer = setInterval(() => {
-      current += increment
-      if (current >= target) {
-        counters.value[index] = target
-        clearInterval(timer)
-      } else {
-        counters.value[index] = Math.floor(current)
-      }
-    }, duration / steps)
-  })
-}
-
-const formatNumber = (num) => {
-  return num.toLocaleString()
-}
-</script>
-
 <template>
-  <div class="stats-outer">
-    <h2 class="section-title">
-      <span class="title-icon">📊</span>
-      DATA INSIGHTS
-    </h2>
-
-    <!-- 主 Grid：左侧固定 300px，右侧自适应 -->
-    <div class="bento-main">
-      <!-- 左侧简介卡片 -->
-      <div class="bento-profile glass-effect">
-        <div class="profile-header">
-          <span class="profile-icon">👤</span>
-          <h3 class="profile-h3">CYBERDEV_PROFILE</h3>
+  <div class="bento-wrapper" id="stats">
+    
+    <div class="bento-grid">
+      
+      <div class="bento-card profile-card">
+        <div class="avatar-ring">
+          <div class="avatar-placeholder">👨‍💻</div>
         </div>
-        <p class="profile-desc">
-          Full-stack developer with 5+ years of experience building scalable applications and AI systems.
+        <h2>关运祥</h2>
+        <p class="role-badge">全栈开发 / AI 探索者</p>
+        <p class="desc">
+          专注于底层架构设计与大模型本地化工程部署。<br><br>
+          崇尚“知其然更知其所以然”的极客哲学，致力于将复杂的算法逻辑转化为优雅的自动化流水线。
         </p>
-        <div class="profile-tags">
-          <span class="mini-tag">AI/ML</span>
-          <span class="mini-tag">Cloud</span>
-          <span class="mini-tag">DevOps</span>
-        </div>
       </div>
 
-      <!-- 右侧面板：上下分区 -->
-      <div class="bento-right">
-        <!-- 上半部分：四宫格数据 -->
-        <div class="bento-stats glass-effect">
-          <div class="stat-item" v-for="(stat, index) in stats" :key="stat.label">
-            <span class="stat-icon">{{ stat.icon }}</span>
-            <div class="stat-info">
-              <span class="stat-value">{{ formatNumber(counters[index]) }}+</span>
-              <span class="stat-label">{{ stat.label }}</span>
+      <div class="right-column">
+        
+        <div class="stats-grid">
+          <div class="bento-card stat-item">
+            <h3 class="gradient-text">1000+</h3>
+            <p>本地调试工时</p>
+          </div>
+          <div class="bento-card stat-item">
+            <h3 class="gradient-text">3+</h3>
+            <p>全栈架构系统</p>
+          </div>
+          <div class="bento-card stat-item">
+            <h3 class="gradient-text">10+</h3>
+            <p>容器部署节点</p>
+          </div>
+          <div class="bento-card stat-item">
+            <h3 class="gradient-text">100W+</h3>
+            <p>知识库沉淀(字)</p>
+          </div>
+        </div>
+
+        <div class="bento-card skills-card">
+          <h3 class="card-title">核心内功基石</h3>
+          
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-info"><span>算法设计与分析</span><span class="score">94%</span></div>
+              <div class="progress-track"><div class="progress-bar cyan-purple" style="width: 94%"></div></div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-info"><span>计算机网络</span><span class="score">93%</span></div>
+              <div class="progress-track"><div class="progress-bar blue-cyan" style="width: 93%"></div></div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-info"><span>Web 程序设计</span><span class="score">92%</span></div>
+              <div class="progress-track"><div class="progress-bar purple-pink" style="width: 92%"></div></div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-info"><span>数据结构</span><span class="score">90%</span></div>
+              <div class="progress-track"><div class="progress-bar green-cyan" style="width: 90%"></div></div>
             </div>
           </div>
         </div>
 
-        <!-- 下半部分：技能进度条 -->
-        <div class="bento-skills glass-effect">
-          <h3 class="skills-title">TECH STACK</h3>
-          <div class="skill-item" v-for="skill in skills" :key="skill.name">
-            <div class="skill-header">
-              <span class="skill-name">{{ skill.name }}</span>
-              <span class="skill-percent">{{ skill.level }}%</span>
-            </div>
-            <div class="skill-bar-bg">
-              <div
-                class="skill-bar-fill"
-                :style="{ width: skill.level + '%', background: `linear-gradient(90deg, ${skill.color}, ${skill.color}88)` }"
-              ></div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
-    <!-- 技能标签跑马灯 -->
     <div class="marquee-container">
-      <div class="marquee-track">
-        <span
-          v-for="(tag, index) in [...tags, ...tags]"
-          :key="index"
-          class="marquee-tag"
-        >
-          {{ tag }}
-        </span>
+      <div class="marquee-content">
+        <span class="tech-tag">WSL2</span>
+        <span class="tech-tag">Docker</span>
+        <span class="tech-tag">Vue 3</span>
+        <span class="tech-tag">VitePress</span>
+        <span class="tech-tag">Ollama 7B</span>
+        <span class="tech-tag">AnythingLLM</span>
+        <span class="tech-tag">Nginx</span>
+        <span class="tech-tag">CI/CD</span>
+        <span class="tech-tag">Java</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">WSL2</span>
+        <span class="tech-tag">Docker</span>
+        <span class="tech-tag">Vue 3</span>
+        <span class="tech-tag">VitePress</span>
+        <span class="tech-tag">Ollama 7B</span>
+        <span class="tech-tag">AnythingLLM</span>
+        <span class="tech-tag">Nginx</span>
+        <span class="tech-tag">CI/CD</span>
+        <span class="tech-tag">Java</span>
+        <span class="tech-tag">Python</span>
       </div>
     </div>
+
   </div>
 </template>
 
 <style scoped>
-/* ========== 最外层容器：80% 宽度居中，带呼吸感 ========== */
-.stats-outer {
-  width: 80%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 0;
+/* 整个第二屏的包裹器，限制最大宽度以保证视觉呼吸感 */
+.bento-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 5%;
+  box-sizing: border-box;
 }
 
-/* ========== 标题 ========== */
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-  text-align: center;
-  margin-bottom: 2rem;
-  letter-spacing: 0.1em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.title-icon {
-  margin-right: 0.5rem;
-}
-
-/* ========== 主 Grid：左 300px + 右自适应 ========== */
-.bento-main {
+/* 核心网格布局：左 320px，右边自适应 */
+.bento-grid {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 320px 1fr;
   gap: 24px;
+  width: 100%;
+  max-width: 1100px;
 }
 
-/* ========== 右侧面板：上四宫格 + 下技能条 ========== */
-.bento-right {
+/* 统一的毛玻璃卡片底座 */
+.bento-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 30px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.bento-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* 左侧：个人简介区特定样式 */
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.avatar-ring {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  padding: 2px;
+  margin-bottom: 20px;
+}
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #18181b;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+.profile-card h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.8rem;
+  color: #fff;
+}
+.role-badge {
+  font-size: 0.85rem;
+  color: var(--vp-c-brand-1);
+  background: rgba(120, 80, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin: 0 0 20px 0;
+  font-family: monospace;
+}
+.desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 右侧：上下两部分拆分布局 */
+.right-column {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* ========== 通用卡片圆角/内边距 ========== */
-.bento-profile,
-.bento-stats,
-.bento-skills {
-  border-radius: 1rem;
-  padding: 1.5rem;
-  overflow: hidden;
-}
-
-/* ========== 左侧简介卡片 ========== */
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.profile-icon {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-}
-
-.profile-h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--vp-c-brand-1);
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.profile-desc {
-  color: var(--vp-c-text-2);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin: 0 0 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-}
-
-.profile-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.mini-tag {
-  padding: 0.25rem 0.75rem;
-  background: rgba(37, 99, 235, 0.1);
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  color: var(--vp-c-brand-1);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* ========== 四宫格数据面板 ========== */
-.bento-stats {
+/* 右上：四宫格数据 */
+.stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: 24px;
 }
-
 .stat-item {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 0.75rem;
-  overflow: hidden;
+  padding: 24px 10px;
+}
+.stat-item h3 {
+  margin: 0 0 8px 0;
+  font-size: 2rem;
+  font-weight: 800;
+}
+.stat-item p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: monospace;
+}
+.gradient-text {
+  background: linear-gradient(90deg, #b0f, #0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.stat-icon {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-}
-
-.stat-info {
+/* 右下：内功进度条 */
+.skills-card {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
-
-.stat-value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--vp-c-brand-1);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.card-title {
+  margin: 0 0 20px 0;
+  font-size: 1.2rem;
+  color: #fff;
 }
-
-.stat-label {
-  font-size: 0.75rem;
-  color: var(--vp-c-text-2);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
-
-/* ========== 技能进度条面板 ========== */
-.skills-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--vp-c-brand-1);
-  margin: 0 0 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.skill-item {
-  margin-bottom: 1rem;
-}
-
-.skill-item:last-child {
-  margin-bottom: 0;
-}
-
-.skill-header {
+.skill-info {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.skill-name {
+  margin-bottom: 6px;
   font-size: 0.9rem;
-  color: var(--vp-c-text-1);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.8);
 }
-
-.skill-percent {
-  font-size: 0.8rem;
-  color: var(--vp-c-text-2);
-  flex-shrink: 0;
-  margin-left: 0.5rem;
+.skill-info .score {
+  font-family: monospace;
+  color: rgba(255, 255, 255, 0.5);
 }
-
-.skill-bar-bg {
+.progress-track {
+  width: 100%;
   height: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
   overflow: hidden;
 }
-
-.skill-bar-fill {
+.progress-bar {
   height: 100%;
-  border-radius: 3px;
-  transition: width 1s ease-out;
+  border-radius: 4px;
+  /* 初始设为0，结合动画可以做滑入效果，这里为极简直接铺满 */
 }
+/* 定义几种极客渐变色 */
+.cyan-purple { background: linear-gradient(90deg, #00f2fe, #4facfe); }
+.blue-cyan { background: linear-gradient(90deg, #4facfe, #00f2fe); }
+.purple-pink { background: linear-gradient(90deg, #b0f, #ff0844); }
+.green-cyan { background: linear-gradient(90deg, #0ba360, #3cba92); }
 
-/* ========== 跑马灯（修复溢出） ========== */
+/* 底部：纯 CSS 无限滚动走马灯 */
 .marquee-container {
-  margin-top: 2rem;
+  width: 100%;
+  max-width: 1100px;
   overflow: hidden;
-  padding: 1rem 0;
+  margin-top: 40px;
+  padding: 10px 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 20s linear infinite;
+.marquee-content {
+  display: inline-flex;
+  gap: 40px;
   white-space: nowrap;
+  animation: scrollMarquee 20s linear infinite;
+}
+.tech-tag {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: monospace;
+  transition: color 0.3s ease;
+}
+.tech-tag:hover {
+  color: #fff;
 }
 
-@keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.marquee-tag {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: rgba(37, 99, 235, 0.1);
-  border: 1px solid rgba(37, 99, 235, 0.2);
-  border-radius: 2rem;
-  font-size: 0.875rem;
-  color: var(--vp-c-brand-1);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex-shrink: 0;
-}
-
-.marquee-tag + .marquee-tag {
-  margin-left: 1rem;
-}
-
-/* ========== 响应式：小屏改为上下堆叠 ========== */
-@media (max-width: 768px) {
-  .stats-outer {
-    width: 94%;
-  }
-
-  .bento-main {
-    grid-template-columns: 1fr;
-  }
-
-  .bento-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 20px)); }
 }
 </style>
