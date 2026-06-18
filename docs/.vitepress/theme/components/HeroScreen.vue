@@ -73,7 +73,7 @@
   width: 90%; max-width: 1400px; min-height: 520px;
   position: relative; z-index: 1; border-radius: 24px; overflow: hidden;
   /* 请确保 public 目录下有这张未经过抠图的原照 */
-  background-image: url('/hero-bg.jpg'); 
+  background-image: url('/background.jpg'); 
   background-size: cover; background-position: right center; background-repeat: no-repeat;
   box-shadow: var(--vp-shadow-3);
   /* 性能优化：硬件加速 */
