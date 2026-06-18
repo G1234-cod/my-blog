@@ -57,8 +57,9 @@
 .hero-wrapper {
   width: 100%; height: 100vh; display: flex; flex-direction: column; 
   justify-content: center; align-items: center; position: relative; 
-  padding: 0 5%; overflow: hidden;
-  background-color: var(--vp-c-bg); /* 严格调用 VitePress 变量 */
+  overflow: hidden;
+  /* 严格遵循底线：调用 VitePress 背景变量 */
+  background-color: var(--vp-c-bg);
 }
 
 /* 2. 网页底层氛围光晕 (模拟参考图的背景发光) */
@@ -68,12 +69,17 @@
 
 /* 3. 核心卡片：挂载你的【完整原图】 */
 .hero-card {
-  width: 100%; max-width: 1100px; min-height: 520px;
+  /* 打破限制：让它变得巨大且沉浸 */
+  width: 90%; max-width: 1400px; min-height: 520px;
   position: relative; z-index: 1; border-radius: 24px; overflow: hidden;
   /* 请确保 public 目录下有这张未经过抠图的原照 */
-  background-image: url('/background.jpg'); 
+  background-image: url('/hero-bg.jpg'); 
   background-size: cover; background-position: right center; background-repeat: no-repeat;
   box-shadow: var(--vp-shadow-3);
+  /* 性能优化：硬件加速 */
+  transform: translateZ(0); will-change: transform;
+  
+  /* 严格调用内置变量 */
   border: 1px solid var(--vp-c-border);
   transition: border-color 0.3s ease;
 }
@@ -83,11 +89,9 @@
 .glass-panel {
   position: absolute; top: 0; left: 0; width: 60%; height: 100%;
   padding: 60px 50px; display: flex; flex-direction: column; justify-content: center;
-  /* 严格使用变量：从纯背景色向透明渐变 */
+  /* 从 VitePress 背景色向透明渐变 */
   background: linear-gradient(to right, var(--vp-c-bg) 45%, transparent 100%);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  /* 修复在某些设备上的渲染边界 */
-  transform: translateZ(0); will-change: transform;
 }
 
 /* 文本排版样式 */
@@ -112,7 +116,9 @@
   display: flex; align-items: center; gap: 10px; font-family: var(--vp-font-family-base);
 }
 .stat-item .icon { font-size: 1.1rem; }
+/* 数字部分加粗并使用等宽字体，更极客 */
 .stat-num { font-size: 1.1rem; font-weight: 800; color: var(--vp-c-text-1); font-family: monospace; }
+/* 描述部分字重设为 600，告别软绵绵 */
 .stat-desc { font-size: 0.9rem; font-weight: 600; color: var(--vp-c-text-2); letter-spacing: 0.5px; }
 
 /* 移动端响应式适配 */
