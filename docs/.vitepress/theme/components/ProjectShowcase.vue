@@ -90,7 +90,7 @@
             <span class="tag">跨库渲染解耦</span>
           </div>
           <p class="project-desc">
-            一款集成益智游戏、图形绘制与教育应用的桌面系统。采用四层模块化解耦设计，通过融合 turtle 与 pygame 的跨库渲染技术，在极低资源占用下提供了丰富的交互娱乐功能。
+            一款集成益智游戏、图形绘制与教育应用的桌面系统。采用四层模块化解耦设计，通过融合 turtle 与 pygame 的跨库渲染技术，在极低资源占用下提供了丰富的交互娱乐功能。便于对学生进行python教学。
           </p>
         </div>
 
@@ -163,12 +163,13 @@
 /* === 整体布局 === */
 .split-screen { width: 100%; height: 100vh; display: flex; background-color: var(--vp-c-bg); overflow: hidden; }
 
-/* === 左侧看板：向右侧中轴聚拢 === */
+/* === 左侧看板：向左侧靠拢 === */
 .left-board { 
   width: 45%; height: 100%; 
   display: flex; align-items: center; 
-  justify-content: flex-end; /* 【中轴聚拢核心】：将内容往右推 */
-  padding-right: 60px; /* 距离中轴线留出 60px 呼吸空间 */
+  justify-content: flex-start; /* 【修改】：将内容往左靠 */
+  padding-left: 60px; /* 【修改】：左边距60px */
+  padding-right: 20px; /* 【修改】：右边距减小 */
   border-right: 1px solid var(--vp-c-divider); position: relative; overflow: hidden;
 }
 
