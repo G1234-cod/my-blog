@@ -14,9 +14,6 @@ export default defineConfig({
   vite: {
     server: {
       fs: { allow: ['E:/Web_git'] }
-    },
-    build: {
-      rollupOptions: { external: ['vue/server-renderer', 'vue'] }
     }
   },
 
