@@ -168,7 +168,7 @@
   width: 45%; height: 100%; 
   display: flex; align-items: center; 
   justify-content: flex-start; /* 【修改】：将内容往左靠 */
-  padding-left: 60px; /* 【修改】：左边距60px */
+  padding-left: 120px; /* 【修改】：左边距60px */
   padding-right: 40px; /* 【修改】：右边距减小 */
   border-right: 1px solid var(--vp-c-divider); position: relative; overflow: hidden;
 }
