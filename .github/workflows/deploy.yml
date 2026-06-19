@@ -125,3 +125,35 @@ jobs:
           source: "docs/.vitepress/dist/*"
           target: "/var/www/html/"
           strip_components: 3
+# ==========================================
+      # 阶段六：后端 API 服务自动化投递与重启
+      # ==========================================
+      - name: 8.1 Deploy Backend API via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_KEY }}
+          passphrase: ${{ secrets.SERVER_PASSPHRASE }}
+          source: "server/*"
+          target: "/www/my-blog-api/"
+          strip_components: 1
+
+      - name: 8.2 Install Dependencies & Restart PM2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_KEY }}
+          passphrase: ${{ secrets.SERVER_PASSPHRASE }}
+          script: |
+            echo "🚀 正在进入后端目录..."
+            cd /www/my-blog-api/
+            
+            echo "📦 正在安装后端依赖 (包含新加的 express-rate-limit)..."
+            npm install
+            
+            echo "🔄 正在平滑重启 Node.js 邮件服务引擎..."
+            pm2 restart my-blog-api
+            
+            echo "✅ 后端服务热更新完成！"

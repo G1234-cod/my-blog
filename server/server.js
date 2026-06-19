@@ -1,16 +1,51 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 中间件
-app.use(cors());
+// ==========================================
+// 1. 严格的 CORS 跨域白名单配置 (第一层护甲)
+// ==========================================
+const allowedOrigins = [
+  'http://118.31.40.119', 
+  'https://118.31.40.119',
+  'http://gyx-a.cn',
+  'https://gyx-a.cn',
+  'http://localhost', 
+  'http://127.0.0.1'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // origin 为 undefined 通常是同源请求或本地工具发起
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS Not Allowed: 非法站点的跨域调用被拦截'));
+    }
+  }
+}));
+
 app.use(express.json());
 
-// 网易163邮箱配置
+// ==========================================
+// 2. IP 速率限制配置 (第二层护甲)
+// ==========================================
+const mailLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 冷却时间：15 分钟
+  max: 3, // 每个 IP 15分钟内最多允许 3 次请求
+  message: { success: false, message: '发送过于频繁，请15分钟后再试 (System rate limit active)' },
+  standardHeaders: true, 
+  legacyHeaders: false, 
+});
+
+// ==========================================
+// 3. 网易163 SMTP 认证配置
+// ==========================================
 const transporter = nodemailer.createTransport({
   host: 'smtp.163.com',
   port: 465,
@@ -21,50 +56,55 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// 邮件发送接口
-app.post('/api/contact', async (req, res) => {
+// ==========================================
+// 4. 邮件发送核心接口
+// ==========================================
+// 注意：mailLimiter 被作为中间件专门挂载到了这个接口上
+app.post('/api/contact', mailLimiter, async (req, res) => {
   const { name, email, subject, message } = req.body;
   
-  // 简单验证
+  // 简单数据校验
   if (!name || !email || !message) {
-    return res.status(400).json({ success: false, message: '请填写必填项' });
+    return res.status(400).json({ success: false, message: '核心数据缺失，已阻断请求' });
   }
   
   try {
     await transporter.sendMail({
-      from: `"博客留言系统" <${process.env.SMTP_USER}>`, // ✅ 必须使用你自己的 163 账号发信
-      replyTo: email, // ✅ 将访客的邮箱放入回信地址。这样你在邮箱里直接点击“回复”，收件人就是访客本人
+      from: `"GYX-Dev 博客留言板" <${process.env.SMTP_USER}>`, // ✅ 突破网易 553 防线的核心：强制使用发件人本号发信
+      replyTo: email, // ✅ 访客的真实邮箱放在回信地址，方便你直接点击回复
       to: process.env.TO_EMAIL,
-      subject: `【网站联系】${subject || '新消息'} - 来自 ${name}`,
+      subject: `【网站联系】${subject || '新访客留言'} - 来自 ${name}`,
       html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px;">
-          <h2 style="color: #2563eb;">📬 收到一条网站留言</h2>
-          <hr style="border: 1px solid #eee;">
-          <p><strong>👤 姓名：</strong>${name}</p>
-          <p><strong>📧 邮箱：</strong><a href="mailto:${email}">${email}</a></p>
-          <p><strong>📝 主题：</strong>${subject || '无'}</p>
-          <p><strong>💬 内容：</strong></p>
-          <div style="background: #f5f5f5; padding: 15px; border-radius: 8px;">
+        <div style="font-family: Arial, sans-serif; padding: 20px; background: #fafafa; border-radius: 12px;">
+          <h2 style="color: #2563eb; margin-top: 0;">📬 收到一条网站留言</h2>
+          <hr style="border: 1px solid #e5e7eb; margin: 20px 0;">
+          <p><strong>👤 访客称呼：</strong>${name}</p>
+          <p><strong>📧 回复邮箱：</strong><a href="mailto:${email}" style="color: #2563eb;">${email}</a></p>
+          <p><strong>📝 留言主题：</strong>${subject || '无'}</p>
+          <p><strong>💬 详细内容：</strong></p>
+          <div style="background: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #e5e7eb; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             ${message.replace(/\n/g, '<br>')}
           </div>
-          <hr style="border: 1px solid #eee; margin: 20px 0;">
-          <p style="color: #666; font-size: 12px;">此邮件由网站自动发送</p>
+          <hr style="border: 1px solid #e5e7eb; margin: 20px 0;">
+          <p style="color: #9ca3af; font-size: 12px; margin-bottom: 0;">此邮件由 Node.js 后端服务自动封装投递。</p>
         </div>
       `
     });
     
-    res.json({ success: true, message: '发送成功！' });
+    res.json({ success: true, message: '邮件已成功投递！' });
   } catch (error) {
-    console.error('邮件发送失败:', error);
-    res.status(500).json({ success: false, message: '发送失败，请稍后重试' });
+    console.error('SMTP 投递失败详细日志:', error);
+    res.status(500).json({ success: false, message: '系统投递异常，请检查后端运行日志' });
   }
 });
 
-// 健康检查
+// ==========================================
+// 5. API 健康检查接口 (用于 CI/CD 探针探测)
+// ==========================================
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', time: new Date().toISOString() });
+  res.json({ status: 'ok', uptime: process.uptime(), time: new Date().toISOString() });
 });
 
 app.listen(PORT, () => {
-  console.log(`API 服务已启动: http://localhost:${PORT}`);
+  console.log(`✅ API Core Service Online: http://localhost:${PORT}`);
 });

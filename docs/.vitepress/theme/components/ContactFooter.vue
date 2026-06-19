@@ -125,7 +125,8 @@ const isSubmitting = ref(false)
 const sysStatus = ref('idle') // 'idle' | 'success' | 'error'
 const sysMessage = ref('')
 
-const API_ENDPOINT = 'http://118.31.40.119:3000/api/contact'
+// ✅ 动态相对路径，完美利用 Nginx 的 /api/ 反向代理
+const API_ENDPOINT = '/api/contact'
 
 const submitForm = async () => {
   console.log('🚀 表单接管成功！当前填写的数据：', formData);
