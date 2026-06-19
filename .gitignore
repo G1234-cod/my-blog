@@ -13,3 +13,8 @@ docs/my-resume/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
 docs/projects/*
+
+# 后端服务敏感文件（绝对禁止上传）
+server/.env
+server/nginx.conf
+server/api.conf
