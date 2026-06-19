@@ -32,7 +32,8 @@ app.post('/api/contact', async (req, res) => {
   
   try {
     await transporter.sendMail({
-      from: `"网站访客 <${email}>"`,
+      from: `"博客留言系统" <${process.env.SMTP_USER}>`, // ✅ 必须使用你自己的 163 账号发信
+      replyTo: email, // ✅ 将访客的邮箱放入回信地址。这样你在邮箱里直接点击“回复”，收件人就是访客本人
       to: process.env.TO_EMAIL,
       subject: `【网站联系】${subject || '新消息'} - 来自 ${name}`,
       html: `

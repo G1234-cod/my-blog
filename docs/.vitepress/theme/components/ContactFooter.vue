@@ -128,6 +128,7 @@ const sysMessage = ref('')
 const API_ENDPOINT = 'http://118.31.40.119:3000/api/contact'
 
 const submitForm = async () => {
+  console.log('🚀 表单接管成功！当前填写的数据：', formData);
   // 1. 初始化状态
   sysMessage.value = ''
   sysStatus.value = 'idle'
