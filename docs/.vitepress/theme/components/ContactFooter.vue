@@ -1,115 +1,111 @@
 <template>
-  <div class="mega-footer-wrapper" id="contact">
-    <div class="mega-content">
+  <div class="contact-wrapper" id="contact">
+    
+    <div class="ambient-glow"></div>
+
+    <div class="contact-container">
       
-      <div class="ambient-glow"></div>
-
-      <div class="contact-core">
-        <h2 class="title">Initiate_Connection<span class="blink">_</span></h2>
-        <p class="subtitle">打通全栈终端通信链路。数据将通过本地安全后端 API 与 163 邮件网关直达核心中枢。</p>
-
-        <form class="bento-form-card" @submit.prevent="submitForm">
+      <div class="split-card shadow-hover">
+        
+        <div class="card-left">
+          <div class="left-content">
+            <h2 class="left-title">Initiate<br>Connection.</h2>
+            
+            <div class="quote-box">
+              <span class="quote-mark">“</span>
+              <p class="quote-text">
+                弥合底层逻辑与工程落地之间的鸿沟。寻找全栈开发、AI 落地实习机会，或单纯的技术交流。
+              </p>
+            </div>
+          </div>
           
-          <div class="system-logs">
-            <div class="log-line"><span class="log-ok">[ OK ]</span> System Mail Router Initialized.</div>
-            <div class="log-line"><span class="log-ok">[ OK ]</span> Remote Endpoint Secure Connected.</div>
-            <div class="log-line" v-if="status === 'submitting'"><span class="log-warn">[ SENDING ]</span> Transmitting data packets via SMTP...</div>
-            <div class="log-line" v-if="status === 'success'"><span class="log-success">[ READY ]</span> 200 OK. Connection established successfully.</div>
-            <div class="log-line" v-if="status === 'error'"><span class="log-fail">[ FAIL ]</span> 500 Broadcast Error. Awaiting terminal retry...</div>
-          </div>
-
-          <div class="form-row">
-            <div class="input-group-box" :class="{ 'focused': focusedField === 'name' }">
-              <div class="group-header">
-                <label for="name" class="label-txt">01 // SENDER_NAME</label>
-                <span class="active-badge" v-if="focusedField === 'name'">[ ACTIVE ]</span>
-              </div>
-              <input 
-                id="name"
-                type="text" 
-                v-model="formData.name" 
-                placeholder="您的称呼..." 
-                required
-                @focus="focusedField = 'name'"
-                @blur="focusedField = ''"
-                :disabled="isSubmitting || status === 'success'"
-              />
-            </div>
-
-            <div class="input-group-box" :class="{ 'focused': focusedField === 'email' }">
-              <div class="group-header">
-                <label for="email" class="label-txt">02 // TARGET_EMAIL</label>
-                <span class="active-badge" v-if="focusedField === 'email'">[ ACTIVE ]</span>
-              </div>
-              <input 
-                id="email" 
-                type="email" 
-                v-model="formData.email" 
-                placeholder="您的电子邮箱..." 
-                required 
-                @focus="focusedField = 'email'"
-                @blur="focusedField = ''"
-                :disabled="isSubmitting || status === 'success'"
-              />
-            </div>
-          </div>
-
-          <div class="input-group-box textarea-box" :class="{ 'focused': focusedField === 'message' }">
-            <div class="group-header">
-              <label for="message" class="label-txt">03 // PAYLOAD_DATA</label>
-              <span class="active-badge" v-if="focusedField === 'message'">[ ACTIVE ]</span>
-            </div>
-            <textarea 
-              id="message" 
-              v-model="formData.message" 
-              placeholder="请输入您寻找全栈开发、AI 落地实习机会，或者技术交流的详细意向..." 
-              required 
-              rows="4"
-              maxlength="500"
-              @focus="focusedField = 'message'"
-              @blur="focusedField = ''"
-              :disabled="isSubmitting || status === 'success'"
-            ></textarea>
-            <div class="char-counter">{{ formData.message.length }} / 500 octets</div>
-          </div>
-
-          <button 
-            type="submit" 
-            class="execute-btn" 
-            :class="{ 'submitting': isSubmitting, 'success': status === 'success', 'error': status === 'error' }"
-            :disabled="isSubmitting || status === 'success'"
-          >
-            <span v-if="status === 'idle'">[ EXECUTE_BROADCAST / 建立双向连接 ]</span>
-            <span v-else-if="isSubmitting" class="loading-text">ENCRYPTING & TRANSMITTING...</span>
-            <span v-else-if="status === 'success'">[ 200 OK / BROADCAST_SUCCESS ]</span>
-            <span v-else-if="status === 'error'">[ 500 ERROR / TERMINAL_RETRY ]</span>
-          </button>
-        </form>
-
-        <div class="communication-hub">
-          <div class="hub-title">COMMUNICATION MATRIX</div>
-          <div class="hub-links">
-            <a href="https://github.com/G1234-cod" target="_blank" class="hub-card-link">
-              <span class="hub-icon">🐙</span>
-              <div class="hub-text">
-                <span class="h-main">GitHub 枢纽</span>
-                <span class="h-sub">Explore source repositories</span>
-              </div>
-            </a>
-            <a href="mailto:你的真实163邮箱@163.com" class="hub-card-link">
-              <span class="hub-icon">✉️</span>
-              <div class="hub-text">
-                <span class="h-main">163 直连网关</span>
-                <span class="h-sub">Fast tracking backup link</span>
-              </div>
-            </a>
+          <div class="left-footer">
+            <span class="status-dot"></span> System Online & Ready
           </div>
         </div>
 
+        <div class="card-right">
+          <h3 class="right-title">Send a Message</h3>
+          
+          <form class="modern-form" @submit.prevent="submitForm">
+            
+            <div class="form-row">
+              <div class="input-group">
+                <label for="name">发送人 / Name <span class="required">*</span></label>
+                <input 
+                  id="name" 
+                  type="text" 
+                  v-model="formData.name" 
+                  placeholder="您的称呼" 
+                  required 
+                  :disabled="isSubmitting"
+                />
+              </div>
+              <div class="input-group">
+                <label for="email">邮箱号 / Email <span class="required">*</span></label>
+                <input 
+                  id="email" 
+                  type="email" 
+                  v-model="formData.email" 
+                  placeholder="name@example.com" 
+                  required 
+                  :disabled="isSubmitting"
+                />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="message">信息 / Message <span class="required">*</span></label>
+              <textarea 
+                id="message" 
+                v-model="formData.message" 
+                placeholder="Hello there, I would like to talk about..." 
+                rows="4" 
+                required
+                :disabled="isSubmitting"
+              ></textarea>
+            </div>
+
+            <div v-if="sysMessage" :class="['sys-banner', sysStatus]">
+              {{ sysMessage }}
+            </div>
+
+            <button 
+              type="submit" 
+              class="submit-btn" 
+              :disabled="isSubmitting"
+              :class="{ 'success-btn': sysStatus === 'success' }"
+            >
+              <span v-if="!isSubmitting && sysStatus !== 'success'">发送邮件 / Send Email</span>
+              <span v-else-if="isSubmitting" class="loading">正在发送... / Sending...</span>
+              <span v-else-if="sysStatus === 'success'">发送成功 / Sent Successfully ✓</span>
+            </button>
+            
+          </form>
+        </div>
       </div>
 
-      <div class="copyright">
-        © 2026 关运祥. All Node Clusters Operational. Built with Native Frontend Stack.
+      <div class="bottom-matrix">
+        <div class="matrix-title">Or explore my channels...</div>
+        <div class="matrix-cards">
+          
+          <a href="https://github.com/G1234-cod" target="_blank" class="m-card interactive">
+            <span class="m-icon">🐙</span>
+            <div class="m-text">
+              <span class="m-main">GitHub 主页</span>
+              <span class="m-sub">Explore my repositories ↗</span>
+            </div>
+          </a>
+
+          <div class="m-card static-card">
+            <span class="m-icon">🖥️</span>
+            <div class="m-text">
+              <span class="m-main">独立服务器直发</span>
+              <span class="m-sub">Powered by my own Node.js server</span>
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </div>
@@ -125,21 +121,20 @@ const formData = reactive({
   message: ''
 })
 
-const status = ref('idle')
 const isSubmitting = ref(false)
-const focusedField = ref('')
+const sysStatus = ref('idle') // 'idle' | 'success' | 'error'
+const sysMessage = ref('')
 
-// 严格锁定您的专属云服务器后端 API
-const API_ENDPOINT = 'http://118.31.40.119:3000/api/contact' 
+const API_ENDPOINT = 'http://118.31.40.119:3000/api/contact'
 
 const submitForm = async () => {
-  if (!formData.email || !formData.message || !formData.name) return
-  
+  // 1. 初始化状态
+  sysMessage.value = ''
+  sysStatus.value = 'idle'
   isSubmitting.value = true
-  status.value = 'submitting'
 
-  // 全栈工程安全性拼接：将姓名注入信息体最前端，100%防止后端DTO未定义该字段导致的丢失
-  const formattedMessage = `[发件人姓名: ${formData.name}]\n[联络内容]: ${formData.message}`
+  // 2. 拼接数据 (确保后端能收到姓名)
+  const formattedMessage = `[发件人: ${formData.name}]\n[内容]: ${formData.message}`
 
   try {
     const response = await fetch(API_ENDPOINT, {
@@ -151,134 +146,138 @@ const submitForm = async () => {
       })
     })
 
+    // 3. 处理后端响应
     if (response.ok) {
-      status.value = 'success'
+      sysStatus.value = 'success'
+      sysMessage.value = '' // 成功时不需要额外文字，按钮已经变绿了
+      // 清空表单
+      formData.name = ''
+      formData.email = ''
+      formData.message = ''
     } else {
-      status.value = 'error'
+      // 捕获 HTTP 错误 (如 400, 500)
+      const errData = await response.json().catch(() => ({}))
+      sysStatus.value = 'error'
+      sysMessage.value = `服务器返回错误: ${response.status} ${errData.message || ''}`
     }
+
   } catch (error) {
-    console.error('API Pipeline Interrupted:', error)
-    status.value = 'error'
+    // 4. 捕获致命网络错误 (跨域 CORS / 混合内容拦截 / 服务器宕机)
+    sysStatus.value = 'error'
+    sysMessage.value = `网络请求失败！请按 F12 检查控制台 (可能原因: CORS跨域限制 或 HTTPS请求HTTP被拦截)。详细信息: ${error.message}`
+    console.error('Fetch Error:', error)
   } finally {
     isSubmitting.value = false
-    
-    // 如果管道报错，3秒后复位状态机，允许重新投递
-    if (status.value === 'error') {
-      setTimeout(() => { status.value = 'idle' }, 3000)
+    // 失败的话，5秒后清除报错横幅
+    if (sysStatus.value === 'error') {
+      setTimeout(() => { sysMessage.value = '' }, 8000)
     }
   }
 }
 </script>
 
 <style scoped>
-/* === 视差揭示 (Mega Footer Reveal) 核心层级 === */
-.mega-footer-wrapper {
-  width: 100%; height: 100vh; position: sticky; bottom: 0; z-index: 0;
-}
-
-.mega-content {
-  width: 100%; height: 100%; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; position: relative;
-  background-color: #0d0f14; color: #ffffff; overflow: hidden;
+/* === 基础容器 === */
+.contact-wrapper {
+  width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; background-color: var(--vp-c-bg); padding: 80px 0;
 }
 
 .ambient-glow {
-  position: absolute; bottom: -10%; left: 50%; transform: translateX(-50%);
-  width: 70vw; height: 45vh; background: radial-gradient(ellipse, rgba(0, 242, 254, 0.12) 0%, transparent 70%);
-  filter: blur(90px); pointer-events: none; z-index: 0;
+  position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+  width: 80vw; height: 60vh; background: radial-gradient(ellipse, rgba(0, 242, 254, 0.08) 0%, transparent 60%);
+  filter: blur(100px); pointer-events: none; z-index: 0;
 }
 
-.contact-core {
-  width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: flex-start; z-index: 1; padding: 0 5%;
+.contact-container {
+  width: 100%; max-width: 1100px; display: flex; flex-direction: column; align-items: center; gap: 40px; z-index: 1; padding: 0 5%;
 }
 
-/* 巨型平滑标题与光标 */
-.title { font-size: 3.6rem; font-weight: 800; color: #ffffff; margin: 0 0 16px 0; font-family: var(--vp-font-family-base); letter-spacing: -1px; line-height: 1.1; }
-.blink { font-family: monospace; color: #00f2fe; animation: blinkCursor 1s step-end infinite; }
-@keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-.subtitle { font-size: 1.05rem; color: #8e96aa; line-height: 1.6; margin: 0 0 36px 0; max-width: 90%; }
-
-/* === 模块化控制台表单容器 === */
-.bento-form-card {
-  width: 100%; background: rgba(22, 25, 34, 0.6); border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 24px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+/* === 左右分割聚合卡片 === */
+.split-card {
+  width: 100%; display: flex; border-radius: 24px; overflow: hidden;
+  background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
 }
+.shadow-hover:hover { box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3); }
 
-/* 极客实时状态日志栏 */
-.system-logs {
-  background: #080a0e; border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 12px;
-  padding: 14px 20px; font-family: monospace; font-size: 0.8rem; line-height: 1.6;
+/* --- 左侧品牌叙事区 --- */
+.card-left {
+  flex: 0 0 40%; background: linear-gradient(135deg, var(--vp-c-bg-soft) 0%, #1a1d24 100%);
+  padding: 50px 40px; display: flex; flex-direction: column; justify-content: space-between;
+  border-right: 1px solid var(--vp-c-border);
 }
-.log-line { color: #5c6475; }
-.log-ok { color: #00f2fe; font-weight: bold; }
-.log-warn { color: #f5a623; font-weight: bold; }
-.log-success { color: #0ba360; font-weight: bold; }
-.log-fail { color: #ff0844; font-weight: bold; }
+.left-title { font-size: 3rem; font-weight: 800; color: var(--vp-c-text-1); line-height: 1.1; margin: 0 0 40px 0; letter-spacing: -1px; }
 
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
+.quote-box { position: relative; }
+.quote-mark { position: absolute; top: -30px; left: -10px; font-size: 5rem; font-family: serif; color: var(--vp-c-brand-1); opacity: 0.3; line-height: 1; pointer-events: none; }
+.quote-text { position: relative; z-index: 1; font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.8; font-weight: 500; }
 
-/* 模块化内嵌输入框容器 (Inset Card) */
-.input-group-box {
-  background: #12151d; border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 14px;
-  padding: 12px 18px; display: flex; flex-direction: column; gap: 6px;
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+.left-footer { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 600; color: var(--vp-c-text-3); margin-top: 60px; font-family: monospace; }
+.status-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: 0 0 10px #0ba360; }
+
+/* --- 右侧现代表单区 --- */
+.card-right {
+  flex: 1; background: var(--vp-c-bg); padding: 50px 60px;
 }
-.input-group-box.focused { border-color: #00f2fe; background: #151924; box-shadow: 0 0 15px rgba(0, 242, 254, 0.08); }
+.right-title { font-size: 1.5rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 30px 0; }
 
-.group-header { display: flex; justify-content: space-between; align-items: center; }
-.label-txt { font-family: monospace; font-size: 0.75rem; color: #4a505e; font-weight: 700; letter-spacing: 0.5px; }
-.active-badge { font-family: monospace; font-size: 0.75rem; color: #00f2fe; font-weight: bold; animation: pulseOpacity 1s infinite; }
+.modern-form { display: flex; flex-direction: column; gap: 24px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+.input-group { display: flex; flex-direction: column; gap: 8px; }
+.input-group label { font-size: 0.85rem; font-weight: 600; color: var(--vp-c-text-1); }
+.required { color: #ff0844; }
 
 input, textarea {
-  width: 100%; background: transparent; border: none; padding: 4px 0;
-  font-size: 1.1rem; color: #ffffff; font-family: var(--vp-font-family-base); outline: none; transition: color 0.3s;
+  width: 100%; background: var(--vp-c-default-soft); border: 1px solid var(--vp-c-border);
+  padding: 14px 16px; border-radius: 12px; font-size: 1rem; color: var(--vp-c-text-1);
+  font-family: var(--vp-font-family-base); transition: all 0.2s ease; outline: none;
 }
-textarea { resize: none; }
-input::placeholder, textarea::placeholder { color: #32363f; font-weight: 500; }
-input:disabled, textarea:disabled { opacity: 0.4; cursor: not-allowed; }
+input:focus, textarea:focus { border-color: var(--vp-c-brand-1); background: var(--vp-c-bg-soft); box-shadow: 0 0 0 3px rgba(var(--vp-c-brand-1), 0.1); }
+textarea { resize: vertical; min-height: 100px; }
+input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 
-.textarea-box { position: relative; padding-bottom: 30px; }
-.char-counter { position: absolute; bottom: 12px; right: 18px; font-family: monospace; font-size: 0.75rem; color: #32363f; font-weight: 600; }
+/* 错误与状态横幅 */
+.sys-banner { padding: 12px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; line-height: 1.5; }
+.sys-banner.error { background: rgba(255, 8, 68, 0.1); color: #ff0844; border: 1px solid rgba(255, 8, 68, 0.3); }
 
-/* 宽幅触控提交按钮 */
-.execute-btn {
-  width: 100%; background: transparent; border: 1px solid #00f2fe;
-  color: #00f2fe; font-family: monospace; font-size: 1.1rem; font-weight: 700; padding: 16px;
-  border-radius: 12px; cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.5px;
+/* 高级发送按钮 */
+.submit-btn {
+  align-self: flex-start; background: var(--vp-c-text-1); color: var(--vp-c-bg);
+  font-size: 1rem; font-weight: 700; padding: 14px 32px; border-radius: 12px;
+  cursor: pointer; transition: all 0.3s ease; border: none; margin-top: 10px;
 }
-.execute-btn:hover:not(:disabled) { background: rgba(0, 242, 254, 0.08); box-shadow: 0 0 25px rgba(0, 242, 254, 0.2); }
-.execute-btn.submitting { border-color: #f5a623; color: #f5a623; cursor: wait; }
-.execute-btn.success { border-color: #0ba360; color: #0ba360; background: rgba(11, 163, 96, 0.08); cursor: default; }
-.execute-btn.error { border-color: #ff0844; color: #ff0844; background: rgba(255, 8, 68, 0.08); }
+.submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); opacity: 0.9; }
+.submit-btn:disabled { opacity: 0.7; cursor: wait; }
+.success-btn { background: #0ba360 !important; color: white !important; cursor: default !important; }
 
-.loading-text { animation: pulseOpacity 1.5s infinite; }
-@keyframes pulseOpacity { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+/* === 底部通信矩阵 === */
+.bottom-matrix { width: 100%; display: flex; flex-direction: column; gap: 16px; }
+.matrix-title { font-size: 0.9rem; font-weight: 700; color: var(--vp-c-text-3); text-align: left; }
+.matrix-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-/* === 精修双通道通信矩阵 === */
-.communication-hub { margin-top: 40px; width: 100%; }
-.hub-title { font-family: monospace; font-size: 0.8rem; color: #32363f; font-weight: 700; letter-spacing: 2px; margin-bottom: 16px; }
-.hub-links { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
-
-.hub-card-link {
+.m-card {
   display: flex; align-items: center; gap: 16px; padding: 16px 24px;
-  background: #12151d; border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 14px;
-  text-decoration: none; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border); border-radius: 16px;
+  text-decoration: none; transition: all 0.2s ease;
 }
-.hub-card-link:hover { transform: translateY(-3px); border-color: #00f2fe; box-shadow: var(--vp-shadow-2); }
-.hub-icon { font-size: 1.5rem; }
-.hub-text { display: flex; flex-direction: column; align-items: flex-start; }
-.h-main { font-size: 1rem; font-weight: 800; color: #ffffff; }
-.h-sub { font-size: 0.75rem; color: #5c6475; font-weight: 600; margin-top: 2px; }
+.interactive:hover { border-color: var(--vp-c-text-1); transform: translateY(-3px); box-shadow: var(--vp-shadow-2); }
+.static-card { opacity: 0.8; cursor: default; } /* 服务器卡片只是展示，不可点击 */
 
-/* 页脚 */
-.copyright { position: absolute; bottom: 20px; width: 100%; text-align: center; font-family: monospace; font-size: 0.8rem; color: #32363f; font-weight: 600; }
+.m-icon { font-size: 1.6rem; }
+.m-text { display: flex; flex-direction: column; }
+.m-main { font-size: 1rem; font-weight: 700; color: var(--vp-c-text-1); }
+.m-sub { font-size: 0.8rem; color: var(--vp-c-text-2); font-weight: 500; margin-top: 2px; }
 
-/* 移动端降级 */
-@media (max-width: 768px) {
-  .title { font-size: 2.4rem; }
-  .bento-form-card { padding: 24px; gap: 16px; }
-  .form-row, .hub-links { grid-template-columns: 1fr; gap: 16px; }
+/* === 移动端适配 === */
+@media (max-width: 900px) {
+  .split-card { flex-direction: column; }
+  .card-left { border-right: none; border-bottom: 1px solid var(--vp-c-border); padding: 40px 30px; }
+  .card-right { padding: 40px 30px; }
+  .form-row { grid-template-columns: 1fr; gap: 16px; }
+  .matrix-cards { grid-template-columns: 1fr; gap: 12px; }
+  .submit-btn { width: 100%; }
 }
 </style>
