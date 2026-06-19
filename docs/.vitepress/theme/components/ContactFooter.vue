@@ -133,16 +133,14 @@ const submitForm = async () => {
   sysStatus.value = 'idle'
   isSubmitting.value = true
 
-  // 2. 拼接数据 (确保后端能收到姓名)
-  const formattedMessage = `[发件人: ${formData.name}]\n[内容]: ${formData.message}`
-
   try {
     const response = await fetch(API_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        name: formData.name,
         email: formData.email,
-        message: formattedMessage
+        message: formData.message
       })
     })
 
