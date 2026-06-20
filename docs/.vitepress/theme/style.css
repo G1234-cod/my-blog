@@ -1,99 +1,126 @@
-/* 彻底清除 VitePress 默认干扰 */
+/* 
+ * ==========================================
+ * 全局样式重置与基础配置
+ * ==========================================
+ */
+
+/* 1. 彻底清除 VitePress 默认干扰 */
 :root {
+  /* 强制将布局最大宽度设为100%视口宽度，打破默认限制 */
   --vp-layout-max-width: 100vw !important;
 }
 
+/* 2. 页面根元素重置 */
 html, body, #app {
+  /* 清除默认边距和内边距 */
   margin: 0 !important;
   padding: 0 !important;
+  /* 设置宽高为视口大小 */
   width: 100vw;
   height: 100vh;
+  /* 隐藏溢出内容 */
   overflow: hidden !important; 
-  /* 严格遵循底线：调用 VitePress 动态背景变量 */
+  /* 使用 VitePress 动态背景变量，支持明暗主题切换 */
   background-color: var(--vp-c-bg); 
+  /* 使用 VitePress 基础字体 */
   font-family: var(--vp-font-family-base);
+  /* 使用 VitePress 主要文字颜色变量 */
   color: var(--vp-c-text-1);
 }
 
-/* 全局中控台：全屏滚动捕捉 */
+/* 3. 全局中控台：全屏滚动捕捉容器 */
 .universe-container {
   width: 100vw;
   height: 100vh;
+  /* 垂直滚动 */
   overflow-y: scroll;
+  /* 启用滚动捕捉，让页面自动对齐到屏幕边界 */
   scroll-snap-type: y mandatory;
+  /* 平滑滚动动画 */
   scroll-behavior: smooth;
+  /* 隐藏 IE/Edge 滚动条 */
   -ms-overflow-style: none;
+  /* 隐藏 Firefox 滚动条 */
   scrollbar-width: none;
 }
+/* 隐藏 Chrome/Safari 滚动条 */
 .universe-container::-webkit-scrollbar {
   display: none;
 }
 
-/* 每一屏的基础单元 */
+/* 4. 每一屏的基础单元 */
 .universe-screen {
   width: 100vw;
   height: 100vh;
+  /* 滚动时自动对齐到屏幕顶部 */
   scroll-snap-align: start;
   position: relative;
   overflow: hidden;
+  /* 内容居中显示 */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* ==========================================
-   文章详情页 (Doc) 滚动修复与排版优化
-   ========================================== */
-/* 强制解除可能从主页泄漏过来的全屏滚动锁定 */
+/* 
+ * ==========================================
+ * 文章详情页 (Doc) 滚动修复与排版优化
+ * ==========================================
+ */
+
+/* 5. 强制解除可能从主页泄漏过来的全屏滚动锁定 */
 html, body, #app {
   height: auto !important;
   overflow-y: auto !important;
 }
 
-/* 隐藏 VitePress 默认的丑陋左侧边栏 (在特定布局下) */
+/* 6. 隐藏 VitePress 默认的丑陋左侧边栏 (在特定布局下) */
 .VPContent.has-sidebar {
   padding-left: 0 !important;
 }
 
-/* 放大正文容器宽度，增强阅读沉浸感 */
+/* 7. 放大正文容器宽度，增强阅读沉浸感 */
 .VPDoc {
   padding-top: 40px !important;
 }
+/* 中等屏幕以上（960px+）增大文章容器宽度 */
 @media (min-width: 960px) {
   .VPDoc .container {
     max-width: 1000px !important;
   }
 }
 
-/* 优化文章内的图片展示（自动居中、加圆角、加阴影） */
+/* 8. 优化文章内的图片展示 */
 .vp-doc img {
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  margin: 2rem auto;
-  display: block;
+  border-radius: 12px;          /* 圆角 */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);  /* 阴影效果 */
+  margin: 2rem auto;            /* 上下间距，水平居中 */
+  display: block;               /* 块级元素 */
 }
 
-/* ==========================================
-   作品集详情页 (Portfolio Doc) 深度美化
-   ========================================== */
+/* 
+ * ==========================================
+ * 作品集详情页 (Portfolio Doc) 深度美化
+ * ==========================================
+ */
 
-/* 1. 彻底放宽全站容器宽度，完美适配大屏 (解决右侧太空的问题) */
+/* 9. 大屏适配：彻底放宽全站容器宽度（1200px+） */
 @media (min-width: 1200px) {
-  /* 让整个底层画板无限延展，把右侧目录强行推向屏幕最右侧 */
+  /* 让整个底层画板无限延展，把右侧目录推向屏幕最右侧 */
   .VPDoc .container {
     max-width: 100% !important; 
-    padding-left: 5% !important;
-    padding-right: 5% !important; 
+    padding-left: 3% !important;
+    padding-right: 3% !important; 
   }
-  /* 中间的文章区域继续变宽，打破压抑感 */
+  /* 中间文章区域变宽，保持居中 */
   .VPDoc .content {
-    max-width: 1000px !important; 
-    margin: 0 auto; /* 保证文章居中 */
+    max-width: 1300px !important; 
+    margin: 0 auto;
     padding-bottom: 120px !important;
   }
 }
 
-/* 如果屏幕更大（带鱼屏/2K屏），进一步撑开 */
+/* 10. 超大屏适配（带鱼屏/2K屏，1600px+） */
 @media (min-width: 1600px) {
   .VPDoc .container {
     padding-left: 10% !important;
@@ -104,21 +131,22 @@ html, body, #app {
   }
 }
 
-/* 2. 移除 VitePress 默认的 H2 顶部横线 */
+/* 11. 移除 VitePress 默认的 H2 顶部横线 */
 .vp-doc h2 {
   border-top: none !important;
   margin-top: 80px !important; 
   margin-bottom: 30px !important;
 }
 
-/* 3. 实现参考图的【垂直线 + 标题】极客风格 */
+/* 12. 实现极客风格标题：垂直线 + 标题 */
 .vp-doc h2 {
   position: relative;
-  padding-left: 20px;
+  padding-left: 20px;           /* 左侧留出空间放竖线 */
   font-size: 2rem !important;
   font-weight: 800 !important;
-  letter-spacing: 1px;
+  letter-spacing: 1px;           /* 字间距 */
 }
+/* 标题前的紫色竖线 */
 .vp-doc h2::before {
   content: '';
   position: absolute;
@@ -126,29 +154,29 @@ html, body, #app {
   top: 10%;
   height: 80%;
   width: 5px;
-  background-color: var(--vp-c-brand-1); /* 使用你的主题色（紫色） */
-  border-radius: 4px;
+  background-color: var(--vp-c-brand-1);  /* 使用主题色 */
+  border-radius: 4px;           /* 圆角竖线 */
 }
 
-/* 4. 优化正文排版，增加行距和文字颜色层级 */
+/* 13. 优化正文排版 */
 .vp-doc p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: var(--vp-c-text-2);
-  margin-bottom: 1.5rem;
+  font-size: 1.05rem;           /* 稍微放大字号 */
+  line-height: 1.8;             /* 增加行距，提升可读性 */
+  color: var(--vp-c-text-2);    /* 使用次要文字颜色 */
+  margin-bottom: 1.5rem;        /* 段落间距 */
 }
 .vp-doc li {
   line-height: 1.8;
   color: var(--vp-c-text-2);
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.8rem;        /* 列表项间距 */
 }
 .vp-doc strong {
-  color: var(--vp-c-text-1); /* 让加粗的文字更亮，形成对比 */
+  color: var(--vp-c-text-1);    /* 加粗文字使用主要颜色，形成对比 */
 }
 
-/* 5. 覆盖组件字体样式：去除 TIME 和 ROLE 的等宽代码字体 */
+/* 14. 覆盖组件字体样式 */
 .portfolio-hero .p-subtitle {
-  font-family: var(--vp-font-family-base) !important;
+  font-family: var(--vp-font-family-base) !important;  /* 使用基础字体 */
   font-weight: 700 !important;
   letter-spacing: 3px !important;
 }
