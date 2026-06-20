@@ -49,7 +49,7 @@
 <div class="right-scroll">
       <div class="projects-container">
         
-        <a href="/projects/bearing-fault" class="project-card glass-panel">
+        <a href="/projects/bearing-diagnosis" class="project-card glass-panel">
           <div class="card-header">
             <h3>智眸探微：工业轴承故障诊断系统</h3>
             <div class="title-badge gold-badge"><span class="b-icon">🏆</span> 省级二等奖</div>
@@ -79,7 +79,7 @@
           </p>
         </a>
 
-        <a href="/projects/graphics-tool" class="project-card glass-panel">
+        <a href="/projects/graphic-tools" class="project-card glass-panel">
           <div class="card-header">
             <h3>多功能图形工具集系统</h3>
             <div class="title-badge purple-badge"><span class="b-icon">🪪</span> 国家软著登记</div>
@@ -94,7 +94,7 @@
           </p>
         </a>
 
-        <a href="/projects/auth-community" class="project-card glass-panel">
+        <a href="/projects/community-forum" class="project-card glass-panel">
           <div class="card-header">
             <h3>基于双重验证机制的社区互动系统</h3>
             <div class="title-badge cyan-badge"><span class="b-icon">⏳</span> 软著审核中</div>
