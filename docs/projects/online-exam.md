@@ -15,9 +15,6 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
   :honors="[
     '国家版权局软件著作权登记'
   ]"
-
-<!-- ![image-20260620132333092](./online-exam.assets/image-20260620132333092.png) -->
-
 </ProjectHero>
 
 ## 💡 项目背景与教务痛点

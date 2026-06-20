@@ -19,7 +19,6 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
     '发明专利申请中'
   ]"
 >
-  <img src="./bearing-diagnosis.assets/大屏监控.png" alt="系统数据大屏" />
 </ProjectHero>
 
 ## 💡 项目背景与行业痛点
