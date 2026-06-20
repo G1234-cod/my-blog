@@ -112,6 +112,7 @@ defineProps({
 }
 .primary-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(100, 108, 255, 0.4); }
 
+
 @media (max-width: 768px) {
   .project-title { font-size: 2.5rem; }
   .project-desc { font-size: 1.1rem; }
