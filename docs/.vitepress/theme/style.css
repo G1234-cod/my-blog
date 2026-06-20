@@ -40,3 +40,38 @@ html, body, #app {
   justify-content: center;
   align-items: center;
 }
+
+/* ==========================================
+   文章详情页 (Doc) 滚动修复与排版优化
+   ========================================== */
+/* 强制解除可能从主页泄漏过来的全屏滚动锁定 */
+html, body, #app {
+  height: auto !important;
+  overflow-y: auto !important;
+}
+
+/* 隐藏 VitePress 默认的丑陋左侧边栏 (在特定布局下) */
+.VPContent.has-sidebar {
+  padding-left: 0 !important;
+}
+.VPSidebar {
+  display: none !important; /* 全局隐藏左侧栏，让项目页全宽显示 */
+}
+
+/* 放大正文容器宽度，增强阅读沉浸感 */
+.VPDoc {
+  padding-top: 40px !important;
+}
+@media (min-width: 960px) {
+  .VPDoc .container {
+    max-width: 1000px !important; /* 原本只有 680px，太窄了 */
+  }
+}
+
+/* 优化文章内的图片展示（自动居中、加圆角、加阴影） */
+.vp-doc img {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  margin: 2rem auto;
+  display: block;
+}
