@@ -1,5 +1,8 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
+import { createRequire } from 'module'
+
+const require = createRequire(import.meta.url)
 
 export default defineConfig({
   title: "DevPortal",
@@ -7,13 +10,20 @@ export default defineConfig({
   lang: 'zh-CN',
   ignoreDeadLinks: true,
   
+  /* 排除文件名中包含 '.' 或 '_' 的 Markdown 文件（VitePress 1.6.4 SSR 解析 Bug） */
+  srcExclude: ['**/*.*.md', '**/*_*.md'],
+  
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
 
   vite: {
-    server: {
-      fs: { allow: ['E:/Web_git'] }
+    resolve: {
+      /* 关键：保留符号链接路径，使模块从 my-blog/node_modules 解析 */
+      preserveSymlinks: true,
+      alias: {
+        'vue/server-renderer': require.resolve('vue/server-renderer')
+      }
     }
   },
 
