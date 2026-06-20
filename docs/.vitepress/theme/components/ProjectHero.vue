@@ -25,9 +25,9 @@
       </div>
     </div>
 
-    <div class="hero-media" v-if="coverImage">
-      <img :src="coverImage" alt="Project Cover" class="cover-img" />
-      </div>
+    <div class="hero-media">
+      <slot></slot>
+    </div>
 
   </div>
 </template>
@@ -38,8 +38,7 @@ defineProps({
   subtitle: String,
   date: String,
   role: String,
-  honors: Array,
-  coverImage: String
+  honors: Array
 })
 </script>
 
@@ -113,15 +112,20 @@ defineProps({
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   background: #111;
 }
-.cover-img {
+/* 让插槽进来的 Markdown 图片完美贴合容器 */
+.hero-media :deep(img) {
   width: 100%;
   height: auto;
   display: block;
   transition: transform 0.5s ease;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
-.hero-media:hover .cover-img {
+.hero-media:hover :deep(img) {
   transform: scale(1.02);
 }
+
 
 /* 移动端适配 */
 @media (max-width: 768px) {

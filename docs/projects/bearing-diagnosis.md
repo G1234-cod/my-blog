@@ -1,6 +1,6 @@
 ---
-sidebar: false
-aside: false  # 【核心秘诀】：关掉右侧边栏，让页面真正变成一块宽广的画布
+# 删除 sidebar: false，让 VitePress 自动生成左侧【项目导航】
+aside: true  # 开启右侧【章节导航】
 outline: deep
 ---
 
@@ -18,8 +18,9 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
     '第18届计算机设计大赛省级三等奖',
     '国家版权局软件著作权登记'
   ]"
-  coverImage="./bearing-diagnosis.assets/image-20260620101642629.png" 
-/>
+>
+  ![项目大屏监控封面图](./bearing-diagnosis.assets/image-20260620101642629.png)
+</ProjectHero>
 
 ## 项目背景与行业痛点
 

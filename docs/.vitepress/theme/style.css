@@ -54,9 +54,7 @@ html, body, #app {
 .VPContent.has-sidebar {
   padding-left: 0 !important;
 }
-.VPSidebar {
-  display: none !important; /* 全局隐藏左侧栏，让项目页全宽显示 */
-}
+
 
 /* 放大正文容器宽度，增强阅读沉浸感 */
 .VPDoc {
