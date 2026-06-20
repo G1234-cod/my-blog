@@ -97,15 +97,29 @@
             </div>
           </a>
 
-          <a href="/api/health" target="_blank" class="m-card interactive">
-            <span class="m-icon">🖥️</span>
-            <div class="m-text">
-              <span class="m-main">独立服务器探针</span>
-              <span class="m-sub">Check Node.js server status ↗</span>
-             </div>
-          </a>
+          <div class="m-card terminal-card">
+            <div class="terminal-header">
+              <div class="mac-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="title">health_probe.sh</span>
+            </div>
+            
+            <div class="terminal-body" v-if="serverData">
+              <p class="line"><span class="prompt">root@gyx:~#</span> ./status</p>
+              <p class="line success">>> STATUS: {{ serverData.status || '200 OK' }}</p>
+              <p class="line info">>> NODE: {{ serverData.nodeVersion || 'v18.x' }}</p>
+              <p class="line info">>> RAM: {{ serverData.memory?.rss || 'Calculating...' }}</p>
+              <p class="line info">>> UPTIME: {{ formattedUptime }}</p>
+              <p class="line blink">_</p>
+            </div>
+            <div class="terminal-body" v-else>
+              <p class="line warning">Booting Node.js engine...</p>
+            </div>
+          </div>
 
-          
         </div>
       </div>
 
@@ -114,8 +128,9 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted, computed } from 'vue' // 增加了 onMounted, computed
 
+// === 1. 留言表单数据与逻辑 ===
 const formData = reactive({
   name: '',
   email: '',
@@ -123,15 +138,12 @@ const formData = reactive({
 })
 
 const isSubmitting = ref(false)
-const sysStatus = ref('idle') // 'idle' | 'success' | 'error'
+const sysStatus = ref('idle') 
 const sysMessage = ref('')
-
-// ✅ 动态相对路径，完美利用 Nginx 的 /api/ 反向代理
 const API_ENDPOINT = '/api/contact'
 
 const submitForm = async () => {
   console.log('🚀 表单接管成功！当前填写的数据：', formData);
-  // 1. 初始化状态
   sysMessage.value = ''
   sysStatus.value = 'idle'
   isSubmitting.value = true
@@ -147,38 +159,61 @@ const submitForm = async () => {
       })
     })
 
-    // 3. 处理后端响应
     if (response.ok) {
       sysStatus.value = 'success'
-      sysMessage.value = '' // 成功时不需要额外文字，按钮已经变绿了
-      // 清空表单
+      sysMessage.value = '' 
       formData.name = ''
       formData.email = ''
       formData.message = ''
     } else {
-      // 捕获 HTTP 错误 (如 400, 500)
       const errData = await response.json().catch(() => ({}))
       sysStatus.value = 'error'
       sysMessage.value = `服务器返回错误: ${response.status} ${errData.message || ''}`
     }
-
   } catch (error) {
-    // 4. 捕获致命网络错误 (跨域 CORS / 混合内容拦截 / 服务器宕机)
     sysStatus.value = 'error'
     sysMessage.value = `网络请求失败！请按 F12 检查控制台 (可能原因: CORS跨域限制 或 HTTPS请求HTTP被拦截)。详细信息: ${error.message}`
     console.error('Fetch Error:', error)
   } finally {
     isSubmitting.value = false
-    // 失败的话，5秒后清除报错横幅
     if (sysStatus.value === 'error') {
       setTimeout(() => { sysMessage.value = '' }, 8000)
     }
   }
 }
+
+// === 2. 服务器探针动态逻辑 ===
+const serverData = ref(null)
+
+const fetchServerStatus = async () => {
+  try {
+    const res = await fetch('/api/health')
+    if (res.ok) {
+      serverData.value = await res.json()
+    }
+  } catch (error) {
+    console.error('探针探测失败', error)
+  }
+}
+
+// 格式化秒数为 时:分:秒
+const formattedUptime = computed(() => {
+  if (!serverData.value || !serverData.value.uptime) return '0h 0m 0s'
+  const totalSeconds = Math.floor(serverData.value.uptime)
+  const hours = Math.floor(totalSeconds / 3600)
+  const minutes = Math.floor((totalSeconds % 3600) / 60)
+  const seconds = totalSeconds % 60
+  return `${hours}h ${minutes}m ${seconds}s`
+})
+
+// 页面加载时请求数据
+onMounted(() => {
+  fetchServerStatus()
+})
 </script>
 
 <style scoped>
-/* === 基础容器 === */
+/* === 基础容器 (保持不变) === */
 .contact-wrapper {
   width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden; background-color: var(--vp-c-bg); padding: 80px 0;
@@ -194,7 +229,7 @@ const submitForm = async () => {
   width: 100%; max-width: 1100px; display: flex; flex-direction: column; align-items: center; gap: 40px; z-index: 1; padding: 0 5%;
 }
 
-/* === 左右分割聚合卡片 === */
+/* === 左右分割聚合卡片 (保持不变) === */
 .split-card {
   width: 100%; display: flex; border-radius: 24px; overflow: hidden;
   background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border);
@@ -240,11 +275,9 @@ input:focus, textarea:focus { border-color: var(--vp-c-brand-1); background: var
 textarea { resize: vertical; min-height: 100px; }
 input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 
-/* 错误与状态横幅 */
 .sys-banner { padding: 12px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; line-height: 1.5; }
 .sys-banner.error { background: rgba(255, 8, 68, 0.1); color: #ff0844; border: 1px solid rgba(255, 8, 68, 0.3); }
 
-/* 高级发送按钮 */
 .submit-btn {
   align-self: flex-start; background: var(--vp-c-text-1); color: var(--vp-c-bg);
   font-size: 1rem; font-weight: 700; padding: 14px 32px; border-radius: 12px;
@@ -254,25 +287,87 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 .submit-btn:disabled { opacity: 0.7; cursor: wait; }
 .success-btn { background: #0ba360 !important; color: white !important; cursor: default !important; }
 
-/* === 底部通信矩阵 === */
+/* === 底部通信矩阵 (重构终端布局) === */
 .bottom-matrix { width: 100%; display: flex; flex-direction: column; gap: 16px; }
 .matrix-title { font-size: 0.9rem; font-weight: 700; color: var(--vp-c-text-3); text-align: left; }
 .matrix-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
+/* 基础卡片样式 */
 .m-card {
   display: flex; align-items: center; gap: 16px; padding: 16px 24px;
   background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border); border-radius: 16px;
   text-decoration: none; transition: all 0.2s ease;
 }
 .interactive:hover { border-color: var(--vp-c-text-1); transform: translateY(-3px); box-shadow: var(--vp-shadow-2); }
-.static-card { opacity: 0.8; cursor: default; } /* 服务器卡片只是展示，不可点击 */
 
 .m-icon { font-size: 1.6rem; }
 .m-text { display: flex; flex-direction: column; }
 .m-main { font-size: 1rem; font-weight: 700; color: var(--vp-c-text-1); }
 .m-sub { font-size: 0.8rem; color: var(--vp-c-text-2); font-weight: 500; margin-top: 2px; }
 
-/* === 移动端适配 === */
+/* ==========================================
+   专属：极客终端卡片覆盖样式
+   ========================================== */
+.terminal-card {
+  flex-direction: column;
+  padding: 0 !important; /* 清理默认卡片内边距 */
+  background: rgba(13, 17, 23, 0.6) !important; /* 暗色半透明玻璃质感 */
+  cursor: default;
+  align-items: stretch;
+}
+
+.terminal-card:hover {
+  border-color: var(--vp-c-border); 
+  transform: none; /* 终端不执行悬浮位移 */
+  box-shadow: none;
+}
+
+.terminal-header {
+  background: rgba(22, 27, 34, 0.8);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 点在左，文字在右 */
+  border-bottom: 1px solid var(--vp-c-border);
+}
+
+.mac-dots { display: flex; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.red { background-color: #ff5f56; box-shadow: 0 0 4px #ff5f5680; }
+.dot.yellow { background-color: #ffbd2e; box-shadow: 0 0 4px #ffbd2e80; }
+.dot.green { background-color: #27c93f; box-shadow: 0 0 4px #27c93f80; }
+
+.terminal-header .title {
+  color: var(--vp-c-text-3);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.terminal-body {
+  padding: 12px 16px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Courier New', Consolas, monospace;
+}
+
+.line { margin: 2px 0; white-space: nowrap; text-align: left; }
+.prompt { color: var(--vp-c-brand-1); font-weight: bold; margin-right: 6px; }
+.success { color: #3fb950; }
+.info { color: #8b949e; }
+.warning { color: #d29922; }
+
+.blink {
+  animation: blinker 1s step-end infinite;
+  color: var(--vp-c-text-2);
+  font-weight: bold;
+}
+@keyframes blinker { 50% { opacity: 0; } }
+
+/* === 移动端适配 (保持不变) === */
 @media (max-width: 900px) {
   .split-card { flex-direction: column; }
   .card-left { border-right: none; border-bottom: 1px solid var(--vp-c-border); padding: 40px 30px; }

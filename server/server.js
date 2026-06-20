@@ -99,12 +99,21 @@ app.post('/api/contact', mailLimiter, async (req, res) => {
 });
 
 // ==========================================
-// 5. API 健康检查接口 (用于 CI/CD 探针探测)
+// 5. API 深度健康检查探针 (面试加分项)
 // ==========================================
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', uptime: process.uptime(), time: new Date().toISOString() });
-});
+  // 换算内存占用为 MB
+  const formatMemoryUsage = (data) => `${Math.round(data / 1024 / 1024 * 100) / 100} MB`;
+  const memoryData = process.memoryUsage();
 
-app.listen(PORT, () => {
-  console.log(`✅ API Core Service Online: http://localhost:${PORT}`);
+  res.status(200).json({
+    status: '200 OK',
+    message: 'System Online',
+    nodeVersion: process.version,
+    memory: {
+      rss: formatMemoryUsage(memoryData.rss), // 常驻集大小
+    },
+    uptime: process.uptime(), // 运行秒数
+    timestamp: new Date().toISOString()
+  });
 });
