@@ -111,8 +111,8 @@ jobs:
           passphrase: ${{ secrets.SERVER_PASSPHRASE }}
           script: |
             # 确保目标目录存在，然后清空其内部所有旧的哈希文件，保留目录本身
-            mkdir -p /var/www/html
-            rm -rf /var/www/html/*
+            mkdir -p /www/my-blog
+            rm -rf /www/my-blog/*
             echo "✅ Server garbage cleared successfully."
 
       - name: 7.2 Deploy to Aliyun Server via SCP
@@ -123,7 +123,7 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           passphrase: ${{ secrets.SERVER_PASSPHRASE }}
           source: "docs/.vitepress/dist/*"
-          target: "/var/www/html/"
+          target: "/www/my-blog/"
           strip_components: 3
 # ==========================================
       # 阶段六：后端 API 服务自动化投递与重启
@@ -139,7 +139,7 @@ jobs:
           target: "/www/my-blog-api/"
           strip_components: 1
 
-      - name: 8.2 Install Dependencies & Restart PM2 via SSH
+      - name: 8.2 Install Dependencies, Fix Permissions & Restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_IP }}
@@ -147,13 +147,24 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           passphrase: ${{ secrets.SERVER_PASSPHRASE }}
           script: |
-            echo "🚀 正在进入后端目录..."
+            echo "🚀 正在处理后端环境..."
             cd /www/my-blog-api/
             
-            echo "📦 正在安装后端依赖 (包含新加的 express-rate-limit)..."
+            echo "📦 安装依赖..."
             npm install
             
-            echo "🔄 正在平滑重启 Node.js 邮件服务引擎..."
-            pm2 restart my-blog-api
+            echo "🔐 自动化修正文件权限 (防御 403 错误)..."
+            chown -R www-data:www-data /www/my-blog/
+            chown -R www-data:www-data /www/my-blog-api/
             
-            echo "✅ 后端服务热更新完成！"
+            echo "🔄 智能启动/重启 Node.js 邮件服务..."
+            # 判断进程是否存在，存在则重启，不存在则全新启动
+            if pm2 describe my-blog-api > /dev/null; then
+              pm2 restart my-blog-api
+            else
+              pm2 start server.js --name my-blog-api
+            fi
+            
+            # 保存当前进程列表，防止服务器重启后服务丢失
+            pm2 save
+            echo "✅ 后端部署与权限修复全部完成！"
