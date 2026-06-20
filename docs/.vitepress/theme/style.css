@@ -109,12 +109,14 @@ html, body, #app {
   /* 让整个底层画板无限延展，把右侧目录推向屏幕最右侧 */
   .VPDoc .container {
     max-width: 100% !important; 
-    padding-left: 3% !important;
-    padding-right: 3% !important; 
+    padding-left: 2% !important;   /* 大幅减小左右边距 */
+    padding-right: 15% !important; /* 右侧留出空间给目录 */
   }
-  /* 中间文章区域变宽，保持居中 */
+  /* 中间文章区域最大化，保持居中 */
   .VPDoc .content {
-    max-width: 1300px !important; 
+    max-width: none !important;     /* 取消最大宽度限制 */
+    width: 100%;                   /* 占满可用空间 */
+    max-width: 1600px !important;  /* 设置一个更大的上限 */
     margin: 0 auto;
     padding-bottom: 120px !important;
   }
@@ -123,11 +125,11 @@ html, body, #app {
 /* 10. 超大屏适配（带鱼屏/2K屏，1600px+） */
 @media (min-width: 1600px) {
   .VPDoc .container {
-    padding-left: 10% !important;
-    padding-right: 10% !important; 
+    padding-left: 5% !important;    /* 减小左侧边距 */
+    padding-right: 18% !important;  /* 右侧留更多空间给目录 */
   }
   .VPDoc .content {
-    max-width: 1100px !important; 
+    max-width: 1800px !important;   /* 进一步增大内容宽度 */
   }
 }
 
