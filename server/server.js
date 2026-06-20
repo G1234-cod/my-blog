@@ -117,3 +117,11 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
+
+// 👇 把下面这段代码直接加在文件的最末尾 👇
+// ==========================================
+// 6. 启动服务器 (核心引擎点火)
+// ==========================================
+app.listen(PORT, () => {
+  console.log(`✅ API Core Service Online: http://localhost:${PORT}`);
+});
