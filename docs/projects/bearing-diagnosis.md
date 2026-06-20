@@ -48,7 +48,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
 工业现场充斥着电磁与机械强噪声。我们在模型深层集成了 **ECA (Efficient Channel Attention)** 机制。它通过一维卷积实现局部跨通道交互，自主学习并赋予不同特征通道动态权重。模型能“聪明地”聚焦于包含故障特性的关键通道，大幅抑制背景噪声的干扰。
 
 <div align="center">
-  <img src="./bearing-diagnosis.assets/热度图.png" alt="特征与通道热度图" />
+  <img src="./bearing-diagnosis.assets/特征和通道热度图.png" alt="特征与通道热度图" />
   <p style="color: var(--vp-c-text-2); font-size: 0.9em; margin-top: 10px;">图 1：多尺度特征与通道注意力热度分布可视化验证</p>
 </div>
 
