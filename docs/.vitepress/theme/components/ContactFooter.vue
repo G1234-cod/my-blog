@@ -97,14 +97,15 @@
             </div>
           </a>
 
-          <div class="m-card static-card">
+          <a href="/api/health" target="_blank" class="m-card interactive">
             <span class="m-icon">🖥️</span>
             <div class="m-text">
-              <span class="m-main">独立服务器直发</span>
-              <span class="m-sub">Powered by my own Node.js server</span>
-            </div>
-          </div>
+              <span class="m-main">独立服务器探针</span>
+              <span class="m-sub">Check Node.js server status ↗</span>
+             </div>
+          </a>
 
+          
         </div>
       </div>
 

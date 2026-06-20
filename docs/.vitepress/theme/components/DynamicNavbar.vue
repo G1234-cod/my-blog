@@ -1,14 +1,14 @@
 <template>
   <nav :class="['dynamic-navbar', { 'is-scrolled': isScrolled }]">
-    <a href="#" class="nav-brand">GYX<span>.Dev</span></a>
+    <a href="#" class="nav-brand" @click.prevent="scrollToSection('hero')">GYX<span>.Dev</span></a>
     
     <ul class="nav-links">
-      <li><a href="#hero" :class="{ active: activeSection === 'hero' }">01 START</a></li>
-      <li><a href="#stats" :class="{ active: activeSection === 'stats' }">02 DATA</a></li>
-      <li><a href="#timeline" :class="{ active: activeSection === 'timeline' }">03 HONORS</a></li>
-      <li><a href="#projects" :class="{ active: activeSection === 'projects' }">04 LABS</a></li>
-      <li><a href="#hub" :class="{ active: activeSection === 'hub' }">05 KNOWLEDGE</a></li>
-      <li><a href="#contact" :class="{ active: activeSection === 'contact' }">06 CONNECT</a></li>
+      <li><a href="#hero" :class="{ active: activeSection === 'hero' }" @click.prevent="scrollToSection('hero')">01 START</a></li>
+      <li><a href="#stats" :class="{ active: activeSection === 'stats' }" @click.prevent="scrollToSection('stats')">02 DATA</a></li>
+      <li><a href="#timeline" :class="{ active: activeSection === 'timeline' }" @click.prevent="scrollToSection('timeline')">03 HONORS</a></li>
+      <li><a href="#projects" :class="{ active: activeSection === 'projects' }" @click.prevent="scrollToSection('projects')">04 LABS</a></li>
+      <li><a href="#hub" :class="{ active: activeSection === 'hub' }" @click.prevent="scrollToSection('hub')">05 KNOWLEDGE</a></li>
+      <li><a href="#contact" :class="{ active: activeSection === 'contact' }" @click.prevent="scrollToSection('contact')">06 CONNECT</a></li>
     </ul>
 
     <div class="nav-controls">
@@ -27,6 +27,31 @@ const isScrolled = ref(false)
 const isDark = ref(true) 
 const activeSection = ref('hero') 
 
+// 提取为全局常量，供滚动和点击双向使用
+const sections = ['hero', 'stats', 'timeline', 'projects', 'hub', 'contact']
+
+// ✅ 新增：精准的锚点跳转引擎
+const scrollToSection = (sectionId) => {
+  const container = document.querySelector('.universe-container')
+  if (!container) return
+
+  // 找到目标区块在数组中的索引 (0~5)
+  const index = sections.indexOf(sectionId)
+  if (index !== -1) {
+    // 立即更新 UI 状态，让导航栏的下划线马上跟过去
+    activeSection.value = sectionId
+    
+    // 计算目标像素高度：屏幕高度 * 索引
+    const targetScrollTop = index * window.innerHeight
+    
+    // 指挥专属容器进行丝滑滚动
+    container.scrollTo({
+      top: targetScrollTop,
+      behavior: 'smooth'
+    })
+  }
+}
+
 // 极其精准的数学滚动雷达
 const checkScroll = () => {
   const container = document.querySelector('.universe-container')
@@ -41,7 +66,6 @@ const checkScroll = () => {
   const scrollPosition = container.scrollTop + (screenHeight / 2) 
   const index = Math.floor(scrollPosition / screenHeight)
   
-  const sections = ['hero', 'stats', 'timeline', 'projects', 'hub', 'contact']
   if (sections[index] && activeSection.value !== sections[index]) {
     activeSection.value = sections[index]
   }
@@ -72,6 +96,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* 你的 CSS 完美无瑕，此处原样保留 */
 .dynamic-navbar {
   position: fixed;
   top: 0;
