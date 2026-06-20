@@ -1,6 +1,6 @@
 ---
-# 删除 sidebar: false，让 VitePress 自动生成左侧【项目导航】
-aside: true  # 开启右侧【章节导航】
+title: 轴承故障诊断系统   # 👈 增加这行！侧边栏的名字就会完美变成这个中文
+aside: true
 outline: deep
 ---
 
@@ -19,7 +19,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
     '国家版权局软件著作权登记'
   ]"
 >
-  ![项目大屏监控封面图](./bearing-diagnosis.assets/image-20260620101642629.png)
+  <img src="./bearing-diagnosis.assets/image-20260620101642629.png" alt="项目大屏监控" />
 </ProjectHero>
 
 ## 项目背景与行业痛点

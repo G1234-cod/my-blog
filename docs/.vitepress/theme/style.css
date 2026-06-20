@@ -79,12 +79,28 @@ html, body, #app {
    ========================================== */
 
 /* 1. 放宽容器宽度，打破压抑感 */
-@media (min-width: 960px) {
+/* 1. 彻底放宽全站容器宽度，完美适配大屏 */
+@media (min-width: 1200px) {
+  /* 放开整个底层画板，把右侧目录强行推向屏幕右边缘 */
   .VPDoc .container {
-    max-width: 1000px !important; /* 让内容展开 */
+    max-width: 1400px !important; 
+  }
+  /* 拓宽中间文章的宽度（默认只有 680px，现在加大到 900px） */
+  .VPDoc .content {
+    max-width: 900px !important; 
   }
   .VPDoc .content {
     padding-bottom: 120px !important;
+  }
+}
+
+/* 如果屏幕更大（带鱼屏/2K屏），进一步撑开 */
+@media (min-width: 1600px) {
+  .VPDoc .container {
+    max-width: 1600px !important; 
+  }
+  .VPDoc .content {
+    max-width: 1000px !important; 
   }
 }
 
