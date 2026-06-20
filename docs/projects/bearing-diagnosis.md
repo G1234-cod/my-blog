@@ -1,6 +1,6 @@
 ---
 sidebar: false
-aside: true
+aside: false  # 【核心秘诀】：关掉右侧边栏，让页面真正变成一块宽广的画布
 outline: deep
 ---
 
@@ -9,16 +9,19 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
 </script>
 
 <ProjectHero 
-  title="智眸探微：赋能工业智能的轴承故障诊断系统"
-  desc="本项目旨在为现代工业设备提供前瞻性的智能化预知性维护解决方案。创新性地将轻量化卷积神经网络（CNN）与 DeepSeek-R1 大模型深度融合，打通了从“自动发现”到“维修决策”的智能化闭环。"
-  date="2025 - 2026"
-  role="全栈开发与算法集成"
-  :tags="['DeepSeek-R1', '轻量化 CNN', 'PyTorch', 'LangChain', 'MES 联动']"
-  github="" 
-  link=""
+  title="轴承故障诊断系统"
+  subtitle="BEARING FAULT DIAGNOSIS SYSTEM & AI EXPLORATION"
+  date="2025.10 - 2026.03"
+  role="核心算法开发 & 全栈集成"
+  :honors="[
+    '河南省创新创业大赛省级二等奖',
+    '第18届计算机设计大赛省级三等奖',
+    '国家版权局软件著作权登记'
+  ]"
+  coverImage="./bearing-diagnosis.assets/image-20260620101642629.png" 
 />
 
-## 💡 项目背景与行业痛点
+## 项目背景与行业痛点
 
 在现代工业生产中，轴承作为各类旋转机械设备的核心部件，长期处于高速、重载、高温等严苛工况下，极易发生疲劳、磨损等故障。
 
@@ -26,11 +29,11 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
 * **传统诊断的局限性**：目前业界普遍依赖技术人员的人工检测，不仅耗时耗力，诊断结果也深受主观经验影响，难以实现故障的早期精确预警。
 * **边缘环境算力受限**：传统的深度学习模型往往计算资源需求大，难以在工业现场资源受限的边缘计算设备上高效部署。
 
----
-
-## ⚙️ 核心技术架构与算法创新
+## 核心技术架构与算法创新
 
 本项目摒弃了依赖人工判断的传统诊断方式，采用深度学习与大模型构建非接触式诊断底座，大幅提升了系统的鲁棒性与精度。
+
+**(后面的 Markdown 内容保持不变即可...)**
 
 ### 1. 强噪声环境下的轻量化 CNN 模型 (MSLCNN)
 我们自研了轻量化 CNN 模型，通过逐深度卷积等优化技术，在保证高精度的同时，**将模型体积缩减至传统模型的 1/2，信号解析效率显著提升了 21%**。

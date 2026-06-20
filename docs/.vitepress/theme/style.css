@@ -75,3 +75,59 @@ html, body, #app {
   margin: 2rem auto;
   display: block;
 }
+
+/* ==========================================
+   作品集详情页 (Portfolio Doc) 深度美化
+   ========================================== */
+
+/* 1. 放宽容器宽度，打破压抑感 */
+@media (min-width: 960px) {
+  .VPDoc .container {
+    max-width: 1000px !important; /* 让内容展开 */
+  }
+  .VPDoc .content {
+    padding-bottom: 120px !important;
+  }
+}
+
+/* 2. 移除 VitePress 默认的 H2 顶部横线 */
+.vp-doc h2 {
+  border-top: none !important;
+  margin-top: 80px !important; 
+  margin-bottom: 30px !important;
+}
+
+/* 3. 实现参考图的【垂直线 + 标题】极客风格 */
+.vp-doc h2 {
+  position: relative;
+  padding-left: 20px;
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 1px;
+}
+.vp-doc h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10%;
+  height: 80%;
+  width: 5px;
+  background-color: var(--vp-c-brand-1); /* 使用你的主题色（紫色） */
+  border-radius: 4px;
+}
+
+/* 4. 优化正文排版，增加行距和文字颜色层级 */
+.vp-doc p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--vp-c-text-2);
+  margin-bottom: 1.5rem;
+}
+.vp-doc li {
+  line-height: 1.8;
+  color: var(--vp-c-text-2);
+  margin-bottom: 0.8rem;
+}
+.vp-doc strong {
+  color: var(--vp-c-text-1); /* 让加粗的文字更亮，形成对比 */
+}
