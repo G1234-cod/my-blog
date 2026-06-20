@@ -46,10 +46,10 @@
       </div>
     </div>
 
-    <div class="right-scroll">
+<div class="right-scroll">
       <div class="projects-container">
         
-        <div class="project-card glass-panel">
+        <a href="/projects/bearing-fault" class="project-card glass-panel">
           <div class="card-header">
             <h3>智眸探微：工业轴承故障诊断系统</h3>
             <div class="title-badge gold-badge"><span class="b-icon">🏆</span> 省级二等奖</div>
@@ -62,9 +62,9 @@
           <p class="project-desc">
             一个集实时监测、预知性维护与智能决策于一体的工业解决方案。通过轻量化 CNN 模型与 DeepSeek-R1 大模型联动，实现了轴承异常的早期预警与自动化维护闭环，大幅降低了非计划停机损失。
           </p>
-        </div>
+        </a>
 
-        <div class="project-card glass-panel">
+        <a href="/projects/online-exam" class="project-card glass-panel">
           <div class="card-header">
             <h3>在线考试管理系统</h3>
             <div class="title-badge purple-badge"><span class="b-icon">🪪</span> 国家软著登记</div>
@@ -77,9 +77,9 @@
           <p class="project-desc">
             一款校园场景下的考务自动化平台。实现了角色权限分离、题库增删维护、自动阅卷与深度统计分析。系统具备严密的防作弊逻辑，能一键提取考生成绩极值与违纪率，为教学质量评估提供数据支撑。
           </p>
-        </div>
+        </a>
 
-        <div class="project-card glass-panel">
+        <a href="/projects/graphics-tool" class="project-card glass-panel">
           <div class="card-header">
             <h3>多功能图形工具集系统</h3>
             <div class="title-badge purple-badge"><span class="b-icon">🪪</span> 国家软著登记</div>
@@ -92,9 +92,9 @@
           <p class="project-desc">
             一款集成益智游戏、图形绘制与教育应用的桌面系统。采用四层模块化解耦设计，通过融合 turtle 与 pygame 的跨库渲染技术，在极低资源占用下提供了丰富的交互娱乐功能。便于对学生进行python教学。
           </p>
-        </div>
+        </a>
 
-        <div class="project-card glass-panel">
+        <a href="/projects/auth-community" class="project-card glass-panel">
           <div class="card-header">
             <h3>基于双重验证机制的社区互动系统</h3>
             <div class="title-badge cyan-badge"><span class="b-icon">⏳</span> 软著审核中</div>
@@ -107,9 +107,9 @@
           <p class="project-desc">
             一个高安全性的 Web 交互平台。核心采用了多模态双重验证引擎与全局拦截器架构，不仅保障了内容交互的安全，还内置了原子化积分结算引擎，确保了用户资产的安全性与数据记录的可追溯性。
           </p>
-        </div>
+        </a>
 
-        <div class="project-card glass-panel">
+        <a href="/projects/local-rag" class="project-card glass-panel">
           <div class="card-header">
             <h3>基于 AnythingLLM 的本地私有化知识库</h3>
             <div class="title-badge gray-badge"><span class="b-icon">🔒</span> 纯内网物理隔离</div>
@@ -122,9 +122,9 @@
           <p class="project-desc">
             一套部署于 WSL2 容器环境的私有化 RAG（检索增强生成）系统。通过解耦 Ollama 模型底座与 AnythingLLM 应用层，实现了完全本地化、数据不出内网的文档切片、向量检索与智能问答服务。
           </p>
-        </div>
+        </a>
 
-        <div class="project-card glass-panel">
+        <a href="/projects/cloud-portal" class="project-card glass-panel">
           <div class="card-header">
             <h3>云原生个人门户系统 (Jamstack + CI/CD)</h3>
           </div>
@@ -136,9 +136,9 @@
           <p class="project-desc">
            基于 Jamstack 架构的个人知识库与作品集。通过 GitHub Actions 构建自动化流水线，实现了代码多仓库聚合、VitePress 自动编译与 阿里云服务器/GitHub Pages 双平台 的零宕机发布，构建了从本地写作到云端发布的闭环运维体系。
           </p>
-        </div>
+        </a>
 
-        <div class="project-card glass-panel">
+        <a href="/projects/garbage-classification" class="project-card glass-panel">
           <div class="card-header">
             <h3>基于深度学习的垃圾分类识别系统</h3>
           </div>
@@ -150,7 +150,7 @@
           <p class="project-desc">
             利用 PyTorch 构建的高精度图像识别底座。系统解决了 40 类垃圾图像的长尾分布痛点，通过工厂设计模式实现了多种主流网络架构的一键切换与评估，为智慧城市环卫场景提供了算法支持。
           </p>
-        </div>
+        </a>
 
         <div class="scroll-spacer"></div>
       </div>
@@ -243,6 +243,17 @@
 .project-desc { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0; }
 
 .scroll-spacer { height: 20vh; }
+
+/* === 新增：针对变成了 a 标签的卡片进行样式保护 === */
+a.project-card {
+  text-decoration: none !important; /* 去除超链接默认下划线 */
+  color: inherit; /* 继承文字颜色，防止变成标准的蓝色链接 */
+  cursor: pointer; /* 确保鼠标悬浮时是小手指 */
+  display: flex; /* 保持原有的 flex 布局不被 a 标签破坏 */
+}
+a.project-card:hover {
+  text-decoration: none !important; /* 悬浮时也绝对不出现下划线 */
+}
 
 /* === 移动端适配 === */
 @media (max-width: 1024px) {
