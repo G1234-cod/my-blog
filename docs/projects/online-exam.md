@@ -16,7 +16,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
     '国家版权局软件著作权登记'
   ]"
 
-![image-20260620132333092](./online-exam.assets/image-20260620132333092.png)
+<!-- ![image-20260620132333092](./online-exam.assets/image-20260620132333092.png) -->
 
 </ProjectHero>
 
