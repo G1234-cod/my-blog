@@ -94,47 +94,62 @@ html, body, #app {
  * ==========================================
  */
 
-/* 10. 大屏适配：安全地放宽全站容器，拒绝文字重叠 */
+/* ==========================================
+ * 10. 大屏适配：彻底接管 VitePress Flexbox 布局
+ * ========================================== */
 @media (min-width: 1200px) {
-  /* 1. 整体骨架放大，适应大屏 */
+  /* 1. 扩大全站的主容器，并强制使用弹性两端对齐 */
   .VPDoc .container,
   .VPDoc.has-sidebar .container {
     max-width: 1400px !important; 
+    display: flex !important;
+    justify-content: space-between !important;
   }
 
-  /* 🔥 2. 调整文字与右侧目录距离的“核心开关”！ */
-  .VPDoc .content {
-    /* 💡 调节指南：
-       如果你觉得现在目录离文字【太远】👉 把 80px 改小（例如改成 40px 或 20px）
-       如果你觉得现在目录离文字【太近】👉 把 80px 改大（例如改成 120px）
-    */
-    padding-right: 80px !important; 
+  /* 2. 彻底解除中间文字的封印，让它变宽变长！ */
+  .VPDoc .content,
+  .VPDoc.has-sidebar .content {
+    max-width: 1000px !important; /* 🔥 这里决定文字最终有多长！(默认仅688px) */
+    width: 100% !important;
+    flex-grow: 1 !important;      /* 允许文字容器抢占剩余空间 */
   }
-}
+  
+  /* 必须同时解除最内层盒子的宽度限制 */
+  .VPDoc .content-container,
+  .VPDoc.has-sidebar .content-container {
+    max-width: 100% !important;   
+    width: 100% !important;
+  }
 
-/* 11. 超大屏适配（带鱼屏/2K屏，1600px+） */
-@media (min-width: 1600px) {
-  .VPDoc .container,
-  .VPDoc.has-sidebar .container {
-    max-width: 1600px !important;
+  /* 3. 保护右侧目录 (Aside) 绝对不被挤压 */
+  .VPDoc .aside,
+  .VPDoc.has-sidebar .aside {
+    flex-shrink: 0 !important;    /* 🔥 绝对不允许被文字挤压！ */
+    width: 260px !important;      /* 给目录分配宽裕的固定空间 */
+    padding-left: 40px !important;/* 与左侧文字保持安全距离 */
   }
-  .VPDoc .content {
-    /* 超大屏下的距离控制，同理也可以调 */
-    padding-right: 120px !important; 
+
+  /* 4. 强制目录里的长文字换行，严禁出现 "..." 截断！ */
+  .outline-link {
+    white-space: normal !important; 
+    line-height: 1.6 !important;
+    overflow: visible !important;
   }
 }
 
 /* ==========================================
- * 🔥 修复图片大得离谱的问题（务必加上这段）
+ * 11. 超大屏适配（带鱼屏/2K屏，1600px+）
  * ========================================== */
-.vp-doc img {
-  border-radius: 12px;          
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);  
-  margin: 2rem auto;            
-  display: block;  
-  max-width: 100%;       /* 图片绝对不能超过文字宽度 */
-  max-height: 550px;     /* 锁定最大高度！绝不允许它无限放大成海报 */
-  object-fit: contain;   /* 保持图片原始比例，不拉伸不变形 */
+@media (min-width: 1600px) {
+  .VPDoc .container,
+  .VPDoc.has-sidebar .container {
+    max-width: 1600px !important; 
+  }
+  .VPDoc .content,
+  .VPDoc.has-sidebar .content {
+    /* 屏幕更大时，文字还可以继续拉长 */
+    max-width: 1200px !important; 
+  }
 }
 
 /* 12. 移除 H2 顶部横线，并大幅缩小间距 (解决空白太大的问题) */
