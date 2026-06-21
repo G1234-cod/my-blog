@@ -63,11 +63,6 @@ html, body, #app {
   display: none !important;
 }
 
-/* 7. 隐藏 VitePress 默认的丑陋左侧边栏 (在特定布局下)
-.VPContent.has-sidebar {
-  padding-left: 0 !important;
-} */
-
 /* 8. 放大正文容器宽度，因顶掉了官方导航，加大顶部内边距防遮挡 */
 .VPDoc {
   padding-top: 80px !important; 
@@ -84,9 +79,13 @@ html, body, #app {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);  
   margin: 2rem auto;            
   display: block;  
-  max-width: 100%;       /* 不超过文字宽度 */
-  max-height: 550px;     /* 🔥 新增：限制普通图片最大高度，防止大得离谱 */
-  object-fit: contain;   /* 🔥 新增：保持比例，不拉伸 */
+  max-width: 100%;       
+  
+  /* 🎛️ 参数五：图片的最大高度限制。
+     觉得普通截图太占屏幕 -> 改小（如 400px）
+     觉得展示效果不够震撼宏大 -> 改大（如 700px）*/
+  max-height: 550px;     
+  object-fit: contain;   
 }
 
 /* * ==========================================
@@ -97,24 +96,35 @@ html, body, #app {
 /* ==========================================
  * 10. 大屏适配：彻底接管 VitePress Flexbox 布局
  * ========================================== */
+/* ==========================================
+ * 10. 大屏适配：彻底接管 VitePress Flexbox 布局
+ * ========================================== */
 @media (min-width: 1200px) {
   /* 1. 扩大全站的主容器，并强制使用弹性两端对齐 */
   .VPDoc .container,
   .VPDoc.has-sidebar .container {
+    /* 🎛️ 参数一：整体画板宽度。
+       想让内容整体更靠屏幕两边 -> 改大（如 1500px）
+       想让内容往屏幕中间聚拢 -> 改小（如 1300px）*/
     max-width: 1400px !important; 
+    
     display: flex !important;
     justify-content: space-between !important;
+    /* 🔥 刚刚为你新增的优化项：文字与目录的绝对隔离墙 */
+    gap: 40px !important; 
   }
 
   /* 2. 彻底解除中间文字的封印，让它变宽变长！ */
   .VPDoc .content,
   .VPDoc.has-sidebar .content {
-    max-width: 1000px !important; /* 🔥 这里决定文字最终有多长！(默认仅688px) */
+    /* 🎛️ 参数二：【核心】文字区域的最大宽度。
+       觉得每行字太短，右边空荡荡 -> 改大（如 1100px）
+       觉得每行字太长，看久了眼睛累 -> 改小（如 850px）*/
+    max-width: 1000px !important; 
     width: 100% !important;
-    flex-grow: 1 !important;      /* 允许文字容器抢占剩余空间 */
+    flex-grow: 1 !important;
   }
   
-  /* 必须同时解除最内层盒子的宽度限制 */
   .VPDoc .content-container,
   .VPDoc.has-sidebar .content-container {
     max-width: 100% !important;   
@@ -124,12 +134,18 @@ html, body, #app {
   /* 3. 保护右侧目录 (Aside) 绝对不被挤压 */
   .VPDoc .aside,
   .VPDoc.has-sidebar .aside {
-    flex-shrink: 0 !important;    /* 🔥 绝对不允许被文字挤压！ */
-    width: 260px !important;      /* 给目录分配宽裕的固定空间 */
-    padding-left: 40px !important;/* 与左侧文字保持安全距离 */
+    flex-shrink: 0 !important; 
+    
+    /* 🎛️ 参数三：右侧目录的专属宽度。
+       如果你的章节标题特别长 -> 改大（如 300px）*/
+    width: 260px !important;      
+    
+    /* 🎛️ 参数四：右侧目录内部的推移距离。
+       想让目录整体往右挪（远离文字） -> 改大（如 60px）
+       想让目录往左靠拢 -> 改小（如 0px）*/
+    padding-left: 20px !important;
   }
 
-  /* 4. 强制目录里的长文字换行，严禁出现 "..." 截断！ */
   .outline-link {
     white-space: normal !important; 
     line-height: 1.6 !important;
