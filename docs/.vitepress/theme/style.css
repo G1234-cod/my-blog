@@ -83,7 +83,10 @@ html, body, #app {
   border-radius: 12px;          
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);  
   margin: 2rem auto;            
-  display: block;               
+  display: block;  
+  max-width: 100%;       /* 不超过文字宽度 */
+  max-height: 550px;     /* 🔥 新增：限制普通图片最大高度，防止大得离谱 */
+  object-fit: contain;   /* 🔥 新增：保持比例，不拉伸 */
 }
 
 /* * ==========================================
@@ -91,45 +94,47 @@ html, body, #app {
  * ==========================================
  */
 
-/* 10. 大屏适配：彻底放宽全站容器宽度（1200px+） */
+/* 10. 大屏适配：安全地放宽全站容器，拒绝文字重叠 */
 @media (min-width: 1200px) {
-  .VPDoc.has-sidebar .container,
-  .VPDoc .container {
-    max-width: 100% !important; 
-    padding-left: 3% !important;
-    padding-right: 3% !important;
-  }
-  
-  /* 🔥 修复问题3 (文字挤在一堆)：必须把里面的 content-container 也一起拉宽！ */
-  .VPDoc.has-sidebar .content,
-  .VPDoc .content,
-  .VPDoc.has-sidebar .content-container,
-  .VPDoc .content-container {
-    max-width: 1000px !important; /* 强制拉宽文字阅读区，解除 688px 封印 */
-    padding-bottom: 120px !important;
-    margin: 0 auto !important; 
+  /* 1. 整体骨架放大，适应大屏 */
+  .VPDoc .container,
+  .VPDoc.has-sidebar .container {
+    max-width: 1400px !important; 
   }
 
-  /* 🔥 修复问题1 (右侧目录太远)：就是这行代码控制的！ */
-  .VPDoc.has-sidebar .aside,
-  .VPDoc .aside {
-    /* 💡 改小靠近文字，改大远离文字。我帮你从 60px 缩小到了 20px */
-    padding-left: 40px !important; 
+  /* 🔥 2. 调整文字与右侧目录距离的“核心开关”！ */
+  .VPDoc .content {
+    /* 💡 调节指南：
+       如果你觉得现在目录离文字【太远】👉 把 80px 改小（例如改成 40px 或 20px）
+       如果你觉得现在目录离文字【太近】👉 把 80px 改大（例如改成 120px）
+    */
+    padding-right: 80px !important; 
   }
 }
 
 /* 11. 超大屏适配（带鱼屏/2K屏，1600px+） */
 @media (min-width: 1600px) {
-  .VPDoc.has-sidebar .content,
-  .VPDoc .content,
-  .VPDoc.has-sidebar .content-container,
-  .VPDoc .content-container {
-    max-width: 1200px !important; /* 2K屏幕下文字区极致拓宽 */
+  .VPDoc .container,
+  .VPDoc.has-sidebar .container {
+    max-width: 1600px !important;
   }
-  .VPDoc.has-sidebar .aside,
-  .VPDoc .aside {
-    padding-left: 40px !important; /* 同理，2K屏下的左右间距 */
+  .VPDoc .content {
+    /* 超大屏下的距离控制，同理也可以调 */
+    padding-right: 120px !important; 
   }
+}
+
+/* ==========================================
+ * 🔥 修复图片大得离谱的问题（务必加上这段）
+ * ========================================== */
+.vp-doc img {
+  border-radius: 12px;          
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);  
+  margin: 2rem auto;            
+  display: block;  
+  max-width: 100%;       /* 图片绝对不能超过文字宽度 */
+  max-height: 550px;     /* 锁定最大高度！绝不允许它无限放大成海报 */
+  object-fit: contain;   /* 保持图片原始比例，不拉伸不变形 */
 }
 
 /* 12. 移除 H2 顶部横线，并大幅缩小间距 (解决空白太大的问题) */
