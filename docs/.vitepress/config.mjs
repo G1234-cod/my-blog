@@ -1,11 +1,20 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
 import { createRequire } from 'module'
+import fs from 'fs'       // 🔥 新增：引入文件系统模块，用于物理探雷
+import path from 'path'   // 🔥 新增：引入路径模块
 
 const require = createRequire(import.meta.url)
 
 // 🛠️ 辅助魔法函数：精准扫描指定物理目录，并生成对应的侧边栏模块
 function getSidebarModule(scanPath, title) {
+  // 🔥 核心防御机制：检测目录在物理磁盘上是否真实存在
+  const targetDir = path.join(process.cwd(), 'docs', scanPath)
+  if (!fs.existsSync(targetDir)) {
+    // 如果物理目录不存在（例如被 Git 忽略的空文件夹），静默拦截，直接返回空数组，防止构建崩溃
+    return []
+  }
+
   const items = generateSidebar({
     documentRootPath: 'docs',
     scanStartPath: scanPath,
@@ -54,7 +63,6 @@ const algoSidebar = [
   ...getSidebarModule('reading/04-Algorithm', '📖 CS 底层泛读')
 ]
 
-
 // ==========================================
 // 🚀 VitePress 主配置
 // ==========================================
@@ -64,7 +72,7 @@ export default defineConfig({
   lang: 'zh-CN',
   ignoreDeadLinks: true, // 忽略死链报错，保证构建不中断
   
-  /* 🔥 修复：废弃原本过于粗暴的正则，改为精确排除模板与说明文件，防止误伤含下划线的合法笔记 */
+  /* 🔥 精确排除模板与说明文件，防止误伤合法笔记 */
   srcExclude: [
     '**/模板.md',
     '**/阅读笔记_参考模板.md',
@@ -76,10 +84,10 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
 
-  // 保留你原本极其关键的底层构建配置
+  // 保留极其关键的底层构建配置
   vite: {
     resolve: {
-      /* 关键：保留符号链接路径，使模块从 my-blog/node_modules 解析，防止软链接报错 */
+      /* 关键：保留符号链接路径，防止软链接报错 */
       preserveSymlinks: true,
       alias: {
         'vue/server-renderer': require.resolve('vue/server-renderer')
@@ -88,7 +96,7 @@ export default defineConfig({
   },
 
   themeConfig: {
-    // 🔥 顶部导航栏更新：接入最新的四大模块与简历入口
+    // 顶部导航栏
     nav: [
       { text: '首页', link: '/' },
       { text: '01 AI & AGENT', link: '/hub/ai-agent' },
@@ -98,33 +106,28 @@ export default defineConfig({
       { text: '05 RESUME', link: '/my-resume/resume-zh' }
     ],
 
-    // 🔥 核心路由劫持：无论访客深入这个模块的哪个子物理仓库，侧边栏都雷打不动地展示拼接好的完整目录树
+    // 核心路由劫持
     sidebar: {
-      // 模块 1：AI 与智能体工程
       '/hub/ai-agent': aiSidebar,
       '/ai-journey/': aiSidebar,
       '/tech-note/Published/01-AI-Agent/': aiSidebar,
       '/reading/01-AI-Agent/': aiSidebar,
 
-      // 模块 2：架构演进与云原生运维
       '/hub/cloud-devops': cloudSidebar,
       '/build-journal/': cloudSidebar,
       '/tech-note/Published/02-Cloud-DevOps/': cloudSidebar,
       '/reading/02-Cloud-DevOps/': cloudSidebar,
 
-      // 模块 3：效能工具与现代工作流
       '/hub/workflow': workflowSidebar,
       '/env-setup/': workflowSidebar,
       '/tech-note/Published/03-Workflow/': workflowSidebar,
       '/reading/03-Workflow/': workflowSidebar,
 
-      // 模块 4：计算机科学与算法精修
       '/hub/algorithm': algoSidebar,
       '/leetcode/': algoSidebar,
       '/tech-note/Published/04-Algorithm/': algoSidebar,
       '/reading/04-Algorithm/': algoSidebar,
       
-      // 模块 5：项目实战展示（兼容保留原本的单独目录扫描）
       '/projects/': generateSidebar({
         documentRootPath: 'docs',
         scanStartPath: 'projects',
@@ -138,7 +141,6 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/G1234-cod' }
     ],
 
-    // 保留你原本完美的汉化搜索配置
     search: {
       provider: 'local',
       options: {
