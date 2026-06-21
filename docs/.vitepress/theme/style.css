@@ -143,7 +143,7 @@ html, body, #app {
     /* 🎛️ 参数四：右侧目录内部的推移距离。
        想让目录整体往右挪（远离文字） -> 改大（如 60px）
        想让目录往左靠拢 -> 改小（如 0px）*/
-    padding-left: 20px !important;
+    padding-left: 10px !important;
   }
 
   .outline-link {
