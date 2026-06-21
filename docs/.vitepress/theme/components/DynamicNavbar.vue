@@ -1,14 +1,14 @@
 <template>
   <nav :class="['dynamic-navbar', { 'is-scrolled': isScrolled }]">
-    <a href="#" class="nav-brand" @click.prevent="scrollToSection('hero')">GYX<span>.Dev</span></a>
+    <a href="javascript:void(0)" class="nav-brand" @click.prevent="handleNavClick('hero')">GYX<span>.Dev</span></a>
     
     <ul class="nav-links">
-      <li><a href="#hero" :class="{ active: activeSection === 'hero' }" @click.prevent="scrollToSection('hero')">01 START</a></li>
-      <li><a href="#stats" :class="{ active: activeSection === 'stats' }" @click.prevent="scrollToSection('stats')">02 DATA</a></li>
-      <li><a href="#timeline" :class="{ active: activeSection === 'timeline' }" @click.prevent="scrollToSection('timeline')">03 HONORS</a></li>
-      <li><a href="#projects" :class="{ active: activeSection === 'projects' }" @click.prevent="scrollToSection('projects')">04 LABS</a></li>
-      <li><a href="#hub" :class="{ active: activeSection === 'hub' }" @click.prevent="scrollToSection('hub')">05 KNOWLEDGE</a></li>
-      <li><a href="#contact" :class="{ active: activeSection === 'contact' }" @click.prevent="scrollToSection('contact')">06 CONNECT</a></li>
+      <li><a href="javascript:void(0)" :class="{ active: activeSection === 'hero' }" @click.prevent="handleNavClick('hero')">01 START</a></li>
+      <li><a href="javascript:void(0)" :class="{ active: activeSection === 'stats' }" @click.prevent="handleNavClick('stats')">02 DATA</a></li>
+      <li><a href="javascript:void(0)" :class="{ active: activeSection === 'timeline' }" @click.prevent="handleNavClick('timeline')">03 HONORS</a></li>
+      <li><a href="javascript:void(0)" :class="{ active: activeSection === 'projects' }" @click.prevent="handleNavClick('projects')">04 LABS</a></li>
+      <li><a href="javascript:void(0)" :class="{ active: activeSection === 'hub' }" @click.prevent="handleNavClick('hub')">05 KNOWLEDGE</a></li>
+      <li><a href="javascript:void(0)" :class="{ active: activeSection === 'contact' }" @click.prevent="handleNavClick('contact')">06 CONNECT</a></li>
     </ul>
 
     <div class="nav-controls">
@@ -21,57 +21,100 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
+import { useRoute, useRouter } from 'vitepress'
+
+const route = useRoute()
+const router = useRouter()
 
 const isScrolled = ref(false)
 const isDark = ref(true) 
 const activeSection = ref('hero') 
 
-// 提取为全局常量，供滚动和点击双向使用
 const sections = ['hero', 'stats', 'timeline', 'projects', 'hub', 'contact']
 
-// ✅ 新增：精准的锚点跳转引擎
+// 💡 1. 核心判断：当前是否在首页？
+const isHomePage = computed(() => route.path === '/' || route.path === '/index.html')
+
+// 💡 2. 智能高亮雷达：根据当前 URL 路由分析高亮哪个标签
+const updateActiveStateByRoute = () => {
+  if (!isHomePage.value) {
+    // 只要是在项目实战目录里，高亮 04 LABS
+    if (route.path.includes('/projects/')) {
+      activeSection.value = 'projects'
+    } 
+    // 其他如算法、笔记、知识库等，高亮 05 KNOWLEDGE
+    else if (route.path.includes('/ai-journey/') || route.path.includes('/tech-note/') || 
+             route.path.includes('/leetcode/') || route.path.includes('/env-setup/')) {
+      activeSection.value = 'hub'
+    } else {
+      activeSection.value = '' 
+    }
+  }
+}
+
+// 监听路由实时变化
+watch(() => route.path, () => {
+  updateActiveStateByRoute()
+  // 如果刚切回首页，检查是否有需要滚动的“跨页请求”
+  if (isHomePage.value) {
+    setTimeout(processPendingScroll, 100)
+  }
+}, { immediate: true })
+
+// 💡 3. 跨页跃迁引擎：拦截所有点击动作
+const handleNavClick = (sectionId) => {
+  if (isHomePage.value) {
+    // 情况A：本来就在首页，直接丝滑滚动
+    scrollToSection(sectionId)
+  } else {
+    // 情况B：在项目详情页，先用 sessionStorage 记下要去哪，然后强制路由跳回首页
+    sessionStorage.setItem('pendingScroll', sectionId)
+    router.go('/')
+  }
+}
+
+// 基础的丝滑滚动计算
 const scrollToSection = (sectionId) => {
   const container = document.querySelector('.universe-container')
   if (!container) return
-
-  // 找到目标区块在数组中的索引 (0~5)
   const index = sections.indexOf(sectionId)
   if (index !== -1) {
-    // 立即更新 UI 状态，让导航栏的下划线马上跟过去
     activeSection.value = sectionId
-    
-    // 计算目标像素高度：屏幕高度 * 索引
     const targetScrollTop = index * window.innerHeight
-    
-    // 指挥专属容器进行丝滑滚动
-    container.scrollTo({
-      top: targetScrollTop,
-      behavior: 'smooth'
-    })
+    container.scrollTo({ top: targetScrollTop, behavior: 'smooth' })
   }
 }
 
-// 极其精准的数学滚动雷达
+// 处理“跨页跃迁”落地后的滚动
+const processPendingScroll = () => {
+  const pending = sessionStorage.getItem('pendingScroll')
+  if (pending) {
+    scrollToSection(pending)
+    sessionStorage.removeItem('pendingScroll')
+  }
+}
+
+// 💡 4. 双轨毛玻璃特效判断
 const checkScroll = () => {
-  const container = document.querySelector('.universe-container')
-  if (!container) return
-  
-  // 处理毛玻璃
-  isScrolled.value = container.scrollTop > 50
-
-  // 计算当前屏幕中央属于哪个屏风
-  const screenHeight = window.innerHeight
-  // 加上屏幕一半的高度，确保判定点在视线正中央
-  const scrollPosition = container.scrollTop + (screenHeight / 2) 
-  const index = Math.floor(scrollPosition / screenHeight)
-  
-  if (sections[index] && activeSection.value !== sections[index]) {
-    activeSection.value = sections[index]
+  if (isHomePage.value) {
+    // 首页用内部的宇宙容器算高度
+    const container = document.querySelector('.universe-container')
+    if (!container) return
+    isScrolled.value = container.scrollTop > 50
+    
+    const screenHeight = window.innerHeight
+    const scrollPosition = container.scrollTop + (screenHeight / 2) 
+    const index = Math.floor(scrollPosition / screenHeight)
+    if (sections[index] && activeSection.value !== sections[index]) {
+      activeSection.value = sections[index]
+    }
+  } else {
+    // 项目文档页，直接用传统的网页 window 滚动条判断
+    isScrolled.value = window.scrollY > 50
   }
 }
 
-// 强制接管 VitePress 底层的亮暗模式
 const checkTheme = () => {
   isDark.value = document.documentElement.classList.contains('dark')
 }
@@ -84,19 +127,28 @@ const toggleTheme = () => {
 }
 
 onMounted(() => {
+  // 同时监听首页容器滚动和全局网页滚动，确保两边都有毛玻璃特效
   const container = document.querySelector('.universe-container')
   if (container) container.addEventListener('scroll', checkScroll)
+  window.addEventListener('scroll', checkScroll)
+  
   if (typeof window !== 'undefined') checkTheme()
+  
+  // 初次加载如果是在首页，检查跨页跃迁
+  if (isHomePage.value) {
+    setTimeout(processPendingScroll, 300)
+  }
 })
 
 onUnmounted(() => {
   const container = document.querySelector('.universe-container')
   if (container) container.removeEventListener('scroll', checkScroll)
+  window.removeEventListener('scroll', checkScroll)
 })
 </script>
 
 <style scoped>
-/* 你的 CSS 完美无瑕，此处原样保留 */
+/* 原有的 CSS 完美无瑕，原样保留 */
 .dynamic-navbar {
   position: fixed;
   top: 0;

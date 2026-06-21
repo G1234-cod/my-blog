@@ -93,7 +93,6 @@ html, body, #app {
 
 /* 10. 大屏适配：彻底放宽全站容器宽度（1200px+） */
 @media (min-width: 1200px) {
-  /* 🔥 终极覆盖：针对所有带有侧边栏的页面，彻底砸碎 VitePress 默认的宽度限制 */
   .VPDoc.has-sidebar .container,
   .VPDoc .container {
     max-width: 100% !important; 
@@ -101,30 +100,35 @@ html, body, #app {
     padding-right: 3% !important;
   }
   
-  /* 中间文章区域大幅度拉伸，文字向右舒展 */
+  /* 🔥 修复问题3 (文字挤在一堆)：必须把里面的 content-container 也一起拉宽！ */
   .VPDoc.has-sidebar .content,
-  .VPDoc .content {
-    max-width: 1000px !important; /* 从默认的 688px 直接扩大！ */
+  .VPDoc .content,
+  .VPDoc.has-sidebar .content-container,
+  .VPDoc .content-container {
+    max-width: 1000px !important; /* 强制拉宽文字阅读区，解除 688px 封印 */
     padding-bottom: 120px !important;
     margin: 0 auto !important; 
   }
 
-  /* 强行把右侧的【段落章节目录】向右推开，贴近屏幕边缘 */
+  /* 🔥 修复问题1 (右侧目录太远)：就是这行代码控制的！ */
   .VPDoc.has-sidebar .aside,
   .VPDoc .aside {
-    padding-left: 60px !important;
+    /* 💡 改小靠近文字，改大远离文字。我帮你从 60px 缩小到了 20px */
+    padding-left: 40px !important; 
   }
 }
 
 /* 11. 超大屏适配（带鱼屏/2K屏，1600px+） */
 @media (min-width: 1600px) {
   .VPDoc.has-sidebar .content,
-  .VPDoc .content {
-    max-width: 1300px !important; /* 2K屏幕下极致拓宽 */
+  .VPDoc .content,
+  .VPDoc.has-sidebar .content-container,
+  .VPDoc .content-container {
+    max-width: 1200px !important; /* 2K屏幕下文字区极致拓宽 */
   }
   .VPDoc.has-sidebar .aside,
   .VPDoc .aside {
-    padding-left: 100px !important;
+    padding-left: 40px !important; /* 同理，2K屏下的左右间距 */
   }
 }
 
