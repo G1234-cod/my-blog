@@ -6,6 +6,11 @@ on:
     branches:
       - main
       - master # 兼容部分默认分支叫 master 的情况
+    paths: # 🔥 新增：精准触发域，防止其它无关文件推送浪费 CI 额度
+      - 'docs/**'
+      - 'server/**'
+      - 'package*.json'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch: # 开启网页端一键手动触发功能
 
 jobs:
@@ -63,6 +68,7 @@ jobs:
       - name: 3.2 Assemble Resume and Projects
         run: |
           # 1. 同步简历 HTML 及资源 (正确排除 my-resume 和 build-journal)
+          rm -rf docs/public/resume # 🔥 新增：彻底粉碎旧产物，规避 rsync 造成的幽灵文件残留
           mkdir -p docs/public/resume
           rsync -av --exclude='.git' --exclude='my-resume' --exclude='build-journal' temp-resume/ docs/public/resume/
           
@@ -119,7 +125,7 @@ jobs:
           source: "docs/.vitepress/dist/*"
           target: "/www/my-blog/"
           strip_components: 3
-# ==========================================
+      # ==========================================
       # 阶段六：后端 API 服务自动化投递与重启
       # ==========================================
       - name: 8.1 Deploy Backend API via SCP

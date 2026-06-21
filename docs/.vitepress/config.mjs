@@ -64,8 +64,13 @@ export default defineConfig({
   lang: 'zh-CN',
   ignoreDeadLinks: true, // 忽略死链报错，保证构建不中断
   
-  /* 排除文件名中包含 '.' 或 '_' 的 Markdown 文件（修复 VitePress 1.6.4 SSR 解析 Bug） */
-  srcExclude: ['**/*.*.md', '**/*_*.md'],
+  /* 🔥 修复：废弃原本过于粗暴的正则，改为精确排除模板与说明文件，防止误伤含下划线的合法笔记 */
+  srcExclude: [
+    '**/模板.md',
+    '**/阅读笔记_参考模板.md',
+    '**/README.md',
+    '**/LeetCode-*.md'
+  ],
   
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }]
