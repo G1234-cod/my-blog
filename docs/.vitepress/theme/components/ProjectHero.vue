@@ -43,7 +43,6 @@ defineProps({
 </script>
 
 <style scoped>
-/* 整个头部的容器，去除多余内边距 */
 .portfolio-hero {
   padding: 40px 0 60px 0;
   display: flex;
@@ -51,12 +50,11 @@ defineProps({
   gap: 60px;
 }
 
-/* 巨型标题排版 */
 .hero-header {
   text-align: left;
 }
 .p-title {
-  font-size: 4.5rem; /* 极其夸张的大标题 */
+  font-size: 4.5rem; 
   font-weight: 900;
   line-height: 1.1;
   color: var(--vp-c-text-1);
@@ -71,10 +69,9 @@ defineProps({
   text-transform: uppercase;
 }
 
-/* 数据网格 (TIME, ROLE, HONORS) */
 .meta-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr; /* 按照 1:1:2 的比例划分，给荣誉留更多空间 */
+  grid-template-columns: 1fr 1fr 2fr; 
   gap: 40px;
   padding-bottom: 40px;
 }
@@ -96,7 +93,7 @@ defineProps({
   line-height: 1.6;
 }
 .honor-item {
-  color: #e5b567; /* 参考图那种暗金色的荣誉文字 */
+  color: #e5b567; 
   font-size: 1.05rem;
   margin-bottom: 8px;
 }
@@ -104,7 +101,6 @@ defineProps({
   margin-right: 6px;
 }
 
-/* 封面大图 */
 .hero-media {
   width: 100%;
   border-radius: 16px;
@@ -112,7 +108,12 @@ defineProps({
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   background: #111;
 }
-/* 让插槽进来的 Markdown 图片完美贴合容器 */
+
+/* 🔥 核心修复：当插槽里没放图片时，自动折叠消失，消灭空白！ */
+.hero-media:empty {
+  display: none;
+}
+
 .hero-media :deep(img) {
   width: 100%;
   height: auto;
@@ -126,8 +127,6 @@ defineProps({
   transform: scale(1.02);
 }
 
-
-/* 移动端适配 */
 @media (max-width: 768px) {
   .p-title { font-size: 2.8rem; }
   .meta-grid { grid-template-columns: 1fr; gap: 24px; }

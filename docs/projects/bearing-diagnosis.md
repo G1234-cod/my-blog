@@ -99,3 +99,14 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
 
 * **极限工况泛化难题**：面对训练集未覆盖的极端异常模式，我们建立了增量学习管道。通过持续收集现场 Long-tail 数据回流训练，辅以数据增强策略，不断拓宽模型的识别边界。
 * **多智能体协作稳定性**：在分布式部署中，智能体间通信偶发延迟。我们重新设计了基于微服务的异步通信协议，并加入了断线重连与冗余故障恢复机制，确保了工业级 99.9% 的系统高可用性。
+
+
+## 🏆 项目证书与运行展示
+<div align="center">
+  <img src="./bearing-diagnosis.assets/中国大学生设计大赛.png" alt="获奖证书" style="margin-bottom: 20px;" />
+  <img src="./bearing-diagnosis.assets/中国国际大学生.png" alt="获奖证书" style="margin-bottom: 20px;" />
+
+</div>
+
+> 💡 **系统完整性说明**：
+> 限于展示篇幅，本页仅截取核心技术落地与高频交互界面。系统实际上还包含完整的后台管控大盘、RBAC 权限分配、全维度系统监控以及基础的 CRUD 等 20+ 个功能视窗。完整系统运转细节，欢迎通过左侧导航栏查阅对应的 GitHub 源码库。
