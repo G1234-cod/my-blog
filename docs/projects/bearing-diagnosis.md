@@ -19,7 +19,6 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
     '发明专利申请中'
   ]"
 >
-</ProjectHero>
 
 ## 💡 项目背景与行业痛点
 

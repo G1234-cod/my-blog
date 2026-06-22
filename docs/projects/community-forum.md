@@ -18,7 +18,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
   ]"
 >
   <img src="./community-forum.assets/首页.png" alt="基于双重验证机制的社区互动系统首页" />
-</ProjectHero>
+
 
 ## 💡 业务背景与 Web 安全痛点
 

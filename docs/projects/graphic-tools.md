@@ -18,7 +18,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
   ]"
 >
   <img src="./graphic-tools.assets/首页.png" alt="多功能图形工具集系统主界面" />
-</ProjectHero>
+
 
 ## 💡 开发背景与教育赋能
 

@@ -18,7 +18,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
   ]"
 >
   <img src="./online-exam.assets/登录界面.png" alt="系统登录界面" />
-</ProjectHero>
+
 
 ## 💡 项目背景与教务痛点
 

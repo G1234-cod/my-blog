@@ -19,7 +19,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
   ]"
 >
   <img src="./local-rag.assets/对话演示.png" alt="本地私有化知识库交互界面" />
-</ProjectHero>
+
 
 ## 💡 为什么需要“数据不出内网”的 AI？
 
