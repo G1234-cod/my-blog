@@ -1,16 +1,16 @@
 <template>
   <div v-if="showSwitcher" class="knowledge-switcher-container">
     <div class="switcher-track">
-      <a href="/hub/ai-agent" :class="['switcher-pill', { active: activeModule === 'ai' }]">
+      <a href="/hub/ai-agent.html" :class="['switcher-pill', { active: activeModule === 'ai' }]">
         <span class="icon">🤖</span><span class="text">AI & Agent</span>
       </a>
-      <a href="/hub/cloud-devops" :class="['switcher-pill', { active: activeModule === 'cloud' }]">
+      <a href="/hub/cloud-devops.html" :class="['switcher-pill', { active: activeModule === 'cloud' }]">
         <span class="icon">☁️</span><span class="text">Cloud & DevOps</span>
       </a>
-      <a href="/hub/workflow" :class="['switcher-pill', { active: activeModule === 'workflow' }]">
+      <a href="/hub/workflow.html" :class="['switcher-pill', { active: activeModule === 'workflow' }]">
         <span class="icon">⚡</span><span class="text">Workflow</span>
       </a>
-      <a href="/hub/algorithm" :class="['switcher-pill', { active: activeModule === 'algo' }]">
+      <a href="/hub/algorithm.html" :class="['switcher-pill', { active: activeModule === 'algo' }]">
         <span class="icon">🧠</span><span class="text">Algorithm</span>
       </a>
     </div>
