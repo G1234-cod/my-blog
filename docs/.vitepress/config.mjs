@@ -88,7 +88,6 @@ export default defineConfig({
     '**/模板.md',
     '**/阅读笔记_参考模板.md',
     '**/README.md',
-    '**/LeetCode-*.md'
   ],
   
   head: [
