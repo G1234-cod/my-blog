@@ -26,18 +26,20 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vitepress'
+import { useData } from 'vitepress'
 import { computed } from 'vue'
 
-const route = useRoute()
+// 🔥 核心防崩溃：使用 useData 替代 useRoute，完美绕过 VitePress 的路由初始化 Bug
+const { page } = useData()
 
-// 核心逻辑：通过当前路由地址，智能判断属于哪个大模块，并触发高亮
 const activeModule = computed(() => {
-  const path = route.path
-  if (path.includes('/ai-journey') || path.includes('/01-AI-Agent') || path.includes('ai-agent')) return 'ai'
-  if (path.includes('/build-journal') || path.includes('/02-Cloud-DevOps') || path.includes('cloud-devops')) return 'cloud'
-  if (path.includes('/env-setup') || path.includes('/03-Workflow') || path.includes('workflow')) return 'workflow'
-  if (path.includes('/leetcode') || path.includes('/04-Algorithm') || path.includes('algorithm')) return 'algo'
+  // page.relativePath 会返回当前物理文件的路径，如 'hub/ai-agent.md'
+  const path = page.value.relativePath || ''
+  
+  if (path.includes('ai-journey') || path.includes('01-AI-Agent') || path.includes('ai-agent')) return 'ai'
+  if (path.includes('build-journal') || path.includes('02-Cloud-DevOps') || path.includes('cloud-devops')) return 'cloud'
+  if (path.includes('env-setup') || path.includes('03-Workflow') || path.includes('workflow')) return 'workflow'
+  if (path.includes('leetcode') || path.includes('04-Algorithm') || path.includes('algorithm')) return 'algo'
   return ''
 })
 </script>
