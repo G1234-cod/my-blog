@@ -36,16 +36,13 @@ const sections = ['hero', 'stats', 'timeline', 'projects', 'hub', 'contact']
 // 💡 1. 核心判断：当前是否在首页？
 const isHomePage = computed(() => route.path === '/' || route.path === '/index.html')
 
-// 💡 2. 智能高亮雷达：根据当前 URL 路由分析高亮哪个标签
+// 💡 2. 智能高亮雷达
 const updateActiveStateByRoute = () => {
   if (!isHomePage.value) {
-    // 只要是在项目实战目录里，高亮 04 LABS
     if (route.path.includes('/projects/')) {
       activeSection.value = 'projects'
-    } 
-    // 其他如算法、笔记、知识库等，高亮 05 KNOWLEDGE
-    else if (route.path.includes('/ai-journey/') || route.path.includes('/tech-note/') || 
-             route.path.includes('/leetcode/') || route.path.includes('/env-setup/')) {
+    } else if (route.path.includes('/ai-journey/') || route.path.includes('/tech-note/') || 
+               route.path.includes('/leetcode/') || route.path.includes('/env-setup/')) {
       activeSection.value = 'hub'
     } else {
       activeSection.value = '' 
@@ -53,29 +50,9 @@ const updateActiveStateByRoute = () => {
   }
 }
 
-// 监听路由实时变化
-watch(() => route.path, () => {
-  updateActiveStateByRoute()
-  // 如果刚切回首页，检查是否有需要滚动的“跨页请求”
-  if (isHomePage.value) {
-    setTimeout(processPendingScroll, 100)
-  }
-}, { immediate: true })
-
-// 💡 3. 跨页跃迁引擎：拦截所有点击动作
-const handleNavClick = (sectionId) => {
-  if (isHomePage.value) {
-    // 情况A：本来就在首页，直接丝滑滚动
-    scrollToSection(sectionId)
-  } else {
-    // 情况B：在项目详情页，先用 sessionStorage 记下要去哪，然后强制路由跳回首页
-    sessionStorage.setItem('pendingScroll', sectionId)
-    router.go('/')
-  }
-}
-
-// 基础的丝滑滚动计算
+// 💡 3. 跨页跃迁引擎 (🔥 修复：必须放在 watch 之前定义)
 const scrollToSection = (sectionId) => {
+  if (typeof document === 'undefined') return // 防 SSR 崩溃保护
   const container = document.querySelector('.universe-container')
   if (!container) return
   const index = sections.indexOf(sectionId)
@@ -86,8 +63,8 @@ const scrollToSection = (sectionId) => {
   }
 }
 
-// 处理“跨页跃迁”落地后的滚动
 const processPendingScroll = () => {
+  if (typeof sessionStorage === 'undefined') return // 防 SSR 崩溃保护
   const pending = sessionStorage.getItem('pendingScroll')
   if (pending) {
     scrollToSection(pending)
@@ -95,10 +72,30 @@ const processPendingScroll = () => {
   }
 }
 
-// 💡 4. 双轨毛玻璃特效判断
-const checkScroll = () => {
+const handleNavClick = (sectionId) => {
   if (isHomePage.value) {
-    // 首页用内部的宇宙容器算高度
+    scrollToSection(sectionId)
+  } else {
+    if (typeof sessionStorage !== 'undefined') {
+      sessionStorage.setItem('pendingScroll', sectionId)
+    }
+    router.go('/')
+  }
+}
+
+// 💡 4. 监听路由实时变化 (🔥 移到了被调用的函数下方)
+watch(() => route.path, () => {
+  updateActiveStateByRoute()
+  if (isHomePage.value) {
+    setTimeout(processPendingScroll, 100)
+  }
+}, { immediate: true })
+
+// 💡 5. 双轨毛玻璃特效判断
+const checkScroll = () => {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return
+  
+  if (isHomePage.value) {
     const container = document.querySelector('.universe-container')
     if (!container) return
     isScrolled.value = container.scrollTop > 50
@@ -110,16 +107,18 @@ const checkScroll = () => {
       activeSection.value = sections[index]
     }
   } else {
-    // 项目文档页，直接用传统的网页 window 滚动条判断
     isScrolled.value = window.scrollY > 50
   }
 }
 
 const checkTheme = () => {
-  isDark.value = document.documentElement.classList.contains('dark')
+  if (typeof document !== 'undefined') {
+    isDark.value = document.documentElement.classList.contains('dark')
+  }
 }
+
 const toggleTheme = () => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const isDarkMode = document.documentElement.classList.toggle('dark')
     isDark.value = isDarkMode
     localStorage.setItem('vitepress-theme-appearance', isDarkMode ? 'dark' : 'light')
@@ -127,20 +126,19 @@ const toggleTheme = () => {
 }
 
 onMounted(() => {
-  // 同时监听首页容器滚动和全局网页滚动，确保两边都有毛玻璃特效
   const container = document.querySelector('.universe-container')
   if (container) container.addEventListener('scroll', checkScroll)
   window.addEventListener('scroll', checkScroll)
   
   if (typeof window !== 'undefined') checkTheme()
   
-  // 初次加载如果是在首页，检查跨页跃迁
   if (isHomePage.value) {
     setTimeout(processPendingScroll, 300)
   }
 })
 
 onUnmounted(() => {
+  if (typeof document === 'undefined' || typeof window === 'undefined') return
   const container = document.querySelector('.universe-container')
   if (container) container.removeEventListener('scroll', checkScroll)
   window.removeEventListener('scroll', checkScroll)
