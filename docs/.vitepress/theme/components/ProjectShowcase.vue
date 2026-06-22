@@ -49,7 +49,7 @@
     <div class="right-scroll">
       <div class="projects-container">
         
-        <a href="/projects/bearing-diagnosis.html" class="project-card glass-panel">
+        <a href="/projects/bearing-diagnosis.html" class="project-card glass-panel" @click.prevent="softJump('/projects/bearing-diagnosis.html')">
           <div class="card-header">
             <h3>智眸探微：工业轴承故障诊断系统</h3>
             <div class="title-badge gold-badge"><span class="b-icon">🏆</span> 省级二等奖</div>
@@ -64,7 +64,7 @@
           </p>
         </a>
 
-        <a href="/projects/online-exam.html" class="project-card glass-panel">
+        <a href="/projects/online-exam.html" class="project-card glass-panel" @click.prevent="softJump('/projects/online-exam.html')">
           <div class="card-header">
             <h3>在线考试管理系统</h3>
             <div class="title-badge purple-badge"><span class="b-icon">🪪</span> 国家软著登记</div>
@@ -79,7 +79,7 @@
           </p>
         </a>
 
-        <a href="/projects/graphic-tools.html" class="project-card glass-panel">
+        <a href="/projects/graphic-tools.html" class="project-card glass-panel" @click.prevent="softJump('/projects/graphic-tools.html')">
           <div class="card-header">
             <h3>多功能图形工具集系统</h3>
             <div class="title-badge purple-badge"><span class="b-icon">🪪</span> 国家软著登记</div>
@@ -94,7 +94,7 @@
           </p>
         </a>
 
-        <a href="/projects/community-forum.html" class="project-card glass-panel">
+        <a href="/projects/community-forum.html" class="project-card glass-panel" @click.prevent="softJump('/projects/community-forum.html')">
           <div class="card-header">
             <h3>基于双重验证机制的社区互动系统</h3>
             <div class="title-badge cyan-badge"><span class="b-icon">⏳</span> 软著审核中</div>
@@ -109,7 +109,7 @@
           </p>
         </a>
 
-        <a href="/projects/local-rag.html" class="project-card glass-panel">
+        <a href="/projects/local-rag.html" class="project-card glass-panel" @click.prevent="softJump('/projects/local-rag.html')">
           <div class="card-header">
             <h3>基于 AnythingLLM 的本地私有化知识库</h3>
             <div class="title-badge gray-badge"><span class="b-icon">🔒</span> 纯内网物理隔离</div>
@@ -124,7 +124,7 @@
           </p>
         </a>
 
-        <a href="/projects/cloud-portal.html" class="project-card glass-panel">
+        <a href="/projects/cloud-portal.html" class="project-card glass-panel" @click.prevent="softJump('/projects/cloud-portal.html')">
           <div class="card-header">
             <h3>云原生个人门户系统 (Jamstack + CI/CD)</h3>
           </div>
@@ -138,7 +138,7 @@
           </p>
         </a>
 
-        <a href="/projects/garbage-classification.html" class="project-card glass-panel">
+        <a href="/projects/garbage-classification.html" class="project-card glass-panel" @click.prevent="softJump('/projects/garbage-classification.html')">
           <div class="card-header">
             <h3>基于深度学习的垃圾分类识别系统</h3>
           </div>
@@ -159,6 +159,17 @@
   </div>
 </template>
 
+<script setup>
+// 🔥 引入 VitePress 原生路由
+import { useRouter } from 'vitepress'
+const router = useRouter()
+
+// 🔥 使用 VitePress 内置路由引擎实现无刷新丝滑跳转
+const softJump = (url) => {
+  router.go(url)
+}
+</script>
+
 <style scoped>
 /* === 整体布局 === */
 .split-screen { width: 100%; height: 100vh; display: flex; background-color: var(--vp-c-bg); overflow: hidden; }
@@ -176,7 +187,6 @@
 .lab-blueprint { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.05; z-index: 0; }
 .blueprint-grid { width: 100%; height: 100%; background-image: linear-gradient(var(--vp-c-text-1) 1px, transparent 1px), linear-gradient(90deg, var(--vp-c-text-1) 1px, transparent 1px); background-size: 40px 40px; }
 
-/* 限制左侧内容最大宽度，防止它变得太宽，形成极客说明书的感觉 */
 .board-content { width: 100%; max-width: 520px; position: relative; z-index: 1; }
 .section-tag { font-family: monospace; font-size: 0.9rem; color: var(--vp-c-brand-1); margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 
@@ -184,20 +194,17 @@
 .board-title .highlight { color: var(--vp-c-brand-1); }
 .board-desc { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.7; margin-bottom: 40px; }
 
-/* 极其精致的左侧能力基盘 */
 .highlight-stats { display: flex; flex-direction: column; gap: 24px; border-top: 1px solid var(--vp-c-divider); padding-top: 30px; }
 .h-stat { display: flex; align-items: flex-start; gap: 16px; }
 .icon-box { width: 42px; height: 42px; border-radius: 12px; background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border); display: flex; justify-content: center; align-items: center; font-size: 1.2rem; flex-shrink: 0; box-shadow: var(--vp-shadow-1); }
 .stat-text h4 { font-size: 1.1rem; font-weight: 700; color: var(--vp-c-text-1); margin: 0 0 6px 0; font-family: var(--vp-font-family-base); }
 .stat-text p { font-size: 0.9rem; color: var(--vp-c-text-2); margin: 0; line-height: 1.5; font-weight: 500;}
 
-/* 左下角呼吸灯 */
 .system-status { position: absolute; bottom: 30px; left: 40px; display: flex; align-items: center; gap: 10px; z-index: 2;}
 .pulse-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: 0 0 10px #0ba360; animation: pulse 2s infinite; }
 .system-status span { font-family: monospace; font-size: 0.75rem; color: var(--vp-c-text-3); font-weight: 600; letter-spacing: 1px; }
 @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(11, 163, 96, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(11, 163, 96, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(11, 163, 96, 0); } }
 
-/* === 右侧项目滚动区：向左侧中轴聚拢 === */
 .right-scroll { 
   width: 55%; height: 100%; overflow-y: auto; 
   padding: 100px 10% 0 60px;
@@ -207,7 +214,6 @@
 
 .projects-container { display: flex; flex-direction: column; gap: 32px; }
 
-/* 项目卡片 */
 .glass-panel {
   background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border);
   border-radius: 16px; padding: 32px; transition: all 0.3s ease;
@@ -218,18 +224,15 @@
 .glass-panel::after { content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 100%; background: transparent; transition: background 0.3s ease; }
 .glass-panel:hover::after { background: var(--vp-c-brand-1); }
 
-/* 卡片头部：标题徽章化布局 */
 .card-header { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
 .card-header h3 { font-size: 1.4rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0; line-height: 1.3;}
 
-/* 高级标题徽章 */
 .title-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid transparent; }
 .gold-badge { color: #f5a623; background: rgba(245, 166, 35, 0.1); border-color: rgba(245, 166, 35, 0.3); }
 .purple-badge { color: #b0f; background: rgba(187, 0, 255, 0.1); border-color: rgba(187, 0, 255, 0.3); }
 .cyan-badge { color: #00f2fe; background: rgba(0, 242, 254, 0.1); border-color: rgba(0, 242, 254, 0.3); }
 .gray-badge { color: var(--vp-c-text-2); background: var(--vp-c-default-soft); border-color: var(--vp-c-border); }
 
-/* 技术栈标签 */
 .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2px; }
 .tag { 
   font-size: 0.85rem; font-family: var(--vp-font-family-base); font-weight: 600;
@@ -239,12 +242,10 @@
 .tag.brand { color: var(--vp-c-brand-1); border-color: var(--vp-c-brand-soft); background: var(--vp-c-brand-soft); }
 .glass-panel:hover .tag { border-color: var(--vp-c-text-3); }
 
-/* 项目描述 */
 .project-desc { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0; }
 
 .scroll-spacer { height: 20vh; }
 
-/* === 针对 a 标签的卡片进行样式保护 === */
 a.project-card {
   text-decoration: none !important; 
   color: inherit; 
@@ -255,7 +256,6 @@ a.project-card:hover {
   text-decoration: none !important; 
 }
 
-/* === 移动端适配 === */
 @media (max-width: 1024px) {
   .split-screen { flex-direction: column; overflow-y: auto; height: auto; }
   .left-board { width: 100%; height: auto; padding: 80px 5% 40px 5%; justify-content: flex-start; border-right: none; border-bottom: 1px solid var(--vp-c-divider); }
