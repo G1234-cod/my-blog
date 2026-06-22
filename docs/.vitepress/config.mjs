@@ -55,6 +55,7 @@ const workflowSidebar = [
   ...getSidebarModule('reading/03-Workflow', '📖 工程文化与敏捷')
 ]
 
+
 // 4. 组装算法模块
 const algoSidebar = [
   { text: '🌟 知识中枢', link: '/hub/algorithm' },
