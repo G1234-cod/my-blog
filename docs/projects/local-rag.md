@@ -17,7 +17,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
     '纯内网物理隔离部署实践',
     '基于 Docker + WSL2 的微服务架构'
   ]"
->
+/>
   <img src="./local-rag.assets/对话演示.png" alt="本地私有化知识库交互界面" />
 
 

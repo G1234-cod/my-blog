@@ -16,7 +16,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
   :honors="[
     '国家版权局软件著作权登记 (三人联名)'
   ]"
->
+/>
   <img src="./community-forum.assets/首页.png" alt="基于双重验证机制的社区互动系统首页" />
 
 

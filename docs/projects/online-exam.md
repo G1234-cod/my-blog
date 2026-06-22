@@ -16,7 +16,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
   :honors="[
     '国家版权局软件著作权登记'
   ]"
->
+/>
   <img src="./online-exam.assets/登录界面.png" alt="系统登录界面" />
 
 

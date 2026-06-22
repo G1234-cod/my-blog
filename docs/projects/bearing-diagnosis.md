@@ -18,7 +18,9 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
     '国家版权局软件著作权 4 项',
     '发明专利申请中'
   ]"
->
+/>
+
+
 
 ## 💡 项目背景与行业痛点
 

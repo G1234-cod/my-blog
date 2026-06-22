@@ -16,7 +16,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
   :honors="[
     '国家版权局软件著作权登记'
   ]"
->
+/>
   <img src="./graphic-tools.assets/首页.png" alt="多功能图形工具集系统主界面" />
 
 
