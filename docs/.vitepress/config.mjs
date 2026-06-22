@@ -1,37 +1,52 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
 import { createRequire } from 'module'
-import fs from 'fs'       // 🔥 新增：引入文件系统模块，用于物理探雷
-import path from 'path'   // 🔥 新增：引入路径模块
+import fs from 'fs'
+import path from 'path'
 
 const require = createRequire(import.meta.url)
 
-// 🛠️ 辅助魔法函数：精准扫描指定物理目录，并生成对应的侧边栏模块
-function getSidebarModule(scanPath, title) {
-  // 🔥 核心防御机制：检测目录在物理磁盘上是否真实存在
-  const targetDir = path.join(process.cwd(), 'docs', scanPath)
-  if (!fs.existsSync(targetDir)) {
-    // 如果物理目录不存在（例如被 Git 忽略的空文件夹），静默拦截，直接返回空数组，防止构建崩溃
-    return []
-  }
+// 🛠️ 进阶引擎 1：递归修补路由前缀（彻底解决 vitepress-sidebar 吞前缀导致 404 的 Bug）
+function fixSidebarLinks(items, scanPath) {
+  if (!items || !Array.isArray(items)) return [];
+  return items.map(item => {
+    // 如果链接存在，且没有包含正确的前缀，则强行补上
+    if (item.link && !item.link.startsWith(`/${scanPath}/`)) {
+      const cleanLink = item.link.replace(/^\//, ''); // 剔除可能多余的斜杠
+      item.link = `/${scanPath}/${cleanLink}`;
+    }
+    // 递归处理子目录
+    if (item.items) {
+      item.items = fixSidebarLinks(item.items, scanPath);
+    }
+    return item;
+  });
+}
 
-  const items = generateSidebar({
+// 🛠️ 进阶引擎 2：精准扫描并拦截修正
+function getSidebarModule(scanPath, title) {
+  const targetDir = path.join(process.cwd(), 'docs', scanPath)
+  if (!fs.existsSync(targetDir)) return []
+
+  let items = generateSidebar({
     documentRootPath: 'docs',
     scanStartPath: scanPath,
-    resolvePath: `/${scanPath}/`, // 确保生成的内部链接前缀正确，与路由对齐
+    resolvePath: `/${scanPath}/`, 
+    useTitleFromFrontmatter: true, // 🔥 修复 1：强制读取 md 顶部的 YAML 标题，解决全是英文名的问题
     useTitleFromFileHeading: true,
     useFolderTitleFromIndexFile: true
   })
   
-  // 安全校验：如果该目录下没有扫描到 md 文件，就不渲染这个分类的标题，防止出现空目录
-  return items && items.length > 0 ? [{ text: title, items: items }] : []
+  // 🔥 修复 2：调用上方函数，强行修正丢失的路径前缀
+  items = fixSidebarLinks(items, scanPath);
+  
+  // 如果传了 title，说明是给 Hub 页面拼装的；如果不传，说明是给根目录直出的
+  return items && items.length > 0 ? (title ? [{ text: title, items: items }] : items) : []
 }
 
 // ==========================================
 // 🎯 4 大模块的侧边栏跨目录拼装逻辑
 // ==========================================
-
-// 1. 组装 AI 模块：大盘门面 + 实战 + 知识库笔记 + 前沿阅读
 const aiSidebar = [
   { text: '🌟 知识中枢', link: '/hub/ai-agent' },
   ...getSidebarModule('ai-journey', '🚀 AI 落地实战路线'),
@@ -39,7 +54,6 @@ const aiSidebar = [
   ...getSidebarModule('reading/01-AI-Agent', '📖 前沿论文精读')
 ]
 
-// 2. 组装云原生模块
 const cloudSidebar = [
   { text: '🌟 知识中枢', link: '/hub/cloud-devops' },
   ...getSidebarModule('build-journal', '🏗️ 全栈建站日志'),
@@ -47,7 +61,6 @@ const cloudSidebar = [
   ...getSidebarModule('reading/02-Cloud-DevOps', '📖 架构演进泛读')
 ]
 
-// 3. 组装工作流模块
 const workflowSidebar = [
   { text: '🌟 知识中枢', link: '/hub/workflow' },
   ...getSidebarModule('env-setup', '⚡ 效能基建与自动化'),
@@ -55,8 +68,6 @@ const workflowSidebar = [
   ...getSidebarModule('reading/03-Workflow', '📖 工程文化与敏捷')
 ]
 
-
-// 4. 组装算法模块
 const algoSidebar = [
   { text: '🌟 知识中枢', link: '/hub/algorithm' },
   ...getSidebarModule('leetcode', '💻 LeetCode 题解仓库'),
@@ -71,9 +82,8 @@ export default defineConfig({
   title: "DevPortal",
   description: "专注 AI 应用与全栈架构的软件工程师",
   lang: 'zh-CN',
-  ignoreDeadLinks: true, // 忽略死链报错，保证构建不中断
+  ignoreDeadLinks: true, 
 
-  /* 🔥 精确排除模板与说明文件，防止误伤合法笔记 */
   srcExclude: [
     '**/模板.md',
     '**/阅读笔记_参考模板.md',
@@ -85,10 +95,8 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
 
-  // 保留极其关键的底层构建配置
   vite: {
     resolve: {
-      /* 关键：保留符号链接路径，防止软链接报错 */
       preserveSymlinks: true,
       alias: {
         'vue/server-renderer': require.resolve('vue/server-renderer')
@@ -97,7 +105,6 @@ export default defineConfig({
   },
 
   themeConfig: {
-    // 顶部导航栏
     nav: [
       { text: '首页', link: '/' },
       { text: '01 AI & AGENT', link: '/hub/ai-agent' },
@@ -107,7 +114,6 @@ export default defineConfig({
       { text: '05 RESUME', link: '/my-resume/resume-zh' }
     ],
 
-    // 核心路由劫持
     sidebar: {
       '/hub/ai-agent': aiSidebar,
       '/ai-journey/': aiSidebar,
@@ -129,13 +135,8 @@ export default defineConfig({
       '/tech-note/Published/04-Algorithm/': algoSidebar,
       '/reading/04-Algorithm/': algoSidebar,
       
-      '/projects/': generateSidebar({
-        documentRootPath: 'docs',
-        scanStartPath: 'projects',
-        resolvePath: '/projects/',
-        useTitleFromFileHeading: true,
-        useFolderTitleFromIndexFile: true
-      })
+      // 🔥 修复 3：统一调用我们增强过的 getSidebarModule，彻底解决 404 与英文名
+      '/projects/': getSidebarModule('projects')
     },
 
     socialLinks: [
