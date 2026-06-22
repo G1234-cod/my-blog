@@ -72,7 +72,8 @@ export default defineConfig({
   description: "专注 AI 应用与全栈架构的软件工程师",
   lang: 'zh-CN',
   ignoreDeadLinks: true, // 忽略死链报错，保证构建不中断
-  
+  cleanUrls: true, // 禁用 URL 中的 # 号，保持 URL 简洁
+  // 其他配置
   /* 🔥 精确排除模板与说明文件，防止误伤合法笔记 */
   srcExclude: [
     '**/模板.md',

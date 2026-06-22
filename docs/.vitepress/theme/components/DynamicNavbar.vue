@@ -12,10 +12,12 @@
     </ul>
 
     <div class="nav-controls">
-      <button class="theme-switch" @click="toggleTheme" title="切换显示模式">
-        <span class="icon">{{ isDark ? '🌙' : '☀️' }}</span>
-        <span class="label">{{ isDark ? 'Dark' : 'Light' }}</span>
-      </button>
+      <ClientOnly>
+        <button class="theme-switch" @click="toggleTheme" title="切换显示模式">
+          <span class="icon">{{ isDark ? '🌙' : '☀️' }}</span>
+          <span class="label">{{ isDark ? 'Dark' : 'Light' }}</span>
+        </button>
+      </ClientOnly>
     </div>
   </nav>
 </template>
