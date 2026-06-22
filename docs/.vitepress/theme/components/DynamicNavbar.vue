@@ -81,7 +81,9 @@ const handleNavClick = (sectionId) => {
     if (typeof sessionStorage !== 'undefined') {
       sessionStorage.setItem('pendingScroll', sectionId)
     }
-    router.go('/')
+    if (typeof window !== 'undefined') {
+      window.location.href = '/' 
+    }
   }
 }
 
