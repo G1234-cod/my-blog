@@ -83,6 +83,7 @@ export default defineConfig({
   description: "专注 AI 应用与全栈架构的软件工程师",
   lang: 'zh-CN',
   ignoreDeadLinks: true, 
+  cleanUrls: true,
 
   srcExclude: [
     '**/模板.md',

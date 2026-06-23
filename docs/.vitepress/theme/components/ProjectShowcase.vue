@@ -49,7 +49,7 @@
     <div class="right-scroll">
       <div class="projects-container">
         
-        <a href="/projects/bearing-diagnosis.html" class="project-card glass-panel" @click.prevent="softJump('/projects/bearing-diagnosis.html')">
+        <a href="/projects/bearing-diagnosis" class="project-card glass-panel">
           <div class="card-header">
             <h3>智眸探微：工业轴承故障诊断系统</h3>
             <div class="title-badge gold-badge"><span class="b-icon">🏆</span> 省级二等奖</div>
@@ -64,7 +64,7 @@
           </p>
         </a>
 
-        <a href="/projects/online-exam.html" class="project-card glass-panel" @click.prevent="softJump('/projects/online-exam.html')">
+        <a href="/projects/online-exam" class="project-card glass-panel">
           <div class="card-header">
             <h3>在线考试管理系统</h3>
             <div class="title-badge purple-badge"><span class="b-icon">🪪</span> 国家软著登记</div>
@@ -79,7 +79,7 @@
           </p>
         </a>
 
-        <a href="/projects/graphic-tools.html" class="project-card glass-panel" @click.prevent="softJump('/projects/graphic-tools.html')">
+        <a href="/projects/graphic-tools" class="project-card glass-panel">
           <div class="card-header">
             <h3>多功能图形工具集系统</h3>
             <div class="title-badge purple-badge"><span class="b-icon">🪪</span> 国家软著登记</div>
@@ -94,7 +94,7 @@
           </p>
         </a>
 
-        <a href="/projects/community-forum.html" class="project-card glass-panel" @click.prevent="softJump('/projects/community-forum.html')">
+        <a href="/projects/community-forum" class="project-card glass-panel">
           <div class="card-header">
             <h3>基于双重验证机制的社区互动系统</h3>
             <div class="title-badge cyan-badge"><span class="b-icon">⏳</span> 软著审核中</div>
@@ -109,7 +109,7 @@
           </p>
         </a>
 
-        <a href="/projects/local-rag.html" class="project-card glass-panel" @click.prevent="softJump('/projects/local-rag.html')">
+        <a href="/projects/local-rag" class="project-card glass-panel">
           <div class="card-header">
             <h3>基于 AnythingLLM 的本地私有化知识库</h3>
             <div class="title-badge gray-badge"><span class="b-icon">🔒</span> 纯内网物理隔离</div>
@@ -124,7 +124,7 @@
           </p>
         </a>
 
-        <a href="/projects/cloud-portal.html" class="project-card glass-panel" @click.prevent="softJump('/projects/cloud-portal.html')">
+        <a href="/projects/cloud-portal" class="project-card glass-panel">
           <div class="card-header">
             <h3>云原生个人门户系统 (Jamstack + CI/CD)</h3>
           </div>
@@ -134,11 +134,11 @@
             <span class="tag">GitHub Actions</span>
           </div>
           <p class="project-desc">
-           基于 Jamstack 架构的个人知识库与作品集。通过 GitHub Actions 构建自动化流水线，实现了代码多仓库聚合、VitePress 自动编译与 阿里云服务器/GitHub Pages 双平台 的零宕机发布，构建了从本地写作到云端发布的闭环运维体系。
+            基于 Jamstack 架构的个人知识库与作品集。通过 GitHub Actions 构建自动化流水线，实现了代码多仓库聚合、VitePress 自动编译与 阿里云服务器/GitHub Pages 双平台 的零宕机发布，构建了从本地写作到云端发布的闭环运维体系。
           </p>
         </a>
 
-        <a href="/projects/garbage-classification.html" class="project-card glass-panel" @click.prevent="softJump('/projects/garbage-classification.html')">
+        <a href="/projects/garbage-classification" class="project-card glass-panel">
           <div class="card-header">
             <h3>基于深度学习的垃圾分类识别系统</h3>
           </div>
@@ -158,17 +158,6 @@
 
   </div>
 </template>
-
-<script setup>
-// 🔥 引入 VitePress 原生路由
-import { useRouter } from 'vitepress'
-const router = useRouter()
-
-// 🔥 使用 VitePress 内置路由引擎实现无刷新丝滑跳转
-const softJump = (url) => {
-  router.go(url)
-}
-</script>
 
 <style scoped>
 /* === 整体布局 === */
