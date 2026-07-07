@@ -280,13 +280,15 @@ onMounted(() => { fetchServerStatus() })
 /* === 基础容器 === */
 .contact-wrapper {
   width: 100%; 
-  height: auto; /* 👉 允许高度根据内容自动撑开，不再锁死 */
   min-height: 100vh; /* 确保至少占满全屏 */
-  display: flex; align-items: center; justify-content: center;
+  display: flex; 
+  align-items: flex-start; /* 🚀 核心修复 1：把 center 改成 flex-start，防止表单过高时顶部被切掉 */
+  justify-content: center;
   position: relative; 
-  overflow-x: hidden; /* 👉 仅隐藏水平溢出 */
-  overflow-y: auto;   /* 👉 允许垂直滚动 */
-  background-color: var(--vp-c-bg); padding: 80px 0;
+  overflow-x: hidden; 
+  overflow-y: auto;   
+  background-color: var(--vp-c-bg); 
+  padding: max(6vh, 40px) 0; /* 🚀 核心修复 2：使用动态上下边距，代替写死的 80px */
 }
 
 .ambient-glow {
@@ -298,13 +300,14 @@ onMounted(() => { fetchServerStatus() })
 /* === 便当盒 (Bento Box) 网格系统 === */
 .bento-container {
   width: 100%; 
-  max-width: 1350px; /* 🚀 变长：大幅拓宽最大宽度，填补屏幕空旷感 */
+  max-width: 1350px; 
   display: grid;
-  grid-template-columns: 2.3fr 1fr; /* 🚀 左侧比例增加：左边占用更多空间 */
+  grid-template-columns: 2.3fr 1fr; 
   gap: 36px;
   z-index: 1; 
   padding: 0 4%;
-  align-items: stretch; /* 🚀 绝对等高：强迫左右两侧高度锁定一致 */
+  margin: auto; /* 🚀 核心修复 3：配合 flex-start，实现“够位就居中，不够位就不居中而允许滚动”的完美自适应 */
+  align-items: stretch; 
 }
 
 /* --- 左侧主卡片 --- */
