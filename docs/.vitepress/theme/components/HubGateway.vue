@@ -83,8 +83,8 @@
 <style scoped>
 /* === 基础布局 === */
 .hub-wrapper {
-  width: 100%; min-height: 100%; height: auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-  position: relative; overflow: visible; background-color: var(--vp-c-bg); padding: 80px 0;
+  width: 100%; min-height: 100%; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; background-color: var(--vp-c-bg); padding: 80px 0;
 }
 
 .ambient-glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.1; pointer-events: none; }

@@ -287,14 +287,13 @@ onMounted(() => { fetchServerStatus() })
 .contact-wrapper {
   width: 100%; 
   min-height: 100%; 
-  height: auto;
   display: flex; 
   flex-direction: column; 
   align-items: center;      
   justify-content: flex-start; 
   
   position: relative; 
-  overflow-x: visible; 
+  overflow-x: hidden; 
   overflow-y: visible;   
   background-color: var(--vp-c-bg); 
   

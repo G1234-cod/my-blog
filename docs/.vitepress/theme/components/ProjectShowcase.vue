@@ -176,16 +176,16 @@
 
 <style scoped>
 /* === 整体布局 === */
-.split-screen { width: 100%; min-height: 100%; height: auto; display: flex; background-color: var(--vp-c-bg); overflow: visible; }
+.split-screen { width: 100%; height: calc(100vh - 80px); display: flex; background-color: var(--vp-c-bg); overflow: hidden; }
 
 /* === 左侧看板：向左侧靠拢 === */
 .left-board { 
-  width: 45%; min-height: 400px; height: auto; 
+  width: 45%; height: 100%; 
   display: flex; align-items: flex-start; 
   justify-content: flex-start;
   padding-left: 120px;
   padding-right: 40px;
-  padding-top: 80px;
+  padding-top: 40px;
   padding-bottom: 40px;
   border-right: 1px solid var(--vp-c-divider); position: relative; overflow: hidden;
 }
@@ -212,10 +212,11 @@
 @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(11, 163, 96, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(11, 163, 96, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(11, 163, 96, 0); } }
 
 .right-scroll { 
-  width: 55%; min-height: 100%; height: auto; overflow-y: visible; 
-  padding: 80px 10% 40px 60px;
+  width: 55%; height: 100%; overflow-y: auto; 
+  padding: 40px 10% 40px 60px;
   scrollbar-width: none; scroll-behavior: smooth;
 }
+.right-scroll::-webkit-scrollbar { display: none; }
 
 .projects-container { display: flex; flex-direction: column; gap: 32px; }
 
@@ -249,7 +250,7 @@
 
 .project-desc { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0; }
 
-.scroll-spacer { height: 80px; }
+.scroll-spacer { height: 60px; }
 
 a.project-card {
   text-decoration: none !important; 
@@ -266,13 +267,14 @@ a.project-card:hover {
     flex-direction: column; 
     overflow-y: visible; 
     height: auto; 
+    min-height: calc(100vh - 80px);
   }
   
   .left-board { 
     width: 100%; 
     min-height: auto; 
     height: auto; 
-    padding: 80px 20px 35px 20px; 
+    padding: 40px 20px 35px 20px; 
     justify-content: flex-start; 
     border-right: none; 
     border-bottom: 1px solid var(--vp-c-divider);

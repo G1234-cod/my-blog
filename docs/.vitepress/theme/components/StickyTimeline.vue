@@ -120,12 +120,12 @@
 
 <style scoped>
 /* === 整体双栏布局 === */
-.split-screen { width: 100%; min-height: 100%; height: auto; display: flex; background-color: var(--vp-c-bg); overflow: visible; padding: 0 4%; box-sizing: border-box; }
+.split-screen { width: 100%; height: calc(100vh - 80px); display: flex; background-color: var(--vp-c-bg); overflow: hidden; padding: 0 4%; box-sizing: border-box; }
 
 /* === 左侧：仪表盘看板 === */
 .left-board { 
-  width: 40%; min-height: 400px; height: auto; display: flex; align-items: flex-start; justify-content: flex-start; 
-  border-right: 1px solid var(--vp-c-divider); position: relative; flex-shrink: 0; padding-top: 80px; padding-bottom: 40px;
+  width: 40%; height: 100%; display: flex; align-items: flex-start; justify-content: flex-start; 
+  border-right: 1px solid var(--vp-c-divider); position: relative; flex-shrink: 0; padding-top: 40px; padding-bottom: 40px;
   background-image: radial-gradient(var(--vp-c-divider) 1px, transparent 1px); background-size: 24px 24px;
 }
 .board-content { width: 75%; position: relative; z-index: 1; }
@@ -150,9 +150,10 @@
 
 /* === 右侧：图标轨道时间轴 === */
 .right-scroll { 
-  width: 60%; min-height: 100%; height: auto; overflow-y: visible; padding: 80px 4% 40px 8%; 
+  width: 60%; height: 100%; overflow-y: auto; padding: 40px 4% 40px 8%; 
   scrollbar-width: none; scroll-behavior: smooth; flex-shrink: 0;
 }
+.right-scroll::-webkit-scrollbar { display: none; }
 
 .timeline-container { position: relative; display: flex; flex-direction: column; gap: 40px; }
 /* 轨道线 */
@@ -204,7 +205,7 @@
 .ip-badge { border-color: rgba(187, 0, 255, 0.4); color: #b0f; }
 .exp-badge { border-color: rgba(11, 163, 96, 0.4); color: #0ba360; }
 
-.scroll-spacer { height: 80px; }
+.scroll-spacer { height: 60px; }
 
 /* === 移动端适配 === */
 @media (max-width: 768px) {
@@ -212,6 +213,7 @@
     flex-direction: column; 
     overflow-y: visible; 
     height: auto; 
+    min-height: calc(100vh - 80px);
     padding: 0;
   }
   
@@ -219,7 +221,7 @@
     width: 100%; 
     min-height: auto; 
     height: auto; 
-    padding: 80px 20px 35px 20px; 
+    padding: 40px 20px 35px 20px; 
     border-right: none; 
     border-bottom: 1px solid var(--vp-c-divider);
     align-items: flex-start;
