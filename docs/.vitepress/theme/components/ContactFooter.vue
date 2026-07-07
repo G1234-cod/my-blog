@@ -235,7 +235,7 @@ const submitForm = async () => {
       setTimeout(() => {
         sysStatus.value = 'idle'
       }, 3000)
-      
+
     } else {
       const errData = await response.json().catch(() => ({}))
       sysStatus.value = 'error'
@@ -280,6 +280,7 @@ onMounted(() => { fetchServerStatus() })
 /* === 基础容器 === */
 .contact-wrapper {
   width: 100%; 
+  height: auto; /* 👉 允许高度根据内容自动撑开，不再锁死 */
   min-height: 100vh; /* 确保至少占满全屏 */
   display: flex; align-items: center; justify-content: center;
   position: relative; 
@@ -314,7 +315,8 @@ onMounted(() => { fetchServerStatus() })
 
 .main-contact-card {
   flex: 1; /* 填满左侧容器 */
-  min-height: 620px; /* 🚀 增高：赋予左侧表单一个最低高度 */
+  /* min-height: 620px; 🚀 增高：赋予左侧表单一个最低高度 */
+  min-height: auto; /* 👉 取消固定的 620px 限制，让表单内容自己撑开高度 */
   display: flex; flex-direction: column; 
   border-radius: 24px; overflow: hidden;
   background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border);
