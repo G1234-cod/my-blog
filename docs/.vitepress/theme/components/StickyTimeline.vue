@@ -120,7 +120,7 @@
 
 <style scoped>
 /* === 整体双栏布局 === */
-.split-screen { width: 100%; min-height: 100%; height: auto; display: flex; flex-direction: column; background-color: var(--vp-c-bg); overflow: visible; padding: 0 4%; box-sizing: border-box; }
+.split-screen { width: 100%; min-height: 100%; height: auto; display: flex; background-color: var(--vp-c-bg); overflow: visible; padding: 0 4%; box-sizing: border-box; }
 
 /* === 左侧：仪表盘看板 === */
 .left-board { 

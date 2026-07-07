@@ -28,9 +28,10 @@ html, body, #app {
 /* 3. 全局中控台：全屏滚动捕捉容器 */
 .universe-container {
   width: 100%;
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+  min-height: 100vh;
+  height: auto;
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -42,13 +43,16 @@ html, body, #app {
 /* 4. 每一屏的基础单元 */
 .universe-screen {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   scroll-snap-align: start;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 80px;
+  box-sizing: border-box;
 }
 
 /* ==========================================

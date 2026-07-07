@@ -176,7 +176,7 @@
 
 <style scoped>
 /* === 整体布局 === */
-.split-screen { width: 100%; min-height: 100%; height: auto; display: flex; flex-direction: column; background-color: var(--vp-c-bg); overflow: visible; }
+.split-screen { width: 100%; min-height: 100%; height: auto; display: flex; background-color: var(--vp-c-bg); overflow: visible; }
 
 /* === 左侧看板：向左侧靠拢 === */
 .left-board { 
