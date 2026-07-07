@@ -33,6 +33,44 @@
                 <textarea id="message" v-model="formData.message" placeholder="Hello there, I would like to talk about..." rows="4" required :disabled="isSubmitting"></textarea>
               </div>
 
+              <div class="input-group">
+                <label>附件 / Attachments</label>
+                <div 
+                  class="file-upload-area" 
+                  :class="{ dragover: isDragging }"
+                  @click="$refs.fileInput.click()"
+                  @dragover.prevent="isDragging = true"
+                  @dragleave.prevent="isDragging = false"
+                  @drop.prevent="handleDrop"
+                >
+                  <input 
+                    ref="fileInput" 
+                    type="file" 
+                    multiple 
+                    accept="image/jpeg,image/png,image/gif,image/webp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain,application/json,application/zip,application/x-rar-compressed"
+                    @change="handleFileSelect"
+                  />
+                  <div class="upload-icon">📎</div>
+                  <div class="upload-text">
+                    {{ selectedFiles.length > 0 ? `已选择 ${selectedFiles.length} 个文件` : '点击或拖拽文件到此处上传' }}
+                  </div>
+                  <div class="upload-hint">支持图片、PDF、文档、压缩包，最多 3 个文件，单个不超过 10MB</div>
+                </div>
+                
+                <div class="file-list" v-if="selectedFiles.length > 0">
+                  <div v-for="(file, index) in selectedFiles" :key="index" class="file-item">
+                    <div class="file-info">
+                      <span class="file-icon">{{ getFileIcon(file.type) }}</span>
+                      <div>
+                        <div class="file-name">{{ file.name }}</div>
+                        <div class="file-size">{{ formatFileSize(file.size) }}</div>
+                      </div>
+                    </div>
+                    <button class="file-remove" @click="removeFile(index)">×</button>
+                  </div>
+                </div>
+              </div>
+
               <div v-if="sysMessage" :class="['sys-banner', sysStatus]">
                 {{ sysMessage }}
               </div>
@@ -107,6 +145,63 @@ const isSubmitting = ref(false)
 const sysStatus = ref('idle') 
 const sysMessage = ref('')
 const API_ENDPOINT = '/api/contact'
+const selectedFiles = ref([])
+const isDragging = ref(false)
+
+const getFileIcon = (type) => {
+  if (type.startsWith('image/')) return '🖼️'
+  if (type.includes('pdf')) return '📕'
+  if (type.includes('word') || type.includes('document')) return '📘'
+  if (type.includes('excel') || type.includes('spreadsheet')) return '📗'
+  if (type.includes('zip') || type.includes('rar')) return '📦'
+  if (type.includes('json')) return '📄'
+  if (type.includes('text')) return '📝'
+  return '📎'
+}
+
+const formatFileSize = (bytes) => {
+  if (bytes < 1024) return bytes + ' B'
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB'
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB'
+}
+
+const handleFileSelect = (event) => {
+  const files = Array.from(event.target.files)
+  addFiles(files)
+}
+
+const handleDrop = (event) => {
+  isDragging.value = false
+  const files = Array.from(event.dataTransfer.files)
+  addFiles(files)
+}
+
+const addFiles = (files) => {
+  const maxFiles = 3
+  const maxSize = 10 * 1024 * 1024
+  
+  files.forEach(file => {
+    if (selectedFiles.value.length >= maxFiles) {
+      sysMessage.value = '最多只能上传 3 个文件'
+      sysStatus.value = 'error'
+      setTimeout(() => { sysStatus.value = 'idle'; sysMessage.value = '' }, 3000)
+      return
+    }
+    
+    if (file.size > maxSize) {
+      sysMessage.value = `${file.name} 超过 10MB 限制`
+      sysStatus.value = 'error'
+      setTimeout(() => { sysStatus.value = 'idle'; sysMessage.value = '' }, 3000)
+      return
+    }
+    
+    selectedFiles.value.push(file)
+  })
+}
+
+const removeFile = (index) => {
+  selectedFiles.value.splice(index, 1)
+}
 
 const submitForm = async () => {
   sysMessage.value = ''
@@ -114,10 +209,18 @@ const submitForm = async () => {
   isSubmitting.value = true
 
   try {
+    const form = new FormData()
+    form.append('name', formData.name)
+    form.append('email', formData.email)
+    form.append('message', formData.message)
+    
+    selectedFiles.value.forEach(file => {
+      form.append('attachments', file)
+    })
+
     const response = await fetch(API_ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: formData.name, email: formData.email, message: formData.message })
+      body: form
     })
 
     if (response.ok) {
@@ -126,6 +229,7 @@ const submitForm = async () => {
       formData.name = ''
       formData.email = ''
       formData.message = ''
+      selectedFiles.value = []
     } else {
       const errData = await response.json().catch(() => ({}))
       sysStatus.value = 'error'
@@ -232,8 +336,41 @@ input, textarea {
   font-family: var(--vp-font-family-base); transition: all 0.2s ease; outline: none;
 }
 input:focus, textarea:focus { border-color: var(--vp-c-brand-1); background: var(--vp-c-bg-soft); box-shadow: 0 0 0 3px rgba(var(--vp-c-brand-1), 0.1); }
-textarea { resize: vertical; min-height: 120px; } /* 输入框更高 */
+textarea { resize: vertical; min-height: 120px; }
 input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.file-upload-area {
+  border: 2px dashed var(--vp-c-border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--vp-c-bg-soft);
+}
+.file-upload-area:hover { border-color: var(--vp-c-brand-1); background: rgba(var(--vp-c-brand-1), 0.03); }
+.file-upload-area.dragover { border-color: var(--vp-c-brand-1); background: rgba(var(--vp-c-brand-1), 0.06); transform: scale(1.01); }
+.file-upload-area input[type="file"] { display: none; }
+.upload-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.upload-text { font-size: 0.95rem; color: var(--vp-c-text-2); font-weight: 500; }
+.upload-hint { font-size: 0.8rem; color: var(--vp-c-text-3); margin-top: 6px; }
+
+.file-list { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.file-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; background: var(--vp-c-default-soft); border-radius: 8px;
+  border: 1px solid var(--vp-c-border);
+}
+.file-info { display: flex; align-items: center; gap: 12px; }
+.file-icon { font-size: 1.4rem; }
+.file-name { font-size: 0.9rem; color: var(--vp-c-text-1); font-weight: 500; }
+.file-size { font-size: 0.8rem; color: var(--vp-c-text-3); }
+.file-remove {
+  width: 28px; height: 28px; border-radius: 50%; background: rgba(255, 8, 68, 0.1);
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: #ff0844; font-size: 0.9rem; transition: all 0.2s ease;
+}
+.file-remove:hover { background: rgba(255, 8, 68, 0.2); transform: scale(1.1); }
 
 .sys-banner { padding: 12px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; line-height: 1.5; }
 .sys-banner.error { background: rgba(255, 8, 68, 0.1); color: #ff0844; border: 1px solid rgba(255, 8, 68, 0.3); }
@@ -418,6 +555,22 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
     padding: 14px 16px;
     font-size: 0.95rem;
   }
+  
+  .file-upload-area {
+    padding: 20px 16px;
+  }
+  
+  .upload-icon { font-size: 2rem; }
+  .upload-text { font-size: 0.9rem; }
+  .upload-hint { font-size: 0.75rem; }
+  
+  .file-item {
+    padding: 10px 14px;
+  }
+  
+  .file-icon { font-size: 1.2rem; }
+  .file-name { font-size: 0.85rem; }
+  .file-size { font-size: 0.75rem; }
   
   .bento-right {
     height: auto;
