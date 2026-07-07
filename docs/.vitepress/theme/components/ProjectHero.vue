@@ -54,7 +54,7 @@ defineProps({
   text-align: left;
 }
 .p-title {
-  font-size: 4.5rem; 
+  font-size: clamp(2.5rem, 8vw, 4.5rem); 
   font-weight: 900;
   line-height: 1.1;
   color: var(--vp-c-text-1);
@@ -128,7 +128,13 @@ defineProps({
 }
 
 @media (max-width: 768px) {
-  .p-title { font-size: 2.8rem; }
+  .p-title { font-size: clamp(2rem, 6vw, 2.8rem); }
   .meta-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+
+@media (max-width: 480px) {
+  .p-title { font-size: clamp(1.6rem, 5vw, 2.2rem); }
+  .portfolio-hero { gap: 40px; padding: 30px 0 40px 0; }
+  .meta-grid { gap: 16px; padding-bottom: 20px; }
 }
 </style>

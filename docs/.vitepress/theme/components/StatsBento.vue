@@ -109,7 +109,7 @@
 
 /* 布局网格扩大至 1400px */
 .bento-grid {
-  display: grid; grid-template-columns: 340px 1fr; gap: 32px; 
+  display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: 32px; 
   width: 100%; max-width: 1400px; margin-bottom: 30px;
 }
 
@@ -212,7 +212,7 @@
 @media (max-width: 768px) {
   .bento-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .bento-wrapper { padding: 80px 20px 40px 20px; height: auto; min-height: 100vh; justify-content: flex-start; }
+  .bento-wrapper { padding: 80px 20px 40px 20px; height: auto; min-height: auto; justify-content: flex-start; }
   
   .profile-card {
     align-items: center;

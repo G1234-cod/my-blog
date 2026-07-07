@@ -51,8 +51,7 @@
 .glow-2 { bottom: -10%; right: 10%; width: 500px; height: 500px; background: #00f2fe; }
 
 .hero-card {
-  /*修改图片高度*/
-  width: 90%; max-width: 1400px; min-height: 680px;
+  width: 90%; max-width: 1400px; min-height: 500px; height: auto;
   position: relative; z-index: 1; border-radius: 24px; overflow: hidden;
   background-image: url('/background.jpg'); 
   background-size: cover; background-position: right center; background-repeat: no-repeat;
@@ -90,12 +89,13 @@
 
 @media (max-width: 768px) {
   .hero-wrapper {
-    min-height: 100%;
+    min-height: auto;
     padding-top: 0;
   }
   
   .hero-card { 
-    min-height: 580px; 
+    min-height: 420px; 
+    height: auto;
     background-position: 70% center; 
     width: 95%;
     margin-top: 15px;
@@ -165,7 +165,8 @@
   }
   
   .hero-card {
-    min-height: 500px;
+    min-height: 380px;
+    height: auto;
     border-radius: 16px;
     width: 96%;
   }

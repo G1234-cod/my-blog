@@ -286,19 +286,18 @@ onMounted(() => { fetchServerStatus() })
 /* === 基础容器 === */
 .contact-wrapper {
   width: 100%; 
-  min-height: 100vh; 
-  /* 垂直方向 Flex，从顶部开始排布 */
+  min-height: 100%; 
+  height: auto;
   display: flex; 
   flex-direction: column; 
   align-items: center;      
   justify-content: flex-start; 
   
   position: relative; 
-  overflow-x: hidden; 
-  overflow-y: auto;   
+  overflow-x: visible; 
+  overflow-y: visible;   
   background-color: var(--vp-c-bg); 
   
-  /* 预留顶部 100px 空间，防止被导航栏遮挡 */
   padding: 100px 0 80px 0; 
 }
 
@@ -533,6 +532,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   .contact-wrapper {
     padding: 80px 0;
     min-height: auto;
+    height: auto;
   }
   
   .bento-container { 
