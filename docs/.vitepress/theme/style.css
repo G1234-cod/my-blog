@@ -42,14 +42,13 @@ html, body, #app {
 /* 4. 每一屏的基础单元 */
 .universe-screen {
   width: 100%;
-  min-height: 100vh;
-  height: auto;
+  height: 100vh;
   scroll-snap-align: start;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
 /* ==========================================

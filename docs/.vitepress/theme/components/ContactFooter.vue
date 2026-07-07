@@ -273,8 +273,8 @@ onMounted(() => { fetchServerStatus() })
 <style scoped>
 /* === 基础容器 === */
 .contact-wrapper {
-  width: 100%; min-height: 100%; display: flex; align-items: flex-start; justify-content: center;
-  position: relative; overflow: hidden; background-color: var(--vp-c-bg); padding: 80px 0 100px;
+  width: 100%; min-height: 100%; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; background-color: var(--vp-c-bg); padding: 80px 0;
 }
 
 .ambient-glow {
@@ -286,13 +286,13 @@ onMounted(() => { fetchServerStatus() })
 /* === 便当盒 (Bento Box) 网格系统 === */
 .bento-container {
   width: 100%; 
-  max-width: 1200px;
+  max-width: 1350px; /* 🚀 变长：大幅拓宽最大宽度，填补屏幕空旷感 */
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
+  grid-template-columns: 2.3fr 1fr; /* 🚀 左侧比例增加：左边占用更多空间 */
+  gap: 36px;
   z-index: 1; 
   padding: 0 4%;
-  align-items: start;
+  align-items: stretch; /* 🚀 绝对等高：强迫左右两侧高度锁定一致 */
 }
 
 /* --- 左侧主卡片 --- */
@@ -302,8 +302,8 @@ onMounted(() => { fetchServerStatus() })
 }
 
 .main-contact-card {
-  width: 100%;
-  min-height: auto;
+  flex: 1; /* 填满左侧容器 */
+  min-height: 620px; /* 🚀 增高：赋予左侧表单一个最低高度 */
   display: flex; flex-direction: column; 
   border-radius: 24px; overflow: hidden;
   background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border);
@@ -313,18 +313,19 @@ onMounted(() => { fetchServerStatus() })
 .shadow-hover:hover { box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25); }
 
 .card-header {
-  padding: 30px 40px 20px;
+  padding: 45px 55px 25px; /* 增加内边距，更舒展 */
   background: linear-gradient(135deg, rgba(26,29,36,0.3) 0%, transparent 100%);
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
-.left-title { font-size: 2.2rem; font-weight: 800; color: var(--vp-c-text-1); line-height: 1.1; margin: 0 0 12px 0; letter-spacing: -0.5px; }
-.quote-text { font-size: 1rem; color: var(--vp-c-text-2); line-height: 1.6; font-weight: 500; margin: 0; }
+.left-title { font-size: 2.8rem; font-weight: 800; color: var(--vp-c-text-1); line-height: 1.1; margin: 0 0 16px 0; letter-spacing: -0.5px; }
+.quote-text { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.6; font-weight: 500; margin: 0; }
 
 .card-body {
-  padding: 25px 40px 35px;
+  padding: 35px 55px 45px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .modern-form { display: flex; flex-direction: column; gap: 24px; } /* 拉大表单间隙 */
