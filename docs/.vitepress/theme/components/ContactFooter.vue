@@ -165,7 +165,7 @@ onMounted(() => { fetchServerStatus() })
 <style scoped>
 /* === 基础容器 === */
 .contact-wrapper {
-  width: 100%; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  width: 100%; min-height: 100%; display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden; background-color: var(--vp-c-bg); padding: 80px 0;
 }
 

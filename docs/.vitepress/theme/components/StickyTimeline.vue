@@ -120,13 +120,12 @@
 
 <style scoped>
 /* === 整体双栏布局 === */
-.split-screen { width: 100%; height: 100vh; display: flex; background-color: var(--vp-c-bg); overflow: hidden; padding: 0 4%; box-sizing: border-box; }
+.split-screen { width: 100%; height: 100%; display: flex; background-color: var(--vp-c-bg); overflow: hidden; padding: 0 4%; box-sizing: border-box; }
 
 /* === 左侧：仪表盘看板 === */
 .left-board { 
   width: 40%; height: 100%; display: flex; align-items: center; justify-content: center; 
-  border-right: 1px solid var(--vp-c-divider); position: relative;
-  /* 左侧加入极其微弱的网格背景增加极客感 */
+  border-right: 1px solid var(--vp-c-divider); position: relative; flex-shrink: 0;
   background-image: radial-gradient(var(--vp-c-divider) 1px, transparent 1px); background-size: 24px 24px;
 }
 .board-content { width: 75%; position: relative; z-index: 1; }
@@ -151,8 +150,8 @@
 
 /* === 右侧：图标轨道时间轴 === */
 .right-scroll { 
-  width: 60%; height: 100%; overflow-y: auto; padding: 100px 4% 0 8%; 
-  scrollbar-width: none; scroll-behavior: smooth;
+  width: 60%; height: 100%; overflow-y: auto; padding: 80px 4% 40px 8%; 
+  scrollbar-width: none; scroll-behavior: smooth; flex-shrink: 0;
 }
 .right-scroll::-webkit-scrollbar { display: none; }
 

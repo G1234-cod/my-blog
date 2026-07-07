@@ -41,8 +41,7 @@
 
 <style scoped>
 .hero-wrapper {
-  /* 设置最外层容器 */
-  width: 100%; height: 250vh; display: flex; flex-direction: column; 
+  width: 100%; min-height: 100%; display: flex; flex-direction: column; 
   justify-content: center; align-items: center; position: relative; 
   overflow: hidden; background-color: var(--vp-c-bg);
 }
@@ -91,9 +90,8 @@
 
 @media (max-width: 768px) {
   .hero-wrapper {
-    height: auto;
-    min-height: 100vh;
-    padding-top: 70px;
+    min-height: 100%;
+    padding-top: 0;
   }
   
   .hero-card { 

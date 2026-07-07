@@ -103,7 +103,7 @@
 <style scoped>
 /* 1. 整体容器：突破宽度限制，增大屏幕占比 */
 .bento-wrapper {
-  width: 100%; height: 100%; display: flex; flex-direction: column; 
+  width: 100%; min-height: 100%; display: flex; flex-direction: column; 
   justify-content: center; align-items: center; padding: 60px 5%; box-sizing: border-box;
 }
 

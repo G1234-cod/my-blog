@@ -3,23 +3,26 @@
  * ==========================================
  */
 
-/* 1. 彻底清除 VitePress 默认干扰 */
 :root {
-  /* 🔥 修改底层变量：让全站骨架撑满屏幕 95%，把右侧栏强行推到边缘 */
   --vp-layout-max-width: 95vw !important;
 }
 
-/* 2. 页面根元素重置 */
 html, body, #app {
   margin: 0 !important;
   padding: 0 !important;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   background-color: var(--vp-c-bg); 
   font-family: var(--vp-font-family-base);
   color: var(--vp-c-text-1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+.home-spa-wrapper {
+  width: 100%;
+  height: 100%;
 }
 
 /* 3. 全局中控台：全屏滚动捕捉容器 */
@@ -48,12 +51,6 @@ html, body, #app {
   align-items: center;
 }
 
-/* 5. 首页 SPA 包装器 */
-.home-spa-wrapper {
-  width: 100%;
-  min-height: 100vh;
-}
-
 /* ==========================================
  * 移动端基础适配
  * ========================================== */
@@ -64,15 +61,17 @@ html, body, #app {
   }
   
   .universe-container {
-    height: 100%;
+    height: auto;
+    min-height: 100vh;
     scroll-snap-type: none;
+    overflow-y: auto;
   }
   
   .universe-screen {
     height: auto;
     min-height: 100vh;
     scroll-snap-align: none;
-    padding-top: 60px;
+    padding-top: 70px;
     box-sizing: border-box;
   }
   
