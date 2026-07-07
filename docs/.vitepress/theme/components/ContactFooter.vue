@@ -230,6 +230,12 @@ const submitForm = async () => {
       formData.email = ''
       formData.message = ''
       selectedFiles.value = []
+
+      // 👉 新增：设置一个 3 秒的定时器，3秒后把状态切回 'idle'（闲置），按钮就会恢复原样
+      setTimeout(() => {
+        sysStatus.value = 'idle'
+      }, 3000)
+      
     } else {
       const errData = await response.json().catch(() => ({}))
       sysStatus.value = 'error'
