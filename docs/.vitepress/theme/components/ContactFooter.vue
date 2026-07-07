@@ -280,15 +280,20 @@ onMounted(() => { fetchServerStatus() })
 /* === 基础容器 === */
 .contact-wrapper {
   width: 100%; 
-  min-height: 100vh; /* 确保至少占满全屏 */
+  min-height: 100vh; 
+  /* 👇 核心大换血：改成垂直方向的 Flex，强制从顶部开始往下排 */
   display: flex; 
-  align-items: flex-start; /* 🚀 核心修复 1：把 center 改成 flex-start，防止表单过高时顶部被切掉 */
-  justify-content: center;
+  flex-direction: column; 
+  align-items: center;      /* 水平居中 */
+  justify-content: flex-start; /* 强制贴紧顶部，绝不允许往上溢出！ */
+  
   position: relative; 
   overflow-x: hidden; 
   overflow-y: auto;   
   background-color: var(--vp-c-bg); 
-  padding: max(6vh, 40px) 0; /* 🚀 核心修复 2：使用动态上下边距，代替写死的 80px */
+  
+  /* 👇 增加顶部 Padding：预留 100px 空间，防止被 VitePress 顶部的导航栏遮住 */
+  padding: 100px 0 80px 0; 
 }
 
 .ambient-glow {
@@ -306,7 +311,11 @@ onMounted(() => { fetchServerStatus() })
   gap: 36px;
   z-index: 1; 
   padding: 0 4%;
-  margin: auto; /* 🚀 核心修复 3：配合 flex-start，实现“够位就居中，不够位就不居中而允许滚动”的完美自适应 */
+  
+  /* 👇 核心修复：把 margin: auto 改为 margin: 0 auto。
+     意思是：上下边距为 0（不要瞎居中），左右边距自动（保持水平居中） */
+  margin: 0 auto; 
+  
   align-items: stretch; 
 }
 
