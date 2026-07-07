@@ -11,9 +11,9 @@
         <h2>全息知识中枢</h2>
         <p class="subtitle">打通从本地 Typora 沉淀到云端自动化发布的工程流。拒绝凌乱的碎片化平铺，在此构建结构化的工程师能力基盘。</p>
         
-        <div class="global-stats">
+        <!-- <div class="global-stats">
           <div class="stat-pill"><span class="pulse-dot"></span> TOTAL: 31 ARCHIVED POSTS</div>
-        </div>
+        </div> -->
       </div>
 
       <div class="flat-grid">
