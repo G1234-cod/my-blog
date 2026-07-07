@@ -97,7 +97,8 @@ app.post('/api/contact', mailLimiter, upload.array('attachments', 3), async (req
       encoding: 'base64'
     }));
 
-    await transporter.sendMail({
+    // 👉 核心修改 1：去掉 await，让邮件在后台默默发送，不阻塞主线程
+    transporter.sendMail({
       from: `"GYX-Dev 博客留言板" <${process.env.SMTP_USER}>`,
       replyTo: email,
       to: process.env.TO_EMAIL,
@@ -124,12 +125,16 @@ app.post('/api/contact', mailLimiter, upload.array('attachments', 3), async (req
         </div>
       `,
       attachments: attachments
+    }).catch(error => {
+      // 👉 核心修改 2：如果后台发送失败，只把错误打印到服务器日志中，不影响前端
+      console.error('SMTP 后台静默投递失败:', error);
     });
     
-    res.json({ success: true, message: '邮件已成功投递！' });
+    // 👉 核心修改 3：毫秒级响应！无需等待邮件发送完毕，直接告诉前端成功
+    res.json({ success: true, message: '留言已进入发送队列！' });
   } catch (error) {
-    console.error('SMTP 投递失败详细日志:', error);
-    res.status(500).json({ success: false, message: '系统投递异常，请检查后端运行日志' });
+    console.error('接口处理异常:', error);
+    res.status(500).json({ success: false, message: '系统处理异常，请检查后端状态' });
   }
 });
 
