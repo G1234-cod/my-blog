@@ -209,43 +209,57 @@
 @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
 /* 响应式适配 */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .bento-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .bento-wrapper { padding: 80px 5% 40px 5%; height: auto; min-height: 100vh; justify-content: flex-start; }
+  .bento-wrapper { padding: 80px 20px 40px 20px; height: auto; min-height: 100vh; justify-content: flex-start; }
   
   .profile-card {
     align-items: center;
     text-align: center;
+    padding: 30px 20px;
   }
   
   .avatar-ring {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
   }
   
   .profile-card h2 {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
   
   .role-badge-container {
     justify-content: center;
+    gap: 8px;
+  }
+  
+  .role-badge {
+    font-size: 0.8rem;
+    padding: 5px 12px;
   }
   
   .desc {
     font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .resume-btn {
+    padding: 12px 24px;
+    font-size: 0.9rem;
   }
   
   .bento-card {
-    padding: 24px;
+    padding: 20px;
   }
   
   .stat-item {
-    padding: 20px 8px;
+    padding: 18px 10px;
+    text-align: center;
   }
   
   .stat-item h3 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
   
   .stat-item p {
@@ -253,18 +267,27 @@
   }
   
   .skills-card {
-    padding: 24px;
+    padding: 20px;
   }
   
   .card-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
   
   .skill-list {
-    gap: 16px;
+    gap: 14px;
   }
   
   .skill-info {
+    font-size: 0.85rem;
+  }
+  
+  .skill-info span:first-child {
+    font-size: 0.8rem;
+  }
+  
+  .tech-pill span {
+    padding: 8px 14px;
     font-size: 0.85rem;
   }
 }
@@ -274,27 +297,58 @@
     padding: 70px 16px 30px 16px;
   }
   
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+  .bento-card {
+    padding: 16px;
   }
   
-  .stat-item h3 {
+  .profile-card {
+    padding: 24px 16px;
+  }
+  
+  .avatar-ring {
+    width: 75px;
+    height: 75px;
+  }
+  
+  .profile-card h2 {
     font-size: 1.5rem;
   }
   
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .stat-item {
+    padding: 14px 8px;
+  }
+  
+  .stat-item h3 {
+    font-size: 1.4rem;
+  }
+  
   .stat-item p {
+    font-size: 0.75rem;
+  }
+  
+  .skill-info {
     font-size: 0.8rem;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  
+  .skill-info span:first-child {
+    font-size: 0.75rem;
   }
   
   .tech-pill span {
-    padding: 8px 16px;
-    font-size: 0.85rem;
+    padding: 6px 10px;
+    font-size: 0.75rem;
   }
   
   .marquee-container {
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   }
 }
 </style>

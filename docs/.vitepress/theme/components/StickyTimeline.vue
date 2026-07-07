@@ -209,7 +209,7 @@
 .scroll-spacer { height: 30vh; }
 
 /* === 移动端适配 === */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .split-screen { 
     flex-direction: column; 
     overflow-y: auto; 
@@ -220,7 +220,7 @@
   .left-board { 
     width: 100%; 
     height: auto; 
-    padding: 80px 5% 40px 5%; 
+    padding: 80px 20px 35px 20px; 
     border-right: none; 
     border-bottom: 1px solid var(--vp-c-divider);
     align-items: flex-start;
@@ -231,12 +231,16 @@
     text-align: left;
   }
   
+  .section-tag { font-size: 0.85rem; }
+  
   .board-title {
-    font-size: 2rem;
+    font-size: 2.1rem;
+    line-height: 1.2;
   }
   
   .board-desc {
     font-size: 0.95rem;
+    line-height: 1.6;
   }
   
   .dashboard-grid {
@@ -252,18 +256,22 @@
     font-size: 1.3rem;
   }
   
+  .dash-card p {
+    font-size: 0.8rem;
+  }
+  
   .wide-card {
     grid-column: 1 / -1;
   }
   
   .right-scroll { 
     width: 100%; 
-    padding: 50px 5% 0 5%; 
+    padding: 45px 20px 0 20px; 
     overflow-y: visible; 
   }
   
   .timeline-container {
-    gap: 30px;
+    gap: 28px;
   }
   
   .timeline-node {
@@ -271,25 +279,27 @@
   }
   
   .node-icon {
-    width: 32px;
-    height: 32px;
-    font-size: 0.9rem;
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
     left: 8px;
   }
   
   .glass-panel { 
     flex-direction: column; 
-    gap: 16px; 
+    gap: 14px; 
     align-items: flex-start;
     padding: 20px;
   }
   
   .card-left h3 {
     font-size: 1.15rem;
+    line-height: 1.3;
   }
   
   .card-left p {
     font-size: 0.9rem;
+    line-height: 1.6;
   }
   
   .card-right { 
@@ -297,14 +307,18 @@
     border-left: none; 
     border-top: 1px dashed var(--vp-c-border); 
     padding-left: 0; 
-    padding-top: 16px;
+    padding-top: 14px;
     gap: 8px;
   }
   
   .mini-badge {
     font-size: 0.8rem;
-    padding: 6px 10px;
+    padding: 7px 11px;
+    flex-wrap: wrap;
+    gap: 4px;
   }
+  
+  .b-icon { font-size: 0.95rem; }
 }
 
 @media (max-width: 480px) {
@@ -324,12 +338,37 @@
     grid-template-columns: 1fr;
   }
   
+  .dash-card {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .wide-card {
+    flex-direction: row !important;
+  }
+  
   .timeline-node {
     padding-left: 45px;
   }
   
+  .node-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+    left: 7px;
+  }
+  
   .glass-panel {
     padding: 16px;
+  }
+  
+  .card-left h3 {
+    font-size: 1.05rem;
+  }
+  
+  .card-left p {
+    font-size: 0.85rem;
   }
   
   .card-right {
@@ -337,6 +376,8 @@
   }
   
   .mini-badge {
+    font-size: 0.75rem;
+    padding: 5px 9px;
     white-space: normal;
   }
 }

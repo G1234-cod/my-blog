@@ -92,10 +92,12 @@ html, body, #app {
  * ==========================================
  */
 
-/* 5. 强制解除可能从主页泄漏过来的全屏滚动锁定 */
-html, body, #app {
-  height: auto !important;
-  overflow-y: auto !important;
+/* 5. 强制解除可能从主页泄漏过来的全屏滚动锁定（仅在文档页面生效） */
+.VPDoc html,
+.VPDoc body,
+.VPDoc #app {
+  height: auto;
+  overflow-y: auto;
 }
 
 /* 6. 隐藏官方顶部导航栏，保留我们自己的 DynamicNavbar */

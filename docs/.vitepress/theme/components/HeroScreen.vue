@@ -89,83 +89,118 @@
 .stat-num { font-size: 1.1rem; font-weight: 800; color: var(--vp-c-text-1); font-family: monospace; }
 .stat-desc { font-size: 0.9rem; font-weight: 600; color: var(--vp-c-text-2); letter-spacing: 0.5px; }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .hero-wrapper {
     height: auto;
     min-height: 100vh;
-    padding-top: 60px;
+    padding-top: 70px;
   }
   
   .hero-card { 
-    min-height: 600px; 
+    min-height: 580px; 
     background-position: 70% center; 
     width: 95%;
-    margin-top: 20px;
+    margin-top: 15px;
+    border-radius: 20px;
   }
   
   .gradient-overlay { 
-    background: linear-gradient(to top, var(--vp-c-bg) 0%, var(--vp-c-bg) 50%, transparent 90%); 
-    padding: 100px 24px 30px 24px; 
+    background: linear-gradient(to top, var(--vp-c-bg) 0%, var(--vp-c-bg) 55%, transparent 95%); 
+    padding: 80px 20px 25px 20px; 
     justify-content: flex-end; 
   }
   
   .text-content { width: 100%; }
   
+  .tag { font-size: 0.85rem; }
+  
   .main-title { 
-    font-size: 2rem; 
-    line-height: 1.3;
+    font-size: 2.2rem; 
+    line-height: 1.25;
+    margin-bottom: 16px;
   }
   
   .description { 
     max-width: 100%; 
     font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
   }
   
   .mission-card {
-    padding: 20px;
-    margin-top: 20px;
+    padding: 18px;
+    margin-top: 16px;
+    border-radius: 14px;
   }
   
-  .mission-title { font-size: 0.85rem; }
+  .mission-title { font-size: 0.9rem; }
   .mission-text { font-size: 0.9rem; }
+  .mission-footer { font-size: 0.8rem; }
   
   .bottom-stats { 
-    gap: 16px; 
-    margin-top: 30px; 
-    padding: 0 24px;
+    gap: 20px; 
+    margin-top: 25px; 
+    padding: 0 20px;
+    flex-wrap: wrap;
   }
   
   .stat-item {
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
     text-align: center;
+    min-width: 70px;
   }
   
-  .stat-num { font-size: 1rem; }
+  .stat-item .icon { font-size: 1rem; }
+  .stat-num { font-size: 1.1rem; }
   .stat-desc { font-size: 0.8rem; }
+  
+  .bg-glow {
+    width: 400px;
+    height: 400px;
+  }
 }
 
 @media (max-width: 480px) {
+  .hero-wrapper {
+    padding-top: 60px;
+  }
+  
   .hero-card {
-    min-height: 550px;
+    min-height: 500px;
     border-radius: 16px;
+    width: 96%;
   }
   
   .main-title {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
   
   .gradient-overlay {
-    padding: 80px 16px 20px 16px;
+    padding: 60px 16px 20px 16px;
+  }
+  
+  .description {
+    font-size: 0.95rem;
+  }
+  
+  .mission-card {
+    padding: 16px;
   }
   
   .bottom-stats {
-    gap: 12px;
+    gap: 15px;
   }
   
+  .stat-num { font-size: 1rem; }
+  .stat-desc { font-size: 0.75rem; }
+  
   .bg-glow {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
   }
+  
+  .glow-1 { left: -5%; }
+  .glow-2 { right: -5%; }
 }
 </style>

@@ -156,51 +156,57 @@
 .flat-card:hover .c-tags span { color: var(--card-accent); border-color: var(--card-accent); background: var(--card-accent-soft); }
 
 /* === 移动端优雅自适应 === */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .hub-wrapper {
     padding: 80px 0;
     min-height: auto;
   }
   
   .hub-container {
-    padding: 0 5%;
+    padding: 0 20px;
   }
   
+  .section-tag { font-size: 0.85rem; }
+  
   .hub-header h2 {
-    font-size: 2rem;
+    font-size: 2.1rem;
+    line-height: 1.2;
   }
   
   .subtitle {
     font-size: 0.95rem;
     max-width: 100%;
+    line-height: 1.6;
   }
   
   .flat-grid { 
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
   }
   
   .flat-card {
-    padding: 24px;
+    padding: 22px;
   }
   
   .c-title {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    line-height: 1.3;
   }
   
   .c-desc {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
   
   .c-icon {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     font-size: 1.5rem;
   }
   
   .c-count {
-    font-size: 0.8rem;
-    padding: 3px 10px;
+    font-size: 0.82rem;
+    padding: 4px 11px;
   }
   
   .c-tags {
@@ -208,15 +214,15 @@
   }
   
   .c-tags span {
-    font-size: 0.75rem;
-    padding: 3px 8px;
+    font-size: 0.78rem;
+    padding: 4px 9px;
   }
   
   .card-glow {
-    width: 140px;
-    height: 140px;
-    right: -40px;
-    top: -40px;
+    width: 150px;
+    height: 150px;
+    right: -45px;
+    top: -45px;
   }
 }
 
@@ -233,24 +239,52 @@
     font-size: 1.8rem;
   }
   
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
   .flat-card {
-    padding: 20px;
+    padding: 18px;
   }
   
   .c-title {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
   
   .c-desc {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
+  }
+  
+  .c-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.3rem;
+  }
+  
+  .c-count {
+    font-size: 0.78rem;
+    padding: 3px 9px;
   }
   
   .card-top {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
   
   .c-tags {
     flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .c-tags span {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+  
+  .card-glow {
+    width: 120px;
+    height: 120px;
+    right: -30px;
+    top: -30px;
   }
 }
 </style>

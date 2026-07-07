@@ -260,7 +260,7 @@ a.project-card:hover {
   text-decoration: none !important; 
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .split-screen { 
     flex-direction: column; 
     overflow-y: auto; 
@@ -270,7 +270,7 @@ a.project-card:hover {
   .left-board { 
     width: 100%; 
     height: auto; 
-    padding: 80px 5% 40px 5%; 
+    padding: 80px 20px 35px 20px; 
     justify-content: flex-start; 
     border-right: none; 
     border-bottom: 1px solid var(--vp-c-divider);
@@ -280,17 +280,21 @@ a.project-card:hover {
     max-width: 100%; 
   }
   
+  .section-tag { font-size: 0.85rem; }
+  
   .board-title {
-    font-size: 2rem;
+    font-size: 2.1rem;
+    line-height: 1.2;
   }
   
   .board-desc {
     font-size: 0.95rem;
+    line-height: 1.6;
   }
   
   .highlight-stats {
-    gap: 20px;
-    padding-top: 24px;
+    gap: 18px;
+    padding-top: 22px;
   }
   
   .h-stat {
@@ -298,38 +302,41 @@ a.project-card:hover {
   }
   
   .icon-box {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     font-size: 1.1rem;
+    flex-shrink: 0;
   }
   
   .stat-text h4 {
     font-size: 1rem;
+    margin-bottom: 4px;
   }
   
   .stat-text p {
     font-size: 0.85rem;
+    line-height: 1.5;
   }
   
   .system-status { 
     position: relative; 
     bottom: 0; 
     left: 0; 
-    margin-top: 30px; 
+    margin-top: 28px; 
   }
   
   .right-scroll { 
     width: 100%; 
-    padding: 40px 5% 0 5%; 
+    padding: 40px 20px 0 20px; 
     overflow-y: visible; 
   }
   
   .projects-container {
-    gap: 24px;
+    gap: 22px;
   }
   
   .glass-panel {
-    padding: 24px;
+    padding: 22px;
     gap: 12px;
   }
   
@@ -341,26 +348,29 @@ a.project-card:hover {
   
   .card-header h3 {
     font-size: 1.15rem;
-    line-height: 1.4;
+    line-height: 1.35;
   }
   
   .title-badge {
-    font-size: 0.75rem;
-    padding: 3px 8px;
+    font-size: 0.78rem;
+    padding: 4px 10px;
+    align-self: flex-start;
   }
   
   .tech-tags {
     gap: 8px;
     margin-top: 0;
+    flex-wrap: wrap;
   }
   
   .tag {
-    font-size: 0.8rem;
-    padding: 3px 10px;
+    font-size: 0.82rem;
+    padding: 4px 11px;
   }
   
   .project-desc {
     font-size: 0.9rem;
+    line-height: 1.6;
   }
 }
 
@@ -370,27 +380,52 @@ a.project-card:hover {
   }
   
   .right-scroll {
-    padding: 30px 16px 0 16px;
+    padding: 35px 16px 0 16px;
   }
   
   .board-title {
     font-size: 1.8rem;
   }
   
+  .board-desc {
+    font-size: 0.9rem;
+  }
+  
+  .highlight-stats {
+    gap: 14px;
+  }
+  
+  .icon-box {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
+  .stat-text h4 {
+    font-size: 0.95rem;
+  }
+  
+  .stat-text p {
+    font-size: 0.8rem;
+  }
+  
   .glass-panel {
-    padding: 20px;
+    padding: 18px;
   }
   
   .card-header h3 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    line-height: 1.3;
   }
   
-  .tech-tags {
-    flex-wrap: wrap;
+  .title-badge {
+    font-size: 0.72rem;
+    padding: 3px 8px;
   }
   
   .tag {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
+    padding: 3px 9px;
   }
   
   .project-desc {

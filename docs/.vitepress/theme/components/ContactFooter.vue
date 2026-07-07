@@ -349,7 +349,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 @keyframes blinker { 50% { opacity: 0; } }
 
 /* === 移动端响应式适配 === */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .contact-wrapper {
     padding: 80px 0;
     min-height: auto;
@@ -357,8 +357,8 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   
   .bento-container { 
     grid-template-columns: 1fr; 
-    gap: 24px; 
-    padding: 0 5%;
+    gap: 22px; 
+    padding: 0 20px;
   }
   
   .card-header, .card-body { 
@@ -366,38 +366,52 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   }
   
   .left-title {
-    font-size: 2rem;
+    font-size: 2.1rem;
+    line-height: 1.2;
   }
   
   .quote-text {
     font-size: 0.95rem;
+    line-height: 1.6;
   }
   
   .main-contact-card {
     min-height: auto;
   }
   
+  .modern-form {
+    gap: 20px;
+  }
+  
   .form-row { 
     grid-template-columns: 1fr; 
-    gap: 16px; 
+    gap: 14px; 
   }
   
   .form-footer { 
     flex-direction: column-reverse; 
     align-items: stretch; 
-    gap: 16px; 
+    gap: 14px; 
   }
   
   .status-indicator { 
     justify-content: center; 
+    font-size: 0.8rem;
   }
   
   .submit-btn { 
     width: 100%; 
+    padding: 14px 24px;
+    font-size: 0.95rem;
   }
   
   .terminal-card { 
     min-height: 220px; 
+  }
+  
+  .terminal-body {
+    padding: 20px;
+    font-size: 0.82rem;
   }
   
   input, textarea {
@@ -415,6 +429,20 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   
   .terminal-widget {
     flex: 0 0 auto;
+  }
+  
+  .m-card {
+    padding: 20px;
+  }
+  
+  .m-icon { font-size: 1.6rem; }
+  
+  .m-main {
+    font-size: 1rem;
+  }
+  
+  .m-sub {
+    font-size: 0.82rem;
   }
 }
 
@@ -439,25 +467,50 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
     font-size: 0.9rem;
   }
   
+  .modern-form {
+    gap: 18px;
+  }
+  
+  .form-row {
+    gap: 12px;
+  }
+  
   .terminal-card {
     min-height: 200px;
   }
   
   .terminal-body {
     padding: 16px;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+  
+  input, textarea {
+    padding: 12px 14px;
+    font-size: 0.9rem;
   }
   
   .m-card {
-    padding: 18px;
+    padding: 16px;
   }
   
+  .m-icon { font-size: 1.4rem; }
+  
   .m-main {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   
   .m-sub {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+  }
+  
+  .submit-btn {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .status-indicator {
+    font-size: 0.75rem;
   }
 }
 </style>
