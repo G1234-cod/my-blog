@@ -37,7 +37,7 @@
                 <label>附件 / Attachments</label>
                 <div 
                   class="file-upload-area" 
-                  :class="{ dragover: isDragging }"
+                  :class="{ dragover: isDragging, 'has-files': selectedFiles.length > 0 }"
                   @click="$refs.fileInput.click()"
                   @dragover.prevent="isDragging = true"
                   @dragleave.prevent="isDragging = false"
@@ -50,23 +50,29 @@
                     accept="image/jpeg,image/png,image/gif,image/webp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain,application/json,application/zip,application/x-rar-compressed"
                     @change="handleFileSelect"
                   />
-                  <div class="upload-icon">📎</div>
-                  <div class="upload-text">
-                    {{ selectedFiles.length > 0 ? `已选择 ${selectedFiles.length} 个文件` : '点击或拖拽文件到此处上传' }}
+
+                  <div class="upload-prompt" v-if="selectedFiles.length === 0">
+                    <div class="upload-icon">📎</div>
+                    <div class="upload-text">点击或拖拽文件到此处上传</div>
+                    <div class="upload-hint">支持图片、PDF、文档、压缩包，最多 3 个文件，单个不超过 10MB</div>
                   </div>
-                  <div class="upload-hint">支持图片、PDF、文档、压缩包，最多 3 个文件，单个不超过 10MB</div>
-                </div>
-                
-                <div class="file-list" v-if="selectedFiles.length > 0">
-                  <div v-for="(file, index) in selectedFiles" :key="index" class="file-item">
-                    <div class="file-info">
-                      <span class="file-icon">{{ getFileIcon(file.type) }}</span>
-                      <div>
-                        <div class="file-name">{{ file.name }}</div>
-                        <div class="file-size">{{ formatFileSize(file.size) }}</div>
+
+                  <div class="file-list-container" v-else>
+                    <div class="file-list">
+                      <div v-for="(file, index) in selectedFiles" :key="index" class="file-item" @click.stop>
+                        <div class="file-info">
+                          <span class="file-icon">{{ getFileIcon(file.type) }}</span>
+                          <div>
+                            <div class="file-name">{{ file.name }}</div>
+                            <div class="file-size">{{ formatFileSize(file.size) }}</div>
+                          </div>
+                        </div>
+                        <button type="button" class="file-remove" @click.stop="removeFile(index)">×</button>
                       </div>
                     </div>
-                    <button class="file-remove" @click="removeFile(index)">×</button>
+                    <div class="upload-hint add-more" v-if="selectedFiles.length < 3">
+                      还可以继续点击或拖拽添加 ({{ selectedFiles.length }}/3)
+                    </div>
                   </div>
                 </div>
               </div>
@@ -231,7 +237,7 @@ const submitForm = async () => {
       formData.message = ''
       selectedFiles.value = []
 
-      // 👉 新增：设置一个 3 秒的定时器，3秒后把状态切回 'idle'（闲置），按钮就会恢复原样
+      // 发送成功后，等待3秒自动恢复按钮状态
       setTimeout(() => {
         sysStatus.value = 'idle'
       }, 3000)
@@ -281,18 +287,18 @@ onMounted(() => { fetchServerStatus() })
 .contact-wrapper {
   width: 100%; 
   min-height: 100vh; 
-  /* 👇 核心大换血：改成垂直方向的 Flex，强制从顶部开始往下排 */
+  /* 垂直方向 Flex，从顶部开始排布 */
   display: flex; 
   flex-direction: column; 
-  align-items: center;      /* 水平居中 */
-  justify-content: flex-start; /* 强制贴紧顶部，绝不允许往上溢出！ */
+  align-items: center;      
+  justify-content: flex-start; 
   
   position: relative; 
   overflow-x: hidden; 
   overflow-y: auto;   
   background-color: var(--vp-c-bg); 
   
-  /* 👇 增加顶部 Padding：预留 100px 空间，防止被 VitePress 顶部的导航栏遮住 */
+  /* 预留顶部 100px 空间，防止被导航栏遮挡 */
   padding: 100px 0 80px 0; 
 }
 
@@ -311,11 +317,8 @@ onMounted(() => { fetchServerStatus() })
   gap: 36px;
   z-index: 1; 
   padding: 0 4%;
-  
-  /* 👇 核心修复：把 margin: auto 改为 margin: 0 auto。
-     意思是：上下边距为 0（不要瞎居中），左右边距自动（保持水平居中） */
+  /* 仅允许水平居中，禁止上下自动 margin */
   margin: 0 auto; 
-  
   align-items: stretch; 
 }
 
@@ -326,9 +329,8 @@ onMounted(() => { fetchServerStatus() })
 }
 
 .main-contact-card {
-  flex: 1; /* 填满左侧容器 */
-  /* min-height: 620px; 🚀 增高：赋予左侧表单一个最低高度 */
-  min-height: auto; /* 👉 取消固定的 620px 限制，让表单内容自己撑开高度 */
+  flex: 1; 
+  min-height: auto; 
   display: flex; flex-direction: column; 
   border-radius: 24px; overflow: hidden;
   background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border);
@@ -338,7 +340,7 @@ onMounted(() => { fetchServerStatus() })
 .shadow-hover:hover { box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25); }
 
 .card-header {
-  padding: 45px 55px 25px; /* 增加内边距，更舒展 */
+  padding: 45px 55px 25px; 
   background: linear-gradient(135deg, rgba(26,29,36,0.3) 0%, transparent 100%);
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
@@ -353,7 +355,7 @@ onMounted(() => { fetchServerStatus() })
   justify-content: space-between;
 }
 
-.modern-form { display: flex; flex-direction: column; gap: 24px; } /* 拉大表单间隙 */
+.modern-form { display: flex; flex-direction: column; gap: 24px; } 
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .input-group { display: flex; flex-direction: column; gap: 8px; }
 .input-group label { font-size: 0.85rem; font-weight: 600; color: var(--vp-c-text-1); }
@@ -368,38 +370,55 @@ input:focus, textarea:focus { border-color: var(--vp-c-brand-1); background: var
 textarea { resize: vertical; min-height: 120px; }
 input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 
+/* --- 附件上传框优化设计 --- */
 .file-upload-area {
   border: 2px dashed var(--vp-c-border);
   border-radius: 12px;
-  padding: 24px;
+  min-height: 160px; /* 设定最低高度，防止空状态和满状态高度落差过大 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s ease;
   background: var(--vp-c-bg-soft);
+  padding: 16px;
 }
 .file-upload-area:hover { border-color: var(--vp-c-brand-1); background: rgba(var(--vp-c-brand-1), 0.03); }
 .file-upload-area.dragover { border-color: var(--vp-c-brand-1); background: rgba(var(--vp-c-brand-1), 0.06); transform: scale(1.01); }
 .file-upload-area input[type="file"] { display: none; }
+
+/* 有文件时，内容靠上对齐 */
+.file-upload-area.has-files { justify-content: flex-start; padding: 12px; }
+
 .upload-icon { font-size: 2.5rem; margin-bottom: 12px; }
 .upload-text { font-size: 0.95rem; color: var(--vp-c-text-2); font-weight: 500; }
 .upload-hint { font-size: 0.8rem; color: var(--vp-c-text-3); margin-top: 6px; }
+.upload-hint.add-more { margin-top: 12px; transition: color 0.2s ease; }
+.file-upload-area:hover .upload-hint.add-more { color: var(--vp-c-brand-1); }
 
-.file-list { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+/* 内嵌文件列表容器 */
+.file-list-container { width: 100%; display: flex; flex-direction: column; }
+.file-list { display: flex; flex-direction: column; gap: 8px; width: 100%; }
 .file-item {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 16px; background: var(--vp-c-default-soft); border-radius: 8px;
+  padding: 10px 14px; background: var(--vp-c-default-soft); border-radius: 8px;
   border: 1px solid var(--vp-c-border);
+  text-align: left; /* 强制左对齐 */
+  cursor: default; /* 文件条目上恢复普通鼠标指针 */
 }
 .file-info { display: flex; align-items: center; gap: 12px; }
 .file-icon { font-size: 1.4rem; }
-.file-name { font-size: 0.9rem; color: var(--vp-c-text-1); font-weight: 500; }
+.file-name { font-size: 0.9rem; color: var(--vp-c-text-1); font-weight: 500; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
 .file-size { font-size: 0.8rem; color: var(--vp-c-text-3); }
 .file-remove {
-  width: 28px; height: 28px; border-radius: 50%; background: rgba(255, 8, 68, 0.1);
+  width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: rgba(255, 8, 68, 0.1);
   border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
   color: #ff0844; font-size: 0.9rem; transition: all 0.2s ease;
 }
 .file-remove:hover { background: rgba(255, 8, 68, 0.2); transform: scale(1.1); }
+
 
 .sys-banner { padding: 12px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; line-height: 1.5; }
 .sys-banner.error { background: rgba(255, 8, 68, 0.1); color: #ff0844; border: 1px solid rgba(255, 8, 68, 0.3); }
@@ -416,11 +435,11 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 .submit-btn:disabled { opacity: 0.7; cursor: wait; }
 .success-btn { background: #0ba360 !important; color: white !important; cursor: default !important; }
 
-/* 🚀 修改：系统状态指示器，使用硬核等宽字体 */
+/* 系统状态指示器 */
 .status-indicator { 
   display: flex; align-items: center; gap: 10px; 
   font-size: 0.85rem; font-weight: 700; color: #0ba360; 
-  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; /* 赛博代码字体 */
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; 
   letter-spacing: 1px;
 }
 .status-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: 0 0 10px #0ba360; animation: pulse 2s infinite; }
@@ -435,7 +454,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 .bento-right {
   display: flex;
   flex-direction: column;
-  height: 100%; /* 🚀 强行等高：充满父网格的拉伸高度 */
+  height: 100%; 
   gap: 24px;
 }
 
@@ -445,17 +464,13 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   gap: 12px;
 }
 
-/* 顶部 GitHub 卡片高度自适应 */
 .github-widget { flex: 0 0 auto; }
-
-/* 🚀 底部终端卡片高度霸占剩余所有空间 */
 .terminal-widget { flex: 1 1 0; }
 
 .widget-title {
   font-size: 0.85rem; font-weight: 700; color: var(--vp-c-text-3); text-transform: uppercase; letter-spacing: 1px;
 }
 
-/* 基础卡片样式 */
 .m-card {
   display: flex; align-items: center; gap: 16px; padding: 22px;
   background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border); border-radius: 16px;
@@ -467,9 +482,8 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 .m-main { font-size: 1.05rem; font-weight: 700; color: var(--vp-c-text-1); }
 .m-sub { font-size: 0.85rem; color: var(--vp-c-text-2); font-weight: 500; margin-top: 4px; }
 
-/* 专属极客终端卡片 */
 .terminal-card {
-  height: 100%; /* 让卡片充满 widget */
+  height: 100%; 
   flex-direction: column;
   padding: 0 !important; 
   background: rgba(13, 17, 23, 0.8) !important;
@@ -498,10 +512,10 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .terminal-body {
   padding: 24px;
-  flex-grow: 1; /* 让终端内容区域拉伸 */
+  flex-grow: 1; 
   font-size: 0.85rem; 
   line-height: 1.8; 
-  display: flex; flex-direction: column; justify-content: center; /* 内容居中展示 */
+  display: flex; flex-direction: column; justify-content: center; 
   font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
   text-shadow: 0 0 2px rgba(255,255,255,0.1); 
 }
