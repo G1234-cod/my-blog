@@ -13,6 +13,8 @@ const allowedOrigins = [
   'https://118.31.40.119',
   'http://gyx-a.cn',
   'https://gyx-a.cn',
+  'http://www.gyx-a.cn',   // 👉 新增：处理 HTTP 协议带 www 的情况
+  'https://www.gyx-a.cn',  // 👉 新增：处理 HTTPS 协议带 www 的情况
   'http://localhost', 
   'http://127.0.0.1',
   'http://localhost:5173',
@@ -55,7 +57,10 @@ const upload = multer({
       'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       'text/plain', 'application/json',
-      'application/zip', 'application/x-rar-compressed'
+      'application/zip', 'application/x-rar-compressed',
+      'application/octet-stream',      // 👉 新增：部分 Windows 浏览器强行把文档识别为二进制流
+      'application/x-zip-compressed',  // 👉 新增：Windows 默认的 zip 类型标记
+      'application/zip-compressed'     // 👉 新增：部分浏览器的 zip 变体类型
     ];
     
     if (allowedTypes.includes(file.mimetype)) {
