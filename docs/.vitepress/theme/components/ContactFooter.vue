@@ -338,30 +338,31 @@ onMounted(() => { fetchServerStatus() })
 .shadow-hover:hover { box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25); }
 
 .card-header {
-  padding: 45px 55px 25px; 
+  padding: 28px 40px 16px; 
   background: linear-gradient(135deg, rgba(26,29,36,0.3) 0%, transparent 100%);
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
-.left-title { font-size: 2.8rem; font-weight: 800; color: var(--vp-c-text-1); line-height: 1.1; margin: 0 0 16px 0; letter-spacing: -0.5px; }
-.quote-text { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.6; font-weight: 500; margin: 0; }
+.left-title { font-size: 2rem; font-weight: 800; color: var(--vp-c-text-1); line-height: 1.1; margin: 0 0 12px 0; letter-spacing: -0.5px; }
+.quote-text { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.6; font-weight: 500; margin: 0; }
 
 .card-body {
-  padding: 35px 55px 45px;
+  padding: 22px 40px 28px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  overflow-y: auto;
 }
 
-.modern-form { display: flex; flex-direction: column; gap: 24px; } 
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.input-group { display: flex; flex-direction: column; gap: 8px; }
-.input-group label { font-size: 0.85rem; font-weight: 600; color: var(--vp-c-text-1); }
+.modern-form { display: flex; flex-direction: column; gap: 18px; } 
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-group label { font-size: 0.8rem; font-weight: 600; color: var(--vp-c-text-1); }
 .required { color: #ff0844; }
 
 input, textarea {
   width: 100%; background: var(--vp-c-default-soft); border: 1px solid var(--vp-c-border);
-  padding: 16px 18px; border-radius: 12px; font-size: 1rem; color: var(--vp-c-text-1);
+  padding: 12px 14px; border-radius: 10px; font-size: 0.9rem; color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-base); transition: all 0.2s ease; outline: none;
 }
 input:focus, textarea:focus { border-color: var(--vp-c-brand-1); background: var(--vp-c-bg-soft); box-shadow: 0 0 0 3px rgba(var(--vp-c-brand-1), 0.1); }
@@ -372,7 +373,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 .file-upload-area {
   border: 2px dashed var(--vp-c-border);
   border-radius: 12px;
-  min-height: 160px; /* 设定最低高度，防止空状态和满状态高度落差过大 */
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -381,7 +382,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   cursor: pointer;
   transition: all 0.2s ease;
   background: var(--vp-c-bg-soft);
-  padding: 16px;
+  padding: 12px;
 }
 .file-upload-area:hover { border-color: var(--vp-c-brand-1); background: rgba(var(--vp-c-brand-1), 0.03); }
 .file-upload-area.dragover { border-color: var(--vp-c-brand-1); background: rgba(var(--vp-c-brand-1), 0.06); transform: scale(1.01); }
@@ -390,9 +391,9 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 /* 有文件时，内容靠上对齐 */
 .file-upload-area.has-files { justify-content: flex-start; padding: 12px; }
 
-.upload-icon { font-size: 2.5rem; margin-bottom: 12px; }
-.upload-text { font-size: 0.95rem; color: var(--vp-c-text-2); font-weight: 500; }
-.upload-hint { font-size: 0.8rem; color: var(--vp-c-text-3); margin-top: 6px; }
+.upload-icon { font-size: 1.8rem; margin-bottom: 8px; }
+.upload-text { font-size: 0.85rem; color: var(--vp-c-text-2); font-weight: 500; }
+.upload-hint { font-size: 0.75rem; color: var(--vp-c-text-3); margin-top: 4px; }
 .upload-hint.add-more { margin-top: 12px; transition: color 0.2s ease; }
 .file-upload-area:hover .upload-hint.add-more { color: var(--vp-c-brand-1); }
 

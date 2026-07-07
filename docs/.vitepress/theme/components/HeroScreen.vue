@@ -51,7 +51,7 @@
 .glow-2 { bottom: -10%; right: 10%; width: 500px; height: 500px; background: #00f2fe; }
 
 .hero-card {
-  width: 90%; max-width: 1400px; min-height: 500px; height: auto;
+  width: 90%; max-width: 1400px; min-height: 720px; height: auto;
   position: relative; z-index: 1; border-radius: 24px; overflow: hidden;
   background-image: url('/background.jpg'); 
   background-size: cover; background-position: right center; background-repeat: no-repeat;
