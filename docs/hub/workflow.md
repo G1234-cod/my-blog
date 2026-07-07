@@ -11,12 +11,12 @@
 
 ### 🌟 工业级图床系统构建
 彻底解耦图文依赖，打造绝对掌控的静态资产池：
-- [Typora + PicGo + GitHub 自动化图床系统构建全记录](../env-setup/Typora + PicGo + GitHub实现博客搭建/1.Typora_PicGo_GitHub_自动化图床系统构建全记录)
+- [Typora + PicGo + GitHub 自动化图床系统构建全记录](../env-setup/Typora + PicGo + GitHub实现博客搭建/1.Typora_PicGo_GitHub_自动化图床系统构建全记录.md)
 - [构建工业级图片管理体系与 Typora 路径变量](../env-setup/Typora + PicGo + GitHub实现博客搭建/2.构建工业级图片管理体系_Typora路径变量与GitHub层级化存储.md)
 - [自动化图床背后的工程逻辑与工具哲学](../env-setup/Typora + PicGo + GitHub实现博客搭建/3.自动化图床背后的工程逻辑与工具哲学.md)
 
 ### 🛠️ 极客开发环境探秘
-- [Trae IDE 与本地开发环境初探：SOLO 模式与多智能体协同](../tech-note/Published/03-Workflow/Trae与本地开发环境初探笔记.md)
+- [Trae IDE 与本地开发环境初探：SOLO 模式与多智能体协同](../tech-note/Published/03-Workflow/1.Trae与本地开发环境初探笔记.md)
 
 ### 📖 工程文化与敏捷实践 (Reading)
 - 高效工作流、敏捷开发与极客精神的沉淀与思考。

@@ -18,7 +18,7 @@
 
       <div class="flat-grid">
         
-        <a href="/ai-journey/" class="flat-card theme-ai">
+        <a href="/hub/ai-agent" class="flat-card theme-ai">
           <div class="card-glow"></div>
           <div class="card-top">
             <div class="c-icon">🤖</div>
@@ -32,7 +32,7 @@
           </div>
         </a>
 
-        <a href="/tech-note/" class="flat-card theme-ops">
+        <a href="/hub/cloud-devops" class="flat-card theme-ops">
           <div class="card-glow"></div>
           <div class="card-top">
             <div class="c-icon">⚙️</div>
@@ -46,7 +46,7 @@
           </div>
         </a>
 
-        <a href="/env-setup/" class="flat-card theme-read">
+        <a href="/hub/workflow" class="flat-card theme-read">
           <div class="card-glow"></div>
           <div class="card-top">
             <div class="c-icon">✨</div>
@@ -60,7 +60,7 @@
           </div>
         </a>
 
-        <a href="/leetcode/" class="flat-card theme-cs">
+        <a href="/hub/algorithm" class="flat-card theme-cs">
           <div class="card-glow"></div>
           <div class="card-top">
             <div class="c-icon">🧠</div>

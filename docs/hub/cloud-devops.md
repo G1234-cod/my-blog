@@ -14,9 +14,9 @@
 - [博客架构的终极进化：去中心化多仓库协同](../build-journal/2.架构的终极进化.md)
 
 ### 🛠️ 服务器部署与自动化运维
-- [从零到一：阿里云服务器搭建与安全加固](../build-journal/3.从零到一_我的阿里云服务器搭建与安全加固学习笔记.md)
+- [从零到一：阿里云服务器搭建与安全加固](../build-journal/3.从零到一_阿里云服务器搭建与安全加固学习笔记.md)
 - [自动化上线实战：跨平台冲突与 Nginx SSL 踩坑](../build-journal/4.自动化上线实战_下.md)
-- [CI/CD 流水线排障与 GitHub Actions 避坑指南](../tech-note/Published/02-Cloud-DevOps/CICD 流水线排障与架构避坑指南.md)
+- [CI/CD 流水线排障与 GitHub Actions 避坑指南](../tech-note/Published/02-Cloud-DevOps/2.CICD 流水线排障与架构避坑指南.md)
 
 ### 📖 云原生前沿阅读 (Reading)
 - 高并发、微服务解耦与分布式系统设计思考。

@@ -17,8 +17,8 @@
 
 ### 🛠️ 本地私有知识库搭建 (Tech-Notes)
 彻底摆脱云端依赖，打造完全自主可控的本地 AI 大脑：
-- [Docker 环境搭建与 WSL2 调优](../tech-note/Published/01-AI-Agent/01-知识库搭建/Docker环境搭建.md)
-- [本地私有知识库：基于 AnythingLLM 搭建全记录](../tech-note/Published/01-AI-Agent/01-知识库搭建/本地私有知识库_基于AnythingLLM搭建学习笔记_详细版.md)
+- [Docker 环境搭建与 WSL2 调优](../tech-note/Published/01-AI-Agent/01-知识库搭建/1.Docker环境搭建.md)
+- [本地私有知识库：基于 AnythingLLM 搭建全记录](../tech-note/Published/01-AI-Agent/01-知识库搭建/3.本地私有知识库_基于AnythingLLM搭建学习笔记_详细版.md)
 
 ### 📖 前沿论文与精读 (Reading)
 - 大语言模型 (LLM) 前沿架构精读与底层逻辑思考。
