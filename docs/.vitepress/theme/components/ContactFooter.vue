@@ -233,7 +233,11 @@ const submitForm = async () => {
     } else {
       const errData = await response.json().catch(() => ({}))
       sysStatus.value = 'error'
-      sysMessage.value = `服务器返回错误: ${response.status} ${errData.message || ''}`
+      if (response.status === 413) {
+        sysMessage.value = errData.message || '文件过大，请压缩后重新上传（单个文件不超过 10MB）'
+      } else {
+        sysMessage.value = errData.message || `服务器返回错误: ${response.status}`
+      }
     }
   } catch (error) {
     sysStatus.value = 'error'

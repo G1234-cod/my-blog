@@ -144,6 +144,25 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+app.use((error, req, res, next) => {
+  if (error instanceof multer.MulterError) {
+    if (error.code === 'LIMIT_FILE_SIZE') {
+      return res.status(413).json({ success: false, message: '单个文件超过 10MB 限制，请压缩后重新上传' });
+    }
+    if (error.code === 'LIMIT_FILE_COUNT') {
+      return res.status(413).json({ success: false, message: '最多只能上传 3 个文件' });
+    }
+    if (error.code === 'LIMIT_FIELD_SIZE') {
+      return res.status(413).json({ success: false, message: '请求体过大，请减少附件数量或大小' });
+    }
+    return res.status(400).json({ success: false, message: `文件上传错误: ${error.message}` });
+  }
+  if (error.message) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+  res.status(500).json({ success: false, message: '服务器内部错误' });
+});
+
 app.listen(PORT, () => {
   console.log(`✅ API Core Service Online: http://localhost:${PORT}`);
 });
