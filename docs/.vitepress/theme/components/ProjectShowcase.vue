@@ -64,6 +64,21 @@
           </p>
         </a>
 
+        <a href="/projects/market-transactions" class="project-card glass-panel">
+          <div class="card-header">
+            <h3>智能二手商品发布助手</h3>
+            <div class="title-badge gold-badge"><span class="b-icon">🌟</span> AI 全栈应用</div>
+          </div>
+          <div class="tech-tags">
+            <span class="tag brand">YOLOv8 + CLIP</span>
+            <span class="tag">以图搜图</span>
+            <span class="tag">AI 智能定价</span>
+          </div>
+          <p class="project-desc">
+            一款面向二手商品交易的 AI 发布平台。用户只需上传一张商品照片，系统自动完成品类识别、市场查价、瑕疵检测、智能定价、流式文案生成，全流程仅需 3 次点击即可一键发布到商城。
+          </p>
+        </a>
+
         <a href="/projects/online-exam" class="project-card glass-panel">
           <div class="card-header">
             <h3>在线考试管理系统</h3>
@@ -94,21 +109,6 @@
           </p>
         </a>
 
-        <a href="/projects/community-forum" class="project-card glass-panel">
-          <div class="card-header">
-            <h3>基于双重验证机制的社区互动系统</h3>
-            <div class="title-badge cyan-badge"><span class="b-icon">⏳</span> 软著审核中</div>
-          </div>
-          <div class="tech-tags">
-            <span class="tag brand">Web 安全架构</span>
-            <span class="tag">双重验证引擎</span>
-            <span class="tag">原子化结算</span>
-          </div>
-          <p class="project-desc">
-            一个高安全性的 Web 交互平台。核心采用了多模态双重验证引擎与全局拦截器架构，不仅保障了内容交互的安全，还内置了原子化积分结算引擎，确保了用户资产的安全性与数据记录的可追溯性。
-          </p>
-        </a>
-
         <a href="/projects/local-rag" class="project-card glass-panel">
           <div class="card-header">
             <h3>基于 AnythingLLM 的本地私有化知识库</h3>
@@ -124,17 +124,18 @@
           </p>
         </a>
 
-        <a href="/projects/cloud-portal" class="project-card glass-panel">
+        <a href="/projects/community-forum" class="project-card glass-panel">
           <div class="card-header">
-            <h3>云原生个人门户系统 (Jamstack + CI/CD)</h3>
+            <h3>基于双重验证机制的社区互动系统</h3>
+            <div class="title-badge cyan-badge"><span class="b-icon">⏳</span> 软著审核中</div>
           </div>
           <div class="tech-tags">
-            <span class="tag brand">Jamstack</span>
-            <span class="tag">VitePress</span>
-            <span class="tag">GitHub Actions</span>
+            <span class="tag brand">Web 安全架构</span>
+            <span class="tag">双重验证引擎</span>
+            <span class="tag">原子化结算</span>
           </div>
           <p class="project-desc">
-            基于 Jamstack 架构的个人知识库与作品集。通过 GitHub Actions 构建自动化流水线，实现了代码多仓库聚合、VitePress 自动编译与 阿里云服务器/GitHub Pages 双平台 的零宕机发布，构建了从本地写作到云端发布的闭环运维体系。
+            一个高安全性的 Web 交互平台。核心采用了多模态双重验证引擎与全局拦截器架构，不仅保障了内容交互的安全，还内置了原子化积分结算引擎，确保了用户资产的安全性与数据记录的可追溯性。
           </p>
         </a>
 
@@ -152,18 +153,17 @@
           </p>
         </a>
 
-        <a href="/projects/market-transactions" class="project-card glass-panel">
+        <a href="/projects/cloud-portal" class="project-card glass-panel">
           <div class="card-header">
-            <h3>智能二手商品发布助手</h3>
-            <div class="title-badge gold-badge"><span class="b-icon">🎓</span> 毕业设计</div>
+            <h3>云原生个人门户系统 (Jamstack + CI/CD)</h3>
           </div>
           <div class="tech-tags">
-            <span class="tag brand">YOLOv8 + CLIP</span>
-            <span class="tag">以图搜图</span>
-            <span class="tag">AI 智能定价</span>
+            <span class="tag brand">Jamstack</span>
+            <span class="tag">VitePress</span>
+            <span class="tag">GitHub Actions</span>
           </div>
           <p class="project-desc">
-            一款面向二手商品交易的 AI 发布平台。用户只需上传一张商品照片，系统自动完成品类识别、市场查价、瑕疵检测、智能定价、流式文案生成，全流程仅需 3 次点击即可一键发布到商城。
+            基于 Jamstack 架构的个人知识库与作品集。通过 GitHub Actions 构建自动化流水线，实现了代码多仓库聚合、VitePress 自动编译与 阿里云服务器/GitHub Pages 双平台 的零宕机发布，构建了从本地写作到云端发布的闭环运维体系。
           </p>
         </a>
 
