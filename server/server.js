@@ -45,8 +45,9 @@ const upload = multer({
   storage: storage,
   limits: {
     fileSize: 10 * 1024 * 1024,
-    files: 3,
-    fieldSize: 50 * 1024 * 1024
+    maxFiles: 3,
+    fieldSize: 50 * 1024 * 1024,
+    fields: 10
   },
   fileFilter: (req, file, cb) => {
     const allowedTypes = [
