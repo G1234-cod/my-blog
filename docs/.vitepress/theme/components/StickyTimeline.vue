@@ -210,12 +210,134 @@
 
 /* === 移动端适配 === */
 @media (max-width: 1024px) {
-  .split-screen { flex-direction: column; overflow-y: auto; height: auto; }
-  .left-board { width: 100%; height: auto; padding: 80px 5% 40px 5%; border-right: none; border-bottom: 1px solid var(--vp-c-divider); }
-  .board-content { width: 100%; }
-  .right-scroll { width: 100%; padding: 60px 5% 0 5%; overflow-y: visible; }
-  /* 移动端卡片内部改为上下堆叠 */
-  .glass-panel { flex-direction: column; gap: 20px; align-items: flex-start; }
-  .card-right { width: 100%; border-left: none; border-top: 1px dashed var(--vp-c-border); padding-left: 0; padding-top: 20px; }
+  .split-screen { 
+    flex-direction: column; 
+    overflow-y: auto; 
+    height: auto; 
+    padding: 0;
+  }
+  
+  .left-board { 
+    width: 100%; 
+    height: auto; 
+    padding: 80px 5% 40px 5%; 
+    border-right: none; 
+    border-bottom: 1px solid var(--vp-c-divider);
+    align-items: flex-start;
+  }
+  
+  .board-content { 
+    width: 100%; 
+    text-align: left;
+  }
+  
+  .board-title {
+    font-size: 2rem;
+  }
+  
+  .board-desc {
+    font-size: 0.95rem;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .dash-card {
+    padding: 16px;
+  }
+  
+  .dash-card h4 {
+    font-size: 1.3rem;
+  }
+  
+  .wide-card {
+    grid-column: 1 / -1;
+  }
+  
+  .right-scroll { 
+    width: 100%; 
+    padding: 50px 5% 0 5%; 
+    overflow-y: visible; 
+  }
+  
+  .timeline-container {
+    gap: 30px;
+  }
+  
+  .timeline-node {
+    padding-left: 50px;
+  }
+  
+  .node-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+    left: 8px;
+  }
+  
+  .glass-panel { 
+    flex-direction: column; 
+    gap: 16px; 
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  .card-left h3 {
+    font-size: 1.15rem;
+  }
+  
+  .card-left p {
+    font-size: 0.9rem;
+  }
+  
+  .card-right { 
+    width: 100%; 
+    border-left: none; 
+    border-top: 1px dashed var(--vp-c-border); 
+    padding-left: 0; 
+    padding-top: 16px;
+    gap: 8px;
+  }
+  
+  .mini-badge {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-board {
+    padding: 70px 16px 30px 16px;
+  }
+  
+  .right-scroll {
+    padding: 40px 16px 0 16px;
+  }
+  
+  .board-title {
+    font-size: 1.8rem;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline-node {
+    padding-left: 45px;
+  }
+  
+  .glass-panel {
+    padding: 16px;
+  }
+  
+  .card-right {
+    gap: 6px;
+  }
+  
+  .mini-badge {
+    white-space: normal;
+  }
 }
 </style>

@@ -90,12 +90,82 @@
 .stat-desc { font-size: 0.9rem; font-weight: 600; color: var(--vp-c-text-2); letter-spacing: 0.5px; }
 
 @media (max-width: 900px) {
-  /*修改图片高度*/
-  .hero-card { min-height: 750px; background-position: 70% center; }
-  .gradient-overlay { background: linear-gradient(to top, var(--vp-c-bg) 0%, var(--vp-c-bg) 50%, transparent 90%); padding: 120px 30px 40px 30px; justify-content: flex-end; }
+  .hero-wrapper {
+    height: auto;
+    min-height: 100vh;
+    padding-top: 60px;
+  }
+  
+  .hero-card { 
+    min-height: 600px; 
+    background-position: 70% center; 
+    width: 95%;
+    margin-top: 20px;
+  }
+  
+  .gradient-overlay { 
+    background: linear-gradient(to top, var(--vp-c-bg) 0%, var(--vp-c-bg) 50%, transparent 90%); 
+    padding: 100px 24px 30px 24px; 
+    justify-content: flex-end; 
+  }
+  
   .text-content { width: 100%; }
-  .main-title { font-size: 2.2rem; }
-  .description { max-width: 100%; }
-  .bottom-stats { gap: 20px; margin-top: 30px; }
+  
+  .main-title { 
+    font-size: 2rem; 
+    line-height: 1.3;
+  }
+  
+  .description { 
+    max-width: 100%; 
+    font-size: 1rem;
+  }
+  
+  .mission-card {
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .mission-title { font-size: 0.85rem; }
+  .mission-text { font-size: 0.9rem; }
+  
+  .bottom-stats { 
+    gap: 16px; 
+    margin-top: 30px; 
+    padding: 0 24px;
+  }
+  
+  .stat-item {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+  
+  .stat-num { font-size: 1rem; }
+  .stat-desc { font-size: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-card {
+    min-height: 550px;
+    border-radius: 16px;
+  }
+  
+  .main-title {
+    font-size: 1.8rem;
+  }
+  
+  .gradient-overlay {
+    padding: 80px 16px 20px 16px;
+  }
+  
+  .bottom-stats {
+    gap: 12px;
+  }
+  
+  .bg-glow {
+    width: 300px;
+    height: 300px;
+  }
 }
 </style>

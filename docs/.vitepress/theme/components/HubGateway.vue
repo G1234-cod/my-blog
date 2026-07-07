@@ -157,6 +157,100 @@
 
 /* === 移动端优雅自适应 === */
 @media (max-width: 900px) {
-  .flat-grid { grid-template-columns: 1fr; }
+  .hub-wrapper {
+    padding: 80px 0;
+    min-height: auto;
+  }
+  
+  .hub-container {
+    padding: 0 5%;
+  }
+  
+  .hub-header h2 {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+  
+  .flat-grid { 
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .flat-card {
+    padding: 24px;
+  }
+  
+  .c-title {
+    font-size: 1.2rem;
+  }
+  
+  .c-desc {
+    font-size: 0.9rem;
+  }
+  
+  .c-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.5rem;
+  }
+  
+  .c-count {
+    font-size: 0.8rem;
+    padding: 3px 10px;
+  }
+  
+  .c-tags {
+    margin-top: 16px;
+  }
+  
+  .c-tags span {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+  
+  .card-glow {
+    width: 140px;
+    height: 140px;
+    right: -40px;
+    top: -40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hub-wrapper {
+    padding: 70px 0;
+  }
+  
+  .hub-container {
+    padding: 0 16px;
+  }
+  
+  .hub-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .flat-card {
+    padding: 20px;
+  }
+  
+  .c-title {
+    font-size: 1.1rem;
+  }
+  
+  .c-desc {
+    font-size: 0.85rem;
+  }
+  
+  .card-top {
+    margin-bottom: 16px;
+  }
+  
+  .c-tags {
+    flex-wrap: wrap;
+  }
 }
 </style>

@@ -213,5 +213,88 @@
   .bento-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .bento-wrapper { padding: 80px 5% 40px 5%; height: auto; min-height: 100vh; justify-content: flex-start; }
+  
+  .profile-card {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .avatar-ring {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .profile-card h2 {
+    font-size: 1.6rem;
+  }
+  
+  .role-badge-container {
+    justify-content: center;
+  }
+  
+  .desc {
+    font-size: 0.95rem;
+  }
+  
+  .bento-card {
+    padding: 24px;
+  }
+  
+  .stat-item {
+    padding: 20px 8px;
+  }
+  
+  .stat-item h3 {
+    font-size: 1.8rem;
+  }
+  
+  .stat-item p {
+    font-size: 0.85rem;
+  }
+  
+  .skills-card {
+    padding: 24px;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .skill-list {
+    gap: 16px;
+  }
+  
+  .skill-info {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-wrapper {
+    padding: 70px 16px 30px 16px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .stat-item h3 {
+    font-size: 1.5rem;
+  }
+  
+  .stat-item p {
+    font-size: 0.8rem;
+  }
+  
+  .tech-pill span {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .marquee-container {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
 }
 </style>

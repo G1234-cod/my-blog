@@ -1,5 +1,5 @@
 <template>
-  <nav :class="['dynamic-navbar', { 'is-scrolled': isScrolled }]">
+  <nav :class="['dynamic-navbar', { 'is-scrolled': isScrolled, 'is-mobile-open': isMobileMenuOpen }]">
     <a href="javascript:void(0)" class="nav-brand" @click.prevent="handleNavClick('hero')">GYX<span>.Dev</span></a>
     
     <ul class="nav-links">
@@ -18,6 +18,10 @@
           <span class="label">{{ isDark ? 'Dark' : 'Light' }}</span>
         </button>
       </ClientOnly>
+      
+      <button class="mobile-menu-btn" @click="toggleMobileMenu" aria-label="Toggle menu">
+        <span class="menu-icon" :class="{ 'is-open': isMobileMenuOpen }"></span>
+      </button>
     </div>
   </nav>
 </template>
@@ -32,6 +36,7 @@ const router = useRouter()
 const isScrolled = ref(false)
 const isDark = ref(true) 
 const activeSection = ref('hero') 
+const isMobileMenuOpen = ref(false)
 
 const sections = ['hero', 'stats', 'timeline', 'projects', 'hub', 'contact']
 
@@ -75,6 +80,7 @@ const processPendingScroll = () => {
 }
 
 const handleNavClick = (sectionId) => {
+  closeMobileMenu()
   if (isHomePage.value) {
     scrollToSection(sectionId)
   } else {
@@ -127,6 +133,14 @@ const toggleTheme = () => {
     isDark.value = isDarkMode
     localStorage.setItem('vitepress-theme-appearance', isDarkMode ? 'dark' : 'light')
   }
+}
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
+}
+
+const closeMobileMenu = () => {
+  isMobileMenuOpen.value = false
 }
 
 onMounted(() => {
@@ -265,18 +279,115 @@ onUnmounted(() => {
   letter-spacing: 0.5px;
 }
 
+/* 移动端菜单按钮 */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 10000;
+}
+
+.menu-icon {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--vp-c-text-1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: var(--vp-c-text-1);
+  transition: all 0.3s ease;
+}
+
+.menu-icon::before {
+  top: -8px;
+}
+
+.menu-icon::after {
+  top: 8px;
+}
+
+.menu-icon.is-open {
+  background: transparent;
+}
+
+.menu-icon.is-open::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.menu-icon.is-open::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
 @media (max-width: 768px) {
   .dynamic-navbar {
     padding: 0 20px;
   }
+  
   .nav-links {
-    gap: 16px;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: var(--vp-c-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    border-bottom: 1px solid var(--vp-c-divider);
+    z-index: 9998;
   }
+  
+  .is-mobile-open .nav-links {
+    transform: translateX(0);
+  }
+  
   .nav-links a {
-    font-size: 0.75rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
   }
+  
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: var(--vp-c-brand-soft);
+    color: var(--vp-c-brand-1);
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
   .theme-switch .label {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    font-size: 1rem;
   }
 }
 </style>

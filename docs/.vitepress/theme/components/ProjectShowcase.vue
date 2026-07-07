@@ -261,10 +261,140 @@ a.project-card:hover {
 }
 
 @media (max-width: 1024px) {
-  .split-screen { flex-direction: column; overflow-y: auto; height: auto; }
-  .left-board { width: 100%; height: auto; padding: 80px 5% 40px 5%; justify-content: flex-start; border-right: none; border-bottom: 1px solid var(--vp-c-divider); }
-  .board-content { max-width: 100%; }
-  .system-status { position: relative; bottom: 0; left: 0; margin-top: 40px; }
-  .right-scroll { width: 100%; padding: 40px 5% 0 5%; overflow-y: visible; }
+  .split-screen { 
+    flex-direction: column; 
+    overflow-y: auto; 
+    height: auto; 
+  }
+  
+  .left-board { 
+    width: 100%; 
+    height: auto; 
+    padding: 80px 5% 40px 5%; 
+    justify-content: flex-start; 
+    border-right: none; 
+    border-bottom: 1px solid var(--vp-c-divider);
+  }
+  
+  .board-content { 
+    max-width: 100%; 
+  }
+  
+  .board-title {
+    font-size: 2rem;
+  }
+  
+  .board-desc {
+    font-size: 0.95rem;
+  }
+  
+  .highlight-stats {
+    gap: 20px;
+    padding-top: 24px;
+  }
+  
+  .h-stat {
+    gap: 14px;
+  }
+  
+  .icon-box {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+  
+  .stat-text h4 {
+    font-size: 1rem;
+  }
+  
+  .stat-text p {
+    font-size: 0.85rem;
+  }
+  
+  .system-status { 
+    position: relative; 
+    bottom: 0; 
+    left: 0; 
+    margin-top: 30px; 
+  }
+  
+  .right-scroll { 
+    width: 100%; 
+    padding: 40px 5% 0 5%; 
+    overflow-y: visible; 
+  }
+  
+  .projects-container {
+    gap: 24px;
+  }
+  
+  .glass-panel {
+    padding: 24px;
+    gap: 12px;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .card-header h3 {
+    font-size: 1.15rem;
+    line-height: 1.4;
+  }
+  
+  .title-badge {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+  
+  .tech-tags {
+    gap: 8px;
+    margin-top: 0;
+  }
+  
+  .tag {
+    font-size: 0.8rem;
+    padding: 3px 10px;
+  }
+  
+  .project-desc {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-board {
+    padding: 70px 16px 30px 16px;
+  }
+  
+  .right-scroll {
+    padding: 30px 16px 0 16px;
+  }
+  
+  .board-title {
+    font-size: 1.8rem;
+  }
+  
+  .glass-panel {
+    padding: 20px;
+  }
+  
+  .card-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .tech-tags {
+    flex-wrap: wrap;
+  }
+  
+  .tag {
+    font-size: 0.75rem;
+  }
+  
+  .project-desc {
+    font-size: 0.85rem;
+  }
 }
 </style>

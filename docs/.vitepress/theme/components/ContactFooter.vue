@@ -350,12 +350,114 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 
 /* === 移动端响应式适配 === */
 @media (max-width: 900px) {
-  .bento-container { grid-template-columns: 1fr; gap: 24px; padding: 0 20px; }
-  .card-header, .card-body { padding: 30px; }
-  .form-row { grid-template-columns: 1fr; gap: 16px; }
-  .form-footer { flex-direction: column-reverse; align-items: stretch; gap: 20px; }
-  .status-indicator { justify-content: center; }
-  .submit-btn { width: 100%; }
-  .terminal-card { min-height: 250px; }
+  .contact-wrapper {
+    padding: 80px 0;
+    min-height: auto;
+  }
+  
+  .bento-container { 
+    grid-template-columns: 1fr; 
+    gap: 24px; 
+    padding: 0 5%;
+  }
+  
+  .card-header, .card-body { 
+    padding: 24px; 
+  }
+  
+  .left-title {
+    font-size: 2rem;
+  }
+  
+  .quote-text {
+    font-size: 0.95rem;
+  }
+  
+  .main-contact-card {
+    min-height: auto;
+  }
+  
+  .form-row { 
+    grid-template-columns: 1fr; 
+    gap: 16px; 
+  }
+  
+  .form-footer { 
+    flex-direction: column-reverse; 
+    align-items: stretch; 
+    gap: 16px; 
+  }
+  
+  .status-indicator { 
+    justify-content: center; 
+  }
+  
+  .submit-btn { 
+    width: 100%; 
+  }
+  
+  .terminal-card { 
+    min-height: 220px; 
+  }
+  
+  input, textarea {
+    padding: 14px 16px;
+    font-size: 0.95rem;
+  }
+  
+  .bento-right {
+    height: auto;
+  }
+  
+  .github-widget {
+    flex: 0 0 auto;
+  }
+  
+  .terminal-widget {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-wrapper {
+    padding: 70px 0;
+  }
+  
+  .bento-container {
+    padding: 0 16px;
+  }
+  
+  .card-header, .card-body {
+    padding: 20px;
+  }
+  
+  .left-title {
+    font-size: 1.8rem;
+  }
+  
+  .quote-text {
+    font-size: 0.9rem;
+  }
+  
+  .terminal-card {
+    min-height: 200px;
+  }
+  
+  .terminal-body {
+    padding: 16px;
+    font-size: 0.8rem;
+  }
+  
+  .m-card {
+    padding: 18px;
+  }
+  
+  .m-main {
+    font-size: 1rem;
+  }
+  
+  .m-sub {
+    font-size: 0.8rem;
+  }
 }
 </style>
