@@ -91,7 +91,7 @@
 .glow-1 { top: 0; left: 10%; width: 500px; height: 500px; background: var(--vp-c-brand-1); }
 .glow-2 { bottom: 0; right: 10%; width: 400px; height: 400px; background: #00f2fe; }
 
-.hub-container { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; z-index: 1; padding: 0 5%; }
+.hub-container { width: 100%; max-width: 1400px; display: flex; flex-direction: column; align-items: center; z-index: 1; padding: 0 3%; }
 
 /* === 头部看板 === */
 .hub-header { text-align: center; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
@@ -118,7 +118,7 @@
 .flat-card {
   position: relative; display: flex; flex-direction: column; text-decoration: none;
   background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border);
-  border-radius: 20px; padding: 32px; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border-radius: 16px; padding: 22px; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   overflow: hidden; box-shadow: var(--vp-shadow-1);
 }
 
