@@ -42,7 +42,7 @@
 
       <div class="system-status">
         <div class="pulse-dot"></div>
-        <span>SYSTEM.ONLINE / 7 LAB NODES ACTIVE</span>
+        <span>SYSTEM.ONLINE / 8 LAB NODES ACTIVE</span>
       </div>
     </div>
 
@@ -149,6 +149,21 @@
           </div>
           <p class="project-desc">
             利用 PyTorch 构建的高精度图像识别底座。系统解决了 40 类垃圾图像的长尾分布痛点，通过工厂设计模式实现了多种主流网络架构的一键切换与评估，为智慧城市环卫场景提供了算法支持。
+          </p>
+        </a>
+
+        <a href="/projects/market-transactions" class="project-card glass-panel">
+          <div class="card-header">
+            <h3>智能二手商品发布助手</h3>
+            <div class="title-badge gold-badge"><span class="b-icon">🎓</span> 毕业设计</div>
+          </div>
+          <div class="tech-tags">
+            <span class="tag brand">YOLOv8 + CLIP</span>
+            <span class="tag">以图搜图</span>
+            <span class="tag">AI 智能定价</span>
+          </div>
+          <p class="project-desc">
+            一款面向二手商品交易的 AI 发布平台。用户只需上传一张商品照片，系统自动完成品类识别、市场查价、瑕疵检测、智能定价、流式文案生成，全流程仅需 3 次点击即可一键发布到商城。
           </p>
         </a>
 
