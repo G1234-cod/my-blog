@@ -273,8 +273,13 @@ onMounted(() => { fetchServerStatus() })
 <style scoped>
 /* === 基础容器 === */
 .contact-wrapper {
-  width: 100%; min-height: 100%; display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden; background-color: var(--vp-c-bg); padding: 80px 0;
+  width: 100%; 
+  min-height: 100vh; /* 确保至少占满全屏 */
+  display: flex; align-items: center; justify-content: center;
+  position: relative; 
+  overflow-x: hidden; /* 👉 仅隐藏水平溢出 */
+  overflow-y: auto;   /* 👉 允许垂直滚动 */
+  background-color: var(--vp-c-bg); padding: 80px 0;
 }
 
 .ambient-glow {
