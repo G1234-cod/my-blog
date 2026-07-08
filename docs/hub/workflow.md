@@ -17,6 +17,7 @@
 
 ### 🛠️ 极客开发环境探秘
 - [Trae IDE 与本地开发环境初探：SOLO 模式与多智能体协同](../tech-note/Published/03-Workflow/1.Trae与本地开发环境初探笔记.md)
+- [告别依赖地狱：从原生安装到 WSL2 + Docker 容器化隔离](../env-setup/WSL2-Docker-Env-Isolation.md)
 
 ### 📖 工程文化与敏捷实践 (Reading)
 - 高效工作流、敏捷开发与极客精神的沉淀与思考。
