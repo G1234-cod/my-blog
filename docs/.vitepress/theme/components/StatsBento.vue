@@ -33,7 +33,7 @@
             <p>专业综合排名</p>
           </div>
           <div class="bento-card stat-item">
-            <h3>31 篇</h3>
+            <h3>32 篇</h3>
             <p>专业博客沉淀</p>
           </div>
           <div class="bento-card stat-item">

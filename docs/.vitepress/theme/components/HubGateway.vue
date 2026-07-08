@@ -50,7 +50,7 @@
           <div class="card-glow"></div>
           <div class="card-top">
             <div class="c-icon">✨</div>
-            <div class="c-count">5 篇</div>
+            <div class="c-count">6 篇</div>
           </div>
           <h3 class="c-title">效能工具与现代工作流</h3>
           <p class="c-desc">探索极致高效的开发者生产力环境。打通 Typora + PicGo + GitHub 的工业级自动化图床管理体系，以及本地 Trae 开发环境调优。 </p>
