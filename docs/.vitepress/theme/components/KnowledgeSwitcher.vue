@@ -48,27 +48,45 @@ const activeModule = computed(() => {
 </script>
 
 <style scoped>
-/* 样式保持不变 */
+/* 容器：压缩占用高度， sticky 钉在侧边栏顶部 */
 .knowledge-switcher-container {
-  padding: 12px 16px;
-  margin-bottom: 10px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
   border-bottom: 1px solid var(--vp-c-divider);
   background-color: var(--vp-sidebar-bg-color);
   position: sticky;
   top: 0;
   z-index: 10;
 }
-.switcher-track { display: flex; flex-direction: column; gap: 8px; }
+/* 4 个胶囊改为 2×2 网格，减少纵向占用 */
+.switcher-track {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
 .switcher-pill {
-  display: flex; align-items: center; padding: 8px 12px;
-  border-radius: 8px; font-size: 13px; font-weight: 600;
-  color: var(--vp-c-text-2); text-decoration: none;
-  transition: all 0.2s ease; background-color: var(--vp-c-bg-soft); border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background-color: var(--vp-c-bg-soft);
+  border: 1px solid transparent;
 }
-.switcher-pill:hover { background-color: var(--vp-c-default-soft); color: var(--vp-c-text-1); }
+.switcher-pill:hover {
+  background-color: var(--vp-c-default-soft);
+  color: var(--vp-c-text-1);
+}
 .switcher-pill.active {
-  background-color: var(--vp-c-brand-soft); color: var(--vp-c-brand-1);
-  border-color: var(--vp-c-brand-3); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 0 10px var(--vp-brand-glow);
 }
-.icon { margin-right: 8px; font-size: 16px; }
+.icon { margin-right: 5px; font-size: 14px; }
 </style>

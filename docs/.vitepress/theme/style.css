@@ -3,20 +3,145 @@
  * ==========================================
  */
 
+/* * ==========================================
+ * 双主题色彩基座（浅色 :root / 暗色 .dark）
+ * 全站颜色一律走 CSS 变量，禁止组件内硬编码
+ * ==========================================
+ */
 :root {
   --vp-layout-max-width: 95vw !important;
+
+  /* —— 浅色主题：纸白底 + 青蓝品牌色 —— */
+  --vp-c-brand-1: #0891b2;              /* 主品牌色：链接、高亮文字 */
+  --vp-c-brand-2: #06a3c9;              /* 悬停态 */
+  --vp-c-brand-3: #0e7490;              /* 实心按钮底色 */
+  --vp-c-brand-soft: rgba(8, 145, 178, 0.12);
+  --vp-c-brand: var(--vp-c-brand-1);    /* 兼容旧变量名 */
+
+  --vp-c-bg: #f8fafc;                   /* 主背景：纸白 */
+  --vp-c-bg-alt: #eef2f7;               /* 代码块等替代背景 */
+  --vp-c-bg-elv: #ffffff;               /* 浮层卡片背景 */
+  --vp-c-bg-soft: #f1f5f9;              /* 柔和区分背景 */
+
+  --vp-c-border: #cbd5e1;
+  --vp-c-divider: #e2e8f0;
+  --vp-c-gutter: #e2e8f0;
+
+  --vp-c-text-1: #1e293b;               /* 主文字 */
+  --vp-c-text-2: #475569;               /* 次要文字 */
+  --vp-c-text-3: #94a3b8;               /* 弱化文字 */
+
+  --vp-c-default-1: #d7dde6;
+  --vp-c-default-2: #e2e8f0;
+  --vp-c-default-3: #eaeff5;
+  --vp-c-default-soft: rgba(100, 116, 139, 0.12);
+
+  /* 侧边栏与导航（半透明，供毛玻璃使用） */
+  --vp-sidebar-bg-color: #f1f5f9;
+  --vp-nav-bg-color: rgba(248, 250, 252, 0.78);
+  --vp-nav-screen-bg-color: rgba(248, 250, 252, 0.96);
+
+  /* 行内代码与代码块 */
+  --vp-code-bg: rgba(8, 145, 178, 0.1);
+  --vp-code-block-bg: #eef2f7;
+  --vp-code-block-divider-color: #dbe3ec;
+  --vp-code-line-highlight-color: rgba(8, 145, 178, 0.1);
+  --vp-code-copy-code-bg: #e8eef5;
+  --vp-code-copy-code-hover-bg: #ffffff;
+  --vp-code-copy-code-border-color: #dbe3ec;
+  --vp-code-copy-code-hover-border-color: #0891b2;
+
+  /* 自定义容器（tip 系跟随品牌色） */
+  --vp-c-tip-1: var(--vp-c-brand-1);
+  --vp-c-tip-2: var(--vp-c-brand-2);
+  --vp-c-tip-3: var(--vp-c-brand-3);
+  --vp-c-tip-soft: var(--vp-c-brand-soft);
+  --vp-c-note-1: var(--vp-c-brand-1);
+  --vp-c-note-2: var(--vp-c-brand-2);
+  --vp-c-note-3: var(--vp-c-brand-3);
+  --vp-c-note-soft: var(--vp-c-brand-soft);
+
+  /* 浅色阴影 */
+  --vp-shadow-1: 0 1px 2px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.06);
+  --vp-shadow-2: 0 3px 12px rgba(15, 23, 42, 0.08), 0 1px 4px rgba(15, 23, 42, 0.06);
+  --vp-shadow-3: 0 12px 32px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(15, 23, 42, 0.07);
+
+  /* 导航栏高度（配合自定义毛玻璃导航） */
+  --vp-nav-height: 60px;
+
+  /* 品牌色微光（卡片 hover 发光阴影用） */
+  --vp-brand-glow: rgba(8, 145, 178, 0.22);
+}
+
+.dark {
+  /* —— 暗色主题：深墨蓝灰底 + 亮青品牌色 —— */
+  --vp-c-brand-1: #22d3ee;              /* 亮青：暗底下保证对比度 */
+  --vp-c-brand-2: #38e0f8;
+  --vp-c-brand-3: #06b6d4;
+  --vp-c-brand-soft: rgba(34, 211, 238, 0.14);
+
+  --vp-c-bg: #0f1218;                   /* 深墨蓝灰 */
+  --vp-c-bg-alt: #12151d;
+  --vp-c-bg-elv: #1a1f2b;               /* 浮层略亮于底色 */
+  --vp-c-bg-soft: #161a23;
+
+  --vp-c-border: #334155;
+  --vp-c-divider: #232a38;
+  --vp-c-gutter: #1a1f2b;
+
+  --vp-c-text-1: #e2e8f0;
+  --vp-c-text-2: #94a3b8;
+  --vp-c-text-3: #64748b;
+
+  --vp-c-default-1: #3b4354;
+  --vp-c-default-2: #2c3444;
+  --vp-c-default-3: #232a38;
+  --vp-c-default-soft: rgba(101, 117, 139, 0.16);
+
+  --vp-sidebar-bg-color: #12151d;
+  --vp-nav-bg-color: rgba(15, 18, 24, 0.72);
+  --vp-nav-screen-bg-color: rgba(15, 18, 24, 0.97);
+
+  --vp-code-bg: rgba(34, 211, 238, 0.12);
+  --vp-code-block-bg: #12151d;
+  --vp-code-block-divider-color: #232a38;
+  --vp-code-line-highlight-color: rgba(34, 211, 238, 0.1);
+  --vp-code-copy-code-bg: #1a1f2b;
+  --vp-code-copy-code-hover-bg: #232a38;
+  --vp-code-copy-code-border-color: #232a38;
+  --vp-code-copy-code-hover-border-color: #22d3ee;
+
+  /* 暗色阴影更重，增强层级 */
+  --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.35);
+  --vp-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.35);
+  --vp-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.4);
+
+  --vp-brand-glow: rgba(34, 211, 238, 0.28);
 }
 
 html, body, #app {
   margin: 0 !important;
   padding: 0 !important;
   width: 100%;
-  height: 100%;
   background-color: var(--vp-c-bg); 
   font-family: var(--vp-font-family-base);
   color: var(--vp-c-text-1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* 防横向滚动：只设根元素（溢出值传播到视口），document 依然是滚动容器。
+   切勿给 body/#app 全局加 height:100% + overflow，否则它们会变成嵌套滚动容器，
+   VitePress 大纲锚点（window.scrollTo）、滚动高亮、阅读进度条会全部失效 */
+html {
+  overflow-x: hidden;
+}
+
+/* 仅首页（全屏滚动捕捉，.home-spa-wrapper 存在时）锁死高度链 */
+html:has(.home-spa-wrapper),
+html:has(.home-spa-wrapper) body,
+html:has(.home-spa-wrapper) #app {
+  height: 100%;
   overflow-x: hidden;
 }
 
@@ -94,23 +219,12 @@ html, body, #app {
  * ==========================================
  */
 
-/* 5. 强制解除可能从主页泄漏过来的全屏滚动锁定（仅在文档页面生效） */
-.VPDoc html,
-.VPDoc body,
-.VPDoc #app {
-  height: auto;
-  overflow-y: auto;
-}
+/* 6. 导航栏双模式：
+   - 首页 layout:false，不经过主题 Layout，VPNavBar 天然不存在（首页用 md 内的 DynamicNavbar）
+   - 其余页面恢复官方 VPNavBar（下方第 7 节做毛玻璃深度美化）
+   顶部间距由官方 VPContent padding-top: var(--vp-nav-height) 自动补偿，无需手动补丁 */
 
-/* 6. 隐藏官方顶部导航栏，保留我们自己的 DynamicNavbar */
-.VPNavBar {
-  display: none !important;
-}
-
-/* 8. 放大正文容器宽度，因顶掉了官方导航，加大顶部内边距防遮挡 */
-.VPDoc {
-  padding-top: 80px !important; 
-}
+/* 8. 放大正文容器宽度 */
 @media (min-width: 960px) {
   .VPDoc .container {
     max-width: 1000px !important;
@@ -264,4 +378,283 @@ html, body, #app {
   font-family: var(--vp-font-family-base) !important;
   font-weight: 700 !important;
   letter-spacing: 1.5px !important;
+}
+
+/* * ==========================================
+ * 16. 官方导航栏（VPNavBar）毛玻璃深度美化
+ * 与首页 DynamicNavbar 视觉语言统一
+ * ========================================== */
+.VPNavBar {
+  /* 整条导航半透明 + 毛玻璃（背景色变量已按明暗双主题定义为半透明） */
+  background-color: var(--vp-nav-bg-color) !important;
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+/* 桌面端 content-body 自带一层背景，叠加会双重半透明，统一交给 VPNavBar */
+@media (min-width: 960px) {
+  .VPNavBar .content-body {
+    background-color: transparent !important;
+  }
+}
+/* 官方自带的分隔线组件与我们加的 border 重复，隐藏 */
+.VPNavBar .divider {
+  display: none !important;
+}
+
+/* 导航链接：对齐 DynamicNavbar 的字体风格（小号加粗 + 字距拉开） */
+.VPNavBar .VPNavBarMenuLink {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--vp-c-text-2);
+  transition: color 0.25s ease;
+}
+.VPNavBar .VPNavBarMenuLink:hover {
+  color: var(--vp-c-brand-1);
+}
+.VPNavBar .VPNavBarMenuLink.active {
+  color: var(--vp-c-brand-1);
+}
+
+/* 站点标题：加重字重，呼应首页品牌字 */
+.VPNavBarTitle .title {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--vp-c-text-1);
+}
+
+/* 本地搜索按钮：圆角描边 + 品牌色 hover，双主题自适应 */
+.VPNavBarSearch .DocSearch-Button {
+  background-color: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.VPNavBarSearch .DocSearch-Button:hover {
+  border-color: var(--vp-c-brand-1);
+  background-color: var(--vp-c-bg-elv);
+}
+
+/* 移动端本地导航条（返回顶部/菜单）同步毛玻璃 */
+.VPLocalNav {
+  background-color: var(--vp-nav-bg-color) !important;
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+}
+
+/* * ==========================================
+ * 17. 侧边栏（VPSidebar）视觉层级重构
+ * ========================================== */
+/* 分组标题：小号加粗 + 字距拉开，形成"分区标签"感 */
+.VPSidebarItem.level-0 > .item > .text,
+.VPSidebarItem.level-0 > .item > .link > .text {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--vp-c-text-3);
+}
+.VPSidebarItem.level-0.has-active > .item > .text,
+.VPSidebarItem.level-0.has-active > .item > .link > .text {
+  color: var(--vp-c-text-1);
+}
+/* 分组之间拉开呼吸感 */
+.VPSidebarItem.level-0 {
+  padding-bottom: 20px;
+}
+
+/* 文章项：14px / 1.6 行高，长标题自然换行 */
+.VPSidebarItem.level-1 .text,
+.VPSidebarItem.level-2 .text,
+.VPSidebarItem.level-3 .text {
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 5px 0;
+}
+
+/* 当前页：品牌色高亮 + 左侧竖条（官方 indicator 仅覆盖 level-2+，这里补齐 level-0/1） */
+.VPSidebarItem.level-0.is-active > .item > .indicator,
+.VPSidebarItem.level-1.is-active > .item > .indicator {
+  background-color: var(--vp-c-brand-1);
+  box-shadow: 0 0 8px var(--vp-brand-glow);
+}
+/* 当前页文章项额外给一层柔和底色，增强定位感 */
+.VPSidebarItem.level-1.is-active > .item,
+.VPSidebarItem.level-2.is-active > .item,
+.VPSidebarItem.level-3.is-active > .item {
+  background-color: var(--vp-c-brand-soft);
+  border-radius: 6px;
+}
+
+/* level-0 分组的子项容器：补一条缩进引导线，层级更清晰 */
+.VPSidebarItem.level-0 > .items {
+  border-left: 1px solid var(--vp-c-divider);
+  margin-left: 4px;
+  padding-left: 12px;
+}
+
+/* 折叠/展开平滑过渡（grid-template-rows 动画，覆盖官方 display:none） */
+.VPSidebarItem.collapsible > .items {
+  display: grid !important;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition: grid-template-rows 0.28s ease, opacity 0.28s ease;
+}
+.VPSidebarItem.collapsible.collapsed > .items {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+.VPSidebarItem.collapsible > .items > * {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* * ==========================================
+ * 18. 文章正文排版体系（H1/H3/H4/表格/引用/链接）
+ * ========================================== */
+/* H1 文章大标题：克制的品牌色短下划线 */
+.vp-doc h1 {
+  position: relative;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.9rem;
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+.vp-doc h1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 64px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--vp-c-brand-1);
+  box-shadow: 0 0 10px var(--vp-brand-glow);
+}
+
+/* H3：配套缩小版竖线标题（延续 H2 的极客风格） */
+.vp-doc h3 {
+  position: relative;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  padding-left: 14px;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+}
+.vp-doc h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 4px;
+  background-color: var(--vp-c-brand-1);
+  border-radius: 3px;
+}
+
+/* H4：最小一级竖线，弱化处理 */
+.vp-doc h4 {
+  position: relative;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  padding-left: 12px;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+}
+.vp-doc h4::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  background-color: var(--vp-c-brand-3);
+  border-radius: 2px;
+}
+
+/* 表格：圆角边框 + 斑马纹（官方默认无边框圆角，这里补全） */
+.vp-doc table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.vp-doc th {
+  background-color: var(--vp-c-bg-soft);
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+.vp-doc th,
+.vp-doc td {
+  border: none;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+.vp-doc tr:last-child td {
+  border-bottom: none;
+}
+.vp-doc tr:nth-child(2n) {
+  background-color: var(--vp-c-bg-soft);
+}
+
+/* 引用块：品牌色左侧条 callout */
+.vp-doc blockquote {
+  margin: 1.5rem 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--vp-c-brand-1);
+  border-radius: 0 10px 10px 0;
+  background-color: var(--vp-c-brand-soft);
+  color: var(--vp-c-text-1);
+}
+.vp-doc blockquote > p {
+  margin-bottom: 0.5rem;
+  color: var(--vp-c-text-1);
+}
+.vp-doc blockquote > p:last-child {
+  margin-bottom: 0;
+}
+
+/* 分割线：两端渐隐的细线 */
+.vp-doc hr {
+  border: none;
+  height: 1px;
+  margin: 3rem 0;
+  background: linear-gradient(90deg, transparent, var(--vp-c-divider) 20%, var(--vp-c-divider) 80%, transparent);
+}
+
+/* 行内代码：圆角胶囊化 */
+.vp-doc :not(pre) > code {
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-size: 0.88em;
+}
+
+/* 正文链接：hover 下划线展开动画（不影响标题锚点） */
+.vp-doc p a,
+.vp-doc li a {
+  text-decoration: none;
+  background-image: linear-gradient(var(--vp-c-brand-1), var(--vp-c-brand-1));
+  background-size: 0% 1.5px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.25s ease, color 0.25s ease;
+}
+.vp-doc p a:hover,
+.vp-doc li a:hover {
+  background-size: 100% 1.5px;
+}
+
+/* 上一篇/下一篇 pager：卡片化微调（悬浮抬升 + 品牌色边框） */
+.VPDocFooter .pager .pager-link {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.VPDocFooter .pager .pager-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 8px 20px var(--vp-brand-glow);
 }

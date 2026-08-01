@@ -31,17 +31,39 @@ function getSidebarModule(scanPath, title) {
   let items = generateSidebar({
     documentRootPath: 'docs',
     scanStartPath: scanPath,
-    resolvePath: `/${scanPath}/`, 
+    resolvePath: `/${scanPath}/`,
     useTitleFromFrontmatter: true, // 🔥 修复 1：强制读取 md 顶部的 YAML 标题，解决全是英文名的问题
     useTitleFromFileHeading: true,
-    useFolderTitleFromIndexFile: true
+    useFolderTitleFromIndexFile: true,
+    // 🔥 修复 4：docs 下多为 Junction/软链接目录（多仓库架构），必须开启符号链接跟随，
+    //    否则 ai-journey 等软链接根目录扫描结果为空（存量 bug）
+    followSymlinks: true,
+    // 🔥 美化 1：清理 "3." 这类序号前缀。该库实现为"按分隔符 split 后丢弃第一段"，
+    //    因此 prefixSeparator 必须用 ^ 锚定的正则，只匹配开头的数字序号，
+    //    保护 "虚拟环境、.env 与 .gitignore" 这类正文含 . 的标题不被误截断
+    removePrefixAfterOrdering: true,
+    prefixSeparator: /^\d+[.-]\s*/,
+    // 🔥 美化 2：文件名中的下划线/连字符转为空格，标题更干净
+    underscoreToSpace: true,
+    hyphenToSpace: true,
+    // 🔥 美化 3：与 srcExclude 对齐，避免侧边栏出现指向被排除文件（README/模板）的 404 入口
+    excludeByGlobPattern: ['**/README.md', '**/模板.md', '**/阅读笔记_参考模板.md']
   })
   
   // 🔥 修复 2：调用上方函数，强行修正丢失的路径前缀
   items = fixSidebarLinks(items, scanPath);
-  
-  // 如果传了 title，说明是给 Hub 页面拼装的；如果不传，说明是给根目录直出的
-  return items && items.length > 0 ? (title ? [{ text: title, items: items }] : items) : []
+
+  // 🔥 拍平：扫描结果若是单个无标题分组（目录缺 index.md 时的常见产物），
+  //    直接取其子项，避免侧边栏渲染出无标题的层级容器
+  if (items && items.length === 1 && !items[0].text && Array.isArray(items[0].items)) {
+    items = items[0].items;
+  }
+
+  // 传了 title（Hub 拼装）时：即使目录为空也保留分组占位，
+  // 侧边栏显示分组标题，CategoryList 对应渲染「📭 内容筹备中」空态卡
+  if (title) return [{ text: title, items: items || [] }]
+  // 不传 title（根目录直出）时维持原逻辑
+  return items && items.length > 0 ? items : []
 }
 
 // ==========================================
@@ -136,7 +158,8 @@ export default defineConfig({
       '/reading/04-Algorithm/': algoSidebar,
       
       // 🔥 修复 3：统一调用我们增强过的 getSidebarModule，彻底解决 404 与英文名
-      '/projects/': getSidebarModule('projects')
+      // 传入分组标题，避免渲染出无标题的 level-0 容器（侧边栏出现无主缩进线）
+      '/projects/': getSidebarModule('projects', '💼 项目作品集')
     },
 
     socialLinks: [
