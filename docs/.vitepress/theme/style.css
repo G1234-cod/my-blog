@@ -444,12 +444,78 @@ html:has(.home-spa-wrapper) #app {
 }
 
 /* * ==========================================
- * 17. 侧边栏（VPSidebar）视觉层级重构
+ * 17. 侧边栏（VPSidebar）极客控制台风重构
+ * 等宽字体分组标签 + 计数徽章 + 微光细节 + 扫描线纹理
+ * 颜色全部走主题变量，随明暗主题一同变化
  * ========================================== */
-/* 分组标题：小号加粗 + 字距拉开，形成"分区标签"感 */
+/* 侧栏专属主题变量：浅色为纸白灰轨，暗色为深墨控制台轨 */
+:root {
+  --sidebar-bg: linear-gradient(180deg, #f8fafc 0%, #edf1f6 100%);
+  --sidebar-border: rgba(100, 116, 139, 0.2);
+  --sidebar-scanline: rgba(8, 145, 178, 0.028);
+  --side-count-color: #0e7490;
+  --side-count-bg: rgba(8, 145, 178, 0.08);
+  --side-count-border: rgba(8, 145, 178, 0.32);
+  --sidebar-active-ring: rgba(8, 145, 178, 0.28);
+  --sidebar-active-glow: rgba(8, 145, 178, 0.09);
+}
+.dark {
+  --sidebar-bg: linear-gradient(180deg, #10141d 0%, #0b0e15 100%);
+  --sidebar-border: rgba(148, 163, 184, 0.14);
+  --sidebar-scanline: rgba(34, 211, 238, 0.022);
+  --side-count-color: #22d3ee;
+  --side-count-bg: rgba(34, 211, 238, 0.1);
+  --side-count-border: rgba(34, 211, 238, 0.35);
+  --sidebar-active-ring: rgba(34, 211, 238, 0.22);
+  --sidebar-active-glow: rgba(34, 211, 238, 0.07);
+}
+.VPSidebar {
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+}
+/* 扫描线纹理（极客细节，不拦截点击） */
+.VPSidebar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    var(--sidebar-scanline) 0px,
+    var(--sidebar-scanline) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.VPSidebar nav {
+  position: relative;
+  z-index: 1;
+}
+/* 控制台式细滚动条 */
+.VPSidebar nav::-webkit-scrollbar {
+  width: 5px;
+}
+.VPSidebar nav::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 3px;
+}
+.VPSidebar nav::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-brand-1);
+}
+.VPSidebar nav {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.25) transparent;
+}
+
+/* 分组标题：等宽字体控制台标签，计数徽章右对齐 */
 .VPSidebarItem.level-0 > .item > .text,
 .VPSidebarItem.level-0 > .item > .link > .text {
-  font-size: 13px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--vp-c-text-3);
@@ -458,18 +524,44 @@ html:has(.home-spa-wrapper) #app {
 .VPSidebarItem.level-0.has-active > .item > .link > .text {
   color: var(--vp-c-text-1);
 }
+/* 文章计数徽章（config.mjs 注入的 .side-count），颜色随主题变量切换 */
+.side-count {
+  margin-left: auto;
+  padding: 1px 8px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--side-count-color);
+  background: var(--side-count-bg);
+  border: 1px solid var(--side-count-border);
+  border-radius: 999px;
+  letter-spacing: 0;
+}
+.side-count.soon {
+  color: var(--vp-c-text-3);
+  background: var(--vp-c-bg-soft);
+  border-color: var(--vp-c-divider);
+}
 /* 分组之间拉开呼吸感 */
 .VPSidebarItem.level-0 {
   padding-bottom: 20px;
 }
 
-/* 文章项：14px / 1.6 行高，长标题自然换行 */
+/* 文章项：14px / 1.6 行高，长标题自然换行；hover 微移+提亮 */
 .VPSidebarItem.level-1 .text,
 .VPSidebarItem.level-2 .text,
 .VPSidebarItem.level-3 .text {
   font-size: 14px;
   line-height: 1.6;
   padding: 5px 0;
+}
+.VPSidebarItem .link {
+  border-radius: 6px;
+  transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+.VPSidebarItem .link:hover {
+  transform: translateX(3px);
 }
 
 /* 当前页：品牌色高亮 + 左侧竖条（官方 indicator 仅覆盖 level-2+，这里补齐 level-0/1） */
@@ -478,12 +570,13 @@ html:has(.home-spa-wrapper) #app {
   background-color: var(--vp-c-brand-1);
   box-shadow: 0 0 8px var(--vp-brand-glow);
 }
-/* 当前页文章项额外给一层柔和底色，增强定位感 */
+/* 当前页文章项：柔和底色 + 控制台描边微光（颜色随主题变量），增强定位感 */
 .VPSidebarItem.level-1.is-active > .item,
 .VPSidebarItem.level-2.is-active > .item,
 .VPSidebarItem.level-3.is-active > .item {
   background-color: var(--vp-c-brand-soft);
   border-radius: 6px;
+  box-shadow: inset 0 0 0 1px var(--sidebar-active-ring), 0 0 14px var(--sidebar-active-glow);
 }
 
 /* level-0 分组的子项容器：补一条缩进引导线，层级更清晰 */
@@ -657,4 +750,48 @@ html:has(.home-spa-wrapper) #app {
   transform: translateY(-2px);
   border-color: var(--vp-c-brand-1);
   box-shadow: 0 8px 20px var(--vp-brand-glow);
+}
+
+/* * ==========================================
+ * 19. 文档页移动端适配（手机/小平板）
+ * ========================================== */
+@media (max-width: 768px) {
+  /* 标题梯队整体缩小，避免长标题在小屏折行过多 */
+  .vp-doc h1 {
+    font-size: 1.7rem !important;
+    margin-bottom: 1.4rem;
+  }
+  .vp-doc h2 {
+    font-size: 1.4rem !important;
+    padding-left: 16px;
+    margin-top: 32px !important;
+    margin-bottom: 18px !important;
+  }
+  .vp-doc h3 {
+    font-size: 1.15rem !important;
+  }
+  .vp-doc h4 {
+    font-size: 1rem !important;
+  }
+
+  /* 正文与列表略收，行长更舒适 */
+  .vp-doc p,
+  .vp-doc li {
+    font-size: 0.98rem;
+    line-height: 1.75;
+  }
+
+  /* 宽表格：块级化 + 横向滑动，防止撑破正文容器 */
+  .vp-doc table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  /* 图片高度上限收紧，避免一屏全是图 */
+  .vp-doc img {
+    max-height: 380px;
+    margin: 1.4rem auto;
+  }
 }

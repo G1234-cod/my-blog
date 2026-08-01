@@ -48,15 +48,12 @@ const activeModule = computed(() => {
 </script>
 
 <style scoped>
-/* 容器：压缩占用高度， sticky 钉在侧边栏顶部 */
+/* 容器：位于侧边栏顶部，随目录列表一起滚动（不用 sticky 固定，
+   避免滚动时遮挡下方目录项；模块切换另有顶部导航栏入口兜底） */
 .knowledge-switcher-container {
   padding: 10px 12px;
   margin-bottom: 8px;
   border-bottom: 1px solid var(--vp-c-divider);
-  background-color: var(--vp-sidebar-bg-color);
-  position: sticky;
-  top: 0;
-  z-index: 10;
 }
 /* 4 个胶囊改为 2×2 网格，减少纵向占用 */
 .switcher-track {

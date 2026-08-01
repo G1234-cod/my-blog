@@ -23,6 +23,15 @@ function fixSidebarLinks(items, scanPath) {
   });
 }
 
+// 🛠️ 递归统计分组内的文章叶子数（含 link 的项），供侧边栏计数徽章使用
+function countArticles(items) {
+  if (!Array.isArray(items)) return 0
+  return items.reduce((sum, it) => {
+    if (Array.isArray(it.items) && it.items.length > 0) return sum + countArticles(it.items)
+    return sum + (it.link ? 1 : 0)
+  }, 0)
+}
+
 // 🛠️ 进阶引擎 2：精准扫描并拦截修正
 function getSidebarModule(scanPath, title) {
   const targetDir = path.join(process.cwd(), 'docs', scanPath)
@@ -61,7 +70,14 @@ function getSidebarModule(scanPath, title) {
 
   // 传了 title（Hub 拼装）时：即使目录为空也保留分组占位，
   // 侧边栏显示分组标题，CategoryList 对应渲染「📭 内容筹备中」空态卡
-  if (title) return [{ text: title, items: items || [] }]
+  if (title) {
+    // 🏷️ 极客控制台徽章：分组标题右侧的文章计数（VPSidebarItem 以 v-html 渲染，可注入标签）
+    const count = countArticles(items)
+    const badge = count > 0
+      ? `<span class="side-count">${count}</span>`
+      : `<span class="side-count soon">SOON</span>`
+    return [{ text: `${title} ${badge}`, items: items || [] }]
+  }
   // 不传 title（根目录直出）时维持原逻辑
   return items && items.length > 0 ? items : []
 }

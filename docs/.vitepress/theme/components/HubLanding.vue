@@ -171,7 +171,8 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
 /* —— 技术栈矩阵 —— */
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  /* min() 兜底：窄屏（如 320px 手机）内容区不足 260px 时收缩为 100%，防止横向溢出 */
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
   gap: 14px;
 }
 .tech-card {
@@ -204,7 +205,8 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
 /* —— 知识轨道卡片 —— */
 .track-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  /* min() 兜底：窄屏内容区不足 320px 时收缩为 100%，防止横向溢出 */
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
   gap: 18px;
 }
 .track-card {

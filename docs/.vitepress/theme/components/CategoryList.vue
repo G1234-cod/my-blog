@@ -10,7 +10,7 @@
 
     <!-- 分组卡片矩阵 -->
     <div v-for="(group, index) in groups" :key="index" class="category-group">
-      <h2 v-if="group.text" class="group-title">{{ group.text }}</h2>
+      <h2 v-if="group.text" class="group-title">{{ stripHtml(group.text) }}</h2>
 
       <!-- 空分组占位 -->
       <div v-if="!group.items || !group.items.length" class="empty-card">
@@ -65,6 +65,12 @@ const groups = computed(() =>
 
 // 判断是否为目录（含子项）
 const isFolder = (item) => !!(item.items && item.items.length)
+
+// 剔除标题中注入的侧边栏徽章（.side-count 整个 span 连内容移除，仅供侧栏 v-html 渲染）
+const stripHtml = (s) => (s || '')
+  .replace(/<span class="side-count[^"]*">.*?<\/span>/g, '')
+  .replace(/<[^>]*>/g, '')
+  .trim()
 
 // 递归统计目录下文章总数
 const countArticles = (item) => {
@@ -133,7 +139,8 @@ const firstLink = (item) => {
 /* —— 卡片矩阵 —— */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* min() 兜底：窄屏内容区不足 280px 时收缩为 100%，防止横向溢出 */
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: 1.2rem;
   margin-top: 1rem;
 }

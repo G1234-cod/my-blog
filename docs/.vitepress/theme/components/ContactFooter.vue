@@ -365,7 +365,7 @@ input, textarea {
   padding: 12px 14px; border-radius: 10px; font-size: 0.9rem; color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-base); transition: all 0.2s ease; outline: none;
 }
-input:focus, textarea:focus { border-color: var(--vp-c-brand-1); background: var(--vp-c-bg-soft); box-shadow: 0 0 0 3px rgba(var(--vp-c-brand-1), 0.1); }
+input:focus, textarea:focus { border-color: var(--vp-c-brand-1); background: var(--vp-c-bg-soft); box-shadow: 0 0 0 3px var(--vp-c-brand-soft); }
 textarea { resize: vertical; min-height: 120px; }
 input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 
@@ -384,8 +384,8 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   background: var(--vp-c-bg-soft);
   padding: 12px;
 }
-.file-upload-area:hover { border-color: var(--vp-c-brand-1); background: rgba(var(--vp-c-brand-1), 0.03); }
-.file-upload-area.dragover { border-color: var(--vp-c-brand-1); background: rgba(var(--vp-c-brand-1), 0.06); transform: scale(1.01); }
+.file-upload-area:hover { border-color: var(--vp-c-brand-1); background: var(--vp-c-brand-soft); }
+.file-upload-area.dragover { border-color: var(--vp-c-brand-1); background: var(--vp-c-brand-soft); transform: scale(1.01); }
 .file-upload-area input[type="file"] { display: none; }
 
 /* 有文件时，内容靠上对齐 */
@@ -516,7 +516,9 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   line-height: 1.8; 
   display: flex; flex-direction: column; justify-content: center; 
   font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
-  text-shadow: 0 0 2px rgba(255,255,255,0.1); 
+  text-shadow: 0 0 2px rgba(255,255,255,0.1);
+  /* 终端行不换行（保留仿真感），窄屏时允许横向滑动防溢出 */
+  overflow-x: auto;
 }
 
 .line { margin: 3px 0; white-space: nowrap; text-align: left; }
