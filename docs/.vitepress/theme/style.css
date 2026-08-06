@@ -195,6 +195,17 @@ html:has(.home-spa-wrapper) #app {
   html, body {
     font-size: 14px;
     -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+  }
+
+  /* iOS Safari 输入框字号兜底：<16px 会触发页面自动放大 */
+  input, textarea, select {
+    font-size: 16px;
+  }
+
+  /* 禁用移动端双指缩放与双击缩放（触控交互更稳定） */
+  a, button, input, textarea, select, [role="button"] {
+    touch-action: manipulation;
   }
   
   .universe-container {
@@ -202,18 +213,41 @@ html:has(.home-spa-wrapper) #app {
     min-height: 100vh;
     scroll-snap-type: none;
     overflow-y: auto;
+    /* 禁用 scroll-behavior: smooth 在手机上的惯性滚动冲突 */
+    scroll-behavior: auto;
   }
   
   .universe-screen {
     height: auto;
-    min-height: 100vh;
+    min-height: auto;
     scroll-snap-align: none;
     padding-top: 70px;
     box-sizing: border-box;
+    /* 防止子元素溢出导致横向滚动 */
+    overflow-x: hidden;
   }
   
   .home-spa-wrapper {
     overflow-x: hidden;
+  }
+  
+  /* 禁用手机上的 scroll-snap 吸附动画，改为自然滚动 */
+  .universe-container,
+  .universe-screen {
+    scroll-snap-type: none !important;
+  }
+  
+  /* 让所有可点击元素有足够的触控目标（≥44px） */
+  a, button, input, textarea, select, [role="button"] {
+    min-height: 44px;
+  }
+  
+  /* 尊重系统的减弱动态设置 */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 

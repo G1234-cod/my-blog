@@ -332,8 +332,68 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     padding: 26px 22px;
     gap: 16px;
   }
+  .hub-icon {
+    font-size: 2.4rem;
+  }
   .hub-title {
     font-size: 1.6rem;
+  }
+  .hub-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .hub-badges {
+    flex-wrap: wrap;
+  }
+  .section-title {
+    font-size: 1.2rem;
+    padding-left: 12px;
+  }
+  .section-title::before {
+    width: 4px;
+  }
+  /* 技术栈/轨道网格在手机上全宽单列 */
+  .tech-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .track-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .track-card {
+    padding: 18px 20px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .track-card:active {
+    transform: scale(0.99);
+  }
+
+  .track-link {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .track-link:active {
+    transform: scale(0.98);
+    background-color: var(--vp-c-brand-soft);
+  }
+
+  .tech-card {
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .tech-card:active {
+    transform: scale(0.99);
+  }
+
+  .track-links {
+    display: none; /* 手机上轨道链接列表过长，隐藏 */
+  }
+  .hub-quote {
+    margin-top: 32px;
+    padding: 16px 20px;
+    font-size: 0.95rem;
   }
 }
 </style>

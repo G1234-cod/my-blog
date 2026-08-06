@@ -600,6 +600,12 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
     width: 100%; 
     padding: 14px 24px;
     font-size: 0.95rem;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .submit-btn:active {
+    transform: scale(0.99);
   }
   
   .terminal-card { 
@@ -613,11 +619,25 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   
   input, textarea {
     padding: 14px 16px;
-    font-size: 0.95rem;
+    /* iOS Safari: font-size < 16px 会自动放大页面，必须 ≥16px */
+    font-size: 16px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  input:active, textarea:active {
+    border-color: var(--vp-c-brand-1);
   }
   
   .file-upload-area {
     padding: 20px 16px;
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .file-upload-area:active {
+    transform: scale(0.995);
+    border-color: var(--vp-c-brand-1);
+    background-color: var(--vp-c-brand-soft);
   }
   
   .upload-icon { font-size: 2rem; }
@@ -631,6 +651,10 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   .file-icon { font-size: 1.2rem; }
   .file-name { font-size: 0.85rem; }
   .file-size { font-size: 0.75rem; }
+
+  .file-remove {
+    -webkit-tap-highlight-color: transparent;
+  }
   
   .bento-right {
     height: auto;
@@ -646,6 +670,17 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   
   .m-card {
     padding: 20px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .m-card:active {
+    transform: scale(0.99);
+  }
+
+  .m-card,
+  .submit-btn,
+  .file-upload-area {
+    -webkit-tap-highlight-color: transparent;
   }
   
   .m-icon { font-size: 1.6rem; }
@@ -700,7 +735,8 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   
   input, textarea {
     padding: 12px 14px;
-    font-size: 0.9rem;
+    /* 极小屏依然保持 iOS 安全字号 */
+    font-size: 16px;
   }
   
   .m-card {

@@ -1,6 +1,13 @@
 <template>
   <nav :class="['dynamic-navbar', { 'is-scrolled': isScrolled, 'is-mobile-open': isMobileMenuOpen }]">
     <a href="javascript:void(0)" class="nav-brand" @click.prevent="handleNavClick('hero')">GYX<span>.Dev</span></a>
+
+    <div
+      v-if="isMobileMenuOpen"
+      class="nav-overlay"
+      @click="closeMobileMenu"
+      aria-hidden="true"
+    ></div>
     
     <ul class="nav-links">
       <li><a href="javascript:void(0)" :class="{ active: activeSection === 'hero' }" @click.prevent="handleNavClick('hero')">01 START</a></li>
@@ -59,14 +66,20 @@ const updateActiveStateByRoute = () => {
 
 // 💡 3. 跨页跃迁引擎 (🔥 修复：必须放在 watch 之前定义)
 const scrollToSection = (sectionId) => {
-  if (typeof document === 'undefined') return // 防 SSR 崩溃保护
+  if (typeof document === 'undefined') return
   const container = document.querySelector('.universe-container')
   if (!container) return
+  const isMobile = window.innerWidth <= 768
   const index = sections.indexOf(sectionId)
   if (index !== -1) {
     activeSection.value = sectionId
     const targetScrollTop = index * window.innerHeight
-    container.scrollTo({ top: targetScrollTop, behavior: 'smooth' })
+    if (isMobile) {
+      // 移动端 universe-container 不再是滚动容器
+      window.scrollTo({ top: targetScrollTop, behavior: 'smooth' })
+    } else {
+      container.scrollTo({ top: targetScrollTop, behavior: 'smooth' })
+    }
   }
 }
 
@@ -107,11 +120,16 @@ const checkScroll = () => {
   
   if (isHomePage.value) {
     const container = document.querySelector('.universe-container')
-    if (!container) return
-    isScrolled.value = container.scrollTop > 50
+    const isMobile = window.innerWidth <= 768
+    // 移动端 universe-container 不再是滚动容器，改用 window 滚动位置
+    const scrollTop = isMobile
+      ? (window.scrollY || document.documentElement.scrollTop || 0)
+      : (container ? container.scrollTop : 0)
+    
+    isScrolled.value = scrollTop > 50
     
     const screenHeight = window.innerHeight
-    const scrollPosition = container.scrollTop + (screenHeight / 2) 
+    const scrollPosition = scrollTop + (screenHeight / 2)
     const index = Math.floor(scrollPosition / screenHeight)
     if (sections[index] && activeSection.value !== sections[index]) {
       activeSection.value = sections[index]
@@ -135,12 +153,34 @@ const toggleTheme = () => {
   }
 }
 
+const setBodyScrollLock = (locked) => {
+  if (typeof document === 'undefined') return
+  const body = document.body
+  if (locked) {
+    if (!body.style.overflow) {
+      body.dataset.prevOverflow = body.style.overflow
+    }
+    body.style.overflow = 'hidden'
+  } else {
+    if (body.dataset.prevOverflow !== undefined) {
+      body.style.overflow = body.dataset.prevOverflow
+      delete body.dataset.prevOverflow
+    } else {
+      body.style.overflow = ''
+    }
+  }
+}
+
 const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value
+  const next = !isMobileMenuOpen.value
+  isMobileMenuOpen.value = next
+  setBodyScrollLock(next)
 }
 
 const closeMobileMenu = () => {
+  if (!isMobileMenuOpen.value) return
   isMobileMenuOpen.value = false
+  setBodyScrollLock(false)
 }
 
 onMounted(() => {
@@ -180,6 +220,21 @@ onUnmounted(() => {
   transition: all 0.3s ease;
   box-sizing: border-box;
   font-family: var(--vp-font-family-base);
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 60px 0 0 0;
+  background: rgba(15, 18, 24, 0.45);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 9997;
+  animation: navOverlayFadeIn 0.25s ease;
+}
+
+@keyframes navOverlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .dynamic-navbar.is-scrolled {
@@ -285,8 +340,20 @@ onUnmounted(() => {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
+  /* 触控目标 ≥44px */
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
   z-index: 10000;
+}
+
+/* 移动端需要 flex 布局来居中汉堡图标 */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
 }
 
 .menu-icon {
@@ -380,6 +447,7 @@ onUnmounted(() => {
     padding: 12px 24px;
     border-radius: 12px;
     transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
   }
   
   .nav-links a:hover,
@@ -387,9 +455,11 @@ onUnmounted(() => {
     background: var(--vp-c-brand-soft);
     color: var(--vp-c-brand-1);
   }
-  
-  .mobile-menu-btn {
-    display: block;
+
+  .nav-links a:active {
+    transform: scale(0.97);
+    background: var(--vp-c-brand-soft);
+    color: var(--vp-c-brand-1);
   }
   
   .theme-switch .label {

@@ -269,7 +269,10 @@
   .right-scroll { 
     width: 100%; 
     padding: 45px 20px 0 20px; 
-    overflow-y: visible; 
+    overflow-y: visible;
+    /* 手机上禁用内部容器平滑滚动，改由页面自然滚动 */
+    scroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .timeline-container {
@@ -292,6 +295,11 @@
     gap: 14px; 
     align-items: flex-start;
     padding: 20px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .glass-panel:active {
+    transform: scale(0.99);
   }
   
   .card-left h3 {
@@ -318,6 +326,17 @@
     padding: 7px 11px;
     flex-wrap: wrap;
     gap: 4px;
+  }
+
+  /* 移动端触控目标尺寸 & 去除点击高亮 */
+  .node-card,
+  .mini-badge,
+  .dash-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mini-badge:active {
+    transform: scale(0.98);
   }
   
   .b-icon { font-size: 0.95rem; }

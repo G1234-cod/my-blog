@@ -186,6 +186,8 @@
   
   .flat-card {
     padding: 22px;
+    box-sizing: border-box;
+    max-width: 100%;
   }
   
   .c-title {
@@ -245,6 +247,8 @@
   
   .flat-card {
     padding: 18px;
+    box-sizing: border-box;
+    max-width: 100%;
   }
   
   .c-title {

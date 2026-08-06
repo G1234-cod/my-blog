@@ -333,7 +333,10 @@ a.project-card:hover {
   .right-scroll { 
     width: 100%; 
     padding: 40px 20px 0 20px; 
-    overflow-y: visible; 
+    overflow-y: visible;
+    /* 手机上禁用内部容器平滑滚动，改由页面自然滚动 */
+    scroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .projects-container {
@@ -343,6 +346,11 @@ a.project-card:hover {
   .glass-panel {
     padding: 22px;
     gap: 12px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .glass-panel:active {
+    transform: scale(0.99);
   }
   
   .card-header {
@@ -376,6 +384,13 @@ a.project-card:hover {
   .project-desc {
     font-size: 0.9rem;
     line-height: 1.6;
+  }
+
+  /* 移动端触控目标尺寸 & 去除点击高亮 */
+  a.project-card,
+  .glass-panel,
+  .tag {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
