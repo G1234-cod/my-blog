@@ -130,7 +130,7 @@
 }
 .board-content { width: 75%; position: relative; z-index: 1; }
 .section-tag { font-family: monospace; font-size: 0.9rem; color: var(--vp-c-brand-1); margin-bottom: 16px; font-weight: 600; letter-spacing: 1px; }
-.board-title { font-size: 2.8rem; font-weight: 800; line-height: 1.2; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
+.board-title { font-size: clamp(1.9rem, 1.1rem + 2vw, 2.8rem); font-weight: 800; line-height: 1.2; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
 .board-title .highlight { color: var(--vp-c-brand-1); }
 .board-desc { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.6; margin-bottom: 40px; }
 

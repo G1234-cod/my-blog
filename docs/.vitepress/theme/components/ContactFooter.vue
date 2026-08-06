@@ -529,6 +529,21 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 .blink { animation: blinker 1s step-end infinite; color: #c9d1d9; font-weight: bold; }
 @keyframes blinker { 50% { opacity: 0; } }
 
+/* 窄桌面（769~1200px）：2.3:1 双栏会挤压表单，改为上下堆叠 */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .bento-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 860px;
+  }
+  .card-header, .card-body {
+    padding: 22px 28px;
+  }
+  .left-title {
+    font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2rem);
+  }
+}
+
 /* === 移动端响应式适配 === */
 @media (max-width: 768px) {
   .contact-wrapper {

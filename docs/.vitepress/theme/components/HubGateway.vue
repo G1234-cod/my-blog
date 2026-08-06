@@ -96,7 +96,7 @@
 /* === 头部看板 === */
 .hub-header { text-align: center; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
 .section-tag { font-family: var(--vp-font-family-base); font-size: 0.9rem; color: var(--vp-c-brand-1); margin-bottom: 16px; font-weight: 700; letter-spacing: 1px; }
-.hub-header h2 { font-size: 3.2rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 16px 0; letter-spacing: -0.5px; }
+.hub-header h2 { font-size: clamp(2.1rem, 1.3rem + 2.2vw, 3.2rem); font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 16px 0; letter-spacing: -0.5px; }
 .subtitle { font-size: 1.05rem; color: var(--vp-c-text-2); max-width: 650px; line-height: 1.6; margin: 0 0 24px 0; }
 
 .global-stats { display: flex; justify-content: center; }

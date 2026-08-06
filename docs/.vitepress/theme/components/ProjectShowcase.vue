@@ -183,7 +183,8 @@
   width: 45%; height: 100%; 
   display: flex; align-items: flex-start; 
   justify-content: flex-start;
-  padding-left: 120px;
+  /* 死像素 120px → 流式：窄屏笔记本自动收缩，宽屏保持原有留白 */
+  padding-left: clamp(24px, 6vw, 120px);
   padding-right: 40px;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -196,7 +197,7 @@
 .board-content { width: 100%; max-width: 520px; position: relative; z-index: 1; }
 .section-tag { font-family: monospace; font-size: 0.9rem; color: var(--vp-c-brand-1); margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 
-.board-title { font-size: 3rem; font-weight: 800; line-height: 1.25; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
+.board-title { font-size: clamp(2rem, 1.2rem + 2.2vw, 3rem); font-weight: 800; line-height: 1.25; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
 .board-title .highlight { color: var(--vp-c-brand-1); }
 .board-desc { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.7; margin-bottom: 40px; }
 

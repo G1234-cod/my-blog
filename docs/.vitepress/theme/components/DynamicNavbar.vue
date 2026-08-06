@@ -330,6 +330,22 @@ onUnmounted(() => {
   top: 0;
 }
 
+/* 中等屏幕（平板横屏/窄笔记本）：收紧导航间距防止挤压溢出 */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .dynamic-navbar {
+    padding: 0 24px;
+  }
+  .nav-links {
+    gap: 18px;
+  }
+  .nav-links a {
+    font-size: 0.78rem;
+  }
+  .theme-switch .label {
+    display: none; /* 只留图标，省空间 */
+  }
+}
+
 @media (max-width: 768px) {
   .dynamic-navbar {
     padding: 0 20px;

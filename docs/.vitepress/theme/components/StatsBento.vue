@@ -208,6 +208,17 @@
 @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
+/* 窄桌面（769~1100px）：个人卡 + 数据区双栏会挤压，改为单列堆叠 */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+  }
+  .bento-card {
+    padding: 28px;
+  }
+}
+
 /* 响应式适配 */
 @media (max-width: 768px) {
   .bento-grid { grid-template-columns: 1fr; }

@@ -51,7 +51,10 @@
 .glow-2 { bottom: -10%; right: 10%; width: 500px; height: 500px; background: #00f2fe; }
 
 .hero-card {
-  width: 92%; max-width: 1400px; min-height: 680px; height: auto;
+  width: 92%; max-width: 1400px;
+  /* 680px 死值 → 流式下限：矮屏（如 768px 高笔记本）收缩为视口高-留白，避免底部被裁 */
+  min-height: clamp(460px, calc(100vh - 140px), 680px);
+  height: auto;
   position: relative; z-index: 1; border-radius: 24px; overflow: hidden;
   background-image: url('/background.jpg'); 
   background-size: cover; background-position: right center; background-repeat: no-repeat;
@@ -73,7 +76,7 @@
 .text-content { width: 55%; } /* 约束文字范围 */
 
 .tag { font-family: monospace; font-size: 0.9rem; color: var(--vp-c-text-2); margin-bottom: 20px; }
-.main-title { font-size: 3.2rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 20px 0; line-height: 1.2; letter-spacing: -0.5px; }
+.main-title { font-size: clamp(2.1rem, 1.3rem + 2.2vw, 3.2rem); font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 20px 0; line-height: 1.2; letter-spacing: -0.5px; }
 .description { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0 0 30px 0; max-width: 90%; }
 
 .mission-card { background: var(--vp-c-default-soft); border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 24px; max-width: 95%; }
