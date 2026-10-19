@@ -75,20 +75,20 @@
 
 .text-content { width: 55%; } /* 约束文字范围 */
 
-.tag { font-family: monospace; font-size: 0.9rem; color: var(--vp-c-text-2); margin-bottom: 20px; }
-.main-title { font-size: clamp(2.1rem, 1.3rem + 2.2vw, 3.2rem); font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 20px 0; line-height: 1.2; letter-spacing: -0.5px; }
-.description { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0 0 30px 0; max-width: 90%; }
+.tag { font-family: monospace; font-size: 0.85rem; color: var(--vp-c-text-2); margin-bottom: 20px; }
+.main-title { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.2rem); font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 20px 0; line-height: 1.2; letter-spacing: -0.5px; }
+.description { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0 0 30px 0; max-width: 90%; }
 
 .mission-card { background: var(--vp-c-default-soft); border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 24px; max-width: 95%; }
-.mission-title { font-size: 0.9rem; font-weight: 700; color: var(--vp-c-text-1); margin-bottom: 12px; }
-.mission-text { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.6; margin: 0 0 16px 0; }
-.mission-footer { font-size: 0.85rem; color: var(--vp-c-text-3); font-style: italic; }
+.mission-title { font-size: 0.85rem; font-weight: 700; color: var(--vp-c-text-1); margin-bottom: 12px; }
+.mission-text { font-size: 0.85rem; color: var(--vp-c-text-2); line-height: 1.6; margin: 0 0 16px 0; }
+.mission-footer { font-size: 0.75rem; color: var(--vp-c-text-3); font-style: italic; }
 
 .bottom-stats { margin-top: 40px; display: flex; gap: 40px; justify-content: center; align-items: center; z-index: 1; flex-wrap: wrap; }
 .stat-item { display: flex; align-items: center; gap: 10px; font-family: var(--vp-font-family-base); }
-.stat-item .icon { font-size: 1.1rem; }
-.stat-num { font-size: 1.1rem; font-weight: 800; color: var(--vp-c-text-1); font-family: monospace; }
-.stat-desc { font-size: 0.9rem; font-weight: 600; color: var(--vp-c-text-2); letter-spacing: 0.5px; }
+.stat-item .icon { font-size: 1.05rem; }
+.stat-num { font-size: 1.05rem; font-weight: 800; color: var(--vp-c-text-1); font-family: monospace; }
+.stat-desc { font-size: 0.85rem; font-weight: 600; color: var(--vp-c-text-2); letter-spacing: 0.5px; }
 
 @media (max-width: 768px) {
   .hero-wrapper {
@@ -113,7 +113,7 @@
   
   .text-content { width: 100%; }
   
-  .tag { font-size: 0.85rem; }
+  .tag { font-size: 0.75rem; }
   
   .main-title { 
     font-size: 2.2rem; 
@@ -123,7 +123,7 @@
   
   .description { 
     max-width: 100%; 
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 20px;
   }
@@ -134,9 +134,9 @@
     border-radius: 14px;
   }
   
-  .mission-title { font-size: 0.9rem; }
-  .mission-text { font-size: 0.9rem; }
-  .mission-footer { font-size: 0.8rem; }
+  .mission-title { font-size: 0.85rem; }
+  .mission-text { font-size: 0.85rem; }
+  .mission-footer { font-size: 0.75rem; }
   
   .bottom-stats { 
     gap: 20px; 
@@ -152,9 +152,9 @@
     min-width: 70px;
   }
   
-  .stat-item .icon { font-size: 1rem; }
-  .stat-num { font-size: 1.1rem; }
-  .stat-desc { font-size: 0.8rem; }
+  .stat-item .icon { font-size: 0.95rem; }
+  .stat-num { font-size: 1.05rem; }
+  .stat-desc { font-size: 0.75rem; }
   
   .bg-glow {
     width: 400px;
@@ -175,7 +175,7 @@
   }
   
   .main-title {
-    font-size: 1.9rem;
+    font-size: 1.6rem;
   }
   
   .gradient-overlay {
@@ -183,7 +183,7 @@
   }
   
   .description {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
   
   .mission-card {
@@ -194,7 +194,7 @@
     gap: 15px;
   }
   
-  .stat-num { font-size: 1rem; }
+  .stat-num { font-size: 0.95rem; }
   .stat-desc { font-size: 0.75rem; }
   
   .bg-glow {

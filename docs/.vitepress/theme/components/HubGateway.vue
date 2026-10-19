@@ -95,15 +95,15 @@
 
 /* === 头部看板 === */
 .hub-header { text-align: center; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
-.section-tag { font-family: var(--vp-font-family-base); font-size: 0.9rem; color: var(--vp-c-brand-1); margin-bottom: 16px; font-weight: 700; letter-spacing: 1px; }
-.hub-header h2 { font-size: clamp(2.1rem, 1.3rem + 2.2vw, 3.2rem); font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 16px 0; letter-spacing: -0.5px; }
-.subtitle { font-size: 1.05rem; color: var(--vp-c-text-2); max-width: 650px; line-height: 1.6; margin: 0 0 24px 0; }
+.section-tag { font-family: var(--vp-font-family-base); font-size: 0.85rem; color: var(--vp-c-brand-1); margin-bottom: 16px; font-weight: 700; letter-spacing: 1px; }
+.hub-header h2 { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.2rem); font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 16px 0; letter-spacing: -0.5px; }
+.subtitle { font-size: 0.95rem; color: var(--vp-c-text-2); max-width: 650px; line-height: 1.6; margin: 0 0 24px 0; }
 
 .global-stats { display: flex; justify-content: center; }
 .stat-pill { 
   display: flex; align-items: center; gap: 10px; padding: 6px 16px; 
   background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border); 
-  border-radius: 8px; font-size: 0.85rem; font-weight: 700; color: var(--vp-c-text-1);
+  border-radius: 8px; font-size: 0.75rem; font-weight: 700; color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-base); letter-spacing: 0.5px; box-shadow: var(--vp-shadow-1);
 }
 .pulse-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: 0 0 10px #0ba360; animation: pulse 2s infinite; }
@@ -144,15 +144,15 @@
 
 /* 内部排版：全面清洗丑陋字体 */
 .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; position: relative; z-index: 1; }
-.c-icon { font-size: 1.8rem; background: var(--card-accent-soft); width: 48px; height: 48px; display: flex; justify-content: center; align-items: center; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
-.c-count { font-size: 0.85rem; font-weight: 700; color: var(--vp-c-text-2); background: var(--vp-c-bg); border: 1px solid var(--vp-c-border); padding: 4px 12px; border-radius: 8px; font-family: var(--vp-font-family-base); }
+.c-icon { font-size: 1.25rem; background: var(--card-accent-soft); width: 48px; height: 48px; display: flex; justify-content: center; align-items: center; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+.c-count { font-size: 0.75rem; font-weight: 700; color: var(--vp-c-text-2); background: var(--vp-c-bg); border: 1px solid var(--vp-c-border); padding: 4px 12px; border-radius: 8px; font-family: var(--vp-font-family-base); }
 
-.c-title { font-size: 1.4rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 12px 0; position: relative; z-index: 1; letter-spacing: 0.5px;}
-.c-desc { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.6; margin: 0; flex-grow: 1; position: relative; z-index: 1; }
+.c-title { font-size: 1.25rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 12px 0; position: relative; z-index: 1; letter-spacing: 0.5px;}
+.c-desc { font-size: 0.85rem; color: var(--vp-c-text-2); line-height: 1.6; margin: 0; flex-grow: 1; position: relative; z-index: 1; }
 
 /* 底部系列高亮标签 */
 .c-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; position: relative; z-index: 1; }
-.c-tags span { font-size: 0.8rem; font-weight: 600; color: var(--vp-c-text-2); background: var(--vp-c-bg); border: 1px solid var(--vp-c-border); padding: 4px 10px; border-radius: 8px; transition: all 0.2s; font-family: var(--vp-font-family-base); }
+.c-tags span { font-size: 0.75rem; font-weight: 600; color: var(--vp-c-text-2); background: var(--vp-c-bg); border: 1px solid var(--vp-c-border); padding: 4px 10px; border-radius: 8px; transition: all 0.2s; font-family: var(--vp-font-family-base); }
 .flat-card:hover .c-tags span { color: var(--card-accent); border-color: var(--card-accent); background: var(--card-accent-soft); }
 
 /* === 移动端优雅自适应 === */
@@ -166,15 +166,15 @@
     padding: 0 20px;
   }
   
-  .section-tag { font-size: 0.85rem; }
+  .section-tag { font-size: 0.75rem; }
   
   .hub-header h2 {
-    font-size: 2.1rem;
+    font-size: 1.6rem;
     line-height: 1.2;
   }
   
   .subtitle {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     max-width: 100%;
     line-height: 1.6;
   }
@@ -196,18 +196,18 @@
   }
   
   .c-desc {
-    font-size: 0.92rem;
+    font-size: 0.85rem;
     line-height: 1.6;
   }
   
   .c-icon {
     width: 44px;
     height: 44px;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
   
   .c-count {
-    font-size: 0.82rem;
+    font-size: 0.75rem;
     padding: 4px 11px;
   }
   
@@ -216,7 +216,7 @@
   }
   
   .c-tags span {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     padding: 4px 9px;
   }
   
@@ -238,11 +238,11 @@
   }
   
   .hub-header h2 {
-    font-size: 1.8rem;
+    font-size: 1.25rem;
   }
   
   .subtitle {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .flat-card {
@@ -252,21 +252,21 @@
   }
   
   .c-title {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
   }
   
   .c-desc {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
   }
   
   .c-icon {
     width: 38px;
     height: 38px;
-    font-size: 1.3rem;
+    font-size: 1.05rem;
   }
   
   .c-count {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     padding: 3px 9px;
   }
   

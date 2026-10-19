@@ -101,13 +101,13 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   box-shadow: var(--vp-shadow-2);
 }
 .hub-icon {
-  font-size: 3.2rem;
+  font-size: 2.2rem;
   line-height: 1;
   flex-shrink: 0;
   filter: drop-shadow(0 4px 14px var(--vp-brand-glow));
 }
 .hub-eyebrow {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 3px;
   color: var(--vp-c-brand-1);
@@ -115,7 +115,7 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
 }
 .hub-title {
   margin: 0 0 12px;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 800;
   letter-spacing: 0.5px;
   line-height: 1.3;
@@ -123,7 +123,7 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
 }
 .hub-desc {
   margin: 0 0 16px;
-  font-size: 1.02rem;
+  font-size: 0.95rem;
   line-height: 1.8;
   color: var(--vp-c-text-2);
 }
@@ -136,7 +136,7 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   align-items: center;
   padding: 5px 14px;
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   color: var(--vp-c-brand-1);
@@ -152,7 +152,7 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   position: relative;
   margin: 0 0 20px;
   padding-left: 16px;
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: 1px;
   color: var(--vp-c-text-1);
@@ -189,14 +189,14 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   box-shadow: 0 10px 24px var(--vp-brand-glow);
 }
 .tech-label {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--vp-c-text-3);
   margin-bottom: 8px;
 }
 .tech-value {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 600;
   line-height: 1.6;
   color: var(--vp-c-text-1);
@@ -231,18 +231,18 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   margin-bottom: 10px;
 }
 .track-icon {
-  font-size: 1.3rem;
+  font-size: 1.05rem;
 }
 .track-title {
   margin: 0;
-  font-size: 1.08rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.3px;
   color: var(--vp-c-text-1);
 }
 .track-desc {
   margin: 0 0 10px;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   line-height: 1.7;
   color: var(--vp-c-text-2);
 }
@@ -252,7 +252,7 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
 }
 .track-points li {
   margin-bottom: 6px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   line-height: 1.7;
   color: var(--vp-c-text-2);
 }
@@ -273,7 +273,7 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   padding: 9px 12px;
   margin-bottom: 6px;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
   line-height: 1.5;
   color: var(--vp-c-text-1);
@@ -298,7 +298,7 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
 }
 .track-note {
   margin: 10px 0 0;
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   line-height: 1.6;
   color: var(--vp-c-text-3);
 }
@@ -315,11 +315,11 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   border-left: 4px solid var(--vp-c-brand-1);
   background-color: var(--vp-c-brand-soft);
   color: var(--vp-c-text-1);
-  font-size: 1.02rem;
+  font-size: 0.95rem;
   letter-spacing: 0.5px;
 }
 .quote-icon {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 /* —— 移动端适配 —— */
@@ -333,20 +333,20 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     gap: 16px;
   }
   .hub-icon {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
   .hub-title {
-    font-size: 1.6rem;
+    font-size: 1.25rem;
   }
   .hub-desc {
-    font-size: 0.92rem;
+    font-size: 0.85rem;
     line-height: 1.6;
   }
   .hub-badges {
     flex-wrap: wrap;
   }
   .section-title {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     padding-left: 12px;
   }
   .section-title::before {
@@ -393,7 +393,7 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   .hub-quote {
     margin-top: 32px;
     padding: 16px 20px;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
 }
 </style>

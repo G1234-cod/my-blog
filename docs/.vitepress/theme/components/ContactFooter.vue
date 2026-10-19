@@ -342,8 +342,8 @@ onMounted(() => { fetchServerStatus() })
   background: linear-gradient(135deg, rgba(26,29,36,0.3) 0%, transparent 100%);
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
-.left-title { font-size: 2rem; font-weight: 800; color: var(--vp-c-text-1); line-height: 1.1; margin: 0 0 12px 0; letter-spacing: -0.5px; }
-.quote-text { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.6; font-weight: 500; margin: 0; }
+.left-title { font-size: 1.6rem; font-weight: 800; color: var(--vp-c-text-1); line-height: 1.1; margin: 0 0 12px 0; letter-spacing: -0.5px; }
+.quote-text { font-size: 0.85rem; color: var(--vp-c-text-2); line-height: 1.6; font-weight: 500; margin: 0; }
 
 .card-body {
   padding: 22px 40px 28px;
@@ -357,12 +357,12 @@ onMounted(() => { fetchServerStatus() })
 .modern-form { display: flex; flex-direction: column; gap: 18px; } 
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .input-group { display: flex; flex-direction: column; gap: 6px; }
-.input-group label { font-size: 0.8rem; font-weight: 600; color: var(--vp-c-text-1); }
+.input-group label { font-size: 0.75rem; font-weight: 600; color: var(--vp-c-text-1); }
 .required { color: #ff0844; }
 
 input, textarea {
   width: 100%; background: var(--vp-c-default-soft); border: 1px solid var(--vp-c-border);
-  padding: 12px 14px; border-radius: 10px; font-size: 0.9rem; color: var(--vp-c-text-1);
+  padding: 12px 14px; border-radius: 10px; font-size: 0.85rem; color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-base); transition: all 0.2s ease; outline: none;
 }
 input:focus, textarea:focus { border-color: var(--vp-c-brand-1); background: var(--vp-c-bg-soft); box-shadow: 0 0 0 3px var(--vp-c-brand-soft); }
@@ -391,8 +391,8 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 /* 有文件时，内容靠上对齐 */
 .file-upload-area.has-files { justify-content: flex-start; padding: 12px; }
 
-.upload-icon { font-size: 1.8rem; margin-bottom: 8px; }
-.upload-text { font-size: 0.85rem; color: var(--vp-c-text-2); font-weight: 500; }
+.upload-icon { font-size: 1.25rem; margin-bottom: 8px; }
+.upload-text { font-size: 0.75rem; color: var(--vp-c-text-2); font-weight: 500; }
 .upload-hint { font-size: 0.75rem; color: var(--vp-c-text-3); margin-top: 4px; }
 .upload-hint.add-more { margin-top: 12px; transition: color 0.2s ease; }
 .file-upload-area:hover .upload-hint.add-more { color: var(--vp-c-brand-1); }
@@ -408,18 +408,18 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   cursor: default; /* 文件条目上恢复普通鼠标指针 */
 }
 .file-info { display: flex; align-items: center; gap: 12px; }
-.file-icon { font-size: 1.4rem; }
-.file-name { font-size: 0.9rem; color: var(--vp-c-text-1); font-weight: 500; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-.file-size { font-size: 0.8rem; color: var(--vp-c-text-3); }
+.file-icon { font-size: 1.25rem; }
+.file-name { font-size: 0.85rem; color: var(--vp-c-text-1); font-weight: 500; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.file-size { font-size: 0.75rem; color: var(--vp-c-text-3); }
 .file-remove {
   width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: rgba(255, 8, 68, 0.1);
   border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  color: #ff0844; font-size: 0.9rem; transition: all 0.2s ease;
+  color: #ff0844; font-size: 0.85rem; transition: all 0.2s ease;
 }
 .file-remove:hover { background: rgba(255, 8, 68, 0.2); transform: scale(1.1); }
 
 
-.sys-banner { padding: 12px 16px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; line-height: 1.5; }
+.sys-banner { padding: 12px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; line-height: 1.5; }
 .sys-banner.error { background: rgba(255, 8, 68, 0.1); color: #ff0844; border: 1px solid rgba(255, 8, 68, 0.3); }
 
 .form-footer {
@@ -427,7 +427,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 }
 .submit-btn {
   background: var(--vp-c-text-1); color: var(--vp-c-bg);
-  font-size: 1rem; font-weight: 700; padding: 14px 32px; border-radius: 10px;
+  font-size: 0.95rem; font-weight: 700; padding: 14px 32px; border-radius: 10px;
   cursor: pointer; transition: all 0.3s ease; border: none;
 }
 .submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); opacity: 0.9; }
@@ -437,7 +437,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 /* 系统状态指示器 */
 .status-indicator { 
   display: flex; align-items: center; gap: 10px; 
-  font-size: 0.85rem; font-weight: 700; color: #0ba360; 
+  font-size: 0.75rem; font-weight: 700; color: #0ba360; 
   font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; 
   letter-spacing: 1px;
 }
@@ -467,7 +467,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 .terminal-widget { flex: 1 1 0; }
 
 .widget-title {
-  font-size: 0.85rem; font-weight: 700; color: var(--vp-c-text-3); text-transform: uppercase; letter-spacing: 1px;
+  font-size: 0.75rem; font-weight: 700; color: var(--vp-c-text-3); text-transform: uppercase; letter-spacing: 1px;
 }
 
 .m-card {
@@ -476,10 +476,10 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   text-decoration: none; transition: all 0.2s ease;
 }
 .interactive:hover { border-color: var(--vp-c-text-1); transform: translateY(-3px); box-shadow: var(--vp-shadow-2); }
-.m-icon { font-size: 1.8rem; }
+.m-icon { font-size: 1.25rem; }
 .m-text { display: flex; flex-direction: column; }
-.m-main { font-size: 1.05rem; font-weight: 700; color: var(--vp-c-text-1); }
-.m-sub { font-size: 0.85rem; color: var(--vp-c-text-2); font-weight: 500; margin-top: 4px; }
+.m-main { font-size: 0.95rem; font-weight: 700; color: var(--vp-c-text-1); }
+.m-sub { font-size: 0.75rem; color: var(--vp-c-text-2); font-weight: 500; margin-top: 4px; }
 
 .terminal-card {
   height: 100%; 
@@ -506,13 +506,13 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 .dot.green { background-color: #27c93f; }
 
 .terminal-header .title {
-  color: #8b949e; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; font-family: monospace;
+  color: #8b949e; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; font-family: monospace;
 }
 
 .terminal-body {
   padding: 24px;
   flex-grow: 1; 
-  font-size: 0.85rem; 
+  font-size: 0.75rem; 
   line-height: 1.8; 
   display: flex; flex-direction: column; justify-content: center; 
   font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
@@ -563,12 +563,12 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   }
   
   .left-title {
-    font-size: 2.1rem;
+    font-size: 1.6rem;
     line-height: 1.2;
   }
   
   .quote-text {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     line-height: 1.6;
   }
   
@@ -593,13 +593,13 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   
   .status-indicator { 
     justify-content: center; 
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   
   .submit-btn { 
     width: 100%; 
     padding: 14px 24px;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     -webkit-tap-highlight-color: transparent;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
@@ -614,7 +614,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   
   .terminal-body {
     padding: 20px;
-    font-size: 0.82rem;
+    font-size: 0.75rem;
   }
   
   input, textarea {
@@ -640,16 +640,16 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
     background-color: var(--vp-c-brand-soft);
   }
   
-  .upload-icon { font-size: 2rem; }
-  .upload-text { font-size: 0.9rem; }
+  .upload-icon { font-size: 1.6rem; }
+  .upload-text { font-size: 0.85rem; }
   .upload-hint { font-size: 0.75rem; }
   
   .file-item {
     padding: 10px 14px;
   }
   
-  .file-icon { font-size: 1.2rem; }
-  .file-name { font-size: 0.85rem; }
+  .file-icon { font-size: 1.05rem; }
+  .file-name { font-size: 0.75rem; }
   .file-size { font-size: 0.75rem; }
 
   .file-remove {
@@ -683,14 +683,14 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
     -webkit-tap-highlight-color: transparent;
   }
   
-  .m-icon { font-size: 1.6rem; }
+  .m-icon { font-size: 1.25rem; }
   
   .m-main {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   
   .m-sub {
-    font-size: 0.82rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -708,11 +708,11 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   }
   
   .left-title {
-    font-size: 1.8rem;
+    font-size: 1.25rem;
   }
   
   .quote-text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .modern-form {
@@ -729,7 +729,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   
   .terminal-body {
     padding: 16px;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     line-height: 1.6;
   }
   
@@ -743,19 +743,19 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
     padding: 16px;
   }
   
-  .m-icon { font-size: 1.4rem; }
+  .m-icon { font-size: 1.25rem; }
   
   .m-main {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
   
   .m-sub {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
   }
   
   .submit-btn {
     padding: 12px 20px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .status-indicator {

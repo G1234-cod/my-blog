@@ -380,7 +380,7 @@ html:has(.home-spa-wrapper) #app {
 .vp-doc h2 {
   position: relative;
   padding-left: 20px;           
-  font-size: 2rem !important;
+  font-size: 1.6rem !important;
   font-weight: 800 !important;
   letter-spacing: 1px;          
 }
@@ -397,7 +397,7 @@ html:has(.home-spa-wrapper) #app {
 
 /* 14. 优化正文排版 */
 .vp-doc p {
-  font-size: 1.05rem;           
+  font-size: 0.95rem;           
   line-height: 1.8;             
   color: var(--vp-c-text-2);    
   margin-bottom: 1.5rem;        
@@ -447,7 +447,7 @@ html:has(.home-spa-wrapper) #app {
 
 /* 导航链接：对齐 DynamicNavbar 的字体风格（小号加粗 + 字距拉开） */
 .VPNavBar .VPNavBarMenuLink {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   color: var(--vp-c-text-2);
@@ -677,7 +677,7 @@ html:has(.home-spa-wrapper) #app {
   margin-top: 32px;
   margin-bottom: 16px;
   padding-left: 14px;
-  font-size: 1.3rem !important;
+  font-size: 1.05rem !important;
   font-weight: 700 !important;
   letter-spacing: 0.5px;
 }
@@ -698,7 +698,7 @@ html:has(.home-spa-wrapper) #app {
   margin-top: 24px;
   margin-bottom: 12px;
   padding-left: 12px;
-  font-size: 1.05rem !important;
+  font-size: 0.95rem !important;
   font-weight: 700 !important;
 }
 .vp-doc h4::before {
@@ -801,26 +801,26 @@ html:has(.home-spa-wrapper) #app {
 @media (max-width: 768px) {
   /* 标题梯队整体缩小，避免长标题在小屏折行过多 */
   .vp-doc h1 {
-    font-size: 1.7rem !important;
+    font-size: 1.6rem !important;
     margin-bottom: 1.4rem;
   }
   .vp-doc h2 {
-    font-size: 1.4rem !important;
+    font-size: 1.25rem !important;
     padding-left: 16px;
     margin-top: 32px !important;
     margin-bottom: 18px !important;
   }
   .vp-doc h3 {
-    font-size: 1.15rem !important;
+    font-size: 1.05rem !important;
   }
   .vp-doc h4 {
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
   }
 
   /* 正文与列表略收，行长更舒适 */
   .vp-doc p,
   .vp-doc li {
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     line-height: 1.75;
   }
 

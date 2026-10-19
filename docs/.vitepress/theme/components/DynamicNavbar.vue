@@ -245,7 +245,7 @@ onUnmounted(() => {
 }
 
 .nav-brand {
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: var(--vp-c-text-1);
   text-decoration: none;
@@ -266,7 +266,7 @@ onUnmounted(() => {
 .nav-links a { 
   color: var(--vp-c-text-2);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   padding-bottom: 6px;
@@ -324,11 +324,11 @@ onUnmounted(() => {
 }
 
 .theme-switch .icon {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .theme-switch .label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--vp-c-text-1);
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -406,7 +406,7 @@ onUnmounted(() => {
     gap: 18px;
   }
   .nav-links a {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
   }
   .theme-switch .label {
     display: none; /* 只留图标，省空间 */
@@ -442,7 +442,7 @@ onUnmounted(() => {
   }
   
   .nav-links a {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     font-weight: 700;
     padding: 12px 24px;
     border-radius: 12px;
@@ -473,7 +473,7 @@ onUnmounted(() => {
   }
   
   .nav-links a {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 }
 </style>

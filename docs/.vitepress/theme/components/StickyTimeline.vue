@@ -129,10 +129,10 @@
   background-image: radial-gradient(var(--vp-c-divider) 1px, transparent 1px); background-size: 24px 24px;
 }
 .board-content { width: 75%; position: relative; z-index: 1; }
-.section-tag { font-family: monospace; font-size: 0.9rem; color: var(--vp-c-brand-1); margin-bottom: 16px; font-weight: 600; letter-spacing: 1px; }
-.board-title { font-size: clamp(1.9rem, 1.1rem + 2vw, 2.8rem); font-weight: 800; line-height: 1.2; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
+.section-tag { font-family: monospace; font-size: 0.85rem; color: var(--vp-c-brand-1); margin-bottom: 16px; font-weight: 600; letter-spacing: 1px; }
+.board-title { font-size: clamp(1.35rem, 1.15rem + 1vw, 1.6rem); font-weight: 800; line-height: 1.2; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
 .board-title .highlight { color: var(--vp-c-brand-1); }
-.board-desc { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.6; margin-bottom: 40px; }
+.board-desc { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.6; margin-bottom: 40px; }
 
 /* 玻璃仪表盘网格 (Bento Box) */
 .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -143,10 +143,10 @@
 }
 .dash-card:hover { transform: translateY(-3px); border-color: var(--vp-c-brand-1); box-shadow: var(--vp-shadow-3); }
 .wide-card { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 20px; }
-.dash-icon { font-size: 2rem; background: var(--vp-c-default-soft); width: 48px; height: 48px; display: flex; justify-content: center; align-items: center; border-radius: 12px; }
-.dash-data h4 { font-size: 1.6rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0; font-family: var(--vp-font-family-base); }
-.dash-data h4 span { font-size: 0.9rem; color: var(--vp-c-text-3); font-weight: 600; }
-.dash-data p { font-size: 0.85rem; color: var(--vp-c-text-2); margin: 4px 0 0 0; font-weight: 600; }
+.dash-icon { font-size: 1.6rem; background: var(--vp-c-default-soft); width: 48px; height: 48px; display: flex; justify-content: center; align-items: center; border-radius: 12px; }
+.dash-data h4 { font-size: 1.25rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0; font-family: var(--vp-font-family-base); }
+.dash-data h4 span { font-size: 0.85rem; color: var(--vp-c-text-3); font-weight: 600; }
+.dash-data p { font-size: 0.75rem; color: var(--vp-c-text-2); margin: 4px 0 0 0; font-weight: 600; }
 
 /* === 右侧：图标轨道时间轴 === */
 .right-scroll { 
@@ -168,7 +168,7 @@
 .node-icon { 
   position: absolute; left: 6px; top: 20px; width: 38px; height: 38px; border-radius: 50%; 
   background: var(--vp-c-bg-soft); border: 2px solid var(--vp-c-border); z-index: 2; 
-  display: flex; justify-content: center; align-items: center; font-size: 1.1rem;
+  display: flex; justify-content: center; align-items: center; font-size: 1.05rem;
   box-shadow: 0 0 15px rgba(0,0,0,0.2); transition: all 0.3s ease;
 }
 .timeline-node:hover .node-icon { border-color: var(--vp-c-brand-1); transform: scale(1.1); }
@@ -184,8 +184,8 @@
 
 /* 卡片内部左侧叙事区 */
 .card-left { flex: 1.3; } /* 约占 55-60% */
-.card-left h3 { font-size: 1.3rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 12px 0; letter-spacing: 0.5px;}
-.card-left p { font-size: 0.95rem; color: var(--vp-c-text-2); margin: 0; line-height: 1.6; }
+.card-left h3 { font-size: 1.05rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 12px 0; letter-spacing: 0.5px;}
+.card-left p { font-size: 0.85rem; color: var(--vp-c-text-2); margin: 0; line-height: 1.6; }
 
 /* 卡片内部右侧数据标签区 */
 .card-right { flex: 1; display: flex; flex-direction: column; gap: 10px; border-left: 1px dashed var(--vp-c-border); padding-left: 20px; }
@@ -194,10 +194,10 @@
 .mini-badge {
   display: flex; align-items: center; gap: 8px; padding: 8px 12px;
   background: var(--vp-c-bg); border: 1px solid var(--vp-c-border); border-radius: 8px;
-  font-size: 0.85rem; font-weight: 600; color: var(--vp-c-text-1); transition: border-color 0.2s ease;
+  font-size: 0.75rem; font-weight: 600; color: var(--vp-c-text-1); transition: border-color 0.2s ease;
 }
 .mini-badge:hover { border-color: var(--vp-c-text-2); }
-.b-icon { font-size: 1rem; }
+.b-icon { font-size: 0.95rem; }
 .b-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* 特定高亮标签颜色 */
@@ -233,15 +233,15 @@
     text-align: left;
   }
   
-  .section-tag { font-size: 0.85rem; }
+  .section-tag { font-size: 0.75rem; }
   
   .board-title {
-    font-size: 2.1rem;
+    font-size: 1.6rem;
     line-height: 1.2;
   }
   
   .board-desc {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     line-height: 1.6;
   }
   
@@ -255,11 +255,11 @@
   }
   
   .dash-card h4 {
-    font-size: 1.3rem;
+    font-size: 1.05rem;
   }
   
   .dash-card p {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   
   .wide-card {
@@ -286,7 +286,7 @@
   .node-icon {
     width: 34px;
     height: 34px;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     left: 8px;
   }
   
@@ -303,12 +303,12 @@
   }
   
   .card-left h3 {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     line-height: 1.3;
   }
   
   .card-left p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     line-height: 1.6;
   }
   
@@ -322,7 +322,7 @@
   }
   
   .mini-badge {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 7px 11px;
     flex-wrap: wrap;
     gap: 4px;
@@ -339,7 +339,7 @@
     transform: scale(0.98);
   }
   
-  .b-icon { font-size: 0.95rem; }
+  .b-icon { font-size: 0.85rem; }
 }
 
 @media (max-width: 480px) {
@@ -352,7 +352,7 @@
   }
   
   .board-title {
-    font-size: 1.8rem;
+    font-size: 1.25rem;
   }
   
   .dashboard-grid {
@@ -376,7 +376,7 @@
   .node-icon {
     width: 30px;
     height: 30px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     left: 7px;
   }
   
@@ -385,11 +385,11 @@
   }
   
   .card-left h3 {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
   }
   
   .card-left p {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
   
   .card-right {

@@ -135,17 +135,17 @@
   background: var(--vp-c-bg); /* 防止透明底出问题 */
 }
 
-.profile-card h2 { margin: 0 0 12px 0; font-size: 2rem; font-weight: 800; color: var(--vp-c-text-1); }
+.profile-card h2 { margin: 0 0 12px 0; font-size: 1.6rem; font-weight: 800; color: var(--vp-c-text-1); }
 
 /* 美化后的身份标签：胶囊风格 */
 .role-badge-container { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
 .role-badge {
-  font-size: 0.85rem; font-weight: 600; color: var(--vp-c-brand-1);
+  font-size: 0.75rem; font-weight: 600; color: var(--vp-c-brand-1);
   background: var(--vp-c-default-soft); border: 1px solid var(--vp-c-border);
   padding: 6px 14px; border-radius: 20px; font-family: var(--vp-font-family-base);
 }
 
-.desc { font-size: 1rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0 0 30px 0; }
+.desc { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0 0 30px 0; }
 
 /* 简历跳转按钮 */
 .resume-btn {
@@ -166,13 +166,13 @@
   margin: 0 0 10px 0; font-size: 2.2rem; font-weight: 800; 
   color: var(--vp-c-text-1); font-family: var(--vp-font-family-base);
 }
-.stat-item p { margin: 0; font-size: 0.95rem; font-weight: 600; color: var(--vp-c-text-2); }
+.stat-item p { margin: 0; font-size: 0.85rem; font-weight: 600; color: var(--vp-c-text-2); }
 
 /* 内功技能条 */
 .skills-card { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
-.card-title { margin: 0 0 24px 0; font-size: 1.4rem; font-weight: 700; color: var(--vp-c-text-1); }
+.card-title { margin: 0 0 24px 0; font-size: 1.25rem; font-weight: 700; color: var(--vp-c-text-1); }
 .skill-list { display: flex; flex-direction: column; gap: 22px; }
-.skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; font-weight: 600; color: var(--vp-c-text-1); }
+.skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: var(--vp-c-text-1); }
 .score { font-family: monospace; color: var(--vp-c-text-3); font-weight: normal; }
 .progress-track { width: 100%; height: 8px; background: var(--vp-c-default-soft); border-radius: 4px; overflow: hidden; }
 .progress-bar { height: 100%; border-radius: 4px; }
@@ -196,7 +196,7 @@
 .tech-pill span {
   display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px;
   background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border);
-  border-radius: 12px; font-weight: 600; font-size: 0.95rem; color: var(--vp-c-text-1);
+  border-radius: 12px; font-weight: 600; font-size: 0.85rem; color: var(--vp-c-text-1);
   box-shadow: var(--vp-shadow-1); white-space: nowrap; transition: border-color 0.3s;
 }
 .tech-pill span:hover { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
@@ -237,7 +237,7 @@
   }
   
   .profile-card h2 {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
   
   .role-badge-container {
@@ -246,18 +246,18 @@
   }
   
   .role-badge {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 5px 12px;
   }
   
   .desc {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     line-height: 1.6;
   }
   
   .resume-btn {
     padding: 12px 24px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .bento-card {
@@ -270,11 +270,11 @@
   }
   
   .stat-item h3 {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
   
   .stat-item p {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
   
   .skills-card {
@@ -282,7 +282,7 @@
   }
   
   .card-title {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
   }
   
   .skill-list {
@@ -290,16 +290,16 @@
   }
   
   .skill-info {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
   
   .skill-info span:first-child {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   
   .tech-pill span {
     padding: 8px 14px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -322,7 +322,7 @@
   }
   
   .profile-card h2 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
   
   .stats-grid {
@@ -335,7 +335,7 @@
   }
   
   .stat-item h3 {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
   }
   
   .stat-item p {
@@ -343,7 +343,7 @@
   }
   
   .skill-info {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     flex-wrap: wrap;
     gap: 4px;
   }

@@ -105,17 +105,17 @@ import { projects } from '../projects.mjs'
 .blueprint-grid { width: 100%; height: 100%; background-image: linear-gradient(var(--vp-c-text-1) 1px, transparent 1px), linear-gradient(90deg, var(--vp-c-text-1) 1px, transparent 1px); background-size: 40px 40px; }
 
 .board-content { width: 100%; max-width: 520px; position: relative; z-index: 1; }
-.section-tag { font-family: monospace; font-size: 0.9rem; color: var(--vp-c-brand-1); margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
+.section-tag { font-family: monospace; font-size: 0.85rem; color: var(--vp-c-brand-1); margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 
-.board-title { font-size: clamp(2rem, 1.2rem + 2.2vw, 3rem); font-weight: 800; line-height: 1.25; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
+.board-title { font-size: clamp(1.35rem, 1.15rem + 1vw, 1.6rem); font-weight: 800; line-height: 1.25; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
 .board-title .highlight { color: var(--vp-c-brand-1); }
-.board-desc { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.7; margin-bottom: 40px; }
+.board-desc { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.7; margin-bottom: 40px; }
 
 .highlight-stats { display: flex; flex-direction: column; gap: 24px; border-top: 1px solid var(--vp-c-divider); padding-top: 30px; }
 .h-stat { display: flex; align-items: flex-start; gap: 16px; }
-.icon-box { width: 42px; height: 42px; border-radius: 12px; background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border); display: flex; justify-content: center; align-items: center; font-size: 1.2rem; flex-shrink: 0; box-shadow: var(--vp-shadow-1); }
-.stat-text h4 { font-size: 1.1rem; font-weight: 700; color: var(--vp-c-text-1); margin: 0 0 6px 0; font-family: var(--vp-font-family-base); }
-.stat-text p { font-size: 0.9rem; color: var(--vp-c-text-2); margin: 0; line-height: 1.5; font-weight: 500;}
+.icon-box { width: 42px; height: 42px; border-radius: 12px; background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-border); display: flex; justify-content: center; align-items: center; font-size: 1.05rem; flex-shrink: 0; box-shadow: var(--vp-shadow-1); }
+.stat-text h4 { font-size: 1.05rem; font-weight: 700; color: var(--vp-c-text-1); margin: 0 0 6px 0; font-family: var(--vp-font-family-base); }
+.stat-text p { font-size: 0.85rem; color: var(--vp-c-text-2); margin: 0; line-height: 1.5; font-weight: 500;}
 
 .system-status { position: absolute; bottom: 30px; left: 40px; display: flex; align-items: center; gap: 10px; z-index: 2;}
 .pulse-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: 0 0 10px #0ba360; animation: pulse 2s infinite; }
@@ -142,9 +142,9 @@ import { projects } from '../projects.mjs'
 .glass-panel:hover::after { background: var(--vp-c-brand-1); }
 
 .card-header { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
-.card-header h3 { font-size: 1.4rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0; line-height: 1.3;}
+.card-header h3 { font-size: 1.25rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0; line-height: 1.3;}
 
-.title-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: 1px solid transparent; }
+.title-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: 1px solid transparent; }
 .gold-badge { color: #f5a623; background: rgba(245, 166, 35, 0.1); border-color: rgba(245, 166, 35, 0.3); }
 .purple-badge { color: #b0f; background: rgba(187, 0, 255, 0.1); border-color: rgba(187, 0, 255, 0.3); }
 .cyan-badge { color: #00f2fe; background: rgba(0, 242, 254, 0.1); border-color: rgba(0, 242, 254, 0.3); }
@@ -154,14 +154,14 @@ import { projects } from '../projects.mjs'
 
 .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2px; }
 .tag { 
-  font-size: 0.85rem; font-family: var(--vp-font-family-base); font-weight: 600;
+  font-size: 0.75rem; font-family: var(--vp-font-family-base); font-weight: 600;
   color: var(--vp-c-text-2); background: transparent; 
   border: 1px solid var(--vp-c-border); padding: 4px 12px; border-radius: 8px; transition: all 0.2s; 
 }
 .tag.brand { color: var(--vp-c-brand-1); border-color: var(--vp-c-brand-soft); background: var(--vp-c-brand-soft); }
 .glass-panel:hover .tag { border-color: var(--vp-c-text-3); }
 
-.project-desc { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0; }
+.project-desc { font-size: 0.85rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0; }
 
 .scroll-spacer { height: 60px; }
 
@@ -197,15 +197,15 @@ a.project-card:hover {
     max-width: 100%; 
   }
   
-  .section-tag { font-size: 0.85rem; }
+  .section-tag { font-size: 0.75rem; }
   
   .board-title {
-    font-size: 2.1rem;
+    font-size: 1.6rem;
     line-height: 1.2;
   }
   
   .board-desc {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     line-height: 1.6;
   }
   
@@ -221,17 +221,17 @@ a.project-card:hover {
   .icon-box {
     width: 40px;
     height: 40px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     flex-shrink: 0;
   }
   
   .stat-text h4 {
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin-bottom: 4px;
   }
   
   .stat-text p {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     line-height: 1.5;
   }
   
@@ -272,12 +272,12 @@ a.project-card:hover {
   }
   
   .card-header h3 {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     line-height: 1.35;
   }
   
   .title-badge {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     padding: 4px 10px;
     align-self: flex-start;
   }
@@ -289,12 +289,12 @@ a.project-card:hover {
   }
   
   .tag {
-    font-size: 0.82rem;
+    font-size: 0.75rem;
     padding: 4px 11px;
   }
   
   .project-desc {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     line-height: 1.6;
   }
 
@@ -316,11 +316,11 @@ a.project-card:hover {
   }
   
   .board-title {
-    font-size: 1.8rem;
+    font-size: 1.25rem;
   }
   
   .board-desc {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .highlight-stats {
@@ -330,15 +330,15 @@ a.project-card:hover {
   .icon-box {
     width: 36px;
     height: 36px;
-    font-size: 1rem;
-  }
-  
-  .stat-text h4 {
     font-size: 0.95rem;
   }
   
+  .stat-text h4 {
+    font-size: 0.85rem;
+  }
+  
   .stat-text p {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   
   .glass-panel {
@@ -346,22 +346,22 @@ a.project-card:hover {
   }
   
   .card-header h3 {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     line-height: 1.3;
   }
   
   .title-badge {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     padding: 3px 8px;
   }
   
   .tag {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     padding: 3px 9px;
   }
   
   .project-desc {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 }
 </style>
