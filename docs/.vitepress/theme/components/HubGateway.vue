@@ -1,8 +1,5 @@
 <template>
   <div class="hub-wrapper" id="hub">
-    
-    <div class="ambient-glow glow-1"></div>
-    <div class="ambient-glow glow-2"></div>
 
     <div class="hub-container">
       
@@ -87,16 +84,12 @@
   position: relative; overflow: hidden; background-color: var(--vp-c-bg); padding: 20px 0 40px 0;
 }
 
-.ambient-glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.1; pointer-events: none; }
-.glow-1 { top: 0; left: 10%; width: 500px; height: 500px; background: var(--vp-c-brand-1); }
-.glow-2 { bottom: 0; right: 10%; width: 400px; height: 400px; background: #00f2fe; }
-
 .hub-container { width: 100%; max-width: 1400px; display: flex; flex-direction: column; align-items: center; z-index: 1; padding: 0 3%; }
 
 /* === 头部看板 === */
 .hub-header { text-align: center; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
 .section-tag { font-family: var(--vp-font-family-base); font-size: 0.85rem; color: var(--vp-c-brand-1); margin-bottom: 16px; font-weight: 700; letter-spacing: 1px; }
-.hub-header h2 { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.2rem); font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 16px 0; letter-spacing: -0.5px; }
+.hub-header h2 { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.2rem); font-weight: 700; color: var(--vp-c-text-1); margin: 0 0 16px 0; letter-spacing: -0.5px; }
 .subtitle { font-size: 0.95rem; color: var(--vp-c-text-2); max-width: 650px; line-height: 1.6; margin: 0 0 24px 0; }
 
 .global-stats { display: flex; justify-content: center; }
@@ -106,8 +99,7 @@
   border-radius: 8px; font-size: 0.75rem; font-weight: 700; color: var(--vp-c-text-1);
   font-family: var(--vp-font-family-base); letter-spacing: 0.5px; box-shadow: var(--vp-shadow-1);
 }
-.pulse-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: 0 0 10px #0ba360; animation: pulse 2s infinite; }
-@keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.7; } }
+.pulse-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: none; }
 
 /* === 2x2 平铺矩阵 === */
 .flat-grid {
@@ -147,7 +139,7 @@
 .c-icon { font-size: 1.25rem; background: var(--card-accent-soft); width: 48px; height: 48px; display: flex; justify-content: center; align-items: center; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
 .c-count { font-size: 0.75rem; font-weight: 700; color: var(--vp-c-text-2); background: var(--vp-c-bg); border: 1px solid var(--vp-c-border); padding: 4px 12px; border-radius: 8px; font-family: var(--vp-font-family-base); }
 
-.c-title { font-size: 1.25rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 12px 0; position: relative; z-index: 1; letter-spacing: 0.5px;}
+.c-title { font-size: 1.25rem; font-weight: 600; color: var(--vp-c-text-1); margin: 0 0 12px 0; position: relative; z-index: 1; letter-spacing: 0;}
 .c-desc { font-size: 0.85rem; color: var(--vp-c-text-2); line-height: 1.6; margin: 0; flex-grow: 1; position: relative; z-index: 1; }
 
 /* 底部系列高亮标签 */

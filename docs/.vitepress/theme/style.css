@@ -611,7 +611,6 @@ html:has(.home-spa-wrapper) #app {
 .VPSidebarItem.level-0.is-active > .item > .indicator,
 .VPSidebarItem.level-1.is-active > .item > .indicator {
   background-color: var(--vp-c-brand-1);
-  box-shadow: 0 0 8px var(--vp-brand-glow);
 }
 /* 当前页文章项：柔和底色 + 控制台描边微光（颜色随主题变量），增强定位感 */
 .VPSidebarItem.level-1.is-active > .item,
@@ -619,7 +618,7 @@ html:has(.home-spa-wrapper) #app {
 .VPSidebarItem.level-3.is-active > .item {
   background-color: var(--vp-c-brand-soft);
   border-radius: 6px;
-  box-shadow: inset 0 0 0 1px var(--sidebar-active-ring), 0 0 14px var(--sidebar-active-glow);
+  box-shadow: inset 0 0 0 1px var(--sidebar-active-ring);
 }
 
 /* level-0 分组的子项容器：补一条缩进引导线，层级更清晰 */
@@ -668,7 +667,6 @@ html:has(.home-spa-wrapper) #app {
   height: 4px;
   border-radius: 2px;
   background: var(--vp-c-brand-1);
-  box-shadow: 0 0 10px var(--vp-brand-glow);
 }
 
 /* H3：配套缩小版竖线标题（延续 H2 的极客风格） */
@@ -792,7 +790,7 @@ html:has(.home-spa-wrapper) #app {
 .VPDocFooter .pager .pager-link:hover {
   transform: translateY(-2px);
   border-color: var(--vp-c-brand-1);
-  box-shadow: 0 8px 20px var(--vp-brand-glow);
+  box-shadow: var(--vp-shadow-2);
 }
 
 /* * ==========================================

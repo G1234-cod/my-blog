@@ -1,8 +1,5 @@
 <template>
   <div class="hero-wrapper" id="hero">
-    
-    <div class="bg-glow glow-1"></div>
-    <div class="bg-glow glow-2"></div>
 
     <div class="hero-card">
       
@@ -46,10 +43,6 @@
   overflow: hidden; background-color: var(--vp-c-bg);
 }
 
-.bg-glow { position: absolute; border-radius: 50%; z-index: 0; filter: blur(120px); opacity: 0.15; pointer-events: none; }
-.glow-1 { top: -10%; left: 5%; width: 600px; height: 600px; background: var(--vp-c-brand-1); }
-.glow-2 { bottom: -10%; right: 10%; width: 500px; height: 500px; background: #00f2fe; }
-
 .hero-card {
   width: 92%; max-width: 1400px;
   /* 680px 死值 → 流式下限：矮屏（如 768px 高笔记本）收缩为视口高-留白，避免底部被裁 */
@@ -76,7 +69,7 @@
 .text-content { width: 55%; } /* 约束文字范围 */
 
 .tag { font-family: monospace; font-size: 0.85rem; color: var(--vp-c-text-2); margin-bottom: 20px; }
-.main-title { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.2rem); font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 20px 0; line-height: 1.2; letter-spacing: -0.5px; }
+.main-title { font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.2rem); font-weight: 700; color: var(--vp-c-text-1); margin: 0 0 20px 0; line-height: 1.2; letter-spacing: -0.5px; }
 .description { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0 0 30px 0; max-width: 90%; }
 
 .mission-card { background: var(--vp-c-default-soft); border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 24px; max-width: 95%; }
@@ -87,7 +80,7 @@
 .bottom-stats { margin-top: 40px; display: flex; gap: 40px; justify-content: center; align-items: center; z-index: 1; flex-wrap: wrap; }
 .stat-item { display: flex; align-items: center; gap: 10px; font-family: var(--vp-font-family-base); }
 .stat-item .icon { font-size: 1.05rem; }
-.stat-num { font-size: 1.05rem; font-weight: 800; color: var(--vp-c-text-1); font-family: monospace; }
+.stat-num { font-size: 1.05rem; font-weight: 700; color: var(--vp-c-text-1); font-family: monospace; }
 .stat-desc { font-size: 0.85rem; font-weight: 600; color: var(--vp-c-text-2); letter-spacing: 0.5px; }
 
 @media (max-width: 768px) {
@@ -155,11 +148,6 @@
   .stat-item .icon { font-size: 0.95rem; }
   .stat-num { font-size: 1.05rem; }
   .stat-desc { font-size: 0.75rem; }
-  
-  .bg-glow {
-    width: 400px;
-    height: 400px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -196,13 +184,5 @@
   
   .stat-num { font-size: 0.95rem; }
   .stat-desc { font-size: 0.75rem; }
-  
-  .bg-glow {
-    width: 280px;
-    height: 280px;
-  }
-  
-  .glow-1 { left: -5%; }
-  .glow-2 { right: -5%; }
 }
 </style>

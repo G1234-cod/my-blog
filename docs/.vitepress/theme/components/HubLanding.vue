@@ -116,7 +116,7 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
 .hub-title {
   margin: 0 0 12px;
   font-size: 1.6rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.5px;
   line-height: 1.3;
   color: var(--vp-c-text-1);
@@ -153,7 +153,7 @@ const mdBold = (s) => String(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   margin: 0 0 20px;
   padding-left: 16px;
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 1px;
   color: var(--vp-c-text-1);
 }

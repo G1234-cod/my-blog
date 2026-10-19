@@ -246,7 +246,7 @@ onUnmounted(() => {
 
 .nav-brand {
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--vp-c-text-1);
   text-decoration: none;
   letter-spacing: 0.5px;

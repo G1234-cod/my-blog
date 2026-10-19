@@ -130,7 +130,7 @@
 }
 .board-content { width: 75%; position: relative; z-index: 1; }
 .section-tag { font-family: monospace; font-size: 0.85rem; color: var(--vp-c-brand-1); margin-bottom: 16px; font-weight: 600; letter-spacing: 1px; }
-.board-title { font-size: clamp(1.35rem, 1.15rem + 1vw, 1.6rem); font-weight: 800; line-height: 1.2; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
+.board-title { font-size: clamp(1.35rem, 1.15rem + 1vw, 1.6rem); font-weight: 700; line-height: 1.2; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
 .board-title .highlight { color: var(--vp-c-brand-1); }
 .board-desc { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.6; margin-bottom: 40px; }
 
@@ -144,7 +144,7 @@
 .dash-card:hover { transform: translateY(-3px); border-color: var(--vp-c-brand-1); box-shadow: var(--vp-shadow-3); }
 .wide-card { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 20px; }
 .dash-icon { font-size: 1.6rem; background: var(--vp-c-default-soft); width: 48px; height: 48px; display: flex; justify-content: center; align-items: center; border-radius: 12px; }
-.dash-data h4 { font-size: 1.25rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0; font-family: var(--vp-font-family-base); }
+.dash-data h4 { font-size: 1.25rem; font-weight: 700; color: var(--vp-c-text-1); margin: 0; font-family: var(--vp-font-family-base); }
 .dash-data h4 span { font-size: 0.85rem; color: var(--vp-c-text-3); font-weight: 600; }
 .dash-data p { font-size: 0.75rem; color: var(--vp-c-text-2); margin: 4px 0 0 0; font-weight: 600; }
 
@@ -184,7 +184,7 @@
 
 /* 卡片内部左侧叙事区 */
 .card-left { flex: 1.3; } /* 约占 55-60% */
-.card-left h3 { font-size: 1.05rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 12px 0; letter-spacing: 0.5px;}
+.card-left h3 { font-size: 1.25rem; font-weight: 600; color: var(--vp-c-text-1); margin: 0 0 12px 0; letter-spacing: 0;}
 .card-left p { font-size: 0.85rem; color: var(--vp-c-text-2); margin: 0; line-height: 1.6; }
 
 /* 卡片内部右侧数据标签区 */

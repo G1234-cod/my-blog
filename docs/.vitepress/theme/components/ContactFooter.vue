@@ -1,7 +1,5 @@
 <template>
   <div class="contact-wrapper" id="contact">
-    <div class="ambient-glow"></div>
-
     <div class="bento-container">
       
       <div class="bento-left">
@@ -300,12 +298,6 @@ onMounted(() => { fetchServerStatus() })
   padding: 100px 0 80px 0; 
 }
 
-.ambient-glow {
-  position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
-  width: 80vw; height: 60vh; background: radial-gradient(ellipse, rgba(45, 212, 191, 0.08) 0%, transparent 60%);
-  filter: blur(100px); pointer-events: none; z-index: 0;
-}
-
 /* === 便当盒 (Bento Box) 网格系统 === */
 .bento-container {
   width: 100%; 
@@ -342,7 +334,7 @@ onMounted(() => { fetchServerStatus() })
   background: linear-gradient(135deg, rgba(26,29,36,0.3) 0%, transparent 100%);
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
-.left-title { font-size: 1.6rem; font-weight: 800; color: var(--vp-c-text-1); line-height: 1.1; margin: 0 0 12px 0; letter-spacing: -0.5px; }
+.left-title { font-size: 1.6rem; font-weight: 700; color: var(--vp-c-text-1); line-height: 1.1; margin: 0 0 12px 0; letter-spacing: -0.5px; }
 .quote-text { font-size: 0.85rem; color: var(--vp-c-text-2); line-height: 1.6; font-weight: 500; margin: 0; }
 
 .card-body {
@@ -441,13 +433,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
   font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; 
   letter-spacing: 1px;
 }
-.status-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: 0 0 10px #0ba360; animation: pulse 2s infinite; }
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(11, 163, 96, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(11, 163, 96, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(11, 163, 96, 0); }
-}
+.status-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: none; }
 
 /* --- 右侧垂直小组件堆叠 --- */
 .bento-right {
@@ -526,8 +512,7 @@ input:disabled, textarea:disabled { opacity: 0.6; cursor: not-allowed; }
 .success { color: #3fb950; }
 .info { color: #8b949e; }
 .warning { color: #d29922; }
-.blink { animation: blinker 1s step-end infinite; color: #c9d1d9; font-weight: bold; }
-@keyframes blinker { 50% { opacity: 0; } }
+.blink { animation: none; color: #c9d1d9; font-weight: bold; }
 
 /* 窄桌面（769~1200px）：2.3:1 双栏会挤压表单，改为上下堆叠 */
 @media (min-width: 769px) and (max-width: 1200px) {

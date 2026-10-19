@@ -107,7 +107,7 @@ import { projects } from '../projects.mjs'
 .board-content { width: 100%; max-width: 520px; position: relative; z-index: 1; }
 .section-tag { font-family: monospace; font-size: 0.85rem; color: var(--vp-c-brand-1); margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 
-.board-title { font-size: clamp(1.35rem, 1.15rem + 1vw, 1.6rem); font-weight: 800; line-height: 1.25; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
+.board-title { font-size: clamp(1.35rem, 1.15rem + 1vw, 1.6rem); font-weight: 700; line-height: 1.25; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
 .board-title .highlight { color: var(--vp-c-brand-1); }
 .board-desc { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.7; margin-bottom: 40px; }
 
@@ -118,9 +118,8 @@ import { projects } from '../projects.mjs'
 .stat-text p { font-size: 0.85rem; color: var(--vp-c-text-2); margin: 0; line-height: 1.5; font-weight: 500;}
 
 .system-status { position: absolute; bottom: 30px; left: 40px; display: flex; align-items: center; gap: 10px; z-index: 2;}
-.pulse-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: 0 0 10px #0ba360; animation: pulse 2s infinite; }
+.pulse-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: none; }
 .system-status span { font-family: monospace; font-size: 0.75rem; color: var(--vp-c-text-3); font-weight: 600; letter-spacing: 1px; }
-@keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(11, 163, 96, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(11, 163, 96, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(11, 163, 96, 0); } }
 
 .right-scroll { 
   width: 55%; height: 100%; overflow-y: auto; 
@@ -142,7 +141,7 @@ import { projects } from '../projects.mjs'
 .glass-panel:hover::after { background: var(--vp-c-brand-1); }
 
 .card-header { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
-.card-header h3 { font-size: 1.25rem; font-weight: 800; color: var(--vp-c-text-1); margin: 0; line-height: 1.3;}
+.card-header h3 { font-size: 1.25rem; font-weight: 600; color: var(--vp-c-text-1); margin: 0; line-height: 1.3;}
 
 .title-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: 1px solid transparent; }
 .gold-badge { color: #f5a623; background: rgba(245, 166, 35, 0.1); border-color: rgba(245, 166, 35, 0.3); }

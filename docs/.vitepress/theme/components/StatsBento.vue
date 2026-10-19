@@ -135,7 +135,7 @@
   background: var(--vp-c-bg); /* 防止透明底出问题 */
 }
 
-.profile-card h2 { margin: 0 0 12px 0; font-size: 1.6rem; font-weight: 800; color: var(--vp-c-text-1); }
+.profile-card h2 { margin: 0 0 12px 0; font-size: 1.6rem; font-weight: 700; color: var(--vp-c-text-1); }
 
 /* 美化后的身份标签：胶囊风格 */
 .role-badge-container { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
@@ -163,14 +163,14 @@
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .stat-item { text-align: center; padding: 28px 10px; display: flex; flex-direction: column; justify-content: center; }
 .stat-item h3 { 
-  margin: 0 0 10px 0; font-size: 2.2rem; font-weight: 800; 
+  margin: 0 0 10px 0; font-size: 2.2rem; font-weight: 700; 
   color: var(--vp-c-text-1); font-family: var(--vp-font-family-base);
 }
 .stat-item p { margin: 0; font-size: 0.85rem; font-weight: 600; color: var(--vp-c-text-2); }
 
 /* 内功技能条 */
 .skills-card { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
-.card-title { margin: 0 0 24px 0; font-size: 1.25rem; font-weight: 700; color: var(--vp-c-text-1); }
+.card-title { margin: 0 0 24px 0; font-size: 1.25rem; font-weight: 600; color: var(--vp-c-text-1); }
 .skill-list { display: flex; flex-direction: column; gap: 22px; }
 .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: var(--vp-c-text-1); }
 .score { font-family: monospace; color: var(--vp-c-text-3); font-weight: normal; }
