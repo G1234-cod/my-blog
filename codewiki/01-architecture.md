@@ -67,7 +67,7 @@
 |---|---|---|
 | 多仓库拼装 | 本地用软链接（Junction），CI 用 `actions/checkout` 到同一路径 | 内容仓库独立版本管理，引擎仓库保持轻量 |
 | 侧边栏生成 | `vitepress-sidebar` 自动生成 + `config.mjs` 手写四模块中枢入口的**混合驱动** | 长尾文章免维护，核心路线人工编排 |
-| 首页形态 | `layout:false` + 自定义六屏组件（全屏滚动捕捉） | 完全脱离文档默认布局，做 SPA 式体验 |
+| 首页形态 | `layout: page` 编辑部式单页长滚动（2026-10-19 起；此前为 `layout:false` 六屏全屏滚动） | 回归 window 原生滚动与原生锚点，消除嵌套滚动容器/scroll-snap 僵硬感；导航全站统一 |
 | 留言发信 | 接口先立即返回、邮件后台静默发送（`server.js:100` 起不 await） | 毫秒级响应，SMTP 慢/失败不拖垮前端体验 |
 | 部署路径 | 前端 `/www/my-blog`、后端 `/www/my-blog-api` 分目录，PM2 守护 | 前后端独立发版、独立进程管理 |
 | 敏感文件 | `server/.env`、`server/nginx.conf` 均 gitignore | 凭据不入库，配置随部署环境落地 |
