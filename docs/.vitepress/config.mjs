@@ -145,11 +145,19 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
-      { text: '01 AI & AGENT', link: '/hub/ai-agent' },
-      { text: '02 CLOUD & DEVOPS', link: '/hub/cloud-devops' },
-      { text: '03 WORKFLOW', link: '/hub/workflow' },
-      { text: '04 ALGORITHM', link: '/hub/algorithm' },
-      { text: '05 RESUME', link: '/my-resume/resume-zh' }
+      { text: '作品', link: '/projects/' },
+      { text: '写作', link: '/writing/' },
+      {
+        text: '知识库',
+        items: [
+          { text: 'AI & AGENT', link: '/hub/ai-agent' },
+          { text: 'CLOUD & DEVOPS', link: '/hub/cloud-devops' },
+          { text: 'WORKFLOW', link: '/hub/workflow' },
+          { text: 'ALGORITHM', link: '/hub/algorithm' }
+        ]
+      },
+      { text: '关于', link: '/about/' },
+      { text: '简历', link: '/my-resume/resume-zh' }
     ],
 
     sidebar: {

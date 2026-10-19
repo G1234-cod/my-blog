@@ -11,7 +11,7 @@ editLink: false
 <div class="home-editorial">
 
   <HeroScreen />
-  <FeaturedProjects />
+  <ProjectList />
   <FeaturedReads />
   <KnowledgeIndex />
   <HomeAbout />

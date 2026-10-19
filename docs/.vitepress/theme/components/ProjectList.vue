@@ -1,13 +1,9 @@
 <template>
-  <section class="ed-section" id="selected-work">
-    <SectionHead
-      tag="01 / SELECTED WORK"
-      title="精选作品"
-      sub="从工业诊断到已上线小程序——每个项目都是一次「问题 → 架构 → 落地」的完整推演。"
-    />
+  <section class="ed-section" :id="sectionId">
+    <SectionHead :tag="heading.tag" :title="heading.title" :sub="heading.sub" />
 
     <div class="work-list">
-      <article v-for="(p, i) in featured" :key="p.slug" class="work-item">
+      <article v-for="(p, i) in visible" :key="p.slug" class="work-item">
         <p class="work-index mono">{{ String(i + 1).padStart(2, '0') }}</p>
         <div class="work-body">
           <h3 class="work-title">
@@ -23,7 +19,7 @@
       </article>
     </div>
 
-    <p class="more-link">
+    <p v-if="showMore" class="more-link">
       <a href="/projects/">查看全部 {{ projects.length }} 个作品 →</a>
     </p>
   </section>
@@ -34,7 +30,22 @@ import { computed } from 'vue'
 import { projects } from '../projects.mjs'
 import SectionHead from './SectionHead.vue'
 
-const featured = computed(() => projects.slice(0, 3))
+const props = defineProps({
+  // 显示条数（作品索引页传大值即渲染全部）
+  limit: { type: Number, default: 3 },
+  showMore: { type: Boolean, default: true },
+  sectionId: { type: String, default: 'selected-work' },
+  heading: {
+    type: Object,
+    default: () => ({
+      tag: '01 / SELECTED WORK',
+      title: '精选作品',
+      sub: '从工业诊断到已上线小程序——每个项目都是一次「问题 → 架构 → 落地」的完整推演。'
+    })
+  }
+})
+
+const visible = computed(() => projects.slice(0, props.limit))
 </script>
 
 <style scoped>

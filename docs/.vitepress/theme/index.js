@@ -4,7 +4,7 @@ import './style.css'
 
 // 首页编辑部区块（docs/index.md 按顺序引用）
 import HeroScreen from './components/HeroScreen.vue'
-import FeaturedProjects from './components/FeaturedProjects.vue'
+import ProjectList from './components/ProjectList.vue'
 import FeaturedReads from './components/FeaturedReads.vue'
 import KnowledgeIndex from './components/KnowledgeIndex.vue'
 import HomeAbout from './components/HomeAbout.vue'
@@ -39,7 +39,7 @@ export default {
 
   enhanceApp({ app }) {
     app.component('HeroScreen', HeroScreen)
-    app.component('FeaturedProjects', FeaturedProjects)
+    app.component('ProjectList', ProjectList)
     app.component('FeaturedReads', FeaturedReads)
     app.component('KnowledgeIndex', KnowledgeIndex)
     app.component('HomeAbout', HomeAbout)
