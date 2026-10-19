@@ -41,6 +41,7 @@ my-blog/
 │   │   ├── theme/
 │   │   │   ├── index.js            # 主题入口：Layout 插槽注入 + 全局组件注册
 │   │   │   ├── style.css           # 全局样式体系（CSS 变量 / 首页 / 文档页 / 侧边栏）
+│   │   │   ├── projects.mjs        # 项目作品集数据源（首页卡片唯一来源，详见 02 章）
 │   │   │   └── components/         # 15 个自定义 Vue 组件（详见 02 章）
 │   │   ├── cache/                  # （gitignore）Vite 开发缓存
 │   │   └── dist/                   # （gitignore）构建产物

@@ -41,7 +41,7 @@
             <p>国家级奖项</p>
           </div>
           <div class="bento-card stat-item">
-            <h3>2 项</h3>
+            <h3>3 项</h3>
             <p>软件著作权</p>
           </div>
         </div>

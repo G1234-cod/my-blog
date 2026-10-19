@@ -22,7 +22,7 @@
           </div>
           <div class="dash-card wide-card">
             <div class="dash-icon">💻</div>
-            <div class="dash-data"><h4>2 <span>项</span></h4><p>国家版权局软件著作权研发与登记</p></div>
+            <div class="dash-data"><h4>3 <span>项</span></h4><p>国家版权局软件著作权研发与登记</p></div>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@
               <p>独立或带队研发复杂系统，具备标准的软件工程设计、系统架构分析与复杂业务建模能力，已获国家版权局及国家软考资质认证。</p>
             </div>
             <div class="card-right">
-              <div class="mini-badge ip-badge"><span class="b-icon">🪪</span><span class="b-text">2 项 国家计算机软件著作权</span></div>
+              <div class="mini-badge ip-badge"><span class="b-icon">🪪</span><span class="b-text">3 项 国家计算机软件著作权</span></div>
               <div class="mini-badge"><span class="b-icon">💻</span><span class="b-text">软件设计师 (国家软考中级)</span></div>
               <div class="mini-badge"><span class="b-icon">🗣️</span><span class="b-text">普通话水平测试 (二级甲等)</span></div>
             </div>

@@ -15,7 +15,7 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
   role="核心算法开发 & 全栈集成"
   :honors="[
     '挑战杯“人工智能+”专项赛省级奖项',
-    '国家版权局软件著作权 4 项',
+    '国家版权局软件著作权 3 项',
     '发明专利申请中'
   ]"
 />

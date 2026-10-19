@@ -112,5 +112,5 @@ import ProjectHero from '../.vitepress/theme/components/ProjectHero.vue'
 | 侧边栏路由字典 | `config.mjs#L155-L179` | hub 页与内容目录共享同一套侧边栏，路径前缀必须与软链目录名一致 |
 | `CategoryList` 反查 | `CategoryList.vue` | 依赖 `useData().theme.sidebar`，改 sidebar 结构会直接影响它 |
 | `HubLanding` frontmatter | `docs/hub/*.md` | 字段名与组件消费逻辑绑定 |
-| 硬编码项目卡片 | `ProjectShowcase.vue#L2-L174` | 与 `docs/projects/*.md` 一一对应，两处需同步 |
+| 项目卡片数据源 | `theme/projects.mjs` | 首页卡片唯一数据源；slug 必须与 `docs/projects/<slug>.md` 文件名一致 |
 | 硬编码模块胶囊 | `KnowledgeSwitcher.vue` | 新增第五个模块需要同步改此组件 |

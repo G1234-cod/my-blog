@@ -95,7 +95,7 @@ Nginx 要点（参考 `server/nginx.conf`，该文件 gitignore，以服务器�
 | 查看后端日志 | `pm2 logs my-blog-api`（静默发信失败只在这里） |
 | 手动重发流水线 | GitHub 仓库 → Actions → `Cloud Assembly & Deploy to Aliyun` → Run workflow |
 | 新增文章 | 在对应内容仓库加 md 并 push（侧边栏自动出现）；注意 frontmatter `title` |
-| 新增项目作品 | `docs/projects/xxx.md` + `xxx.assets/` 配图 + `ProjectShowcase.vue` 加卡片数据 |
+| 新增项目作品 | `docs/projects/xxx.md` + `xxx.assets/` 配图 + `theme/projects.mjs` 追加一条（slug 同名） |
 | 新增知识模块 | `config.mjs` 加 `xxxSidebar` 与路由映射 + `KnowledgeSwitcher.vue` 加胶囊 + `deploy.yml` 加 checkout |
 
 ## 6.6 常见问题排查

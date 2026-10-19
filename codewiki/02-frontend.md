@@ -119,9 +119,12 @@
 
 #### ProjectShowcase.vue（第四屏 · 项目作品集）
 - **职责**：左侧「全栈架构 & AI 探索」介绍板 + 右侧滚动项目卡片列表。
-- **数据**：项目卡片数据硬编码在模板内（`ProjectShowcase.vue#L2-L174`），含标题、奖项/软著标签、技术标签、描述，链接跳转 `/projects/...` 详情页。
-- **样式**：`split-screen` 左右分栏（左 45% / 右 55%）、`.glass-panel` 玻璃卡片 hover 位移（`#L177-L263`）。
-- 新增项目卡片 = 改此组件数据 + 新增 `docs/projects/xxx.md`。
+- **数据（2026-10-18 起改为数据驱动）**：卡片来自单一数据源 [projects.mjs](file:///e:/Web_git/my-blog/docs/.vitepress/theme/projects.mjs)（字段 `slug` / `title` / `badge{icon,text,type}` / `tags` / `desc`），组件用 `v-for` 渲染；首个 tag 自动高亮为品牌色，`badge.type` 映射到 `gold/purple/cyan/gray-badge` 类，左侧「N LAB NODES ACTIVE」计数自动取 `projects.length`。
+- **样式**：`split-screen` 左右分栏（左 45% / 右 55%）、`.glass-panel` 玻璃卡片 hover 位移。
+- **新增项目 = 改数据源 + 新建详情页**，组件本身无需再改：
+  1. 在 `projects.mjs` 的 `projects` 数组追加一条（`slug` 必须等于详情页文件名）；
+  2. 新建 `docs/projects/<slug>.md` 与配图目录 `docs/projects/<slug>.assets/`。
+- ⚠️ 数据源文件名不可含 `.data.mjs`：VitePress 会把 `.vitepress/` 下的 `*.data.mjs` 当数据加载器解析，导致 `config must export or return an object` 构建报错。
 
 #### HubGateway.vue（第五屏 · 知识中枢网关）
 2×2 矩阵渲染四大知识入口卡片（`HubGateway.vue#L2-L80`），分别链到 `/hub/ai-agent`、`/hub/cloud-devops`、`/hub/workflow`、`/hub/algorithm`；卡片 hover 流光效果（`#L83-L157`）。
