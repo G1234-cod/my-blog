@@ -713,3 +713,66 @@ html {
     margin: 1.4rem auto;
   }
 }
+
+/* * ==========================================
+ * 20. 动效系统（DESIGN.md §6）
+ * 倒置写法：默认无动效，仅在 prefers-reduced-motion: no-preference 启用
+ * 焦点时刻唯一：首页 Hero 入场 stagger；其余区块统一轻 reveal
+ * ========================================== */
+@keyframes ed-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ed-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero 入场编排：分层递进 80ms（全站唯一编排序列） */
+  .ed-hero .hero-kicker {
+    animation: ed-rise var(--duration-slow) var(--ease-out) both;
+  }
+  .ed-hero .hero-title {
+    animation: ed-rise 420ms var(--ease-out) 80ms both;
+  }
+  .ed-hero .hero-lead {
+    animation: ed-rise 420ms var(--ease-out) 160ms both;
+  }
+  .ed-hero .hero-cta {
+    animation: ed-rise 420ms var(--ease-out) 240ms both;
+  }
+  .ed-hero .hero-note {
+    animation: ed-rise 420ms var(--ease-out) 320ms both;
+  }
+
+  /* 滚动 reveal：原生 scroll-driven（合成器驱动，零 JS），
+     位移仅 14px，读作淡入而非滑入；不支持 view() 的浏览器静态呈现 */
+  @supports (animation-timeline: view()) {
+    .home-editorial .ed-section {
+      animation: ed-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 2% cover 18%;
+    }
+  }
+
+  /* 页间过渡：View Transitions 默认交叉淡入（不支持的浏览器自动跳过） */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 220ms;
+    animation-timing-function: var(--ease-out);
+  }
+}

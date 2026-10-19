@@ -37,7 +37,7 @@ export default {
     })
   },
 
-  enhanceApp({ app }) {
+  enhanceApp({ app, router }) {
     app.component('HeroScreen', HeroScreen)
     app.component('ProjectList', ProjectList)
     app.component('FeaturedReads', FeaturedReads)
@@ -48,5 +48,22 @@ export default {
     app.component('CategoryList', CategoryList)
     app.component('HubLanding', HubLanding)
     // KnowledgeSwitcher / ReadingProgress / DocMeta 通过 h 函数直接渲染，无需注册
+
+    // 页间 View Transition：在路由切换前后包一层原生交叉淡入。
+    // 仅浏览器环境 + 支持 startViewTransition + 未开启减弱动效时启用，其余静默降级。
+    if (
+      typeof document !== 'undefined' &&
+      'startViewTransition' in document &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      router.onBeforeRouteChange = () => {
+        document.startViewTransition(async () => {
+          // 等 VitePress 完成路由 DOM 更新（microtask 清空 + 两帧渲染）后再定格新画面
+          await new Promise((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(resolve))
+          )
+        })
+      }
+    }
   }
 }
