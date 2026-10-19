@@ -127,7 +127,7 @@
 /* 修复头像大小与裁切 */
 .avatar-ring {
   width: 100px; height: 100px; border-radius: 50%; padding: 3px;
-  background: linear-gradient(135deg, var(--vp-c-brand-1), #00f2fe);
+  background: linear-gradient(135deg, var(--vp-c-brand-1), #2dd4bf);
   margin-bottom: 24px;
 }
 .avatar-img {
@@ -177,10 +177,10 @@
 .progress-track { width: 100%; height: 8px; background: var(--vp-c-default-soft); border-radius: 4px; overflow: hidden; }
 .progress-bar { height: 100%; border-radius: 4px; }
 /* 渐变色系 */
-.cyan-purple { background: linear-gradient(90deg, #00f2fe, var(--vp-c-brand-1)); }
-.blue-cyan { background: linear-gradient(90deg, #4facfe, #00f2fe); }
-.purple-pink { background: linear-gradient(90deg, var(--vp-c-brand-1), #ff0844); }
-.green-cyan { background: linear-gradient(90deg, #0ba360, #3cba92); }
+.cyan-purple { background: linear-gradient(90deg, #2dd4bf, var(--vp-c-brand-1)); }
+.blue-cyan { background: linear-gradient(90deg, #14b8a6, #2dd4bf); }
+.purple-pink { background: linear-gradient(90deg, var(--vp-c-brand-1), #b45309); }
+.green-cyan { background: linear-gradient(90deg, #0f766e, #3cba92); }
 
 /* === 底部双轨走马灯 (完美还原图二的胶囊设计) === */
 .marquee-container {

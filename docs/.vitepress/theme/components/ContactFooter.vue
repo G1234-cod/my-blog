@@ -302,7 +302,7 @@ onMounted(() => { fetchServerStatus() })
 
 .ambient-glow {
   position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
-  width: 80vw; height: 60vh; background: radial-gradient(ellipse, rgba(0, 242, 254, 0.08) 0%, transparent 60%);
+  width: 80vw; height: 60vh; background: radial-gradient(ellipse, rgba(45, 212, 191, 0.08) 0%, transparent 60%);
   filter: blur(100px); pointer-events: none; z-index: 0;
 }
 

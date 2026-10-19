@@ -11,45 +11,45 @@
 :root {
   --vp-layout-max-width: 95vw !important;
 
-  /* —— 浅色主题：纸白底 + 青蓝品牌色 —— */
-  --vp-c-brand-1: #0891b2;              /* 主品牌色：链接、高亮文字 */
-  --vp-c-brand-2: #06a3c9;              /* 悬停态 */
-  --vp-c-brand-3: #0e7490;              /* 实心按钮底色 */
-  --vp-c-brand-soft: rgba(8, 145, 178, 0.12);
+  /* —— 浅色主题：暖纸米色底 + 暖墨字 + 墨绿品牌色 —— */
+  --vp-c-brand-1: #0f766e;              /* 主品牌色：链接、高亮文字 */
+  --vp-c-brand-2: #115e59;              /* 悬停态 */
+  --vp-c-brand-3: #0f766e;              /* 实心按钮底色 */
+  --vp-c-brand-soft: rgba(15, 118, 110, 0.12);
   --vp-c-brand: var(--vp-c-brand-1);    /* 兼容旧变量名 */
 
-  --vp-c-bg: #f8fafc;                   /* 主背景：纸白 */
-  --vp-c-bg-alt: #eef2f7;               /* 代码块等替代背景 */
+  --vp-c-bg: #faf9f6;                   /* 主背景：暖纸米色 */
+  --vp-c-bg-alt: #f3f1ec;               /* 代码块等替代背景 */
   --vp-c-bg-elv: #ffffff;               /* 浮层卡片背景 */
-  --vp-c-bg-soft: #f1f5f9;              /* 柔和区分背景 */
+  --vp-c-bg-soft: #f0eee8;              /* 柔和区分背景 */
 
-  --vp-c-border: #cbd5e1;
-  --vp-c-divider: #e2e8f0;
-  --vp-c-gutter: #e2e8f0;
+  --vp-c-border: #ddd8cd;
+  --vp-c-divider: #eae7de;
+  --vp-c-gutter: #eae7de;
 
-  --vp-c-text-1: #1e293b;               /* 主文字 */
-  --vp-c-text-2: #475569;               /* 次要文字 */
-  --vp-c-text-3: #94a3b8;               /* 弱化文字 */
+  --vp-c-text-1: #201e1a;               /* 主文字：暖墨 */
+  --vp-c-text-2: #55514a;               /* 次要文字 */
+  --vp-c-text-3: #8b857a;               /* 弱化文字 */
 
-  --vp-c-default-1: #d7dde6;
-  --vp-c-default-2: #e2e8f0;
-  --vp-c-default-3: #eaeff5;
-  --vp-c-default-soft: rgba(100, 116, 139, 0.12);
+  --vp-c-default-1: #d9d4c8;
+  --vp-c-default-2: #eae7de;
+  --vp-c-default-3: #f0eee8;
+  --vp-c-default-soft: rgba(85, 81, 74, 0.12);
 
   /* 侧边栏与导航（半透明，供毛玻璃使用） */
-  --vp-sidebar-bg-color: #f1f5f9;
-  --vp-nav-bg-color: rgba(248, 250, 252, 0.78);
-  --vp-nav-screen-bg-color: rgba(248, 250, 252, 0.96);
+  --vp-sidebar-bg-color: #f5f3ee;
+  --vp-nav-bg-color: rgba(250, 249, 246, 0.78);
+  --vp-nav-screen-bg-color: rgba(250, 249, 246, 0.96);
 
   /* 行内代码与代码块 */
-  --vp-code-bg: rgba(8, 145, 178, 0.1);
-  --vp-code-block-bg: #eef2f7;
-  --vp-code-block-divider-color: #dbe3ec;
-  --vp-code-line-highlight-color: rgba(8, 145, 178, 0.1);
-  --vp-code-copy-code-bg: #e8eef5;
+  --vp-code-bg: rgba(15, 118, 110, 0.1);
+  --vp-code-block-bg: #f3f1ec;
+  --vp-code-block-divider-color: #e3dfd6;
+  --vp-code-line-highlight-color: rgba(15, 118, 110, 0.1);
+  --vp-code-copy-code-bg: #ebe8e0;
   --vp-code-copy-code-hover-bg: #ffffff;
-  --vp-code-copy-code-border-color: #dbe3ec;
-  --vp-code-copy-code-hover-border-color: #0891b2;
+  --vp-code-copy-code-border-color: #e3dfd6;
+  --vp-code-copy-code-hover-border-color: #0f766e;
 
   /* 自定义容器（tip 系跟随品牌色） */
   --vp-c-tip-1: var(--vp-c-brand-1);
@@ -61,62 +61,62 @@
   --vp-c-note-3: var(--vp-c-brand-3);
   --vp-c-note-soft: var(--vp-c-brand-soft);
 
-  /* 浅色阴影 */
-  --vp-shadow-1: 0 1px 2px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.06);
-  --vp-shadow-2: 0 3px 12px rgba(15, 23, 42, 0.08), 0 1px 4px rgba(15, 23, 42, 0.06);
-  --vp-shadow-3: 0 12px 32px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(15, 23, 42, 0.07);
+  /* 浅色阴影（偏暖） */
+  --vp-shadow-1: 0 1px 2px rgba(32, 30, 26, 0.05), 0 1px 2px rgba(32, 30, 26, 0.06);
+  --vp-shadow-2: 0 3px 12px rgba(32, 30, 26, 0.08), 0 1px 4px rgba(32, 30, 26, 0.06);
+  --vp-shadow-3: 0 12px 32px rgba(32, 30, 26, 0.1), 0 2px 6px rgba(32, 30, 26, 0.07);
 
   /* 导航栏高度（配合自定义毛玻璃导航） */
   --vp-nav-height: 60px;
 
   /* 品牌色微光（卡片 hover 发光阴影用） */
-  --vp-brand-glow: rgba(8, 145, 178, 0.22);
+  --vp-brand-glow: rgba(15, 118, 110, 0.22);
 }
 
 .dark {
-  /* —— 暗色主题：深墨蓝灰底 + 亮青品牌色 —— */
-  --vp-c-brand-1: #22d3ee;              /* 亮青：暗底下保证对比度 */
-  --vp-c-brand-2: #38e0f8;
-  --vp-c-brand-3: #06b6d4;
-  --vp-c-brand-soft: rgba(34, 211, 238, 0.14);
+  /* —— 暗色主题：多层深灰底 + 低饱和青绿品牌色 —— */
+  --vp-c-brand-1: #2dd4bf;              /* 青绿：暗底下保证对比度 */
+  --vp-c-brand-2: #5eead4;
+  --vp-c-brand-3: #14b8a6;
+  --vp-c-brand-soft: rgba(45, 212, 191, 0.14);
 
-  --vp-c-bg: #0f1218;                   /* 深墨蓝灰 */
-  --vp-c-bg-alt: #12151d;
-  --vp-c-bg-elv: #1a1f2b;               /* 浮层略亮于底色 */
-  --vp-c-bg-soft: #161a23;
+  --vp-c-bg: #161616;                   /* 深灰（非纯黑） */
+  --vp-c-bg-alt: #1c1c1c;
+  --vp-c-bg-elv: #242424;               /* 浮层略亮于底色 */
+  --vp-c-bg-soft: #202020;
 
-  --vp-c-border: #334155;
-  --vp-c-divider: #232a38;
-  --vp-c-gutter: #1a1f2b;
+  --vp-c-border: #3d3d3d;
+  --vp-c-divider: #2b2b2b;
+  --vp-c-gutter: #242424;
 
-  --vp-c-text-1: #e2e8f0;
-  --vp-c-text-2: #94a3b8;
-  --vp-c-text-3: #64748b;
+  --vp-c-text-1: #eae7e0;
+  --vp-c-text-2: #a8a29a;
+  --vp-c-text-3: #6e6a62;
 
-  --vp-c-default-1: #3b4354;
-  --vp-c-default-2: #2c3444;
-  --vp-c-default-3: #232a38;
-  --vp-c-default-soft: rgba(101, 117, 139, 0.16);
+  --vp-c-default-1: #444444;
+  --vp-c-default-2: #333333;
+  --vp-c-default-3: #2a2a2a;
+  --vp-c-default-soft: rgba(168, 162, 154, 0.16);
 
-  --vp-sidebar-bg-color: #12151d;
-  --vp-nav-bg-color: rgba(15, 18, 24, 0.72);
-  --vp-nav-screen-bg-color: rgba(15, 18, 24, 0.97);
+  --vp-sidebar-bg-color: #1c1c1c;
+  --vp-nav-bg-color: rgba(22, 22, 22, 0.72);
+  --vp-nav-screen-bg-color: rgba(22, 22, 22, 0.97);
 
-  --vp-code-bg: rgba(34, 211, 238, 0.12);
-  --vp-code-block-bg: #12151d;
-  --vp-code-block-divider-color: #232a38;
-  --vp-code-line-highlight-color: rgba(34, 211, 238, 0.1);
-  --vp-code-copy-code-bg: #1a1f2b;
-  --vp-code-copy-code-hover-bg: #232a38;
-  --vp-code-copy-code-border-color: #232a38;
-  --vp-code-copy-code-hover-border-color: #22d3ee;
+  --vp-code-bg: rgba(45, 212, 191, 0.12);
+  --vp-code-block-bg: #1c1c1c;
+  --vp-code-block-divider-color: #2b2b2b;
+  --vp-code-line-highlight-color: rgba(45, 212, 191, 0.1);
+  --vp-code-copy-code-bg: #242424;
+  --vp-code-copy-code-hover-bg: #2e2e2e;
+  --vp-code-copy-code-border-color: #2e2e2e;
+  --vp-code-copy-code-hover-border-color: #2dd4bf;
 
   /* 暗色阴影更重，增强层级 */
   --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.35);
   --vp-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.35);
   --vp-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.4);
 
-  --vp-brand-glow: rgba(34, 211, 238, 0.28);
+  --vp-brand-glow: rgba(45, 212, 191, 0.28);
 }
 
 html, body, #app {
@@ -493,24 +493,24 @@ html:has(.home-spa-wrapper) #app {
  * ========================================== */
 /* 侧栏专属主题变量：浅色为纸白灰轨，暗色为深墨控制台轨 */
 :root {
-  --sidebar-bg: linear-gradient(180deg, #f8fafc 0%, #edf1f6 100%);
-  --sidebar-border: rgba(100, 116, 139, 0.2);
-  --sidebar-scanline: rgba(8, 145, 178, 0.028);
-  --side-count-color: #0e7490;
-  --side-count-bg: rgba(8, 145, 178, 0.08);
-  --side-count-border: rgba(8, 145, 178, 0.32);
-  --sidebar-active-ring: rgba(8, 145, 178, 0.28);
-  --sidebar-active-glow: rgba(8, 145, 178, 0.09);
+  --sidebar-bg: linear-gradient(180deg, #faf9f6 0%, #f2f0ea 100%);
+  --sidebar-border: rgba(85, 81, 74, 0.2);
+  --sidebar-scanline: rgba(15, 118, 110, 0.028);
+  --side-count-color: #0f766e;
+  --side-count-bg: rgba(15, 118, 110, 0.08);
+  --side-count-border: rgba(15, 118, 110, 0.32);
+  --sidebar-active-ring: rgba(15, 118, 110, 0.28);
+  --sidebar-active-glow: rgba(15, 118, 110, 0.09);
 }
 .dark {
-  --sidebar-bg: linear-gradient(180deg, #10141d 0%, #0b0e15 100%);
-  --sidebar-border: rgba(148, 163, 184, 0.14);
-  --sidebar-scanline: rgba(34, 211, 238, 0.022);
-  --side-count-color: #22d3ee;
-  --side-count-bg: rgba(34, 211, 238, 0.1);
-  --side-count-border: rgba(34, 211, 238, 0.35);
-  --sidebar-active-ring: rgba(34, 211, 238, 0.22);
-  --sidebar-active-glow: rgba(34, 211, 238, 0.07);
+  --sidebar-bg: linear-gradient(180deg, #1c1c1c 0%, #151515 100%);
+  --sidebar-border: rgba(168, 162, 154, 0.14);
+  --sidebar-scanline: rgba(45, 212, 191, 0.022);
+  --side-count-color: #2dd4bf;
+  --side-count-bg: rgba(45, 212, 191, 0.1);
+  --side-count-border: rgba(45, 212, 191, 0.35);
+  --sidebar-active-ring: rgba(45, 212, 191, 0.22);
+  --sidebar-active-glow: rgba(45, 212, 191, 0.07);
 }
 .VPSidebar {
   background: var(--sidebar-bg);

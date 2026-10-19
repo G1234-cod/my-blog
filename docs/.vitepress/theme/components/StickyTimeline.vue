@@ -201,7 +201,7 @@
 .b-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* 特定高亮标签颜色 */
-.score-badge { border-color: rgba(0, 242, 254, 0.4); color: #00f2fe; }
+.score-badge { border-color: rgba(15, 118, 110, 0.4); color: #0f766e; }
 .ip-badge { border-color: rgba(187, 0, 255, 0.4); color: #b0f; }
 .exp-badge { border-color: rgba(11, 163, 96, 0.4); color: #0ba360; }
 
