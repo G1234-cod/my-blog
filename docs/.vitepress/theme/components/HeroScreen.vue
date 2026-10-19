@@ -1,157 +1,208 @@
 <template>
-  <header class="ed-hero">
-    <div class="hero-grid">
-      <div class="hero-text">
-        <p class="hero-kicker mono">GUAN YUNXIANG · 全栈开发 / AI 工程</p>
-        <h1 class="hero-title">
-          把复杂的算法逻辑，<br />落成<span class="em">优雅的自动化流水线</span>。
-        </h1>
-        <p class="hero-lead">
-          我是关运祥，来自洛阳理工学院的软件工程学生。专注全栈应用研发与大模型本地化落地，
-          崇尚「知其然更知其所以然」。这里沉淀我的项目作品、技术写作与思考。
-        </p>
-        <div class="hero-cta">
-          <a class="btn-primary" href="#selected-work">浏览精选作品</a>
-          <a class="btn-ghost mono" href="/Guanyunxiang_Resume_AI.pdf" target="_blank">在线简历 ↗</a>
-        </div>
-        <p class="hero-note mono">正在寻找全栈开发 / AI 落地方向的实习机会</p>
-      </div>
+  <div class="hero-wrapper" id="hero">
+    
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
 
-      <figure class="hero-portrait">
-        <img src="/photo.jpg" alt="关运祥" />
-        <figcaption class="mono">关运祥 · 洛阳理工学院</figcaption>
-      </figure>
+    <div class="hero-card">
+      
+      <div class="gradient-overlay">
+        
+        <div class="text-content">
+          <div class="tag">🌐 关于我</div>
+          <h1 class="main-title">嘿，我是关运祥 👋</h1>
+          <p class="description">
+            来自洛阳理工学院的软件工程拔尖学生，致力于开发全栈应用、AI 本地化落地解决方案，并推动技术边界的真实工程产出。
+          </p>
+
+          <div class="mission-card">
+            <div class="mission-title">🚀 我的使命</div>
+            <p class="mission-text">
+              弥合底层逻辑与工程落地之间的鸿沟：创造力与功能性交汇，用严谨的自动化流水线推动系统进步。
+            </p>
+            <div class="mission-footer">
+              <em>继续前进，不要妥协。</em> 🌌
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </header>
+
+    <div class="bottom-stats">
+      <div class="stat-item"><span class="icon">⭐</span><span class="stat-num">3+</span><span class="stat-desc">核心架构系统</span></div>
+      <div class="stat-item"><span class="icon">🚀</span><span class="stat-num">1000+</span><span class="stat-desc">调试工时</span></div>
+      <div class="stat-item"><span class="icon">📦</span><span class="stat-num">10+</span><span class="stat-desc">容器部署节点</span></div>
+      <div class="stat-item"><span class="icon">🏆</span><span class="stat-num">3项</span><span class="stat-desc">国家/省级竞赛奖项</span></div>
+    </div>
+
+  </div>
 </template>
 
 <style scoped>
-/* 编辑部 Hero：衬线大标题 + 大留白，无光斑/无玻璃 */
-.ed-hero {
-  padding: clamp(56px, 10vh, 120px) 0 clamp(48px, 8vh, 96px);
-  border-bottom: 1px solid var(--vp-c-divider);
+.hero-wrapper {
+  width: 100%; min-height: 100%; display: flex; flex-direction: column; 
+  justify-content: center; align-items: center; position: relative; 
+  overflow: hidden; background-color: var(--vp-c-bg);
 }
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(220px, 0.8fr);
-  gap: 56px;
-  align-items: center;
-}
-.hero-portrait {
-  margin: 0;
-  justify-self: end;
-  text-align: center;
-}
-.hero-portrait img {
-  display: block;
-  width: 240px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 12px;
+
+.bg-glow { position: absolute; border-radius: 50%; z-index: 0; filter: blur(120px); opacity: 0.15; pointer-events: none; }
+.glow-1 { top: -10%; left: 5%; width: 600px; height: 600px; background: var(--vp-c-brand-1); }
+.glow-2 { bottom: -10%; right: 10%; width: 500px; height: 500px; background: #00f2fe; }
+
+.hero-card {
+  width: 92%; max-width: 1400px;
+  /* 680px 死值 → 流式下限：矮屏（如 768px 高笔记本）收缩为视口高-留白，避免底部被裁 */
+  min-height: clamp(460px, calc(100vh - 140px), 680px);
+  height: auto;
+  position: relative; z-index: 1; border-radius: 24px; overflow: hidden;
+  background-image: url('/background.jpg'); 
+  background-size: cover; background-position: right center; background-repeat: no-repeat;
+  box-shadow: var(--vp-shadow-3);
+  transform: translateZ(0); will-change: transform;
   border: 1px solid var(--vp-c-border);
+  transition: border-color 0.3s ease;
 }
-.hero-portrait figcaption {
-  margin-top: 12px;
-  font-family: var(--vp-font-family-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--vp-c-text-3);
+.hero-card:hover { border-color: var(--vp-c-brand-1); }
+
+/* 核心优化：全覆盖的柔和渐变层，彻底消灭分界线 */
+.gradient-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  padding: 60px 50px; display: flex; flex-direction: column; justify-content: center;
+  /* 渐变魔法：左侧 0-40% 是纯背景色，向右缓慢渐变，75% 处完全透明 */
+  background: linear-gradient(to right, var(--vp-c-bg) 0%, var(--vp-c-bg) 40%, transparent 75%);
 }
-.hero-kicker {
-  margin: 0 0 22px;
-  font-family: var(--vp-font-family-mono);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  color: var(--vp-c-brand-1);
-}
-.hero-title {
-  margin: 0;
-  max-width: 18em;
-  font-family: var(--font-display);
-  font-size: clamp(2.1rem, 5.2vw, 3.5rem);
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  line-height: 1.18;
-  color: var(--vp-c-text-1);
-}
-.hero-title .em {
-  color: var(--vp-c-brand-1);
-}
-.hero-lead {
-  margin: 26px 0 0;
-  max-width: 60ch;
-  font-size: 1.06rem;
-  line-height: 1.85;
-  color: var(--vp-c-text-2);
-}
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 34px;
-}
-.btn-primary,
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 0 22px;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform var(--duration-fast) var(--ease-out),
-    background-color var(--duration-fast) var(--ease-out),
-    border-color var(--duration-fast) var(--ease-out),
-    color var(--duration-fast) var(--ease-out);
-}
-.btn-primary {
-  background: var(--vp-c-brand-1);
-  color: var(--vp-c-bg);
-}
-.btn-primary:hover {
-  background: var(--vp-c-brand-2);
-}
-.btn-primary:active {
-  transform: scale(0.97);
-}
-.btn-ghost {
-  border: 1px solid var(--vp-c-border);
-  color: var(--vp-c-text-1);
-}
-.btn-ghost:hover {
-  border-color: var(--vp-c-brand-1);
-  color: var(--vp-c-brand-1);
-}
-.btn-primary:focus-visible,
-.btn-ghost:focus-visible {
-  outline: 2px solid var(--vp-c-brand-1);
-  outline-offset: 2px;
-}
-.hero-note {
-  margin: 26px 0 0;
-  font-family: var(--vp-font-family-mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  color: var(--vp-c-text-3);
-}
+
+.text-content { width: 55%; } /* 约束文字范围 */
+
+.tag { font-family: monospace; font-size: 0.9rem; color: var(--vp-c-text-2); margin-bottom: 20px; }
+.main-title { font-size: clamp(2.1rem, 1.3rem + 2.2vw, 3.2rem); font-weight: 800; color: var(--vp-c-text-1); margin: 0 0 20px 0; line-height: 1.2; letter-spacing: -0.5px; }
+.description { font-size: 1.05rem; color: var(--vp-c-text-2); line-height: 1.7; margin: 0 0 30px 0; max-width: 90%; }
+
+.mission-card { background: var(--vp-c-default-soft); border: 1px solid var(--vp-c-border); border-radius: 16px; padding: 24px; max-width: 95%; }
+.mission-title { font-size: 0.9rem; font-weight: 700; color: var(--vp-c-text-1); margin-bottom: 12px; }
+.mission-text { font-size: 0.95rem; color: var(--vp-c-text-2); line-height: 1.6; margin: 0 0 16px 0; }
+.mission-footer { font-size: 0.85rem; color: var(--vp-c-text-3); font-style: italic; }
+
+.bottom-stats { margin-top: 40px; display: flex; gap: 40px; justify-content: center; align-items: center; z-index: 1; flex-wrap: wrap; }
+.stat-item { display: flex; align-items: center; gap: 10px; font-family: var(--vp-font-family-base); }
+.stat-item .icon { font-size: 1.1rem; }
+.stat-num { font-size: 1.1rem; font-weight: 800; color: var(--vp-c-text-1); font-family: monospace; }
+.stat-desc { font-size: 0.9rem; font-weight: 600; color: var(--vp-c-text-2); letter-spacing: 0.5px; }
+
 @media (max-width: 768px) {
-  .ed-hero {
-    padding: 40px 0 44px;
+  .hero-wrapper {
+    min-height: auto;
+    padding-top: 0;
   }
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
+  
+  .hero-card { 
+    min-height: 420px; 
+    height: auto;
+    background-position: 70% center; 
+    width: 95%;
+    margin-top: 15px;
+    border-radius: 20px;
   }
-  .hero-portrait {
-    justify-self: start;
-    order: -1;
+  
+  .gradient-overlay { 
+    background: linear-gradient(to top, var(--vp-c-bg) 0%, var(--vp-c-bg) 55%, transparent 95%); 
+    padding: 80px 20px 25px 20px; 
+    justify-content: flex-end; 
   }
-  .hero-portrait img {
-    width: 132px;
-    height: 132px;
-    border-radius: 999px;
+  
+  .text-content { width: 100%; }
+  
+  .tag { font-size: 0.85rem; }
+  
+  .main-title { 
+    font-size: 2.2rem; 
+    line-height: 1.25;
+    margin-bottom: 16px;
   }
+  
+  .description { 
+    max-width: 100%; 
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .mission-card {
+    padding: 18px;
+    margin-top: 16px;
+    border-radius: 14px;
+  }
+  
+  .mission-title { font-size: 0.9rem; }
+  .mission-text { font-size: 0.9rem; }
+  .mission-footer { font-size: 0.8rem; }
+  
+  .bottom-stats { 
+    gap: 20px; 
+    margin-top: 25px; 
+    padding: 0 20px;
+    flex-wrap: wrap;
+  }
+  
+  .stat-item {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+    min-width: 70px;
+  }
+  
+  .stat-item .icon { font-size: 1rem; }
+  .stat-num { font-size: 1.1rem; }
+  .stat-desc { font-size: 0.8rem; }
+  
+  .bg-glow {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-wrapper {
+    padding-top: 60px;
+  }
+  
+  .hero-card {
+    min-height: 380px;
+    height: auto;
+    border-radius: 16px;
+    width: 96%;
+  }
+  
+  .main-title {
+    font-size: 1.9rem;
+  }
+  
+  .gradient-overlay {
+    padding: 60px 16px 20px 16px;
+  }
+  
+  .description {
+    font-size: 0.95rem;
+  }
+  
+  .mission-card {
+    padding: 16px;
+  }
+  
+  .bottom-stats {
+    gap: 15px;
+  }
+  
+  .stat-num { font-size: 1rem; }
+  .stat-desc { font-size: 0.75rem; }
+  
+  .bg-glow {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .glow-1 { left: -5%; }
+  .glow-2 { right: -5%; }
 }
 </style>
