@@ -89,22 +89,25 @@ import { projects } from '../projects.mjs'
 .split-screen { width: 100%; height: calc(100vh - 80px); display: flex; background-color: var(--vp-c-bg); overflow: hidden; }
 
 /* === 左侧看板：向左侧靠拢 === */
-.left-board { 
-  width: 45%; height: 100%; 
-  display: flex; align-items: flex-start; 
+.left-board {
+  width: 45%; height: 100%;
+  /* 纵向 flex：system-status 用 margin-top:auto 贴底，内容变高时自动下移，不再压字 */
+  display: flex; flex-direction: column; align-items: flex-start;
   justify-content: flex-start;
   /* 死像素 120px → 流式：窄屏笔记本自动收缩，宽屏保持原有留白 */
   padding-left: clamp(24px, 6vw, 120px);
   padding-right: 40px;
   padding-top: 40px;
   padding-bottom: 40px;
-  border-right: 1px solid var(--vp-c-divider); position: relative; overflow: hidden;
+  border-right: 1px solid var(--vp-c-divider); position: relative;
+  /* 矮屏内容超高时左侧内部滚动，避免被裁 */
+  overflow-x: hidden; overflow-y: auto;
 }
 
 .lab-blueprint { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.05; z-index: 0; }
 .blueprint-grid { width: 100%; height: 100%; background-image: linear-gradient(var(--vp-c-text-1) 1px, transparent 1px), linear-gradient(90deg, var(--vp-c-text-1) 1px, transparent 1px); background-size: 40px 40px; }
 
-.board-content { width: 100%; max-width: 520px; position: relative; z-index: 1; }
+.board-content { width: 100%; max-width: 520px; position: relative; z-index: 1; flex-shrink: 0; }
 .section-tag { font-family: monospace; font-size: 0.85rem; color: var(--vp-c-brand-1); margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 
 .board-title { font-size: clamp(1.35rem, 1.15rem + 1vw, 1.6rem); font-weight: 700; line-height: 1.25; color: var(--vp-c-text-1); margin-bottom: 24px; letter-spacing: -0.5px; }
@@ -117,7 +120,8 @@ import { projects } from '../projects.mjs'
 .stat-text h4 { font-size: 1.05rem; font-weight: 700; color: var(--vp-c-text-1); margin: 0 0 6px 0; font-family: var(--vp-font-family-base); }
 .stat-text p { font-size: 0.85rem; color: var(--vp-c-text-2); margin: 0; line-height: 1.5; font-weight: 500;}
 
-.system-status { position: absolute; bottom: 30px; left: 40px; display: flex; align-items: center; gap: 10px; z-index: 2;}
+/* 文档流贴底：内容不满一屏时沉底，内容变高时随之下移（绝不压字） */
+.system-status { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 28px; flex-shrink: 0; }
 .pulse-dot { width: 8px; height: 8px; background-color: #0ba360; border-radius: 50%; box-shadow: none; }
 .system-status span { font-family: monospace; font-size: 0.75rem; color: var(--vp-c-text-3); font-weight: 600; letter-spacing: 1px; }
 
@@ -234,11 +238,8 @@ a.project-card:hover {
     line-height: 1.5;
   }
   
-  .system-status { 
-    position: relative; 
-    bottom: 0; 
-    left: 0; 
-    margin-top: 28px; 
+  .system-status {
+    margin-top: 20px;
   }
   
   .right-scroll { 
