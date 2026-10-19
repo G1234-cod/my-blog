@@ -1,19 +1,20 @@
 ---
-layout: false
+layout: page
 title: 关运祥 - 全栈架构与 AI 探索
+description: 全栈开发 / AI 工程个人门户：项目作品、技术写作与知识地图。
+sidebar: false
+aside: false
+outline: false
+editLink: false
 ---
 
-<div class="home-spa-wrapper">
+<div class="home-editorial">
 
-  <DynamicNavbar />
-
-  <div class="universe-container">
-    <section class="universe-screen"><HeroScreen /></section>
-    <section class="universe-screen"><StatsBento /></section>
-    <section class="universe-screen"><StickyTimeline /></section>
-    <section class="universe-screen"><ProjectShowcase /></section>
-    <section class="universe-screen"><HubGateway /></section>
-    <section class="universe-screen"><ContactFooter /></section>
-  </div>
+  <HeroScreen />
+  <FeaturedProjects />
+  <FeaturedReads />
+  <KnowledgeIndex />
+  <HomeAbout />
+  <ContactFooter />
 
 </div>

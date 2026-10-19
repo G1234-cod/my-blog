@@ -152,54 +152,22 @@ html {
   overflow-x: hidden;
 }
 
-/* 仅首页（全屏滚动捕捉，.home-spa-wrapper 存在时）锁死高度链 */
-html:has(.home-spa-wrapper),
-html:has(.home-spa-wrapper) body,
-html:has(.home-spa-wrapper) #app {
-  height: 100%;
-  overflow-x: hidden;
+/* 首页编辑部容器：单页长滚动（window 原生滚动，无嵌套滚动层 / 无 scroll-snap） */
+.home-editorial {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
 }
 
-.home-spa-wrapper {
-  width: 100%;
-  height: 100%;
-}
-
-/* 3. 全局中控台：全屏滚动捕捉容器 */
-.universe-container {
-  width: 100%;
-  height: 100vh;
-  overflow-y: scroll;
-  /* mandatory → proximity：内容超出一屏（矮屏笔记本）时允许停在任意位置，
-     不再强制吸附回弹导致内容永远看不到 */
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.universe-container::-webkit-scrollbar {
-  display: none;
-}
-
-/* 4. 每一屏的基础单元 */
-.universe-screen {
-  width: 100%;
-  min-height: 100vh;
-  height: auto;
-  scroll-snap-align: start;
-  position: relative;
-  overflow: visible;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 80px;
-  box-sizing: border-box;
-}
-
-/* 矮屏桌面（如 1366×768 笔记本）：压缩顶部留白，给内容腾空间 */
-@media (min-width: 769px) and (max-height: 820px) {
-  .universe-screen {
-    padding-top: 56px;
+/* 全局减弱动效：砍大幅运动与循环，保留即时状态反馈 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -222,47 +190,14 @@ html:has(.home-spa-wrapper) #app {
   a, button, input, textarea, select, [role="button"] {
     touch-action: manipulation;
   }
-  
-  .universe-container {
-    height: auto;
-    min-height: 100vh;
-    scroll-snap-type: none;
-    overflow-y: auto;
-    /* 禁用 scroll-behavior: smooth 在手机上的惯性滚动冲突 */
-    scroll-behavior: auto;
+
+  .home-editorial {
+    padding: 0 18px 32px;
   }
-  
-  .universe-screen {
-    height: auto;
-    min-height: auto;
-    scroll-snap-align: none;
-    padding-top: 70px;
-    box-sizing: border-box;
-    /* 防止子元素溢出导致横向滚动 */
-    overflow-x: hidden;
-  }
-  
-  .home-spa-wrapper {
-    overflow-x: hidden;
-  }
-  
-  /* 禁用手机上的 scroll-snap 吸附动画，改为自然滚动 */
-  .universe-container,
-  .universe-screen {
-    scroll-snap-type: none !important;
-  }
-  
+
   /* 让所有可点击元素有足够的触控目标（≥44px） */
   a, button, input, textarea, select, [role="button"] {
     min-height: 44px;
-  }
-  
-  /* 尊重系统的减弱动态设置 */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      transition-duration: 0.01ms !important;
-    }
   }
 }
 
@@ -277,9 +212,7 @@ html:has(.home-spa-wrapper) #app {
  * ==========================================
  */
 
-/* 6. 导航栏双模式：
-   - 首页 layout:false，不经过主题 Layout，VPNavBar 天然不存在（首页用 md 内的 DynamicNavbar）
-   - 其余页面恢复官方 VPNavBar（下方第 7 节做毛玻璃深度美化）
+/* 6. 导航栏：全站单一导航壳（首页 layout: page 与文档页共用 VPNavBar）
    顶部间距由官方 VPContent padding-top: var(--vp-nav-height) 自动补偿，无需手动补丁 */
 
 /* 8. 放大正文容器宽度 */
@@ -445,7 +378,7 @@ html:has(.home-spa-wrapper) #app {
   display: none !important;
 }
 
-/* 导航链接：对齐 DynamicNavbar 的字体风格（小号加粗 + 字距拉开） */
+/* 导航链接：小号加粗 + 字距拉开，与首页编辑部风格一致 */
 .VPNavBar .VPNavBarMenuLink {
   font-size: 0.85rem;
   font-weight: 600;

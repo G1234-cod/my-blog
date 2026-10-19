@@ -4,7 +4,7 @@
 // 新增项目只需两步：
 //   1. 在本数组追加一条记录（slug 必须与 docs/projects/<slug>.md 文件名一致）
 //   2. 新建详情页 docs/projects/<slug>.md 与配图目录 docs/projects/<slug>.assets/
-// 首页 ProjectShowcase 会据此自动渲染卡片，节点计数也自动跟随，无需再改组件。
+// 首页 FeaturedProjects 会据此自动渲染精选卡片，无需再改组件。
 //
 // ⚠️ 文件名不要包含 .data.mjs —— VitePress 会把 .vitepress/ 下的 *.data.mjs 当作数据加载器处理。
 //
