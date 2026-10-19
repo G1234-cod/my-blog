@@ -5,9 +5,8 @@ import './style.css'
 // 首页编辑部区块（docs/index.md 按顺序引用）
 import HeroScreen from './components/HeroScreen.vue'
 import ProjectList from './components/ProjectList.vue'
-import FeaturedReads from './components/FeaturedReads.vue'
-import KnowledgeIndex from './components/KnowledgeIndex.vue'
-import HomeAbout from './components/HomeAbout.vue'
+import HonorsSection from './components/HonorsSection.vue'
+import WritingHub from './components/WritingHub.vue'
 import ContactFooter from './components/ContactFooter.vue'
 
 // 侧边栏顶部的胶囊切换器组件
@@ -40,30 +39,12 @@ export default {
   enhanceApp({ app, router }) {
     app.component('HeroScreen', HeroScreen)
     app.component('ProjectList', ProjectList)
-    app.component('FeaturedReads', FeaturedReads)
-    app.component('KnowledgeIndex', KnowledgeIndex)
-    app.component('HomeAbout', HomeAbout)
+    app.component('HonorsSection', HonorsSection)
+    app.component('WritingHub', WritingHub)
     app.component('ContactFooter', ContactFooter)
     // 供各专栏 index.md 与 hub/*.md 在正文中直接使用
     app.component('CategoryList', CategoryList)
     app.component('HubLanding', HubLanding)
     // KnowledgeSwitcher / ReadingProgress / DocMeta 通过 h 函数直接渲染，无需注册
-
-    // 页间 View Transition：在路由切换前后包一层原生交叉淡入。
-    // 仅浏览器环境 + 支持 startViewTransition + 未开启减弱动效时启用，其余静默降级。
-    if (
-      typeof document !== 'undefined' &&
-      'startViewTransition' in document &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
-      router.onBeforeRouteChange = () => {
-        document.startViewTransition(async () => {
-          // 等 VitePress 完成路由 DOM 更新（microtask 清空 + 两帧渲染）后再定格新画面
-          await new Promise((resolve) =>
-            requestAnimationFrame(() => requestAnimationFrame(resolve))
-          )
-        })
-      }
-    }
   }
 }

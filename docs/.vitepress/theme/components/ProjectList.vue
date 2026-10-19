@@ -9,12 +9,12 @@
           <h3 class="work-title">
             <a :href="`/projects/${p.slug}`">{{ p.title }}</a>
           </h3>
-          <p class="work-meta">
-            <span v-if="p.badge" class="work-badge" :data-type="p.badge.type">{{ p.badge.icon }} {{ p.badge.text }}</span>
-            <span v-for="t in p.tags" :key="t" class="work-tag mono">{{ t }}</span>
-          </p>
           <p class="work-desc">{{ p.desc }}</p>
           <a class="work-link mono" :href="`/projects/${p.slug}`">阅读项目复盘 →</a>
+        </div>
+        <div class="work-side">
+          <span v-if="p.badge" class="work-badge" :data-type="p.badge.type">{{ p.badge.icon }} {{ p.badge.text }}</span>
+          <span v-for="t in p.tags" :key="t" class="work-tag mono">{{ t }}</span>
         </div>
       </article>
     </div>
@@ -31,8 +31,8 @@ import { projects } from '../projects.mjs'
 import SectionHead from './SectionHead.vue'
 
 const props = defineProps({
-  // 显示条数（作品索引页传大值即渲染全部）
-  limit: { type: Number, default: 3 },
+  // 显示条数（首页精选 4 条；作品索引页传大值即渲染全部）
+  limit: { type: Number, default: 4 },
   showMore: { type: Boolean, default: true },
   sectionId: { type: String, default: 'selected-work' },
   heading: {
@@ -57,7 +57,8 @@ const visible = computed(() => projects.slice(0, props.limit))
   flex-direction: column;
 }
 .work-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) minmax(160px, 220px);
   gap: 28px;
   padding: 28px 0;
   border-bottom: 1px solid var(--vp-c-divider);
@@ -76,6 +77,13 @@ const visible = computed(() => projects.slice(0, props.limit))
 .work-body {
   min-width: 0;
 }
+.work-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  padding-top: 6px;
+}
 .work-title {
   margin: 0;
   font-family: var(--font-display);
@@ -92,17 +100,11 @@ const visible = computed(() => projects.slice(0, props.limit))
 .work-title a:hover {
   color: var(--vp-c-brand-1);
 }
-.work-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 12px;
-  margin: 10px 0 0;
-}
 .work-badge {
   font-size: 12px;
   font-weight: 600;
   color: var(--vp-c-text-2);
+  white-space: nowrap;
 }
 .work-badge[data-type='gold'] {
   color: #a16207;
@@ -155,7 +157,18 @@ const visible = computed(() => projects.slice(0, props.limit))
     padding: 44px 0;
   }
   .work-item {
+    grid-template-columns: 28px minmax(0, 1fr);
     gap: 14px;
+  }
+  .work-side {
+    grid-column: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px 12px;
+    padding-top: 0;
+    order: -1;
   }
   .work-title {
     font-size: 1.22rem;

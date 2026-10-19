@@ -769,10 +769,36 @@ html {
     }
   }
 
-  /* 页间过渡：View Transitions 默认交叉淡入（不支持的浏览器自动跳过） */
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 220ms;
-    animation-timing-function: var(--ease-out);
+  /* 页间过渡：纯 CSS 轻淡入（无 JS 参与，路由重挂载即播放，不阻塞跳转） */
+  .VPContent .VPPage,
+  .VPDoc .container {
+    animation: ed-page-in 180ms var(--ease-out) both;
+  }
+}
+
+@keyframes ed-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* * ==========================================
+ * 21. 首页滑动切换（window 原生 proximity 吸附）
+ * 只对首页生效、仅桌面端；保留分屏滑动感又不锁死滚动
+ * ========================================== */
+@media (min-width: 769px) {
+  html:has(.home-editorial) {
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+  }
+  .home-editorial > * {
+    scroll-snap-align: start;
+    /* 锚点跳转不被固定导航遮挡 */
+    scroll-margin-top: calc(var(--vp-nav-height) + 12px);
   }
 }

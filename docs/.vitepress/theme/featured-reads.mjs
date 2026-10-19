@@ -15,7 +15,7 @@
 export const featuredReads = [
   {
     title: '本地私有知识库（基于 AnythingLLM）搭建学习笔记',
-    url: '/tech-note/3.本地私有知识库_基于AnythingLLM搭建学习笔记_详细版',
+    url: '/tech-note/Published/01-AI-Agent/01-知识库搭建/3.本地私有知识库_基于AnythingLLM搭建学习笔记_详细版',
     module: '技术笔记',
     desc: '从 DNS、Docker 网络到镜像加速——先本地跑通全流程，再考虑上云优化的完整踩坑记录。'
   },
@@ -33,7 +33,7 @@ export const featuredReads = [
   },
   {
     title: 'Docker 环境搭建',
-    url: '/tech-note/1.Docker环境搭建',
+    url: '/tech-note/Published/01-AI-Agent/01-知识库搭建/1.Docker环境搭建',
     module: '技术笔记',
     desc: '容器环境从零搭建的初始知识点与配置实录。'
   },
