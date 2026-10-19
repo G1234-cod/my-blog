@@ -1,55 +1,63 @@
 /* * ==========================================
  * 全局样式重置与基础配置
- * ==========================================
- */
+ * 视觉方向：Almanac（编辑部/年鉴）——详见根目录 DESIGN.md
+ * ========================================== */
+
+/* 展示字体（西文 Fraunces + 中文思源宋体，CDN 失败自动回退系统衬线） */
+@import url('https://cdn.jsdelivr.net/fontsource/fonts/fraunces@latest/latin-600-normal.css');
+@import url('https://cdn.jsdelivr.net/fontsource/fonts/noto-serif-sc@latest/chinese-simplified-600-normal.css');
+@import url('https://cdn.jsdelivr.net/fontsource/fonts/noto-serif-sc@latest/chinese-simplified-700-normal.css');
+@import url('https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono@latest/latin-400-normal.css');
+@import url('https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono@latest/latin-500-normal.css');
 
 /* * ==========================================
  * 双主题色彩基座（浅色 :root / 暗色 .dark）
  * 全站颜色一律走 CSS 变量，禁止组件内硬编码
+ * 单一 accent（墨绿），层级靠边框与底色差，不用发光
  * ==========================================
  */
 :root {
   --vp-layout-max-width: 95vw !important;
 
-  /* —— 浅色主题：纸白底 + 青蓝品牌色 —— */
-  --vp-c-brand-1: #0891b2;              /* 主品牌色：链接、高亮文字 */
-  --vp-c-brand-2: #06a3c9;              /* 悬停态 */
-  --vp-c-brand-3: #0e7490;              /* 实心按钮底色 */
-  --vp-c-brand-soft: rgba(8, 145, 178, 0.12);
+  /* —— 浅色主题（默认）：暖纸面 + 暖墨字 + 墨绿 accent —— */
+  --vp-c-brand-1: #0f766e;              /* 主品牌色：链接、高亮文字 */
+  --vp-c-brand-2: #115e59;              /* 悬停态 */
+  --vp-c-brand-3: #0f766e;              /* 实心按钮底色 */
+  --vp-c-brand-soft: rgba(15, 118, 110, 0.10);
   --vp-c-brand: var(--vp-c-brand-1);    /* 兼容旧变量名 */
 
-  --vp-c-bg: #f8fafc;                   /* 主背景：纸白 */
-  --vp-c-bg-alt: #eef2f7;               /* 代码块等替代背景 */
-  --vp-c-bg-elv: #ffffff;               /* 浮层卡片背景 */
-  --vp-c-bg-soft: #f1f5f9;              /* 柔和区分背景 */
+  --vp-c-bg: #faf9f6;                   /* 纸面（暖色温白） */
+  --vp-c-bg-alt: #f3f1ec;               /* 代码块等替代背景 */
+  --vp-c-bg-elv: #ffffff;               /* 浮层背景 */
+  --vp-c-bg-soft: #f0eee8;              /* 柔和区分背景 */
 
-  --vp-c-border: #cbd5e1;
-  --vp-c-divider: #e2e8f0;
-  --vp-c-gutter: #e2e8f0;
+  --vp-c-border: #ddd8cd;
+  --vp-c-divider: #eae7de;
+  --vp-c-gutter: #eae7de;
 
-  --vp-c-text-1: #1e293b;               /* 主文字 */
-  --vp-c-text-2: #475569;               /* 次要文字 */
-  --vp-c-text-3: #94a3b8;               /* 弱化文字 */
+  --vp-c-text-1: #201e1a;               /* 主文字：暖墨 */
+  --vp-c-text-2: #55514a;               /* 次要文字 */
+  --vp-c-text-3: #8b857a;               /* 弱化文字 */
 
-  --vp-c-default-1: #d7dde6;
-  --vp-c-default-2: #e2e8f0;
-  --vp-c-default-3: #eaeff5;
-  --vp-c-default-soft: rgba(100, 116, 139, 0.12);
+  --vp-c-default-1: #d9d4c8;
+  --vp-c-default-2: #eae7de;
+  --vp-c-default-3: #f0eee8;
+  --vp-c-default-soft: rgba(85, 81, 74, 0.10);
 
-  /* 侧边栏与导航（半透明，供毛玻璃使用） */
-  --vp-sidebar-bg-color: #f1f5f9;
-  --vp-nav-bg-color: rgba(248, 250, 252, 0.78);
-  --vp-nav-screen-bg-color: rgba(248, 250, 252, 0.96);
+  /* 侧边栏与导航：实色纸面（编辑部风，不用毛玻璃） */
+  --vp-sidebar-bg-color: #f5f3ee;
+  --vp-nav-bg-color: rgba(250, 249, 246, 0.92);
+  --vp-nav-screen-bg-color: #faf9f6;
 
   /* 行内代码与代码块 */
-  --vp-code-bg: rgba(8, 145, 178, 0.1);
-  --vp-code-block-bg: #eef2f7;
-  --vp-code-block-divider-color: #dbe3ec;
-  --vp-code-line-highlight-color: rgba(8, 145, 178, 0.1);
-  --vp-code-copy-code-bg: #e8eef5;
+  --vp-code-bg: rgba(15, 118, 110, 0.09);
+  --vp-code-block-bg: #f3f1ec;
+  --vp-code-block-divider-color: #e3dfd6;
+  --vp-code-line-highlight-color: rgba(15, 118, 110, 0.09);
+  --vp-code-copy-code-bg: #ebe8e0;
   --vp-code-copy-code-hover-bg: #ffffff;
-  --vp-code-copy-code-border-color: #dbe3ec;
-  --vp-code-copy-code-hover-border-color: #0891b2;
+  --vp-code-copy-code-border-color: #e3dfd6;
+  --vp-code-copy-code-hover-border-color: #0f766e;
 
   /* 自定义容器（tip 系跟随品牌色） */
   --vp-c-tip-1: var(--vp-c-brand-1);
@@ -61,62 +69,69 @@
   --vp-c-note-3: var(--vp-c-brand-3);
   --vp-c-note-soft: var(--vp-c-brand-soft);
 
-  /* 浅色阴影 */
-  --vp-shadow-1: 0 1px 2px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.06);
-  --vp-shadow-2: 0 3px 12px rgba(15, 23, 42, 0.08), 0 1px 4px rgba(15, 23, 42, 0.06);
-  --vp-shadow-3: 0 12px 32px rgba(15, 23, 42, 0.1), 0 2px 6px rgba(15, 23, 42, 0.07);
+  /* 弱阴影（仅浮层微抬升；层级主要靠边框/底色差） */
+  --vp-shadow-1: 0 1px 2px rgba(32, 30, 26, 0.05);
+  --vp-shadow-2: 0 2px 8px rgba(32, 30, 26, 0.07);
+  --vp-shadow-3: 0 8px 24px rgba(32, 30, 26, 0.09);
 
-  /* 导航栏高度（配合自定义毛玻璃导航） */
+  /* 导航栏高度 */
   --vp-nav-height: 60px;
 
-  /* 品牌色微光（卡片 hover 发光阴影用） */
-  --vp-brand-glow: rgba(8, 145, 178, 0.22);
+  /* 字体系统（DESIGN.md §3） */
+  --vp-font-family-base: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --vp-font-family-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-display: "Fraunces", "Noto Serif SC", "Songti SC", "SimSun", serif;
+
+  /* 动效 token（DESIGN.md §6）：只动 transform/opacity，进场用 ease-out */
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .dark {
-  /* —— 暗色主题：深墨蓝灰底 + 亮青品牌色 —— */
-  --vp-c-brand-1: #22d3ee;              /* 亮青：暗底下保证对比度 */
-  --vp-c-brand-2: #38e0f8;
-  --vp-c-brand-3: #06b6d4;
-  --vp-c-brand-soft: rgba(34, 211, 238, 0.14);
+  /* —— 暗色主题（Mood Mode）：多层深灰非纯黑 + 低饱和青绿 accent —— */
+  --vp-c-brand-1: #2dd4bf;              /* 暗底下的可读 accent */
+  --vp-c-brand-2: #5eead4;
+  --vp-c-brand-3: #14b8a6;
+  --vp-c-brand-soft: rgba(45, 212, 191, 0.14);
 
-  --vp-c-bg: #0f1218;                   /* 深墨蓝灰 */
-  --vp-c-bg-alt: #12151d;
-  --vp-c-bg-elv: #1a1f2b;               /* 浮层略亮于底色 */
-  --vp-c-bg-soft: #161a23;
+  --vp-c-bg: #141414;
+  --vp-c-bg-alt: #1b1b1b;
+  --vp-c-bg-elv: #212121;
+  --vp-c-bg-soft: #1e1e1e;
 
-  --vp-c-border: #334155;
-  --vp-c-divider: #232a38;
-  --vp-c-gutter: #1a1f2b;
+  --vp-c-border: #3a3a3a;
+  --vp-c-divider: #2a2a2a;
+  --vp-c-gutter: #212121;
 
-  --vp-c-text-1: #e2e8f0;
-  --vp-c-text-2: #94a3b8;
-  --vp-c-text-3: #64748b;
+  --vp-c-text-1: #eae7e0;
+  --vp-c-text-2: #a8a29a;
+  --vp-c-text-3: #6e6a62;
 
-  --vp-c-default-1: #3b4354;
-  --vp-c-default-2: #2c3444;
-  --vp-c-default-3: #232a38;
-  --vp-c-default-soft: rgba(101, 117, 139, 0.16);
+  --vp-c-default-1: #3d3d3d;
+  --vp-c-default-2: #2e2e2e;
+  --vp-c-default-3: #262626;
+  --vp-c-default-soft: rgba(168, 162, 154, 0.14);
 
-  --vp-sidebar-bg-color: #12151d;
-  --vp-nav-bg-color: rgba(15, 18, 24, 0.72);
-  --vp-nav-screen-bg-color: rgba(15, 18, 24, 0.97);
+  --vp-sidebar-bg-color: #181818;
+  --vp-nav-bg-color: rgba(20, 20, 20, 0.92);
+  --vp-nav-screen-bg-color: #141414;
 
-  --vp-code-bg: rgba(34, 211, 238, 0.12);
-  --vp-code-block-bg: #12151d;
-  --vp-code-block-divider-color: #232a38;
-  --vp-code-line-highlight-color: rgba(34, 211, 238, 0.1);
-  --vp-code-copy-code-bg: #1a1f2b;
-  --vp-code-copy-code-hover-bg: #232a38;
-  --vp-code-copy-code-border-color: #232a38;
-  --vp-code-copy-code-hover-border-color: #22d3ee;
+  --vp-code-bg: rgba(45, 212, 191, 0.12);
+  --vp-code-block-bg: #1b1b1b;
+  --vp-code-block-divider-color: #2a2a2a;
+  --vp-code-line-highlight-color: rgba(45, 212, 191, 0.10);
+  --vp-code-copy-code-bg: #242424;
+  --vp-code-copy-code-hover-bg: #2e2e2e;
+  --vp-code-copy-code-border-color: #2e2e2e;
+  --vp-code-copy-code-hover-border-color: #2dd4bf;
 
   /* 暗色阴影更重，增强层级 */
-  --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.35);
-  --vp-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.35);
-  --vp-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.4);
-
-  --vp-brand-glow: rgba(34, 211, 238, 0.28);
+  --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --vp-shadow-2: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --vp-shadow-3: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 html, body, #app {
@@ -276,17 +291,17 @@ html:has(.home-spa-wrapper) #app {
 
 /* 9. 优化文章内的图片展示 */
 .vp-doc img {
-  border-radius: 12px;          
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);  
-  margin: 2rem auto;            
-  display: block;  
-  max-width: 100%;       
-  
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(32, 30, 26, 0.08);
+  margin: 2rem auto;
+  display: block;
+  max-width: 100%;
+
   /* 🎛️ 参数五：图片的最大高度限制。
      觉得普通截图太占屏幕 -> 改小（如 400px）
      觉得展示效果不够震撼宏大 -> 改大（如 700px）*/
-  max-height: 550px;     
-  object-fit: contain;   
+  max-height: 550px;
+  object-fit: contain;
 }
 
 /* * ==========================================
@@ -369,30 +384,17 @@ html:has(.home-spa-wrapper) #app {
   }
 }
 
-/* 12. 移除 H2 顶部横线，并大幅缩小间距 (解决空白太大的问题) */
+/* 12–13. H2 编辑部式栏头：全宽细规则线 + 衬线大标题 */
 .vp-doc h2 {
-  border-top: none !important;
-  margin-top: 40px !important; /* 🔥 从原来的80px缩小一半 */
-  margin-bottom: 25px !important;
-}
-
-/* 13. 实现极客风格标题：垂直线 + 标题 */
-.vp-doc h2 {
-  position: relative;
-  padding-left: 20px;           
-  font-size: 2rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 1px;          
-}
-.vp-doc h2::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 10%;
-  height: 80%;
-  width: 5px;
-  background-color: var(--vp-c-brand-1);  
-  border-radius: 4px;           
+  border-top: 1px solid var(--vp-c-divider) !important;
+  margin-top: 56px !important;
+  margin-bottom: 22px !important;
+  padding-top: 28px;
+  font-family: var(--font-display);
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
 }
 
 /* 14. 优化正文排版 */
@@ -424,14 +426,12 @@ html:has(.home-spa-wrapper) #app {
 }
 
 /* * ==========================================
- * 16. 官方导航栏（VPNavBar）毛玻璃深度美化
- * 与首页 DynamicNavbar 视觉语言统一
- * ========================================== */
+ * 16. 官方导航栏（VPNavBar）：实色纸面 + 细底边
+ * 与全站编辑部风格统一（去毛玻璃）
+ * ==========================================
+ */
 .VPNavBar {
-  /* 整条导航半透明 + 毛玻璃（背景色变量已按明暗双主题定义为半透明） */
   background-color: var(--vp-nav-bg-color) !important;
-  backdrop-filter: saturate(180%) blur(14px);
-  -webkit-backdrop-filter: saturate(180%) blur(14px);
   border-bottom: 1px solid var(--vp-c-divider);
 }
 /* 桌面端 content-body 自带一层背景，叠加会双重半透明，统一交给 VPNavBar */
@@ -451,7 +451,7 @@ html:has(.home-spa-wrapper) #app {
   font-weight: 600;
   letter-spacing: 0.5px;
   color: var(--vp-c-text-2);
-  transition: color 0.25s ease;
+  transition: color var(--duration-normal) var(--ease-out);
 }
 .VPNavBar .VPNavBarMenuLink:hover {
   color: var(--vp-c-brand-1);
@@ -479,57 +479,34 @@ html:has(.home-spa-wrapper) #app {
   background-color: var(--vp-c-bg-elv);
 }
 
-/* 移动端本地导航条（返回顶部/菜单）同步毛玻璃 */
+/* 移动端本地导航条（返回顶部/菜单）同步实色纸面 */
 .VPLocalNav {
   background-color: var(--vp-nav-bg-color) !important;
-  backdrop-filter: saturate(180%) blur(14px);
-  -webkit-backdrop-filter: saturate(180%) blur(14px);
 }
 
 /* * ==========================================
- * 17. 侧边栏（VPSidebar）极客控制台风重构
- * 等宽字体分组标签 + 计数徽章 + 微光细节 + 扫描线纹理
+ * 17. 侧边栏（VPSidebar）：纸面目录风
+ * mono 分组标签 + 计数徽章 + 细分隔线（去扫描线/发光）
  * 颜色全部走主题变量，随明暗主题一同变化
  * ========================================== */
-/* 侧栏专属主题变量：浅色为纸白灰轨，暗色为深墨控制台轨 */
+/* 侧栏专属主题变量：浅色纸白轨 / 暗色深灰轨 */
 :root {
-  --sidebar-bg: linear-gradient(180deg, #f8fafc 0%, #edf1f6 100%);
-  --sidebar-border: rgba(100, 116, 139, 0.2);
-  --sidebar-scanline: rgba(8, 145, 178, 0.028);
-  --side-count-color: #0e7490;
-  --side-count-bg: rgba(8, 145, 178, 0.08);
-  --side-count-border: rgba(8, 145, 178, 0.32);
-  --sidebar-active-ring: rgba(8, 145, 178, 0.28);
-  --sidebar-active-glow: rgba(8, 145, 178, 0.09);
+  --sidebar-bg: #f5f3ee;
+  --sidebar-border: #e3dfd6;
+  --side-count-color: #0f766e;
+  --side-count-bg: rgba(15, 118, 110, 0.08);
+  --side-count-border: rgba(15, 118, 110, 0.28);
 }
 .dark {
-  --sidebar-bg: linear-gradient(180deg, #10141d 0%, #0b0e15 100%);
-  --sidebar-border: rgba(148, 163, 184, 0.14);
-  --sidebar-scanline: rgba(34, 211, 238, 0.022);
-  --side-count-color: #22d3ee;
-  --side-count-bg: rgba(34, 211, 238, 0.1);
-  --side-count-border: rgba(34, 211, 238, 0.35);
-  --sidebar-active-ring: rgba(34, 211, 238, 0.22);
-  --sidebar-active-glow: rgba(34, 211, 238, 0.07);
+  --sidebar-bg: #181818;
+  --sidebar-border: #2a2a2a;
+  --side-count-color: #2dd4bf;
+  --side-count-bg: rgba(45, 212, 191, 0.10);
+  --side-count-border: rgba(45, 212, 191, 0.30);
 }
 .VPSidebar {
   background: var(--sidebar-bg);
   border-right: 1px solid var(--sidebar-border);
-}
-/* 扫描线纹理（极客细节，不拦截点击） */
-.VPSidebar::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    0deg,
-    var(--sidebar-scanline) 0px,
-    var(--sidebar-scanline) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-  pointer-events: none;
-  z-index: 0;
 }
 .VPSidebar nav {
   position: relative;
@@ -611,15 +588,13 @@ html:has(.home-spa-wrapper) #app {
 .VPSidebarItem.level-0.is-active > .item > .indicator,
 .VPSidebarItem.level-1.is-active > .item > .indicator {
   background-color: var(--vp-c-brand-1);
-  box-shadow: 0 0 8px var(--vp-brand-glow);
 }
-/* 当前页文章项：柔和底色 + 控制台描边微光（颜色随主题变量），增强定位感 */
+/* 当前页文章项：柔和底色定位感（无发光） */
 .VPSidebarItem.level-1.is-active > .item,
 .VPSidebarItem.level-2.is-active > .item,
 .VPSidebarItem.level-3.is-active > .item {
   background-color: var(--vp-c-brand-soft);
   border-radius: 6px;
-  box-shadow: inset 0 0 0 1px var(--sidebar-active-ring), 0 0 14px var(--sidebar-active-glow);
 }
 
 /* level-0 分组的子项容器：补一条缩进引导线，层级更清晰 */
@@ -634,7 +609,7 @@ html:has(.home-spa-wrapper) #app {
   display: grid !important;
   grid-template-rows: 1fr;
   opacity: 1;
-  transition: grid-template-rows 0.28s ease, opacity 0.28s ease;
+  transition: grid-template-rows var(--duration-slow) var(--ease-out), opacity var(--duration-slow) var(--ease-out);
 }
 .VPSidebarItem.collapsible.collapsed > .items {
   grid-template-rows: 0fr;
@@ -648,68 +623,35 @@ html:has(.home-spa-wrapper) #app {
 /* * ==========================================
  * 18. 文章正文排版体系（H1/H3/H4/表格/引用/链接）
  * ========================================== */
-/* H1 文章大标题：克制的品牌色短下划线 */
+/* H1 文章大标题：衬线 display + 底部细规则线 */
 .vp-doc h1 {
-  position: relative;
   margin-top: 0.5rem;
-  margin-bottom: 2rem;
-  padding-bottom: 0.9rem;
-  font-size: 2.2rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.5px;
-  line-height: 1.3;
-}
-.vp-doc h1::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 64px;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--vp-c-brand-1);
-  box-shadow: 0 0 10px var(--vp-brand-glow);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+  font-family: var(--font-display);
+  font-size: 2.25rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
 }
 
-/* H3：配套缩小版竖线标题（延续 H2 的极客风格） */
+/* H3：衬线小节标题 */
 .vp-doc h3 {
-  position: relative;
-  margin-top: 32px;
-  margin-bottom: 16px;
-  padding-left: 14px;
-  font-size: 1.3rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.5px;
-}
-.vp-doc h3::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 15%;
-  height: 70%;
-  width: 4px;
-  background-color: var(--vp-c-brand-1);
-  border-radius: 3px;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  font-family: var(--font-display);
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.005em;
 }
 
-/* H4：最小一级竖线，弱化处理 */
+/* H4：正文体加重即可，不再用竖线 */
 .vp-doc h4 {
-  position: relative;
-  margin-top: 24px;
-  margin-bottom: 12px;
-  padding-left: 12px;
+  margin-top: 28px;
+  margin-bottom: 10px;
   font-size: 1.05rem !important;
-  font-weight: 700 !important;
-}
-.vp-doc h4::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 20%;
-  height: 60%;
-  width: 3px;
-  background-color: var(--vp-c-brand-3);
-  border-radius: 2px;
+  font-weight: 600 !important;
 }
 
 /* 表格：圆角边框 + 斑马纹（官方默认无边框圆角，这里补全） */
@@ -738,14 +680,15 @@ html:has(.home-spa-wrapper) #app {
   background-color: var(--vp-c-bg-soft);
 }
 
-/* 引用块：品牌色左侧条 callout */
+/* 引用块：编辑部引文（细规则线 + 衬线，无彩色底） */
 .vp-doc blockquote {
-  margin: 1.5rem 0;
-  padding: 12px 18px;
-  border-left: 4px solid var(--vp-c-brand-1);
-  border-radius: 0 10px 10px 0;
-  background-color: var(--vp-c-brand-soft);
-  color: var(--vp-c-text-1);
+  margin: 1.75rem 0;
+  padding: 4px 0 4px 20px;
+  border-left: 2px solid var(--vp-c-brand-1);
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--vp-c-text-2);
+  font-family: var(--font-display);
 }
 .vp-doc blockquote > p {
   margin-bottom: 0.5rem;
@@ -778,21 +721,20 @@ html:has(.home-spa-wrapper) #app {
   background-size: 0% 1.5px;
   background-repeat: no-repeat;
   background-position: 0 100%;
-  transition: background-size 0.25s ease, color 0.25s ease;
+  transition: background-size var(--duration-normal) var(--ease-out), color var(--duration-normal) var(--ease-out);
 }
 .vp-doc p a:hover,
 .vp-doc li a:hover {
   background-size: 100% 1.5px;
 }
 
-/* 上一篇/下一篇 pager：卡片化微调（悬浮抬升 + 品牌色边框） */
+/* 上一篇/下一篇 pager：细边框微抬升（无发光） */
 .VPDocFooter .pager .pager-link {
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: transform var(--duration-normal) var(--ease-out), border-color var(--duration-normal) var(--ease-out);
 }
 .VPDocFooter .pager .pager-link:hover {
   transform: translateY(-2px);
   border-color: var(--vp-c-brand-1);
-  box-shadow: 0 8px 20px var(--vp-brand-glow);
 }
 
 /* * ==========================================
@@ -806,9 +748,9 @@ html:has(.home-spa-wrapper) #app {
   }
   .vp-doc h2 {
     font-size: 1.4rem !important;
-    padding-left: 16px;
-    margin-top: 32px !important;
-    margin-bottom: 18px !important;
+    margin-top: 40px !important;
+    margin-bottom: 16px !important;
+    padding-top: 20px;
   }
   .vp-doc h3 {
     font-size: 1.15rem !important;
